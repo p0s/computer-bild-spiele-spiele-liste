@@ -1,0 +1,8 @@
+normalized_title,rejected_candidate,source,reason
+athletics,Track and field,wikimedia,matched a generic sport concept instead of a specific software title
+die unglaublichen,The Incredibles (franchise),wikimedia,matched the franchise page instead of a specific game
+ocean diver,Open Water Diver,wikimedia,matched a diving certification concept instead of a specific software title
+online spiel,Online game,wikimedia,matched a generic concept page instead of a specific title
+onlinespiel,Online game,wikimedia,matched a generic concept page instead of a specific title
+world challenge,Hero World Challenge,wikimedia,matched a golf tournament instead of a software title
+xfire,Xfire (disambiguation),wikimedia,matched a disambiguation page

@@ -1,0 +1,7 @@
+archive_item,archive_name,issue_code,year,variant,normalized_title,representative_title,source_kinds,confidence,content_kind,clean_reason
+cbs-2000-09,1999/CBS121999.7z,CBS121999,1999,CD,hell copter,Hell Copter,vollversion-fullversion,high,full_version,vollversion-fullversion
+cbs-2000-09,2008/CBS042008DVD.7z,CBS042008DVD,2008,DVD,18 wheels of steel haulin,18 Wheels of Steel Haulin,disc-metadata-value,high,unknown,multiword
+cbs-2000-09,2008/CBS042008DVD.7z,CBS042008DVD,2008,DVD,18 wheelsof steel haulin,18 Wheelsof Steel Haulin,disc-metadata-value,high,unknown,multiword
+cbs-2000-09,2004/CBS112004DVD.7z,CBS112004DVD,2004,DVD,arena wars,Arena Wars,disc-metadata-value,high,unknown,multiword
+cbs-2000-09,2005/CBS012005DVD.7z,CBS012005DVD,2005,DVD,arena wars v 1 1,Arena Wars v 1 1,disc-metadata-value,high,unknown,multiword
+cbs-2000-09,2009/CBS072009DVD.7z,CBS072009DVD,2009,DVD,4 story,4 Story,disc-metadata-value,high,unknown,multiword

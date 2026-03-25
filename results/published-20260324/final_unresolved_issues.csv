@@ -1,0 +1,211 @@
+archive_item,archive_name,issue_code,year,variant,title_strategy,resolution_path,reason,status,root_cause,retry_recommended,suggestion
+cbs-2000-09,2007/CBS022007DVD.7z,CBS022007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS022007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS022007DVD.7z failed: curl: (56) Recv failure: Connection timed out
+curl: (6) Send failure: Broken pipe
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS022007DVDGOLD.7z,CBS022007DVDGOLD,2007,DVDGOLD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS022007DVDGOLD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS022007DVDGOLD.7z failed: curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS032007DVD.7z,CBS032007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS032007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS032007DVD.7z failed: curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org
+curl: (6) Could not resolve host: archive.org",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS042007DVD.7z,CBS042007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS042007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS042007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS042007DVDGold.7z,CBS042007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS042007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS042007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 133228 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS052007DVD.7z,CBS052007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS052007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS052007DVD.7z failed: curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS052007DVDGold.7z,CBS052007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS052007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS052007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS062007DVD.7z,CBS062007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS062007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS062007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS062007DVDGold.7z,CBS062007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS062007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS062007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS072007DVD.7z,CBS072007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS072007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS072007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS072007DVDGold.7z,CBS072007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS072007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS072007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS082007DVD.7z,CBS082007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS082007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS082007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 134763 ms: Couldn't connect to server",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS082007DVDBonus.7z,CBS082007DVDBonus,2007,DVDBonus,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS082007DVDBonus.7z.part https://archive.org/download/cbs-2000-09/2007/CBS082007DVDBonus.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS082007DVDGold.7z,CBS082007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS082007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS082007DVDGold.7z failed: curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS092007DVD.7z,CBS092007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS092007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS092007DVD.7z failed: curl: (28) Failed to connect to archive.org port 443 after 133973 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS092007DVDGold.7z,CBS092007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS092007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS092007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS102007DVD.7z,CBS102007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS102007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS102007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS102007DVDGold.7z,CBS102007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS102007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS102007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 136353 ms: Couldn't connect to server
+curl: (28) Failed to connect to archive.org port 443 after 134260 ms: Couldn't connect to server
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS112007DVD.7z,CBS112007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS112007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS112007DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 133134 ms: Couldn't connect to server
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS112007DVDGold.7z,CBS112007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS112007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS112007DVDGold.7z failed: curl: (28) Failed to connect to archive.org port 443 after 134138 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS122007DVD.7z,CBS122007DVD,2007,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS122007DVD.7z.part https://archive.org/download/cbs-2000-09/2007/CBS122007DVD.7z failed: curl: (28) Failed to connect to archive.org port 443 after 134884 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2007/CBS122007DVDGold.7z,CBS122007DVDGold,2007,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS122007DVDGold.7z.part https://archive.org/download/cbs-2000-09/2007/CBS122007DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 134720 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 132688 ms: Couldn't connect to server",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS012008DVD.7z,CBS012008DVD,2008,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS012008DVD.7z.part https://archive.org/download/cbs-2000-09/2008/CBS012008DVD.7z failed: curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS012008DVDGold.7z,CBS012008DVDGold,2008,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS012008DVDGold.7z.part https://archive.org/download/cbs-2000-09/2008/CBS012008DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS012008DVDSonder.7z,CBS012008DVDSonder,2008,DVDSonder,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS012008DVDSonder.7z.part https://archive.org/download/cbs-2000-09/2008/CBS012008DVDSonder.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) SSL connection timeout",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS072008DVD.7z,CBS072008DVD,2008,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS072008DVD.7z.part https://archive.org/download/cbs-2000-09/2008/CBS072008DVD.7z failed: curl: (56) Recv failure: Connection reset by peer
+curl: (56) Send failure: Broken pipe
+curl: (22) The requested URL returned error: 401
+curl: (22) The requested URL returned error: 401
+curl: (22) The requested URL returned error: 401
+curl: (18) transfer closed with 1728151120 bytes remaining to read",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS072008DVDGold.7z,CBS072008DVDGold,2008,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS072008DVDGold.7z.part https://archive.org/download/cbs-2000-09/2008/CBS072008DVDGold.7z failed: curl: (22) The requested URL returned error: 401
+curl: (22) The requested URL returned error: 401
+curl: (18) transfer closed with 5262390796 bytes remaining to read
+curl: (18) Send failure: Broken pipe
+curl: (56) Send failure: Broken pipe
+curl: (18) transfer closed with 5853492748 bytes remaining to read",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS082008DVD.7z,CBS082008DVD,2008,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS082008DVD.7z.part https://archive.org/download/cbs-2000-09/2008/CBS082008DVD.7z failed: curl: (22) The requested URL returned error: 401
+curl: (18) transfer closed with 7041402499 bytes remaining to read
+curl: (18) Send failure: Broken pipe
+curl: (18) Send failure: Broken pipe
+curl: (18) transfer closed with 7291733635 bytes remaining to read
+curl: (18) transfer closed with 7144736387 bytes remaining to read",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2008/CBS082008DVDGold.7z,CBS082008DVDGold,2008,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS082008DVDGold.7z.part https://archive.org/download/cbs-2000-09/2008/CBS082008DVDGold.7z failed: curl: (18) transfer closed with 6182523797 bytes remaining to read
+curl: (56) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 401
+curl: (18) transfer closed with 6316381077 bytes remaining to read
+curl: (18) Send failure: Broken pipe
+curl: (18) Send failure: Broken pipe",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS032009DVD.7z,CBS032009DVD,2009,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS032009DVD.7z.part https://archive.org/download/cbs-2000-09/2009/CBS032009DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 134763 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS032009DVDGold.7z,CBS032009DVDGold,2009,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS032009DVDGold.7z.part https://archive.org/download/cbs-2000-09/2009/CBS032009DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 133309 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS042009DVD.7z,CBS042009DVD,2009,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS042009DVD.7z.part https://archive.org/download/cbs-2000-09/2009/CBS042009DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 132509 ms: Couldn't connect to server",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS042009DVDGold.7z,CBS042009DVDGold,2009,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS042009DVDGold.7z.part https://archive.org/download/cbs-2000-09/2009/CBS042009DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (28) Failed to connect to archive.org port 443 after 132741 ms: Couldn't connect to server
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS052009DVD.7z,CBS052009DVD,2009,DVD,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS052009DVD.7z.part https://archive.org/download/cbs-2000-09/2009/CBS052009DVD.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (35) Recv failure: Connection reset by peer
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues
+cbs-2000-09,2009/CBS052009DVDGold.7z,CBS052009DVDGold,2009,DVDGold,auto,none,"curl --http1.1 -L --fail --silent --show-error --retry 5 --retry-all-errors --retry-delay 5 -C - --output /tmp/cbs-vps-linux-full/downloads/CBS052009DVDGold.7z.part https://archive.org/download/cbs-2000-09/2009/CBS052009DVDGold.7z failed: curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503",extract_failed,network/download,yes,retry on a stable network or with a rerun focused on unresolved issues

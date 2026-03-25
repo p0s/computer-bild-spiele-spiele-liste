@@ -1,0 +1,4 @@
+source_name,source_type,homepage,fields_used,attribution_note,terms_note
+Wikidata,api,https://www.wikidata.org/,"canonical entity, release year, entity type, genres, ratings when present, MobyGames id when present",Structured Wikimedia entity data,Use minimal factual metadata with source attribution
+Wikipedia,api,https://www.wikipedia.org/,canonical page URL and fallback page discovery,Used only for page URLs and entity confirmation,Use minimal factual metadata with source attribution
+MobyGames,public-page,https://www.mobygames.com/,best-effort genre/rating confirmation when page access is possible,Optional secondary source only after strong canonical match,Do not copy large page content; use minimal factual metadata only
