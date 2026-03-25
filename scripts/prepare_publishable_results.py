@@ -169,15 +169,25 @@ REPRESENTATIVE_TITLE_REPAIRS = {
     "baldur s gate legenden der schwertk ste": "Baldur's Gate Legenden der Schwertk\u00fcste",
     "bildschirmhintergr nde": "Bildschirmhintergr\u00fcnde",
     "call of duty 4 modern warfare": "Call of Duty 4 - Modern Warfare",
+    "battlefield2142v150": "Battlefield 2142",
     "codename panzers cold war": "Codename Panzers - Cold War",
+    "codename panzers phase2v108": "Codename Panzers Phase 2",
+    "command conquer gener le die stunde null": "Command & Conquer Gener\u00e4le Die Stunde Null",
     "command conquer alarmstufe rot 3v 1": "Command & Conquer - Alarmstufe Rot 3 v 1",
+    "command conquer3 tiberium warsv108 kane edition": "Command & Conquer 3 Tiberium Wars Kane Edition",
+    "command conquer3 tiberium warsv108 standard edition": "Command & Conquer 3 Tiberium Wars Standard Edition",
+    "command conquer3 tiberium warsv108 kane": "Command & Conquer 3 Tiberium Wars Kane Edition",
+    "command conquer3 tiberium warsv108 standard": "Command & Conquer 3 Tiberium Wars Standard Edition",
     "crazy machines 2 cm": "Crazy Machines 2",
     "das geheimnis der vergessenen h hle": "Das Geheimnis der vergessenen H\u00f6hle",
     "das schwarze auge drakensang": "Das Schwarze Auge - Drakensang",
     "das verm chtnis testament of sin": "Das Verm\u00e4chtnis - Testament of Sin",
     "desperados 2 cooper s revenge": "Desperados 2 - Cooper's Revenge",
+    "das erbe der k nige": "Das Erbe der K\u00f6nige",
     "die gilde 2 venedig v 3": "Die Gilde 2 - Venedig v 3",
     "die legenden und m rchen von ash kale 1": "Die Legenden und M\u00e4rchen von Ash'kale 1",
+    "die siedler 6 aufstieg eines k nigreichs": "Die Siedler 6 Aufstieg eines K\u00f6nigreichs",
+    "die siedler aufstieg eines k nigreichs": "Die Siedler Aufstieg eines K\u00f6nigreichs",
     "die siedler 2 die n chste generation": "Die Siedler 2 Die n\u00e4chste Generation",
     "die siedler das erbe der k nige": "Die Siedler Das Erbe der K\u00f6nige",
     "dikowsk ru land": "Dikowsk, Ru\u00dfland",
@@ -187,6 +197,7 @@ REPRESENTATIVE_TITLE_REPAIRS = {
     "fu ball manager08": "Fu\u00dfball Manager 08",
     "fu ball manager09": "Fu\u00dfball Manager 09",
     "fu ball manager2008v 8 0": "Fu\u00dfball Manager 2008 v 8 0",
+    "fuball manager2008v802": "Fu\u00dfball Manager 2008",
     "garry die schmei fliege": "Garry die Schmei\u00dffliege",
     "grand ages rome": "Grand Ages - Rome",
     "gta 4 komplettl sung": "GTA 4 Komplettl\u00f6sung",
@@ -213,6 +224,9 @@ REPRESENTATIVE_TITLE_REPAIRS = {
     "post mortem l sungsbuch": "Post Mortem + L\u00f6sungsbuch",
     "plus aufl sung": "plus Aufl\u00f6sung",
     "prim r": "Prim\u00e4r",
+    "quake4v142": "Quake 4",
+    "radsport manager pro2007v1010": "Radsport Manager Pro 2007",
+    "rainbow six vegas2v103": "Rainbow Six Vegas 2",
     "r ckkehr zur insel": "R\u00fcckkehr zur Insel",
     "sacred 2 fallen angel": "Sacred 2 - Fallen Angel",
     "sacred 2 fallen angel v 2 34 0": "Sacred 2 - Fallen Angel v 2 34 0",
@@ -220,9 +234,18 @@ REPRESENTATIVE_TITLE_REPAIRS = {
     "sherlock holmes die spur der erwachten remastered": "Sherlock Holmes - Die Spur der Erwachten - Remastered Edition",
     "sid meier s civilization 4 fall from heaven 2 0": "Sid Meier's Civilization 4 - Fall from Heaven 2 0",
     "siedler das erbe der k nige": "Siedler Das Erbe der K\u00f6nige",
+    "stalkerv10003v10004v10005": "STALKER",
+    "stronghold2v14": "Stronghold 2",
+    "supreme commander forged alliance v 1 5 3596 auf": "Supreme Commander Forged Alliance",
+    "supreme commander forged alliance v 1 5 3596 auf v 1 5": "Supreme Commander Forged Alliance",
+    "supreme commander forged alliancev153596auf": "Supreme Commander Forged Alliance",
+    "supreme commander forged alliancev153596aufv153599": "Supreme Commander Forged Alliance",
     "syberia 2l sungsbuch": "Syberia 2 + L\u00f6sungsbuch",
+    "tom clancys ghost recon advanced warfighter2v102": "Tom Clancy's Ghost Recon Advanced Warfighter 2",
+    "tom clancys ghost recon advanced warfighter2v104": "Tom Clancy's Ghost Recon Advanced Warfighter 2",
     "tomb raider underworld v 1": "Tomb Raider - Underworld v 1",
     "tomb raider underworld": "Tomb Raider - Underworld",
+    "unreal tournament3v12": "Unreal Tournament 3",
     "turbo strau": "Turbo Strau\u00df",
     "tutorial wasserk hlung": "Tutorial: Wasserk\u00fchlung",
     "velaya geschichte einer kriegerin 1": "Velaya - Geschichte einer Kriegerin 1",
@@ -257,10 +280,21 @@ def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) 
 def repair_issue_row(row: dict[str, str]) -> dict[str, str]:
     repaired = dict(row)
     replacement = REPRESENTATIVE_TITLE_REPAIRS.get(repaired["normalized_title"])
-    if replacement is None:
-        return repaired
-    repaired["representative_title"] = replacement
-    normalized = normalize_title(replacement)
+    if replacement is not None:
+        repaired["representative_title"] = replacement
+
+    # Drop trailing build/version noise from otherwise valid titles so
+    # publishable rows collapse onto the underlying game title.
+    stripped = re.sub(
+        r"(?:\s+|(?<=[A-Za-z]))v(?:ersion)?\s*\d+(?:[\s._-]*\d+)*(?:[a-z])?$",
+        "",
+        repaired["representative_title"],
+        flags=re.IGNORECASE,
+    ).strip(" -_:")
+    if stripped:
+        repaired["representative_title"] = stripped
+
+    normalized = normalize_title(repaired["representative_title"])
     if normalized is not None:
         repaired["normalized_title"] = normalized
     return repaired
@@ -395,6 +429,7 @@ STRICT_BAD_EXACT = {
     "l schen",
     "l sungb cher",
     "l sungsb cher",
+    "loesungsbuecher",
     "lautst rke musik",
     "lautst rke sfx",
     "m chten sie das spiel verlassen",
@@ -410,6 +445,7 @@ STRICT_BAD_EXACT = {
     "trailerliste",
     "secunia personal software inspector",
     "si software sandra 2005 lite",
+    "tcp optimizer",
     "tutorial wasserk hlung",
     "trailer",
     "trailer01",
@@ -425,9 +461,11 @@ STRICT_BAD_EXACT = {
 }
 
 STRICT_BAD_SUBSTRINGS = (
+    "acronis",
     "abylon",
     "aware",
     "adobe",
+    "ashampoo",
     "reader",
     "windows",
     "media",
@@ -462,8 +500,11 @@ STRICT_BAD_SUBSTRINGS = (
     "phys x",
     "physx",
     "radeon",
+    "sound blaster",
     "sandra",
+    "drive image",
     "loesungsbuch",
+    "loesungsbuecher",
     "lösungsbuch",
     "lösungsbücher",
     "bildschirmhintergr",
@@ -619,8 +660,10 @@ def main() -> int:
     master_rows = read_csv(input_dir / "master_games.csv")
 
     cleaned_issue_rows, dropped_rows = clean_issue_rows(issue_rows)
+    cleaned_issue_rows = [repair_issue_row(row) for row in cleaned_issue_rows]
     cleaned_master_rows = rebuild_master(cleaned_issue_rows)
     publishable_rows = publishable_issue_rows(cleaned_issue_rows)
+    publishable_rows = [repair_issue_row(row) for row in publishable_rows]
     publishable_master_rows = rebuild_master(publishable_rows)
     analyzed_unresolved = analyze_unresolved(unresolved_rows)
 

@@ -171,7 +171,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS012005DVD.7z,CBS012005DVD,chunk,chunk,disc-metadata-value,high,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,closebox,closebox,disc-metadata-value,high,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,cloth,menu cloth,disc-metadata-value,high,bad-substring
-2005/CBS012005DVD.7z,CBS012005DVD,coldzero server v1,Coldzero Server v1,disc-metadata-value,high,bad-substring
+2005/CBS012005DVD.7z,CBS012005DVD,coldzero server,Coldzero Server,disc-metadata-value,high,bad-substring
 2005/CBS012005DVD.7z,CBS012005DVD,config,config,disc-manifest-path,medium,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,copyright,copyright,disc-manifest-path,medium,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,custom,custom,disc-manifest-path,medium,weak-singleword
@@ -229,7 +229,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS012005DVD.7z,CBS012005DVD,left,LEFT,disc-metadata-value,high,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,load,LOAD,disc-metadata-value,high,weak-singleword
 2005/CBS012005DVD.7z,CBS012005DVD,maschinenpistolen,MASCHINENPISTOLEN,disc-metadata-value,high,weak-singleword
-2005/CBS012005DVD.7z,CBS012005DVD,me v 4,ME) v 4,disc-metadata-value,high,all-short-words
+2005/CBS012005DVD.7z,CBS012005DVD,me v 4,ME),disc-metadata-value,high,all-short-words
 2005/CBS012005DVD.7z,CBS012005DVD,mehrspieler,MEHRSPIELER,disc-metadata-value,high,bad-substring
 2005/CBS012005DVD.7z,CBS012005DVD,mehrspieler einstellungen,MEHRSPIELER EINSTELLUNGEN,disc-metadata-value,high,bad-substring
 2005/CBS012005DVD.7z,CBS012005DVD,mehrspielermen,MEHRSPIELERMEN�,disc-metadata-value,high,bad-substring
@@ -303,7 +303,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS012005DVD.7z,CBS012005DVD,windows installer 2,Windows Installer 2,disc-metadata-value,high,bad-substring
 2005/CBS012005DVD.7z,CBS012005DVD,windows media player w98,Windows Media Player w98,disc-metadata-value,high,bad-substring
 2005/CBS012005DVD.7z,CBS012005DVD,windows media player10,Windows Media Player 10,disc-metadata-value,high,bad-substring
-2005/CBS012005DVD.7z,CBS012005DVD,xp v 4,XP) v 4,disc-metadata-value,high,all-short-words
+2005/CBS012005DVD.7z,CBS012005DVD,xp v 4,XP),disc-metadata-value,high,all-short-words
 2005/CBS012005DVD.7z,CBS012005DVD,z inv do mysz,z inv do mysz,disc-metadata-value,high,mostly-short-words
 2005/CBS012005DVD.7z,CBS012005DVD,z mysz do inv,z mysz do inv,disc-metadata-value,high,mostly-short-words
 2005/CBS012005DVD.7z,CBS012005DVD,zakonczenie,zakonczenie,disc-metadata-value,high,weak-singleword
@@ -312,7 +312,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS022005DVD.7z,CBS022005DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS022005DVD.7z,CBS022005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS022005DVD.7z,CBS022005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS022005DVD.7z,CBS022005DVD,ati catalyst xp v 4,Ati Catalyst (XP) v 4,disc-metadata-value,high,bad-substring
+2005/CBS022005DVD.7z,CBS022005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS022005DVD.7z,CBS022005DVD,cs1,CS1,disc-manifest-path,medium,short-code
 2005/CBS022005DVD.7z,CBS022005DVD,direct x 9,Direct X 9,disc-metadata-value,high,bad-substring
 2005/CBS022005DVD.7z,CBS022005DVD,dll,Dll,disc-manifest-path,medium,bad-exact
@@ -320,7 +320,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS022005DVD.7z,CBS022005DVD,files,files,disc-manifest-path,medium,bad-exact
 2005/CBS022005DVD.7z,CBS022005DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS022005DVD.7z,CBS022005DVD,manual,Manual,disc-manifest-path,medium,bad-exact
-2005/CBS022005DVD.7z,CBS022005DVD,me v 4,ME) v 4,disc-metadata-value,high,all-short-words
+2005/CBS022005DVD.7z,CBS022005DVD,me v 4,ME),disc-metadata-value,high,all-short-words
 2005/CBS022005DVD.7z,CBS022005DVD,mod,Mod,disc-manifest-path,medium,all-short-words
 2005/CBS022005DVD.7z,CBS022005DVD,muza,muza,disc-manifest-path,medium,weak-singleword
 2005/CBS022005DVD.7z,CBS022005DVD,read me,Read Me,disc-manifest-path,medium,bad-substring
@@ -337,13 +337,12 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS032005DVD.7z,CBS032005DVD,adv,ADV,disc-manifest-path,medium,all-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,aircraft,AIRCRAFT,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS032005DVD.7z,CBS032005DVD,ati catalyst xp v 4,Ati Catalyst (XP) v 4,disc-metadata-value,high,bad-substring
+2005/CBS032005DVD.7z,CBS032005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS032005DVD.7z,CBS032005DVD,cfsconv,CFSCONV,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,cfscred,CFSCRED,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,club football2005 fc b m,Club Football 2005 FC B M,disc-metadata-value,high,mostly-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,combatfs,COMBATFS,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,copyright,copyright,disc-manifest-path,medium,weak-singleword
-2005/CBS032005DVD.7z,CBS032005DVD,dawn of war v 1,Dawn of War v 1,disc-metadata-value,high,mostly-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,devices,DEVICES,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,devices2,DEVICES2,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,dialog,DIALOG,disc-manifest-path,medium,weak-singleword
@@ -361,7 +360,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS032005DVD.7z,CBS032005DVD,lessons,LESSONS,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,mdl610,MDL610,disc-manifest-path,medium,short-code
 2005/CBS032005DVD.7z,CBS032005DVD,mdltemp,MDLTEMP,disc-manifest-path,medium,weak-singleword
-2005/CBS032005DVD.7z,CBS032005DVD,me v 4,ME) v 4,disc-metadata-value,high,all-short-words
+2005/CBS032005DVD.7z,CBS032005DVD,me v 4,ME),disc-metadata-value,high,all-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,mfc42,MFC42,disc-manifest-path,medium,short-code
 2005/CBS032005DVD.7z,CBS032005DVD,mfc42 loc,MFC42 LOC,disc-manifest-path,medium,all-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,missions,MISSIONS,disc-manifest-path,medium,weak-singleword
@@ -376,7 +375,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS032005DVD.7z,CBS032005DVD,sim,SIM,disc-manifest-path,medium,all-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,simsui,SIMSUI,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,situatio,SITUATIO,disc-manifest-path,medium,weak-singleword
-2005/CBS032005DVD.7z,CBS032005DVD,ski alpin2005v 1,Ski Alpin 2005 v 1,disc-metadata-value,high,all-short-words
+2005/CBS032005DVD.7z,CBS032005DVD,ski alpin2005,Ski Alpin 2005,disc-metadata-value,high,all-short-words
 2005/CBS032005DVD.7z,CBS032005DVD,sound,SOUND,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,texture,TEXTURE,disc-manifest-path,medium,weak-singleword
 2005/CBS032005DVD.7z,CBS032005DVD,videos,VIDEOS,disc-manifest-path,medium,weak-singleword
@@ -388,7 +387,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS042005DVD.7z,CBS042005DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS042005DVD.7z,CBS042005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS042005DVD.7z,CBS042005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS042005DVD.7z,CBS042005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS042005DVD.7z,CBS042005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS042005DVD.7z,CBS042005DVD,cfgmgr32,cfgmgr32,disc-manifest-path,medium,weak-singleword
 2005/CBS042005DVD.7z,CBS042005DVD,copyright,copyright,disc-manifest-path,medium,weak-singleword
 2005/CBS042005DVD.7z,CBS042005DVD,coreadme,coreadme,disc-manifest-path,medium,manifest-noise
@@ -404,10 +403,10 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS042005DVD.7z,CBS042005DVD,installer art,Installer Art,disc-manifest-path,medium,bad-substring
 2005/CBS042005DVD.7z,CBS042005DVD,lang,lang,disc-manifest-path,medium,weak-singleword
 2005/CBS042005DVD.7z,CBS042005DVD,layout,layout,disc-manifest-path,medium,bad-exact
-2005/CBS042005DVD.7z,CBS042005DVD,me v 4,ME) v 4,disc-metadata-value,high,all-short-words
+2005/CBS042005DVD.7z,CBS042005DVD,me v 4,ME),disc-metadata-value,high,all-short-words
 2005/CBS042005DVD.7z,CBS042005DVD,msn,MSN,disc-manifest-path,medium,all-short-words
 2005/CBS042005DVD.7z,CBS042005DVD,msnlogo,msnlogo,disc-metadata-command,medium,weak-singleword
-2005/CBS042005DVD.7z,CBS042005DVD,nba live2005v 1,NBA Live 2005 v 1,disc-metadata-value,high,all-short-words
+2005/CBS042005DVD.7z,CBS042005DVD,nba live2005,NBA Live 2005,disc-metadata-value,high,all-short-words
 2005/CBS042005DVD.7z,CBS042005DVD,setupapi,setupapi,disc-manifest-path,medium,bad-substring
 2005/CBS042005DVD.7z,CBS042005DVD,skin f r win,Skin f�r Win,disc-metadata-value,high,mostly-short-words
 2005/CBS042005DVD.7z,CBS042005DVD,sys1,sys1,disc-manifest-path,medium,short-code
@@ -448,7 +447,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS062005DVD.7z,CBS062005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS062005DVD.7z,CBS062005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS062005DVD.7z,CBS062005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS062005DVD.7z,CBS062005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS062005DVD.7z,CBS062005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS062005DVD.7z,CBS062005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS062005DVD.7z,CBS062005DVD,data1,Data1,disc-manifest-path,medium,short-code
 2005/CBS062005DVD.7z,CBS062005DVD,data2,Data2,disc-manifest-path,medium,short-code
@@ -463,8 +462,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS062005DVD.7z,CBS062005DVD,instmsiw,instmsiw,disc-manifest-path,medium,weak-singleword
 2005/CBS062005DVD.7z,CBS062005DVD,intl,INTL,disc-metadata-value,high,weak-singleword
 2005/CBS062005DVD.7z,CBS062005DVD,lizenz,lizenz,disc-manifest-path,medium,weak-singleword
-2005/CBS062005DVD.7z,CBS062005DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
-2005/CBS062005DVD.7z,CBS062005DVD,nf s underground 2v 1,Nf S Underground 2 v 1,disc-metadata-value,high,mostly-short-words
+2005/CBS062005DVD.7z,CBS062005DVD,me v 5,ME),disc-metadata-value,high,all-short-words
+2005/CBS062005DVD.7z,CBS062005DVD,nf s underground 2,Nf S Underground 2,disc-metadata-value,high,mostly-short-words
 2005/CBS062005DVD.7z,CBS062005DVD,read me,Read Me,disc-manifest-path,medium,bad-substring
 2005/CBS062005DVD.7z,CBS062005DVD,tmp,Tmp,disc-manifest-path,medium,all-short-words
 2005/CBS062005DVD.7z,CBS062005DVD,topstart,TOPSTART,disc-metadata-command,medium,weak-singleword
@@ -480,7 +479,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS072005DVD.7z,CBS072005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS072005DVD.7z,CBS072005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS072005DVD.7z,CBS072005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,cossacks 2 napoleonic wars installations,Cossacks 2 Napoleonic Wars Installations,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,cs2,CS2,disc-manifest-path,medium,short-code
@@ -488,14 +487,14 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS072005DVD.7z,CBS072005DVD,files,files,disc-manifest-path,medium,bad-exact
 2005/CBS072005DVD.7z,CBS072005DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,manual,Manual,disc-manifest-path,medium,bad-exact
-2005/CBS072005DVD.7z,CBS072005DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
-2005/CBS072005DVD.7z,CBS072005DVD,me v71,ME) v 71,disc-metadata-value,high,all-short-words
+2005/CBS072005DVD.7z,CBS072005DVD,me v 5,ME),disc-metadata-value,high,all-short-words
+2005/CBS072005DVD.7z,CBS072005DVD,me v71,ME),disc-metadata-value,high,all-short-words
 2005/CBS072005DVD.7z,CBS072005DVD,no man s land,No Man's Land,disc-metadata-value,high,mostly-short-words
 2005/CBS072005DVD.7z,CBS072005DVD,read me,Read Me,disc-manifest-path,medium,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,windows installer 2,Windows Installer 2,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,windows media player 9,Windows Media Player 9,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,windows media player10,Windows Media Player 10,disc-metadata-value,high,bad-substring
-2005/CBS072005DVD.7z,CBS072005DVD,xp v71,XP) v 71,disc-metadata-value,high,all-short-words
+2005/CBS072005DVD.7z,CBS072005DVD,xp v71,XP),disc-metadata-value,high,all-short-words
 2005/CBS072005DVD.7z,CBS072005DVD,zone alarm 5,Zone Alarm 5,disc-metadata-value,high,bad-substring
 2005/CBS072005DVD.7z,CBS072005DVD,zur ck,Zur�ck,disc-metadata-value,high,all-short-words
 2005/CBS082005DVD.7z,CBS082005DVD,0data,0data,"disc-manifest-path,disc-metadata-command",medium,weak-singleword
@@ -503,7 +502,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS082005DVD.7z,CBS082005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS082005DVD.7z,CBS082005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS082005DVD.7z,CBS082005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,database,database,"disc-manifest-path,disc-metadata-value",high,weak-singleword
 2005/CBS082005DVD.7z,CBS082005DVD,direct x 9,Direct X 9,disc-metadata-value,high,bad-substring
@@ -515,7 +514,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS082005DVD.7z,CBS082005DVD,handbuch f7 se,Handbuch F7 SE,disc-manifest-path,medium,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS082005DVD.7z,CBS082005DVD,manuals,MANUALS,disc-manifest-path,medium,bad-substring
-2005/CBS082005DVD.7z,CBS082005DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
+2005/CBS082005DVD.7z,CBS082005DVD,me v 5,ME),disc-metadata-value,high,all-short-words
 2005/CBS082005DVD.7z,CBS082005DVD,msmedia,MSMEDIA,disc-manifest-path,medium,weak-singleword
 2005/CBS082005DVD.7z,CBS082005DVD,mss32,Mss32,disc-manifest-path,medium,short-code
 2005/CBS082005DVD.7z,CBS082005DVD,redist,REDIST,disc-manifest-path,medium,weak-singleword
@@ -534,7 +533,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS092005DVD.7z,CBS092005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS092005DVD.7z,CBS092005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS092005DVD.7z,CBS092005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,autorun1,AUTORUN1,disc-manifest-path,medium,manifest-noise
 2005/CBS092005DVD.7z,CBS092005DVD,dbghelp,dbghelp,disc-manifest-path,medium,weak-singleword
@@ -547,8 +546,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS092005DVD.7z,CBS092005DVD,images,images,disc-manifest-path,medium,weak-singleword
 2005/CBS092005DVD.7z,CBS092005DVD,manual,Manual,disc-manifest-path,medium,bad-exact
 2005/CBS092005DVD.7z,CBS092005DVD,manuals,manuals,disc-manifest-path,medium,bad-substring
-2005/CBS092005DVD.7z,CBS092005DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
-2005/CBS092005DVD.7z,CBS092005DVD,me v77,ME) v 77,disc-metadata-value,high,all-short-words
+2005/CBS092005DVD.7z,CBS092005DVD,me v 5,ME),disc-metadata-value,high,all-short-words
+2005/CBS092005DVD.7z,CBS092005DVD,me v77,ME),disc-metadata-value,high,all-short-words
 2005/CBS092005DVD.7z,CBS092005DVD,ole link1 die internetadressen einiger der bekanntesten grafikkarten,"OLE LINK1"">Die Internetadressen einiger der bekanntesten Grafikkarten",disc-metadata-value,high,markup-noise
 2005/CBS092005DVD.7z,CBS092005DVD,prey,Prey,disc-metadata-value,high,weak-singleword
 2005/CBS092005DVD.7z,CBS092005DVD,radsportmanager,radsportmanager,disc-metadata-value,high,weak-singleword
@@ -559,7 +558,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS092005DVD.7z,CBS092005DVD,windows installer 2,Windows Installer 2,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,windows media player 9,Windows Media Player 9,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,windows media player10,Windows Media Player 10,disc-metadata-value,high,bad-substring
-2005/CBS092005DVD.7z,CBS092005DVD,xp v77,XP) v 77,disc-metadata-value,high,all-short-words
+2005/CBS092005DVD.7z,CBS092005DVD,xp v77,XP),disc-metadata-value,high,all-short-words
 2005/CBS092005DVD.7z,CBS092005DVD,zone alarm 5,Zone Alarm 5,disc-metadata-value,high,bad-substring
 2005/CBS092005DVD.7z,CBS092005DVD,zur ck,Zur�ck,disc-metadata-value,high,all-short-words
 2005/CBS102005DVD.7z,CBS102005DVD,0data,0data,"disc-manifest-path,disc-metadata-command",medium,weak-singleword
@@ -567,7 +566,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS102005DVD.7z,CBS102005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS102005DVD.7z,CBS102005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
+2005/CBS102005DVD.7z,CBS102005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,cy m3,Cy M3,disc-metadata-command,medium,all-short-words
 2005/CBS102005DVD.7z,CBS102005DVD,cym3,CYM3,disc-manifest-path,medium,short-code
@@ -585,7 +584,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS102005DVD.7z,CBS102005DVD,layout,layout,disc-manifest-path,medium,bad-exact
 2005/CBS102005DVD.7z,CBS102005DVD,manuals,Manuals,disc-manifest-path,medium,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,mci32,MCI32,disc-manifest-path,medium,short-code
-2005/CBS102005DVD.7z,CBS102005DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
+2005/CBS102005DVD.7z,CBS102005DVD,me v 5,ME),disc-metadata-value,high,all-short-words
 2005/CBS102005DVD.7z,CBS102005DVD,msvbvm60,MSVBVM60,disc-manifest-path,medium,weak-singleword
 2005/CBS102005DVD.7z,CBS102005DVD,windows installer 2,Windows Installer 2,disc-metadata-value,high,bad-substring
 2005/CBS102005DVD.7z,CBS102005DVD,windows media player 9,Windows Media Player 9,disc-metadata-value,high,bad-substring
@@ -597,10 +596,10 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS112005DVD.7z,CBS112005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS112005DVD.7z,CBS112005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS112005DVD.7z,CBS112005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS112005DVD.7z,CBS112005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
-2005/CBS112005DVD.7z,CBS112005DVD,ati catalyst98 me v 5,Ati Catalyst (98 ME) v 5,disc-metadata-value,high,bad-substring
+2005/CBS112005DVD.7z,CBS112005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
+2005/CBS112005DVD.7z,CBS112005DVD,ati catalyst98 me,Ati Catalyst (98 ME),disc-metadata-value,high,bad-substring
 2005/CBS112005DVD.7z,CBS112005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
-2005/CBS112005DVD.7z,CBS112005DVD,b i a road to hill30v 1,B i A Road to Hill 30 v 1,disc-metadata-value,high,mostly-short-words
+2005/CBS112005DVD.7z,CBS112005DVD,b i a road to hill30,B i A Road to Hill 30,disc-metadata-value,high,mostly-short-words
 2005/CBS112005DVD.7z,CBS112005DVD,bin,Bin,disc-manifest-path,medium,all-short-words
 2005/CBS112005DVD.7z,CBS112005DVD,cds i,CDS I,disc-manifest-path,medium,all-short-words
 2005/CBS112005DVD.7z,CBS112005DVD,data1,data1,disc-manifest-path,medium,short-code
@@ -625,8 +624,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS122005DVD.7z,CBS122005DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,anti vir personal 6,Anti Vir Personal Edition 6,disc-metadata-value,high,bad-substring
-2005/CBS122005DVD.7z,CBS122005DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
-2005/CBS122005DVD.7z,CBS122005DVD,ati catalyst98 me v 5,Ati Catalyst (98 ME) v 5,disc-metadata-value,high,bad-substring
+2005/CBS122005DVD.7z,CBS122005DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
+2005/CBS122005DVD.7z,CBS122005DVD,ati catalyst98 me,Ati Catalyst (98 ME),disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,cfgmgr32,CFGMGR32,disc-manifest-path,medium,weak-singleword
 2005/CBS122005DVD.7z,CBS122005DVD,common,COMMON,disc-manifest-path,medium,bad-exact
@@ -635,7 +634,6 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS122005DVD.7z,CBS122005DVD,dsetup32,DSETUP32,disc-manifest-path,medium,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,dxmedia,DXMEDIA,disc-manifest-path,medium,weak-singleword
 2005/CBS122005DVD.7z,CBS122005DVD,dyna,dyna,disc-manifest-path,medium,weak-singleword
-2005/CBS122005DVD.7z,CBS122005DVD,earth2160 v 1 3,Earth 2160 Gold v 1 3,disc-metadata-value,high,all-short-words
 2005/CBS122005DVD.7z,CBS122005DVD,env,ENV,disc-manifest-path,medium,all-short-words
 2005/CBS122005DVD.7z,CBS122005DVD,etrashboxes,etrashboxes,disc-manifest-path,medium,weak-singleword
 2005/CBS122005DVD.7z,CBS122005DVD,evehicles,evehicles,disc-manifest-path,medium,weak-singleword
@@ -644,7 +642,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2005/CBS122005DVD.7z,CBS122005DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,icon,icon,disc-manifest-path,medium,bad-exact
 2005/CBS122005DVD.7z,CBS122005DVD,intl,INTL,disc-metadata-value,high,weak-singleword
-2005/CBS122005DVD.7z,CBS122005DVD,iv5,iv5,disc-manifest-path,medium,short-code
+2005/CBS122005DVD.7z,CBS122005DVD,iv5,i,disc-manifest-path,medium,short-code
 2005/CBS122005DVD.7z,CBS122005DVD,king,KING,disc-manifest-path,medium,weak-singleword
 2005/CBS122005DVD.7z,CBS122005DVD,kinofilm layerchange,Kinofilm Layerchange,disc-metadata-value,high,bad-substring
 2005/CBS122005DVD.7z,CBS122005DVD,kinofilm layerchange abo,Kinofilm Layerchange abo,disc-metadata-value,high,bad-substring
@@ -696,8 +694,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS012006DVD.7z,CBS012006DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2006/CBS012006DVD.7z,CBS012006DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2006/CBS012006DVD.7z,CBS012006DVD,anti vir personal classic 6,Anti Vir Personal Edition Classic 6,disc-metadata-value,high,bad-substring
-2006/CBS012006DVD.7z,CBS012006DVD,ati catalyst xp v 5,Ati Catalyst (XP) v 5,disc-metadata-value,high,bad-substring
-2006/CBS012006DVD.7z,CBS012006DVD,ati catalyst98 me v 5,Ati Catalyst (98 ME) v 5,disc-metadata-value,high,bad-substring
+2006/CBS012006DVD.7z,CBS012006DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
+2006/CBS012006DVD.7z,CBS012006DVD,ati catalyst98 me,Ati Catalyst (98 ME),disc-metadata-value,high,bad-substring
 2006/CBS012006DVD.7z,CBS012006DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2006/CBS012006DVD.7z,CBS012006DVD,data1,data1,disc-manifest-path,medium,short-code
 2006/CBS012006DVD.7z,CBS012006DVD,data2,data2,disc-manifest-path,medium,short-code
@@ -733,20 +731,20 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS022006DVD.7z,CBS022006DVD,adobe reader 6 0 1 98 se,Adobe Reader 6 0 1 (98 SE),disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,adobe reader 7 0 xp,Adobe Reader 7 0 (XP),disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,anti vir personal classic 6 32,Anti Vir Personal Edition Classic 6 32,disc-metadata-value,high,bad-substring
-2006/CBS022006DVD.7z,CBS022006DVD,ati catalyst xp v 5 11,Ati Catalyst (XP) v 5 11,disc-metadata-value,high,bad-substring
+2006/CBS022006DVD.7z,CBS022006DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,direct x 9 0c,Direct X 9 0c,disc-metadata-value,high,bad-substring
-2006/CBS022006DVD.7z,CBS022006DVD,earth2160 v 1 37,Earth 2160 Gold v 1 37,disc-metadata-value,high,all-short-words
 2006/CBS022006DVD.7z,CBS022006DVD,europeracer,EUROPERACER,disc-manifest-path,medium,weak-singleword
+2006/CBS022006DVD.7z,CBS022006DVD,fear,Fear,disc-metadata-value,high,weak-singleword
 2006/CBS022006DVD.7z,CBS022006DVD,files,files,disc-manifest-path,medium,bad-exact
 2006/CBS022006DVD.7z,CBS022006DVD,fontdata,FONTDATA,disc-manifest-path,medium,weak-singleword
 2006/CBS022006DVD.7z,CBS022006DVD,h o t p bildschirmschoner,H o t P Bildschirmschoner,disc-metadata-value,high,mostly-short-words
 2006/CBS022006DVD.7z,CBS022006DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,leesmij,LEESMIJ,disc-manifest-path,medium,weak-singleword
 2006/CBS022006DVD.7z,CBS022006DVD,liesmich europa raser,LIESMICH EUROPA RASER,disc-manifest-path,medium,bad-substring
-2006/CBS022006DVD.7z,CBS022006DVD,me v 5 2,ME) v 5 2,disc-metadata-value,high,all-short-words
-2006/CBS022006DVD.7z,CBS022006DVD,me v71 84,ME) v 71 84,disc-metadata-value,high,all-short-words
-2006/CBS022006DVD.7z,CBS022006DVD,me v81 85,ME) v 81 85,disc-metadata-value,high,all-short-words
+2006/CBS022006DVD.7z,CBS022006DVD,me v 5 2,ME),disc-metadata-value,high,all-short-words
+2006/CBS022006DVD.7z,CBS022006DVD,me v71 84,ME),disc-metadata-value,high,all-short-words
+2006/CBS022006DVD.7z,CBS022006DVD,me v81 85,ME),disc-metadata-value,high,all-short-words
 2006/CBS022006DVD.7z,CBS022006DVD,msmedia,MSMEDIA,disc-manifest-path,medium,weak-singleword
 2006/CBS022006DVD.7z,CBS022006DVD,readme europe racer,README EUROPE RACER,disc-manifest-path,medium,manifest-noise
 2006/CBS022006DVD.7z,CBS022006DVD,ski alpin2006,Ski Alpin 2006,disc-metadata-value,high,all-short-words
@@ -758,7 +756,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS022006DVD.7z,CBS022006DVD,windows installer 2,Windows Installer 2,disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,windows media player10 xp,Windows Media Player 10 (XP),disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,wo w macros,Wo W Macros,disc-metadata-value,high,mostly-short-words
-2006/CBS022006DVD.7z,CBS022006DVD,xp v71 84,XP) v 71 84,disc-metadata-value,high,all-short-words
+2006/CBS022006DVD.7z,CBS022006DVD,xp v71 84,XP),disc-metadata-value,high,all-short-words
 2006/CBS022006DVD.7z,CBS022006DVD,xp8195,XP)8195,disc-metadata-value,high,short-code
 2006/CBS022006DVD.7z,CBS022006DVD,zone alarm 6,Zone Alarm 6,disc-metadata-value,high,bad-substring
 2006/CBS022006DVD.7z,CBS022006DVD,zurueck,zurueck,disc-metadata-value,high,weak-singleword
@@ -768,8 +766,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS032006DVD.7z,CBS032006DVD,adobe reader 7 0 xp,Adobe Reader 7 0 (XP),disc-metadata-value,high,bad-substring
 2006/CBS032006DVD.7z,CBS032006DVD,ankh,Ankh,disc-metadata-value,high,weak-singleword
 2006/CBS032006DVD.7z,CBS032006DVD,anti vir personal classic 6 32,Anti Vir Personal Edition Classic 6 32,disc-metadata-value,high,bad-substring
-2006/CBS032006DVD.7z,CBS032006DVD,ati catalyst xp v513,Ati Catalyst (XP) v513,disc-metadata-value,high,bad-substring
-2006/CBS032006DVD.7z,CBS032006DVD,ati catalyst98 me v52,Ati Catalyst (98 ME) v52,disc-metadata-value,high,bad-substring
+2006/CBS032006DVD.7z,CBS032006DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
+2006/CBS032006DVD.7z,CBS032006DVD,ati catalyst98 me,Ati Catalyst (98 ME),disc-metadata-value,high,bad-substring
 2006/CBS032006DVD.7z,CBS032006DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2006/CBS032006DVD.7z,CBS032006DVD,direct x,Direct X,disc-manifest-path,medium,bad-substring
 2006/CBS032006DVD.7z,CBS032006DVD,direct x 9 0c,Direct X 9 0c,disc-metadata-value,high,bad-substring
@@ -796,7 +794,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS042006DVD.7z,CBS042006DVD,adobe reader 6 0,Adobe Reader 6 0,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,adobe reader 7,Adobe Reader 7,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,anti vir personal classic 6,Anti Vir Personal Edition Classic 6,disc-metadata-value,high,bad-substring
-2006/CBS042006DVD.7z,CBS042006DVD,ati catalyst xp v 6,Ati Catalyst (XP) v 6,disc-metadata-value,high,bad-substring
+2006/CBS042006DVD.7z,CBS042006DVD,ati catalyst xp,Ati Catalyst (XP),disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,direct x 9,Direct X 9,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,direct x9,Direct X9,disc-manifest-path,medium,bad-substring
@@ -807,9 +805,9 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS042006DVD.7z,CBS042006DVD,instmsiw,instmsiw,disc-manifest-path,medium,weak-singleword
 2006/CBS042006DVD.7z,CBS042006DVD,intl,INTL,disc-metadata-value,high,weak-singleword
 2006/CBS042006DVD.7z,CBS042006DVD,kao,KAO,disc-manifest-path,medium,all-short-words
-2006/CBS042006DVD.7z,CBS042006DVD,me v 5,ME) v 5,disc-metadata-value,high,all-short-words
-2006/CBS042006DVD.7z,CBS042006DVD,me v71,ME) v 71,disc-metadata-value,high,all-short-words
-2006/CBS042006DVD.7z,CBS042006DVD,me v81,ME) v 81,disc-metadata-value,high,all-short-words
+2006/CBS042006DVD.7z,CBS042006DVD,me v 5,ME),disc-metadata-value,high,all-short-words
+2006/CBS042006DVD.7z,CBS042006DVD,me v71,ME),disc-metadata-value,high,all-short-words
+2006/CBS042006DVD.7z,CBS042006DVD,me v81,ME),disc-metadata-value,high,all-short-words
 2006/CBS042006DVD.7z,CBS042006DVD,mx vs,MX vs,disc-metadata-value,high,all-short-words
 2006/CBS042006DVD.7z,CBS042006DVD,parallel lines,Driver Parallel Lines,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,read me,Read Me,disc-manifest-path,medium,bad-substring
@@ -825,8 +823,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2006/CBS042006DVD.7z,CBS042006DVD,wmfdist,wmfdist,disc-manifest-path,medium,weak-singleword
 2006/CBS042006DVD.7z,CBS042006DVD,x2 handbuch,X2 Handbuch,disc-manifest-path,medium,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,x2 icon,X2 Icon,disc-manifest-path,medium,bad-substring
-2006/CBS042006DVD.7z,CBS042006DVD,xp v71,XP) v 71,disc-metadata-value,high,all-short-words
-2006/CBS042006DVD.7z,CBS042006DVD,xp v81,XP) v 81,disc-metadata-value,high,all-short-words
+2006/CBS042006DVD.7z,CBS042006DVD,xp v71,XP),disc-metadata-value,high,all-short-words
+2006/CBS042006DVD.7z,CBS042006DVD,xp v81,XP),disc-metadata-value,high,all-short-words
 2006/CBS042006DVD.7z,CBS042006DVD,zone alarm 6,Zone Alarm 6,disc-metadata-value,high,bad-substring
 2006/CBS042006DVD.7z,CBS042006DVD,zur ck,Zur�ck,disc-metadata-value,high,all-short-words
 2006/CBS042006DVD.7z,CBS042006DVD,zurueck,zurueck,disc-metadata-value,high,weak-singleword
@@ -1480,8 +1478,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS092007DVD.7z,CBS092007DVD,as2,AS2,disc-manifest-path,medium,short-code
 2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst control center 6,ATI Catalyst Control Center 6,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst v 6,ATI Catalyst v 6,disc-metadata-value,high,bad-substring
-2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst v 7,ATI Catalyst v 7,disc-metadata-value,high,bad-substring
+2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
+2007/CBS092007DVD.7z,CBS092007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,aticatalyst control center65deutsch xp,ATICatalyst Control Center65deutsch XP,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,aticatalyst control center76deutsch xpneu,ATICatalyst Control Center76deutsch XPneu,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,aticatalystv65 xp,ATICatalystv65 XP,disc-metadata-value,high,bad-substring
@@ -1498,7 +1496,6 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS092007DVD.7z,CBS092007DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
 2007/CBS092007DVD.7z,CBS092007DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2007/CBS092007DVD.7z,CBS092007DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
-2007/CBS092007DVD.7z,CBS092007DVD,two worldsv14,Two Worldsv14,disc-metadata-value,high,all-short-words
 2007/CBS092007DVD.7z,CBS092007DVD,vlc media player 0,VLC Media Player 0,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,vlcmedia player08c,VLCMedia Player08c,disc-metadata-value,high,bad-substring
 2007/CBS092007DVD.7z,CBS092007DVD,web,WEB,disc-metadata-value,high,all-short-words
@@ -1528,8 +1525,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS102007DVD.7z,CBS102007DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst control center 6,ATI Catalyst Control Center 6,disc-metadata-value,high,bad-substring
 2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst v 6,ATI Catalyst v 6,disc-metadata-value,high,bad-substring
-2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst v 7,ATI Catalyst v 7,disc-metadata-value,high,bad-substring
+2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
+2007/CBS102007DVD.7z,CBS102007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
 2007/CBS102007DVD.7z,CBS102007DVD,aticatalyst control center65deutsch xp,ATICatalyst Control Center65deutsch XP,disc-metadata-value,high,bad-substring
 2007/CBS102007DVD.7z,CBS102007DVD,aticatalyst control center77deutsch vista,ATICatalyst Control Center77deutsch Vista,disc-metadata-value,high,bad-substring
 2007/CBS102007DVD.7z,CBS102007DVD,aticatalyst control center77deutsch xp,ATICatalyst Control Center77deutsch XP,disc-metadata-value,high,bad-substring
@@ -1585,7 +1582,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS112007DVD.7z,CBS112007DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2007/CBS112007DVD.7z,CBS112007DVD,ati catalyst v 7,ATI Catalyst v 7,disc-metadata-value,high,bad-substring
+2007/CBS112007DVD.7z,CBS112007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,aticatalyst control center78deutsch xp,ATICatalyst Control Center78deutsch XP,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,aticatalystv78 vista32 bit,ATICatalystv78 Vista32 Bit,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,aticatalystv78 vista64 bit,ATICatalystv78 Vista64 Bit,disc-metadata-value,high,bad-substring
@@ -1596,7 +1593,6 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS112007DVD.7z,CBS112007DVD,data1,data1,disc-manifest-path,medium,short-code
 2007/CBS112007DVD.7z,CBS112007DVD,die r mer f r version,Die R�mer (Patch f�r CBS Version),disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,die roemer patchf r cbsversion,Die Roemer Patchf�r CBSVersion,disc-metadata-value,high,bad-substring
-2007/CBS112007DVD.7z,CBS112007DVD,die sims2 jahreszeitenv170158,Die Sims2 Jahreszeitenv170158,disc-metadata-value,high,all-short-words
 2007/CBS112007DVD.7z,CBS112007DVD,direct x 9,Direct X 9,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,direct x90c august2007,Direct X90c August2007,disc-metadata-value,high,bad-substring
 2007/CBS112007DVD.7z,CBS112007DVD,dx81,DX81,disc-manifest-path,medium,short-code
@@ -1643,10 +1639,10 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2007/CBS122007DVD.7z,CBS122007DVD,adobe reader 7 0,Adobe Reader 7 0,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,adobe reader709,Adobe Reader709,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,age of empires3v112,Age Of Empires3v112,disc-metadata-value,high,all-short-words
-2007/CBS122007DVD.7z,CBS122007DVD,anti vir personal classic 7v 7 06 00,Anti Vir Personal Edition Classic 7 v 7 06 00,disc-metadata-value,high,bad-substring
+2007/CBS122007DVD.7z,CBS122007DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2007/CBS122007DVD.7z,CBS122007DVD,ati catalyst v 7,ATI Catalyst v 7,disc-metadata-value,high,bad-substring
+2007/CBS122007DVD.7z,CBS122007DVD,ati catalyst,ATI Catalyst,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,aticatalyst control center78deutsch vista,ATICatalyst Control Center78deutsch Vista,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,aticatalyst control center78deutsch xp,ATICatalyst Control Center78deutsch XP,disc-metadata-value,high,bad-substring
 2007/CBS122007DVD.7z,CBS122007DVD,aticatalystv78 vista32 bit,ATICatalystv78 Vista32 Bit,disc-metadata-value,high,bad-substring
@@ -1706,10 +1702,10 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS012008DVD.7z,CBS012008DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,adobe reader 7 0,Adobe Reader 7 0,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,adobe reader709,Adobe Reader709,disc-metadata-value,high,bad-substring
-2008/CBS012008DVD.7z,CBS012008DVD,anti vir personal classic 7v 7 06 00,Anti Vir Personal Edition Classic 7 v 7 06 00,disc-metadata-value,high,bad-substring
+2008/CBS012008DVD.7z,CBS012008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2008/CBS012008DVD.7z,CBS012008DVD,ati catalyst suite v 7,ATI Catalyst Software Suite v 7,disc-metadata-value,high,bad-substring
+2008/CBS012008DVD.7z,CBS012008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,ati catalyst suitev710 vista32 bit,Ati Catalyst Software Suitev710 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,ati catalyst suitev710 vista64 bit,Ati Catalyst Software Suitev710 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS012008DVD.7z,CBS012008DVD,aticatalyst control center710deutsch xp,ATICatalyst Control Center710deutsch XP,disc-metadata-value,high,bad-substring
@@ -1779,7 +1775,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS022008DVD.7z,CBS022008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS022008DVD.7z,CBS022008DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2008/CBS022008DVD.7z,CBS022008DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2008/CBS022008DVD.7z,CBS022008DVD,ati catalyst suite v 7,ATI Catalyst Software Suite v 7,disc-metadata-value,high,bad-substring
+2008/CBS022008DVD.7z,CBS022008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS022008DVD.7z,CBS022008DVD,ati catalyst suitev711 vista32 bit,Ati Catalyst Software Suitev711 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS022008DVD.7z,CBS022008DVD,ati catalyst suitev711 vista64 bit,Ati Catalyst Software Suitev711 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS022008DVD.7z,CBS022008DVD,aticatalyst control center711deutsch xp,ATICatalyst Control Center711deutsch XP,disc-metadata-value,high,bad-substring
@@ -1848,7 +1844,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS032008DVD.7z,CBS032008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,ati catalyst control center 7,ATI Catalyst Control Center 7,disc-metadata-value,high,bad-substring
-2008/CBS032008DVD.7z,CBS032008DVD,ati catalyst suite v 7,ATI Catalyst Software Suite v 7,disc-metadata-value,high,bad-substring
+2008/CBS032008DVD.7z,CBS032008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,ati catalyst suitev712 vista32 bit,Ati Catalyst Software Suitev712 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,ati catalyst suitev712 vista64 bit,Ati Catalyst Software Suitev712 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,aticatalyst control center712deutsch xp,ATICatalyst Control Center712deutsch XP,disc-metadata-value,high,bad-substring
@@ -1862,8 +1858,9 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS032008DVD.7z,CBS032008DVD,files,files,disc-manifest-path,medium,bad-exact
 2008/CBS032008DVD.7z,CBS032008DVD,handbuch,Handbuch,disc-manifest-path,medium,bad-substring
 2008/CBS032008DVD.7z,CBS032008DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
-2008/CBS032008DVD.7z,CBS032008DVD,s t a l k e r v 1 0003v 1 0004v 1,"S T A L K E R v 1 0003, v 1 0004, v 1",disc-metadata-value,high,all-short-words
+2008/CBS032008DVD.7z,CBS032008DVD,s t a l k e r v 1 0003v 1 0004,"S T A L K E R v 1 0003, v 1 0004,",disc-metadata-value,high,all-short-words
 2008/CBS032008DVD.7z,CBS032008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
+2008/CBS032008DVD.7z,CBS032008DVD,stalker,STALKER,disc-metadata-value,high,weak-singleword
 2008/CBS032008DVD.7z,CBS032008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS032008DVD.7z,CBS032008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
 2008/CBS032008DVD.7z,CBS032008DVD,vlc media player 0 8,VLC Media Player 0 8,disc-metadata-value,high,bad-substring
@@ -1893,8 +1890,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS042008DVD.7z,CBS042008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst control center 8,ATI Catalyst Control Center 8,disc-metadata-value,high,bad-substring
-2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst control center v 8,ATI Catalyst Control Center v 8,disc-metadata-value,high,bad-substring
-2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst control center,ATI Catalyst Control Center,disc-metadata-value,high,bad-substring
+2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst suitev81 vista32 bit,Ati Catalyst Software Suitev81 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,ati catalyst suitev81 vista64 bit,Ati Catalyst Software Suitev81 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,aticatalyst control center81deutsch xp,ATICatalyst Control Center81deutsch XP,disc-metadata-value,high,bad-substring
@@ -1908,15 +1905,14 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS042008DVD.7z,CBS042008DVD,files,files,disc-manifest-path,medium,bad-exact
 2008/CBS042008DVD.7z,CBS042008DVD,hard to be a god,Hard To Be A God,disc-metadata-value,high,mostly-short-words
 2008/CBS042008DVD.7z,CBS042008DVD,haulin manual web,haulin manual web,disc-manifest-path,medium,bad-substring
-2008/CBS042008DVD.7z,CBS042008DVD,hellgate london multiplayer patchv10274101,Hellgate London Multiplayer Patchv10274101,disc-metadata-value,high,bad-substring
-2008/CBS042008DVD.7z,CBS042008DVD,hellgate london multiplayer v 1 0 27,Hellgate London Multiplayer Patch v 1 0 27,disc-metadata-value,high,bad-substring
+2008/CBS042008DVD.7z,CBS042008DVD,hellgate london multiplayer,Hellgate London Multiplayer Patch,disc-metadata-value,high,bad-substring
+2008/CBS042008DVD.7z,CBS042008DVD,hellgate london multiplayer,Hellgate London Multiplayer Patch,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,kochstart kochstart,kochstart\kochstart,disc-metadata-command,medium,path-or-option
 2008/CBS042008DVD.7z,CBS042008DVD,patchmaster,Patchmaster,disc-metadata-value,high,bad-substring
 2008/CBS042008DVD.7z,CBS042008DVD,readme,readme,disc-manifest-path,medium,bad-exact
 2008/CBS042008DVD.7z,CBS042008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
 2008/CBS042008DVD.7z,CBS042008DVD,spezial windows tuning,CBS Spezial Windows Tuning,disc-metadata-value,high,bad-substring
-2008/CBS042008DVD.7z,CBS042008DVD,the witcherv120,The Witcherv120,disc-metadata-value,high,all-short-words
 2008/CBS042008DVD.7z,CBS042008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS042008DVD.7z,CBS042008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
 2008/CBS042008DVD.7z,CBS042008DVD,vlc media player 0,VLC Media Player 0,disc-metadata-value,high,bad-substring
@@ -1961,8 +1957,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS052008DVD.7z,CBS052008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,anti vir personal classic7sp,Anti Vir Personal Edition Classic7sp,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst control center 8,ATI Catalyst Control Center 8,disc-metadata-value,high,bad-substring
-2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst control center v 8,ATI Catalyst Control Center v 8,disc-metadata-value,high,bad-substring
-2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst control center,ATI Catalyst Control Center,disc-metadata-value,high,bad-substring
+2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst suitev82 vista32 bit,Ati Catalyst Software Suitev82 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,ati catalyst suitev82 vista64 bit,Ati Catalyst Software Suitev82 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,aticatalyst control center82deutsch xp,ATICatalyst Control Center82deutsch XP,disc-metadata-value,high,bad-substring
@@ -1981,9 +1977,10 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS052008DVD.7z,CBS052008DVD,layout,layout,disc-manifest-path,medium,bad-exact
 2008/CBS052008DVD.7z,CBS052008DVD,liesmich,Liesmich,disc-manifest-path,medium,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,lizenztext,lizenztext,disc-manifest-path,medium,weak-singleword
+2008/CBS052008DVD.7z,CBS052008DVD,loki,Loki,disc-metadata-value,high,weak-singleword
+2008/CBS052008DVD.7z,CBS052008DVD,loki,Loki,disc-metadata-value,high,weak-singleword
 2008/CBS052008DVD.7z,CBS052008DVD,patchmaster,Patchmaster,disc-metadata-value,high,bad-substring
 2008/CBS052008DVD.7z,CBS052008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
-2008/CBS052008DVD.7z,CBS052008DVD,the cleanerv5,The Cleanerv5,disc-metadata-value,high,all-short-words
 2008/CBS052008DVD.7z,CBS052008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS052008DVD.7z,CBS052008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
 2008/CBS052008DVD.7z,CBS052008DVD,vlc media player 0,VLC Media Player 0,disc-metadata-value,high,bad-substring
@@ -2031,8 +2028,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS062008DVD.7z,CBS062008DVD,anti vir personal classic 7,Anti Vir Personal Edition Classic 7,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,anti vir personal classic7,Anti Vir Personal Edition Classic7,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst control center 8,ATI Catalyst Control Center 8,disc-metadata-value,high,bad-substring
-2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst control center v 8,ATI Catalyst Control Center v 8,disc-metadata-value,high,bad-substring
-2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst control center,ATI Catalyst Control Center,disc-metadata-value,high,bad-substring
+2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst suitev81 vista32 bit,Ati Catalyst Software Suitev81 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,ati catalyst suitev81 vista64 bit,Ati Catalyst Software Suitev81 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,aticatalyst control center81deutsch xp,ATICatalyst Control Center81deutsch XP,disc-metadata-value,high,bad-substring
@@ -2051,11 +2048,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS062008DVD.7z,CBS062008DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,icon1,icon1,disc-manifest-path,medium,bad-substring
 2008/CBS062008DVD.7z,CBS062008DVD,master,CBS Patch Master,disc-metadata-value,high,bad-substring
-2008/CBS062008DVD.7z,CBS062008DVD,so blonde v 1,So Blonde v 1,disc-metadata-value,high,mostly-short-words
-2008/CBS062008DVD.7z,CBS062008DVD,so blondev101,So Blondev101,disc-metadata-value,high,all-short-words
 2008/CBS062008DVD.7z,CBS062008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
 2008/CBS062008DVD.7z,CBS062008DVD,spezial,CBS Spezial,disc-metadata-value,high,bad-substring
-2008/CBS062008DVD.7z,CBS062008DVD,the witcherv12a,The Witcherv12a,disc-metadata-value,high,all-short-words
 2008/CBS062008DVD.7z,CBS062008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS062008DVD.7z,CBS062008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
 2008/CBS062008DVD.7z,CBS062008DVD,vlc media player 0 8,VLC Media Player 0 8,disc-metadata-value,high,bad-substring
@@ -2090,8 +2084,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS072008DVD.7z,CBS072008DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
-2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst control center v 8,ATI Catalyst Control Center v 8,disc-metadata-value,high,bad-substring
-2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst control center,ATI Catalyst Control Center,disc-metadata-value,high,bad-substring
+2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst suitev84 vista32 bit,Ati Catalyst Software Suitev84 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,ati catalyst suitev84 vista64 bit,Ati Catalyst Software Suitev84 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,aticatalyst control centerv84deutsch vista,ATICatalyst Control Centerv84deutsch Vista,disc-metadata-value,high,bad-substring
@@ -2113,7 +2107,6 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS072008DVD.7z,CBS072008DVD,patchmaster,Patchmaster,disc-metadata-value,high,bad-substring
 2008/CBS072008DVD.7z,CBS072008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
 2008/CBS072008DVD.7z,CBS072008DVD,spezial,CBS Spezial,disc-metadata-value,high,bad-substring
-2008/CBS072008DVD.7z,CBS072008DVD,the witcherv13,The Witcherv13,disc-metadata-value,high,all-short-words
 2008/CBS072008DVD.7z,CBS072008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS072008DVD.7z,CBS072008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
 2008/CBS072008DVD.7z,CBS072008DVD,top,Top Demos,disc-metadata-value,high,all-short-words
@@ -2149,7 +2142,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS082008DVD.7z,CBS082008DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS082008DVD.7z,CBS082008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS082008DVD.7z,CBS082008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
-2008/CBS082008DVD.7z,CBS082008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS082008DVD.7z,CBS082008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS082008DVD.7z,CBS082008DVD,ati catalyst suitev85 vista32 bit,Ati Catalyst Software Suitev85 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS082008DVD.7z,CBS082008DVD,ati catalyst suitev85 vista64 bit,Ati Catalyst Software Suitev85 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS082008DVD.7z,CBS082008DVD,aticatalyst suitev85 xp,ATICatalyst Software Suitev85 XP,disc-metadata-value,high,bad-substring
@@ -2209,7 +2202,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS092008DVD.7z,CBS092008DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS092008DVD.7z,CBS092008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS092008DVD.7z,CBS092008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
-2008/CBS092008DVD.7z,CBS092008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS092008DVD.7z,CBS092008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS092008DVD.7z,CBS092008DVD,ati catalyst suitev86 vista32 bit,Ati Catalyst Software Suitev86 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS092008DVD.7z,CBS092008DVD,ati catalyst suitev86 vista64 bit,Ati Catalyst Software Suitev86 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS092008DVD.7z,CBS092008DVD,aticatalyst suitev86 xp,ATICatalyst Software Suitev86 XP,disc-metadata-value,high,bad-substring
@@ -2274,7 +2267,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS102008DVD.7z,CBS102008DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
-2008/CBS102008DVD.7z,CBS102008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS102008DVD.7z,CBS102008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,ati catalyst suitev87 vista32 bit,Ati Catalyst Software Suitev87 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,ati catalyst suitev87 vista64 bit,Ati Catalyst Software Suitev87 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,aticatalyst suitev87 xp,ATICatalyst Software Suitev87 XP,disc-metadata-value,high,bad-substring
@@ -2289,8 +2282,8 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS102008DVD.7z,CBS102008DVD,installation,installation,disc-manifest-path,medium,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,manual,Manual,disc-manifest-path,medium,bad-exact
 2008/CBS102008DVD.7z,CBS102008DVD,master,CBS Patch Master,disc-metadata-value,high,bad-substring
-2008/CBS102008DVD.7z,CBS102008DVD,race grid v 1,Race Driver Grid v 1,disc-metadata-value,high,bad-substring
-2008/CBS102008DVD.7z,CBS102008DVD,race gridv12,Race Driver Gridv12,disc-metadata-value,high,bad-substring
+2008/CBS102008DVD.7z,CBS102008DVD,race grid,Race Driver Grid,disc-metadata-value,high,bad-substring
+2008/CBS102008DVD.7z,CBS102008DVD,race grid,Race Driver Grid,disc-metadata-value,high,bad-substring
 2008/CBS102008DVD.7z,CBS102008DVD,sonstiges,Sonstiges,disc-metadata-value,high,bad-exact
 2008/CBS102008DVD.7z,CBS102008DVD,ton an,Ton An,disc-metadata-value,high,all-short-words
 2008/CBS102008DVD.7z,CBS102008DVD,ton aus,Ton Aus,disc-metadata-value,high,all-short-words
@@ -2324,7 +2317,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS112008DVD.7z,CBS112008DVD,adobe reader,Adobe Reader,disc-manifest-path,medium,bad-substring
 2008/CBS112008DVD.7z,CBS112008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS112008DVD.7z,CBS112008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
-2008/CBS112008DVD.7z,CBS112008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS112008DVD.7z,CBS112008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS112008DVD.7z,CBS112008DVD,ati catalyst suitev88 vista32 bit,Ati Catalyst Software Suitev88 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS112008DVD.7z,CBS112008DVD,ati catalyst suitev88 vista64 bit,Ati Catalyst Software Suitev88 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS112008DVD.7z,CBS112008DVD,aticatalyst suitev88 xp,ATICatalyst Software Suitev88 XP,disc-metadata-value,high,bad-substring
@@ -2387,7 +2380,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2008/CBS122008DVD.7z,CBS122008DVD,adobe reader 8 1,Adobe Reader 8 1,disc-metadata-value,high,bad-substring
 2008/CBS122008DVD.7z,CBS122008DVD,adobe reader812,Adobe Reader812,disc-metadata-value,high,bad-substring
 2008/CBS122008DVD.7z,CBS122008DVD,aoe,aoe,disc-manifest-path,medium,all-short-words
-2008/CBS122008DVD.7z,CBS122008DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2008/CBS122008DVD.7z,CBS122008DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2008/CBS122008DVD.7z,CBS122008DVD,ati catalyst suitev89 vista32 bit,Ati Catalyst Software Suitev89 Vista32 Bit,disc-metadata-value,high,bad-substring
 2008/CBS122008DVD.7z,CBS122008DVD,ati catalyst suitev89 vista64 bit,Ati Catalyst Software Suitev89 Vista64 Bit,disc-metadata-value,high,bad-substring
 2008/CBS122008DVD.7z,CBS122008DVD,aticatalyst suitev89 xp,ATICatalyst Software Suitev89 XP,disc-metadata-value,high,bad-substring
@@ -2464,7 +2457,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS012009DVD.7z,CBS012009DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS012009DVD.7z,CBS012009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS012009DVD.7z,CBS012009DVD,adobe reader9,Adobe Reader9,disc-metadata-value,high,bad-substring
-2009/CBS012009DVD.7z,CBS012009DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2009/CBS012009DVD.7z,CBS012009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS012009DVD.7z,CBS012009DVD,ati catalyst suitev810 vista32 bit,Ati Catalyst Software Suitev810 Vista32 Bit,disc-metadata-value,high,bad-substring
 2009/CBS012009DVD.7z,CBS012009DVD,ati catalyst suitev810 vista64 bit,Ati Catalyst Software Suitev810 Vista64 Bit,disc-metadata-value,high,bad-substring
 2009/CBS012009DVD.7z,CBS012009DVD,aticatalyst suitev810 xp,ATICatalyst Software Suitev810 XP,disc-metadata-value,high,bad-substring
@@ -2547,7 +2540,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS022009DVD.7z,CBS022009DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,adobe reader9,Adobe Reader9,disc-metadata-value,high,bad-substring
-2009/CBS022009DVD.7z,CBS022009DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2009/CBS022009DVD.7z,CBS022009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,ati catalyst suitev810 vista32 bit,Ati Catalyst Software Suitev810 Vista32 Bit,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,ati catalyst suitev810 vista64 bit,Ati Catalyst Software Suitev810 Vista64 Bit,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,aticatalyst suitev810 xp,ATICatalyst Software Suitev810 XP,disc-metadata-value,high,bad-substring
@@ -2562,7 +2555,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS022009DVD.7z,CBS022009DVD,direct x9,Direct X9,disc-manifest-path,medium,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,direct x90c juni2008,Direct X90c Juni2008,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,engine32,engine32,disc-manifest-path,medium,weak-singleword
-2009/CBS022009DVD.7z,CBS022009DVD,far cry 2v 1,Far Cry 2 v 1,disc-metadata-value,high,all-short-words
+2009/CBS022009DVD.7z,CBS022009DVD,far cry 2,Far Cry 2,disc-metadata-value,high,all-short-words
 2009/CBS022009DVD.7z,CBS022009DVD,fifa09 2,Fifa 09 Patch#2,disc-metadata-value,high,bad-substring
 2009/CBS022009DVD.7z,CBS022009DVD,files,files,disc-manifest-path,medium,bad-exact
 2009/CBS022009DVD.7z,CBS022009DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
@@ -2605,7 +2598,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS032009DVD.7z,CBS032009DVD,add ons,Add ons,disc-metadata-value,high,all-short-words
 2009/CBS032009DVD.7z,CBS032009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,adobe reader9,Adobe Reader9,disc-metadata-value,high,bad-substring
-2009/CBS032009DVD.7z,CBS032009DVD,ati catalyst suite v 8,ATI Catalyst Software Suite v 8,disc-metadata-value,high,bad-substring
+2009/CBS032009DVD.7z,CBS032009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,ati catalyst suitev812 vista32 bit,Ati Catalyst Software Suitev812 Vista32 Bit,disc-metadata-value,high,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,ati catalyst suitev812 vista64 bit,Ati Catalyst Software Suitev812 Vista64 Bit,disc-metadata-value,high,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,aticatalyst suitev812 xp,ATICatalyst Software Suitev812 XP,disc-metadata-value,high,bad-substring
@@ -2618,7 +2611,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS032009DVD.7z,CBS032009DVD,direct x,Direct X,disc-manifest-path,medium,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,direct x 9,Direct X 9,disc-metadata-value,high,bad-substring
 2009/CBS032009DVD.7z,CBS032009DVD,direct x90c juni2008,Direct X90c Juni2008,disc-metadata-value,high,bad-substring
-2009/CBS032009DVD.7z,CBS032009DVD,far cry 2v 1,Far Cry 2 v 1,disc-metadata-value,high,all-short-words
+2009/CBS032009DVD.7z,CBS032009DVD,far cry 2,Far Cry 2,disc-metadata-value,high,all-short-words
 2009/CBS032009DVD.7z,CBS032009DVD,files,files,disc-manifest-path,medium,bad-exact
 2009/CBS032009DVD.7z,CBS032009DVD,fsx,FSX,disc-metadata-value,high,all-short-words
 2009/CBS032009DVD.7z,CBS032009DVD,hilfe layerchange,Hilfe Layerchange,disc-metadata-value,high,bad-substring
@@ -2686,7 +2679,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS042009DVD.7z,CBS042009DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS042009DVD.7z,CBS042009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS042009DVD.7z,CBS042009DVD,adobe reader9,Adobe Reader9,disc-metadata-value,high,bad-substring
-2009/CBS042009DVD.7z,CBS042009DVD,ati catalyst suite v 9,ATI Catalyst Software Suite v 9,disc-metadata-value,high,bad-substring
+2009/CBS042009DVD.7z,CBS042009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS042009DVD.7z,CBS042009DVD,ati catalyst suitev91 vista32 bit,Ati Catalyst Software Suitev91 Vista32 Bit,disc-metadata-value,high,bad-substring
 2009/CBS042009DVD.7z,CBS042009DVD,ati catalyst suitev91 vista64 bit,Ati Catalyst Software Suitev91 Vista64 Bit,disc-metadata-value,high,bad-substring
 2009/CBS042009DVD.7z,CBS042009DVD,aticatalyst suitev91 xp,ATICatalyst Software Suitev91 XP,disc-metadata-value,high,bad-substring
@@ -2747,7 +2740,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS052009DVD.7z,CBS052009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS052009DVD.7z,CBS052009DVD,adobe reader9,Adobe Reader9,disc-metadata-value,high,bad-substring
 2009/CBS052009DVD.7z,CBS052009DVD,aop handbuch,AOP Handbuch,disc-manifest-path,medium,bad-substring
-2009/CBS052009DVD.7z,CBS052009DVD,ati catalyst suite v 9,ATI Catalyst Software Suite v 9,disc-metadata-value,high,bad-substring
+2009/CBS052009DVD.7z,CBS052009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS052009DVD.7z,CBS052009DVD,ati catalyst suitev92 vista32 bit,Ati Catalyst Software Suitev92 Vista32 Bit,disc-metadata-value,high,bad-substring
 2009/CBS052009DVD.7z,CBS052009DVD,ati catalyst suitev92 vista64 bit,Ati Catalyst Software Suitev92 Vista64 Bit,disc-metadata-value,high,bad-substring
 2009/CBS052009DVD.7z,CBS052009DVD,aticatalyst suitev92 xp,ATICatalyst Software Suitev92 XP,disc-metadata-value,high,bad-substring
@@ -2795,7 +2788,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS062009DVD.7z,CBS062009DVD,adobe rder91,Adobe Rder91,disc-metadata-value,high,bad-substring
 2009/CBS062009DVD.7z,CBS062009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS062009DVD.7z,CBS062009DVD,age,age,disc-metadata-value,high,all-short-words
-2009/CBS062009DVD.7z,CBS062009DVD,ati catalyst suite v 9,ATI Catalyst Software Suite v 9,disc-metadata-value,high,bad-substring
+2009/CBS062009DVD.7z,CBS062009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS062009DVD.7z,CBS062009DVD,aticatalyst suitev92 xp,ATICatalyst Software Suitev92 XP,disc-metadata-value,high,bad-substring
 2009/CBS062009DVD.7z,CBS062009DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS062009DVD.7z,CBS062009DVD,avira anti vir personal free antivirus 9,Avira Anti Vir Personal Free Antivirus 9,disc-metadata-value,high,bad-substring
@@ -2864,7 +2857,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS072009DVD.7z,CBS072009DVD,abo layerchange,Abo Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS072009DVD.7z,CBS072009DVD,adobe rder91,Adobe Rder91,disc-metadata-value,high,bad-substring
 2009/CBS072009DVD.7z,CBS072009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
-2009/CBS072009DVD.7z,CBS072009DVD,ati catalyst suite v 9,ATI Catalyst Software Suite v 9,disc-metadata-value,high,bad-substring
+2009/CBS072009DVD.7z,CBS072009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS072009DVD.7z,CBS072009DVD,aticatalyst suitev92 xp,ATICatalyst Software Suitev92 XP,disc-metadata-value,high,bad-substring
 2009/CBS072009DVD.7z,CBS072009DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS072009DVD.7z,CBS072009DVD,avira anti vir personal free antivirus 9,Avira Anti Vir Personal Free Antivirus 9,disc-metadata-value,high,bad-substring
@@ -2936,7 +2929,7 @@ archive_name,issue_code,normalized_title,representative_title,source_kinds,confi
 2009/CBS082009DVD.7z,CBS082009DVD,adobe rder91,Adobe Rder91,disc-metadata-value,high,bad-substring
 2009/CBS082009DVD.7z,CBS082009DVD,adobe reader 9,Adobe Reader 9,disc-metadata-value,high,bad-substring
 2009/CBS082009DVD.7z,CBS082009DVD,alex,alex,disc-metadata-value,high,weak-singleword
-2009/CBS082009DVD.7z,CBS082009DVD,ati catalyst suite v 9,ATI Catalyst Software Suite v 9,disc-metadata-value,high,bad-substring
+2009/CBS082009DVD.7z,CBS082009DVD,ati catalyst suite,ATI Catalyst Software Suite,disc-metadata-value,high,bad-substring
 2009/CBS082009DVD.7z,CBS082009DVD,aticatalyst suitev94 xp,ATICatalyst Software Suitev94 XP,disc-metadata-value,high,bad-substring
 2009/CBS082009DVD.7z,CBS082009DVD,ausblenden layerchange,Ausblenden Layerchange,disc-metadata-value,high,bad-substring
 2009/CBS082009DVD.7z,CBS082009DVD,avira anti vir personal free antivirus 9,Avira Anti Vir Personal Free Antivirus 9,disc-metadata-value,high,bad-substring

@@ -4,10 +4,10 @@ This directory contains the enriched game-entity layer built on top of the curre
 
 Current enriched snapshot:
 
-- canonical master rows: `2018`
-- enriched issue/title rows: `2631`
-- ambiguous titles: `165`
-- unmatched titles: `1672`
+- canonical master rows: `1917`
+- enriched issue/title rows: `2645`
+- ambiguous titles: `150`
+- unmatched titles: `1607`
 
 Files:
 

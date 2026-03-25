@@ -1,10 +1,10 @@
 # Published Result Set Audit
 
 - raw master rows: 3856
-- cleaned master rows: 2607
+- cleaned master rows: 2459
 - raw issue/title rows: 7407
-- cleaned issue/title rows: 3966
-- dropped noisy rows: 3441
+- cleaned issue/title rows: 3973
+- dropped noisy rows: 3434
 - unresolved issues: 0
 
 Cleaning rules used:

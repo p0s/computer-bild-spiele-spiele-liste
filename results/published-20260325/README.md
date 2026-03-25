@@ -42,8 +42,8 @@ For issue-level detail, use:
 
 ## Current counts
 
-- `publishable_master_games.csv`: 2018 rows
-- `publishable_issue_titles.csv`: 2631 rows
+- `publishable_master_games.csv`: 1917 rows
+- `publishable_issue_titles.csv`: 2645 rows
 - `final_unresolved_issues.csv`: 0 rows
 
 ## Important caveat

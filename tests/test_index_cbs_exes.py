@@ -277,6 +277,23 @@ class PublishableRepairTests(unittest.TestCase):
         self.assertEqual(repaired["representative_title"], "Rückkehr zur Insel")
         self.assertEqual(repaired["normalized_title"], "r ckkehr zur insel")
 
+    def test_strips_trailing_version_metadata_from_title(self) -> None:
+        row = {
+            "archive_item": "cbs-2000-09",
+            "archive_name": "2008/CBS032008DVD.7z",
+            "issue_code": "CBS032008DVD",
+            "year": "2008",
+            "variant": "DVD",
+            "normalized_title": "codename panzers phase 2 v 1",
+            "representative_title": "Codename Panzers Phase 2 v 1",
+            "source_kinds": "disc-metadata-value",
+            "confidence": "high",
+            "content_kind": "unknown",
+        }
+        repaired = repair_issue_row(row)
+        self.assertEqual(repaired["representative_title"], "Codename Panzers Phase 2")
+        self.assertEqual(repaired["normalized_title"], "codename panzers phase 2")
+
     def test_publishable_filter_drops_ui_noise(self) -> None:
         rows = [
             {
@@ -318,11 +335,37 @@ class PublishableRepairTests(unittest.TestCase):
                 "content_kind": "unknown",
                 "clean_reason": "multiword",
             },
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2007/CBS112007DVD.7z",
+                "issue_code": "CBS112007DVD",
+                "year": "2007",
+                "variant": "DVD",
+                "normalized_title": "acronis true image10 home",
+                "representative_title": "Acronis True Image10 Home",
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            },
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2008/CBS032008DVD.7z",
+                "issue_code": "CBS032008DVD",
+                "year": "2008",
+                "variant": "DVD",
+                "normalized_title": "codename panzers phase 2 v 1",
+                "representative_title": "Codename Panzers Phase 2",
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            },
         ]
         publishable = publishable_issue_rows(rows)
         self.assertEqual(
             [row["representative_title"] for row in publishable],
-            ["Baldur's Gate - Compilation"],
+            ["Baldur's Gate - Compilation", "Codename Panzers Phase 2"],
         )
 
 

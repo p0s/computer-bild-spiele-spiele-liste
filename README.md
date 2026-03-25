@@ -25,8 +25,8 @@ What is in the repo:
 
 Current published snapshot:
 
-- master titles: `2018`
-- issue/title rows: `2631`
+- master titles: `1917`
+- issue/title rows: `2645`
 - unresolved issues: `0`
 
 The tracked CSVs are a best-effort public dataset, not a claim of perfect completeness.
@@ -150,7 +150,7 @@ For unresolved-only overlays against the March 24 raw snapshot, use `scripts/mer
 This appendix mirrors `results/published-20260325/publishable_master_games.csv` in a simplified form.
 
 <details>
-<summary>Show simplified full title table (2018 rows)</summary>
+<summary>Show simplified full title table (1917 rows)</summary>
 
 | Title | First Issue | Issue Count |
 | --- | --- | ---: |
@@ -170,8 +170,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Ablaze | CBS082007DVDBonus | 1 |
 | Absolute Blue | CBS082005DVD | 1 |
 | Achtung Roboter | CBS082005DVD | 1 |
-| Acronis True Image10 Home | CBS112007DVD | 1 |
-| Act of War Direct Action | CBS032005DVD | 2 |
+| Act of War Direct Action | CBS032005DVD | 4 |
 | Act of War High Treason | CBS042006DVD | 1 |
 | Actua Soccer 2 | CBS092000 | 1 |
 | Actua Soccer Featuring Oliver Bierhoff | CBS062006DVD | 1 |
@@ -185,17 +184,17 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Agatha Christie Unddanngabskeinesmehrv | CBS052006DVD | 1 |
 | Age of Conan | CBS032006DVD | 1 |
 | Age of Empires Gold Edition | CBS082004 | 1 |
-| Age of Empires 3 v 1 | CBS042006DVD | 1 |
-| Age of Empires 3 v 1 01a | CBS022006DVD | 1 |
-| Age Of Empires 3 v 1 1 | CBS122007DVD | 1 |
+| Age of Empires 3 | CBS022006DVD | 3 |
+| Age of Empires 3 The Asian Dynasties | CBS072008DVD | 1 |
+| Age of Empires 3 The Warchiefs | CBS122007DVD | 1 |
 | Age of Mythology | CBS012009DVDGold | 1 |
 | Age of Pirates Caribbean Tales | CBS052009DVD | 1 |
 | Ageof Conan Hyborian Adventures | CBS022007DVD | 3 |
 | Ageof Empires Ageof Discoveryv | CBS072006DVD | 1 |
 | Ageof Empires The War Chiefs | CBS012007DVDGOLD | 1 |
 | Ageof Empires The Warchiefsv | CBS042007DVD | 2 |
-| Ageof Empires3 The Asian Dynastiesv101a | CBS072008DVD | 1 |
-| Ageof Empires3 The Warchiefsv104a | CBS122007DVD | 1 |
+| Ageof Empires3 The Asian Dynasties | CBS072008DVD | 1 |
+| Ageof Empires3 The Warchiefs | CBS122007DVD | 1 |
 | Ageof Empiresv | CBS052006DVD | 4 |
 | Ages of Empires 3 | CBS112005DVD | 1 |
 | Agon The Lost Sword of Toledo | CBS052008DVD | 1 |
@@ -209,7 +208,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Al Emmoandthe Lost Dutchmans Mine | CBS112006DVD | 1 |
 | Alan Wake | CBS082006DVD | 1 |
 | Alarmfr Cobra Nitro | CBS012007DVD | 1 |
-| Alarmfr Cobra11 Crash Timev111 | CBS022008DVD | 1 |
+| Alarmfr Cobra11 Crash Time | CBS022008DVD | 1 |
 | Alarmfuer Cobra Crash Time | CBS012008DVD | 1 |
 | Alexander | CBS022005DVD | 1 |
 | Alexander Die Stunde der Helden | CBS052008DVD | 1 |
@@ -233,13 +232,13 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | America | CBS082003 | 1 |
 | American Conquest Fight Back | CBS102006DVD | 1 |
 | Ancient Wars Sparta | CBS072007DVDGold | 1 |
-| Ancient Wars Sparta Fateof Hellasv14 | CBS072008DVD | 1 |
+| Ancient Wars Sparta Fate of Hellas | CBS072008DVD | 1 |
+| Ancient Wars Sparta Fateof Hellas | CBS072008DVD | 1 |
 | And Yet It Moves | CBS112007DVD | 1 |
 | Andersens Maedchen | CBS102005DVD | 1 |
 | Angel Knig Spinnfischenin Deutschland | CBS022008DVD | 1 |
 | Angriff auf die Westfront | CBS092005DVD | 1 |
-| Ankh Herz des Osiris | CBS012008DVDSonder | 1 |
-| Ankh Herz des Osiris v 1 | CBS032008DVD | 1 |
+| Ankh Herz des Osiris | CBS012008DVDSonder | 2 |
 | Ankh Herzdes Osiris | CBS012007DVD | 3 |
 | Ankh Herzdes Osirisv | CBS072007DVD | 1 |
 | Ankh Kampfder Gtter | CBS022008DVDGold | 1 |
@@ -259,9 +258,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Apassionata - Die Galanacht der Pferde | CBS032009DVD | 1 |
 | Aquanox 2 | CBS092004DVD | 1 |
 | Arcade Race Crash | CBS082007DVD | 1 |
-| Arena Wars | CBS112004DVD | 2 |
+| Arena Wars | CBS112004DVD | 3 |
 | Arena Wars Reloaded | CBS112007DVD | 1 |
-| Arena Wars v 1 1 | CBS012005DVD | 1 |
 | arma 2 | CBS102009DVDGold | 1 |
 | Armagetron Advanced | CBS072009DVD | 1 |
 | Armed Assault | CBS032007DVDGold | 2 |
@@ -275,11 +273,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Armyof Two | CBS022007DVD | 1 |
 | Arthurunddie Minimoys | CBS022007DVD | 1 |
 | Asghan | CBS012001 | 1 |
-| Ashampoo Firewall | CBS052008DVD | 1 |
-| Ashampoo Magical | CBS042008DVD | 1 |
-| Ashampoo Power Up XPPlatinum2 | CBS042008DVD | 1 |
-| Ashampoo Win Optimizer 4 | CBS042008DVD | 1 |
-| Ashampoo Win Optimizer4 | CBS042008DVD | 1 |
 | Assasins Creed | CBS082007DVDGold | 1 |
 | Assassins Creed | CBS082006DVD | 2 |
 | Assassins Creed Spieltricks | CBS052008DVD | 1 |
@@ -296,8 +289,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Auer Gefahr | CBS082007DVDBonus | 1 |
 | Augustus | CBS012006DVD | 1 |
 | Aura Dieheiligen Ringe | CBS102006DVD | 2 |
-| Aura Tor zur Ewigkeit | CBS112004DVD | 1 |
-| Aura Tor zur Ewigkeit v 1 | CBS032005DVD | 1 |
+| Aura Tor zur Ewigkeit | CBS112004DVD | 2 |
 | Aurora Watching | CBS072005DVD | 1 |
 | Auto Cross Racing | CBS062008DVD | 1 |
 | Autobahn Raser 2 | CBS042002 | 1 |
@@ -333,16 +325,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Battle Realms | CBS042004 | 1 |
 | Battlecruiser Millenium | CBS092005DVD | 1 |
 | Battlefield | CBS072006DVD | 3 |
-| Battlefield 2 | CBS022005DVD | 3 |
+| Battlefield 2 | CBS022005DVD | 5 |
 | Battlefield 2 Special Forces | CBS022006DVD | 1 |
-| Battlefield 2 v 1 | CBS112005DVD | 1 |
-| Battlefield 2 v 1 12 | CBS022006DVD | 1 |
 | Battlefield Northern Strike | CBS042007DVD | 3 |
 | Battlefield Toolkit | CBS092006DVDGOLD | 1 |
-| Battlefield Vietnam | CBS112004DVD | 1 |
-| Battlefield Vietnam v 1 | CBS032005DVD | 1 |
-| Battlefield 2142 v 1 | CBS092008DVD | 1 |
-| Battlefield2142v150 | CBS092008DVD | 1 |
+| Battlefield Vietnam | CBS112004DVD | 2 |
+| Battlefield 2142 | CBS092008DVD | 1 |
 | Battlefieldv | CBS072006DVD | 7 |
 | Battlestation Pacific | CBS072009DVDGold | 1 |
 | Battlestations Midway | CBS032007DVD | 2 |
@@ -371,9 +359,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Blazing Angels Squadronsof WW | CBS062006DVD | 1 |
 | Blazing Angels Squadronsof WWv | CBS092006DVD | 1 |
 | Blazing Trails | CBS082007DVDBonus | 1 |
-| Blitzkrieg 2 | CBS122005DVD | 1 |
+| Blitzkrieg 2 | CBS122005DVD | 2 |
 | Blitzkrieg 2 v | CBS032006DVD | 1 |
-| Blitzkrieg 2 v 1 | CBS012006DVD | 1 |
 | Blitzkrieg Rolling Thunder | CBS042005DVD | 1 |
 | Blitzkriegv | CBS082006DVD | 1 |
 | Blobs | CBS082007DVDBonus | 1 |
@@ -381,7 +368,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | BMW M3 Challenge | CBS122007DVD | 1 |
 | BMWM3 Challenge | CBS122007DVD | 1 |
 | Boiling Point | CBS092005DVD | 1 |
-| Boiling Point Road to Hell | CBS072005DVD | 1 |
+| Boiling Point Road to Hell | CBS072005DVD | 2 |
 | Boiling Point Roadto Hell | CBS032007DVDGold | 2 |
 | Bomberman Act Zero | CBS112006DVD | 1 |
 | Boogie | CBS092007DVD | 1 |
@@ -398,6 +385,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Breed Pre Loaded | CBS082007DVDBonus | 1 |
 | Bricks from above | CBS112008DVD | 1 |
 | Bridge Builder | CBS032005DVD | 1 |
+| Brothers in Arms | CBS062005DVD | 1 |
 | Brothersin Arms Earnedin Bloodv | CBS072006DVD | 1 |
 | Brothersin Arms Hells Highway | CBS082007DVDGold | 1 |
 | Bruno Das Spiel | CBS102006DVD | 1 |
@@ -410,8 +398,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Burnout Paradise The Ultimate Box | CBS042009DVDGold | 1 |
 | Burnout Revenge | CBS112005DVD | 1 |
 | Caesar | CBS102006DVDGOLD | 2 |
-| Call of Duty 4 - Modern Warfare | CBS112008DVD | 1 |
-| Callof Duty4 Modern Warfarev16 | CBS092008DVD | 1 |
+| Call of Duty 4 - Modern Warfare | CBS092008DVD | 2 |
+| Callof Duty4 Modern Warfare | CBS092008DVD | 1 |
 | Callof Dutyv | CBS072006DVD | 2 |
 | camera lock ax | CBS012005DVD | 1 |
 | Campus | CBS122007DVDGold | 1 |
@@ -430,8 +418,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | CCleaner | CBS012008DVD | 2 |
 | Ceville | CBS042009DVDGold | 1 |
 | Championsheep Rally | CBS082006DVD | 2 |
-| Chaos League Sudden Death | CBS092005DVD | 1 |
-| Chaos League Sudden Death v 2 | CBS042006DVD | 1 |
+| Chaos League Sudden Death | CBS092005DVD | 2 |
 | Chaos Space 2 | CBS032009DVD | 1 |
 | CHAT ROOM | CBS012005DVD | 1 |
 | Cheats | CBS072007DVD | 1 |
@@ -458,9 +445,9 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | City Mining | CBS082007DVDBonus | 1 |
 | City of Villains | CBS012006DVD | 1 |
 | Civilization 4 | CBS022006DVD | 1 |
-| Civilization 4 Beyond the Sword v 3 | CBS092008DVD | 1 |
+| Civilization 4 Beyond the Sword | CBS092008DVD | 1 |
 | Civilization 4 v | CBS032006DVD | 1 |
-| Civilization4 Beyondthe Swordv317 | CBS092008DVD | 1 |
+| Civilization4 Beyondthe Sword | CBS092008DVD | 1 |
 | Civilizationv | CBS072006DVD | 1 |
 | Clever | CBS022009DVD | 1 |
 | Click Clack XL | CBS092006DVD | 1 |
@@ -472,48 +459,42 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Cobian Backup | CBS012009DVD | 1 |
 | Code Aktionen | CBS112009DVDGold | 1 |
 | Codeaktionen | CBS112009DVD | 1 |
-| Codename Panzers | CBS122004DVD | 1 |
-| Codename Panzers 2 v 1 | CBS122005DVD | 1 |
+| Codename Panzers | CBS122004DVD | 2 |
+| Codename Panzers 2 | CBS122005DVD | 1 |
 | Codename Panzers - Cold War | CBS052009DVDGold | 1 |
 | Codename Panzers Ph | CBS082005DVD | 1 |
-| Codename Panzers Phase 2 | CBS102005DVD | 1 |
-| Codename Panzers Phase 2 v 1 | CBS032008DVD | 1 |
-| Codename Panzers Phase2v108 | CBS032008DVD | 1 |
-| Codename Panzers v 1 06 | CBS022006DVD | 1 |
+| Codename Panzers Phase 2 | CBS102005DVD | 2 |
 | Cold Blood | CBS052005DVD | 1 |
 | Cold War | CBS012006DVD | 1 |
 | Cold War Crisis 1 | CBS112008DVD | 1 |
 | Cold Zero The Last Stand | CBS012005DVD | 1 |
-| Colin Mc Rae Dirt | CBS072007DVD | 3 |
-| Colin Mc Rae Dirtv11 | CBS092007DVD | 1 |
+| Colin Mc Rae Dirt | CBS072007DVD | 4 |
 | Colin Mc Rae Rally 2005 | CBS112004DVD | 1 |
 | Combat Flight Simulator | CBS032005DVD | 1 |
 | Combat Wings Battleof Britain | CBS012007DVD | 1 |
 | Command and Conquer | CBS102008DVD | 1 |
-| Command & Conquer 3 Tiberium Wars (Kane) v 1 | CBS092007DVD | 1 |
+| Command & Conquer 3 Tiberium Wars | CBS122007DVD | 1 |
+| Command & Conquer 3 Tiberium Wars (Kane) | CBS092007DVD | 2 |
 | Command & Conquer 3 Tiberium Wars Karten Editor | CBS122007DVD | 1 |
-| Command & Conquer 3 Tiberium Wars SDK v2 | CBS122007DVD | 1 |
-| Command & Conquer 3 Tiberium Wars (Standard) v 1 | CBS092007DVD | 1 |
-| Command & Conquer 3 Tiberium Wars v 1 0 | CBS122007DVD | 1 |
-| Command & Conquer Alarmstufe Rot 3 | CBS022009DVDGold | 1 |
-| Command & Conquer - Alarmstufe Rot 3 v 1 | CBS022009DVD | 1 |
+| Command & Conquer 3 Tiberium Wars SDK | CBS122007DVD | 1 |
+| Command & Conquer 3 Tiberium Wars (Standard) | CBS092007DVD | 2 |
+| Command & Conquer - Alarmstufe Rot 3 | CBS022009DVD | 2 |
 | Command Conquer Dieersten Jahrev | CBS062006DVD | 1 |
+| Command & Conquer Generäle Die Stunde Null | CBS072005DVD | 1 |
 | Command Conquer Tiberium Wars | CBS082006DVD | 5 |
 | Command Conquer Tiberium Wars World Editor | CBS072007DVD | 1 |
 | Command Conquer Tiberium Warsv | CBS072007DVD | 1 |
-| Command Conquer3 Tiberium Wars Kanev105 | CBS092007DVD | 1 |
+| Command Conquer3 Tiberium Wars Kane | CBS092007DVD | 1 |
 | Command Conquer3 Tiberium Wars Karten Editor | CBS122007DVD | 1 |
-| Command Conquer3 Tiberium Wars SDKv20 | CBS122007DVD | 1 |
-| Command Conquer3 Tiberium Wars Standardv105 | CBS092007DVD | 1 |
-| Command Conquer3 Tiberium Warsv108 Kane Edition | CBS122007DVD | 1 |
-| Command Conquer3 Tiberium Warsv108 Standard Edition | CBS122007DVD | 1 |
+| Command Conquer3 Tiberium Wars SDK | CBS122007DVD | 1 |
+| Command Conquer3 Tiberium Wars Standard | CBS092007DVD | 1 |
 | Commandand Conquer | CBS102008DVD | 1 |
 | Commandos Hinter feindlichen Linien | CBS082002 | 1 |
 | Commandos Strike Force | CBS052006DVD | 1 |
 | Comodo Backup | CBS012009DVD | 1 |
-| Companyof Heroes | CBS122006DVD | 2 |
+| Company of Heroes | CBS092007DVD | 1 |
+| Companyof Heroes | CBS122006DVD | 3 |
 | Companyof Heroesv | CBS012007DVD | 5 |
-| Companyof Heroesv170 | CBS092007DVD | 1 |
 | Conflict Desert Storm | CBS112005DVD | 1 |
 | Conflict Global Storm | CBS062006DVD | 1 |
 | Conflict Vietnam | CBS062007DVDGold | 1 |
@@ -521,7 +502,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Cosmic Family | CBS082007DVD | 1 |
 | Cossacks 2 | CBS082005DVD | 1 |
 | Cossacks 2 Napoleonic Wars | CBS052005DVD | 1 |
-| Cossacks 2 v 1 | CBS082005DVD | 1 |
 | Cossacks Back to War | CBS022005DVD | 1 |
 | Cossacks Battlefor Europe | CBS072006DVD | 1 |
 | Cossacks Battlefor Europev | CBS092006DVD | 1 |
@@ -534,16 +514,13 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Crazy Machines 2 | CBS012008DVD | 1 |
 | Crazy Machines2cm | CBS012008DVD | 1 |
 | Crazy Symbol Sudoku | CBS062006DVD | 1 |
-| Creative Sound Blaster Audigy Serie v 2 12 | CBS032008DVD | 1 |
 | Creature Conflict | CBS122005DVD | 1 |
 | Crillion | CBS042005DVD | 2 |
 | Cross Racing Championship | CBS042005DVD | 2 |
-| Crysis | CBS072007DVDGold | 1 |
+| Crysis | CBS072007DVDGold | 2 |
 | Crysis Mod SDK 1 | CBS052008DVD | 2 |
 | Crysis Mod SDK10 | CBS052008DVD | 1 |
 | Crysis Mod SDK12 | CBS062008DVD | 1 |
-| Crysis v 1 | CBS042008DVD | 1 |
-| Crysisv11 | CBS042008DVD | 1 |
 | Crystal Racer | CBS082007DVDBonus | 1 |
 | CSI Eindeutige Beweise | CBS052008DVD | 1 |
 | CSICrime Scene Investigation Mordin Dimensionen | CBS072006DVD | 1 |
@@ -564,6 +541,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Das Ausbildungscamp | CBS012005DVD | 1 |
 | Das Bergwerk | CBS012005DVD | 1 |
 | Das chinesische Viertel | CBS012005DVD | 1 |
+| Das Erbe der Könige | CBS052005DVD | 1 |
 | Das Eulemberg Experiment | CBS112006DVD | 1 |
 | Das Geheimlabor | CBS012005DVD | 1 |
 | Das Geheimnis der vergessenen Höhle | CBS092005DVD | 1 |
@@ -572,6 +550,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Das Schwarze Auge - Drakensang | CBS112008DVDGold | 2 |
 | Das Vermächtnis - Testament of Sin | CBS022009DVD | 1 |
 | Dashliche Entlein | CBS082007DVDBonus | 1 |
+| Dawn of War | CBS032005DVD | 1 |
 | Dawnof Magic | CBS072007DVD | 2 |
 | Dead or Alive 4 | CBS122005DVD | 1 |
 | Dead Reefs | CBS092006DVD | 2 |
@@ -592,7 +571,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Der Herrder Ringe DSu MAufstiegdes Hexenknigs | CBS042007DVD | 1 |
 | Der Herrder Ringe Online | CBS082006DVD | 1 |
 | Der Herrder Ringe Online Die Schattenvon Angmar | CBS042007DVD | 3 |
-| Der Hobbit v 1 | CBS012005DVD | 1 |
+| Der Hobbit | CBS012005DVD | 1 |
 | Der Industriegigant | CBS072001 | 1 |
 | Der Pate | CBS052005DVD | 2 |
 | Der Trakt | CBS012005DVD | 1 |
@@ -617,9 +596,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Die drei Musketiere | CBS022006DVD | 1 |
 | Die Fischverladestelle | CBS012005DVD | 1 |
 | Die Gilde | CBS112006DVD | 2 |
-| Die Gilde 2 | CBS112005DVD | 1 |
-| Die Gilde 2 - Venedig v 3 | CBS052009DVD | 1 |
-| Die Gilde 2 v 1 | CBS092007DVD | 1 |
+| Die Gilde 2 | CBS112005DVD | 2 |
+| Die Gilde 2 - Venedig | CBS052009DVD | 1 |
 | Die Gilde Seeruberder Hanse | CBS082007DVD | 1 |
 | Die Hazienda | CBS012005DVD | 1 |
 | Die Kieselsteiner | CBS072006DVD | 2 |
@@ -636,24 +614,24 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Die Siedler | CBS122004DVD | 3 |
 | Die Siedler 2 Die nächste Generation | CBS012008DVDSonder | 1 |
 | Die Siedler 4 | CBS012005DVD | 1 |
+| Die Siedler 6 Aufstieg eines Königreichs | CBS062008DVD | 1 |
 | Die Siedler Aufbruch der Kulturen | CBS012009DVDSonder | 1 |
-| Die Siedler Aufstiegeines Knigreichs | CBS112007DVDGold | 1 |
-| Die Siedler Aufstiegeines Knigreichsv11 | CBS122007DVD | 1 |
+| Die Siedler Aufstieg eines Königreichs | CBS122007DVD | 1 |
+| Die Siedler Aufstiegeines Knigreichs | CBS112007DVDGold | 2 |
 | Die Siedler Das Erbe der Könige | CBS102008DVDGold | 1 |
 | Die Siedler Dienchste Generation | CBS092006DVD | 1 |
 | Die Siedler Dienchste Generationv | CBS012007DVD | 1 |
 | Die Siedler Hiebe für Diebe | CBS012001 | 1 |
 | Die Siedler Honigfrden Knig | CBS082007DVD | 1 |
 | Die Siedler2 Dienchste Generation | CBS012008DVDSonder | 1 |
-| Die Siedler6 Aufstiegeines Knigreichsv15 | CBS062008DVD | 1 |
+| Die Siedler6 Aufstiegeines Knigreichs | CBS062008DVD | 1 |
 | Die Siedlerv | CBS062007DVD | 1 |
-| Die Sims 2 Gute Reise v 1 10 0 | CBS012008DVD | 1 |
-| Die Sims 2 Jahreszeiten v 1 7 0 | CBS112007DVD | 1 |
+| Die Sims 2 | CBS032005DVD | 3 |
+| Die Sims 2 Gute Reise | CBS012008DVD | 1 |
+| Die Sims 2 Jahreszeiten | CBS112007DVD | 1 |
 | Die Sims 2 Open for Business | CBS042006DVD | 1 |
 | Die Sims 2 Wilde Campus J | CBS042005DVD | 1 |
 | Die Sims 2 v | CBS032006DVD | 1 |
-| Die Sims 2 v 1 0 0 | CBS032005DVD | 2 |
-| Die Sims 2 v 1 000 | CBS042005DVD | 1 |
 | Die Sims Erste Schritte | CBS022007DVD | 1 |
 | Die Sims Haustiere | CBS102006DVD | 2 |
 | Die Sims Haustierev | CBS052007DVD | 1 |
@@ -661,7 +639,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Die Sims Nightlifev | CBS052006DVD | 1 |
 | Die Sims Openfor Businessv | CBS062006DVD | 1 |
 | Die Sims Vier Jahreszeiten | CBS042007DVD | 1 |
-| Die Sims2 Gute Reisev1100122 | CBS012008DVD | 1 |
+| Die Sims2 Gute Reise | CBS012008DVD | 1 |
+| Die Sims2 Jahreszeiten | CBS112007DVD | 1 |
 | Die Spedition | CBS012005DVD | 1 |
 | Die Teppichklinik | CBS082007DVDBonus | 1 |
 | Die Unglaublichen | CBS022005DVD | 1 |
@@ -689,8 +668,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Dr Horst | CBS082007DVDBonus | 1 |
 | Dracula Origin | CBS092008DVDGold | 1 |
 | Dracula Twins | CBS012007DVD | 1 |
-| Dragonshard | CBS032005DVD | 3 |
-| Dragonshard v 1 1 | CBS122005DVD | 1 |
+| Dragonshard | CBS032005DVD | 4 |
 | Dragonshardv | CBS052006DVD | 1 |
 | Drakensang | CBS072009DVD | 1 |
 | Dream Pinball DTwo Worlds | CBS102006DVD | 1 |
@@ -698,7 +676,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Dreamfall The Longest Journey | CBS092005DVD | 3 |
 | Dreamlords | CBS112007DVD | 2 |
 | Dreamlords - The Re Awakening | CBS102008DVD | 1 |
-| Drive Image XML | CBS012009DVD | 1 |
 | Driving Speed 2 | CBS072008DVD | 1 |
 | Driving Speed2 | CBS072008DVD | 1 |
 | DSL Manager | CBS042008DVD | 1 |
@@ -706,8 +683,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Dungeon Lords | CBS012005DVD | 4 |
 | dungeon quest | CBS082009DVD | 1 |
 | Dungeon Siege | CBS022007DVDGOLD | 1 |
-| Dungeon Siege 2 | CBS112005DVD | 1 |
-| Dungeon Siege 2 v 2 | CBS122005DVD | 1 |
+| Dungeon Siege 2 | CBS112005DVD | 2 |
 | Dungeons Dragons Online | CBS012006DVD | 1 |
 | DVDHllenzum Ausdrucken | CBS072007DVDGold | 1 |
 | DVDHuellezum Drucken | CBS072007DVDGold | 1 |
@@ -722,7 +698,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Earth 2150 Blue Planet | CBS062005DVD | 1 |
 | Earth 2150 Lost Souls | CBS062005DVD | 1 |
 | Earth 2150 Moon Project | CBS062005DVD | 1 |
-| Earth 2160 | CBS122004DVD | 2 |
+| Earth 2160 | CBS122004DVD | 3 |
 | Easy BCD 1 7 | CBS032008DVD | 1 |
 | Easy BCD171 | CBS032008DVD | 1 |
 | Easytoolz | CBS092007DVD | 5 |
@@ -744,10 +720,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Empires Die Neuzeit | CBS112004DVD | 1 |
 | Enchanted Arms | CBS092006DVD | 2 |
 | Endwar | CBS082007DVDGold | 1 |
-| Enemy Territory Quake Wars | CBS022007DVD | 4 |
-| Enemy Territory Quake Wars v 1 | CBS122007DVD | 2 |
-| Enemy Territory Quake Warsv11 | CBS122007DVD | 1 |
-| Enemy Territory Quake Warsv14 | CBS042008DVD | 1 |
+| Enemy Territory Quake Wars | CBS022007DVD | 5 |
 | Enigma | CBS092008DVD | 1 |
 | Enigma Rising Tide | CBS032005DVD | 1 |
 | Enthusia Pro | CBS032005DVD | 1 |
@@ -782,11 +755,9 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Facesof Warv | CBS032007DVD | 1 |
 | FAESuper Hornet | CBS012007DVD | 1 |
 | Fahr Simulator 2009 | CBS042009DVD | 1 |
-| Fahr Simulator 2009 v 1 | CBS042009DVD | 1 |
-| Fahrenheit | CBS092005DVD | 3 |
-| Fahrenheit v 1 | CBS012006DVD | 1 |
+| Fahrenheit | CBS092005DVD | 4 |
 | Falafel King | CBS082007DVDBonus | 1 |
-| Falcon 4 0 Allied Force v 1 0 | CBS042006DVD | 1 |
+| Falcon 4 0 Allied Force | CBS042006DVD | 1 |
 | Fallobst Arcade | CBS042005DVD | 1 |
 | Fallout 3 | CBS092007DVD | 1 |
 | Fallout3 | CBS092007DVD | 1 |
@@ -795,7 +766,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Far Cry Instincts Predator Technologie | CBS052006DVD | 1 |
 | Far Cryv | CBS012007DVD | 1 |
 | Fast Lane Carnage | CBS022006DVD | 1 |
-| Fear v 1 02 | CBS022006DVD | 1 |
 | FEARv | CBS092006DVD | 3 |
 | Fessierumtauf | CBS082007DVDBonus | 1 |
 | Fette Sau XS | CBS112004DVD | 1 |
@@ -836,14 +806,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Froggit | CBS022007DVD | 1 |
 | Froggy Castle XS | CBS082007DVDBonus | 1 |
 | Frontline Fieldsof Thunder | CBS062007DVD | 1 |
-| Frontlines Fuelof War | CBS012007DVD | 2 |
-| Frontlines Fuelof Warv102 | CBS062008DVD | 1 |
-| Frontlines Fuelof Warv110 | CBS092008DVD | 1 |
+| Frontlines Fuel of War | CBS062008DVD | 2 |
+| Frontlines Fuelof War | CBS012007DVD | 4 |
 | Fußball Manager 08 | CBS012008DVD | 1 |
 | Fußball Manager 09 | CBS022009DVD | 1 |
-| Fußball Manager 2008 v 8 0 | CBS062008DVD | 1 |
+| Fußball Manager 2008 | CBS062008DVD | 1 |
 | Fuball Manager | CBS012007DVDGOLD | 1 |
-| Fuball Manager2008v802 | CBS062008DVD | 1 |
 | Fuball Managerv | CBS042007DVD | 1 |
 | Full Auto | CBS032006DVD | 1 |
 | Full Auto Battlelines | CBS012007DVD | 2 |
@@ -878,9 +846,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Go Around Showdown | CBS032005DVD | 2 |
 | Gods Landsof Infinity | CBS092006DVD | 1 |
 | Godzilla Final Wars | CBS112007DVDGold | 1 |
-| Goin Downtown | CBS092008DVDGold | 1 |
-| Goin Downtown v 1 | CBS102008DVD | 1 |
-| Goin Downtownv11 | CBS102008DVD | 1 |
+| Goin Downtown | CBS092008DVDGold | 2 |
 | Goldboxer | CBS072006DVD | 1 |
 | Goldboxes | CBS082007DVDBonus | 1 |
 | Googletalk | CBS072008DVD | 1 |
@@ -891,7 +857,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Gothicv | CBS012007DVD | 3 |
 | Grand Ages - Rome | CBS042009DVD | 1 |
 | Grand Theft Auto | CBS012005DVD | 2 |
-| Grand Theft Auto 4 v 1 | CBS042009DVD | 1 |
+| Grand Theft Auto 4 | CBS042009DVD | 1 |
 | Gratisaktion | CBS112009DVD | 1 |
 | Gravity Gems SE | CBS082007DVDBonus | 1 |
 | grayout grenade | CBS012005DVD | 1 |
@@ -904,8 +870,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | GSRGerman Street Racing | CBS122006DVDGOLD | 1 |
 | GT Legends | CBS112005DVD | 1 |
 | GTA 4 Komplettlösung | CBS082008DVD | 1 |
-| GTA San Andreas | CBS122004DVD | 1 |
-| GTA San Andreas v 1 | CBS112005DVD | 1 |
+| GTA San Andreas | CBS122004DVD | 2 |
 | GTA4 Komplettloesung | CBS082008DVD | 1 |
 | Gtertrennung XS | CBS082007DVDBonus | 1 |
 | GTIRacing | CBS072006DVD | 2 |
@@ -986,13 +951,11 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | ikonka na zakladce 4 luneta | CBS012005DVD | 1 |
 | ILSturmovik | CBS032007DVD | 1 |
 | ILSturmovik Forgotten Battles | CBS112006DVD | 1 |
-| Immortal Cities Kinder des Nils v 1 3 0 | CBS102008DVD | 1 |
-| Immortal Cities Kinderdes Nilsv11 | CBS102008DVD | 1 |
+| Immortal Cities Kinder des Nils | CBS102008DVD | 1 |
+| Immortal Cities Kinderdes Nils | CBS102008DVD | 1 |
 | Imperial Glory | CBS112004DVD | 2 |
-| Imperium Romanum | CBS042008DVD | 2 |
+| Imperium Romanum | CBS042008DVD | 3 |
 | Imperium Romanum Kopierschutz | CBS052008DVD | 1 |
-| Imperium Romanum v 1 | CBS062008DVD | 1 |
-| Imperium Romanumv102 | CBS062008DVD | 1 |
 | In 80 Tagen um die Welt | CBS022006DVD | 1 |
 | Incadia | CBS062005DVD | 1 |
 | increase stack undr mouse | CBS012005DVD | 1 |
@@ -1004,18 +967,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Invasion Repel and Rebuild | CBS032005DVD | 1 |
 | Invasion Repeland Rebuild | CBS082007DVDBonus | 1 |
 | IQMarathon | CBS082007DVDBonus | 1 |
-| Iron Man | CBS072008DVDGold | 4 |
-| Iron Man v 1 | CBS092008DVD | 1 |
-| Iron Manv11 | CBS092008DVD | 1 |
-| Isabel Werth Reitsport | CBS072007DVD | 1 |
-| Isabel Werth Reitsport v 1 | CBS102007DVD | 1 |
-| Isabel Werth Reitsportv12 | CBS102007DVD | 1 |
+| Iron Man | CBS072008DVDGold | 5 |
+| Isabel Werth Reitsport | CBS072007DVD | 2 |
 | Isabell Werth Reitsport | CBS062007DVD | 2 |
 | Izberite jezik za pripravo | CBS052010DVDGold | 1 |
-| Jack Keane | CBS082007DVD | 3 |
-| Jack Keane v 1 0 | CBS012008DVD | 1 |
+| Jack Keane | CBS082007DVD | 4 |
 | Jack Keaneandthe Dokktors Island | CBS082006DVD | 1 |
-| Jack Keanev101 | CBS012008DVD | 1 |
 | Jacked | CBS052007DVD | 1 |
 | Jacomo's Brick Mountain | CBS022005DVD | 1 |
 | Jacomo's Castle | CBS032005DVD | 1 |
@@ -1027,13 +984,11 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Jahresinhalt CBS | CBS022007DVD | 1 |
 | Jardinains | CBS082007DVDBonus | 1 |
 | Jeithonas | CBS062008DVD | 1 |
-| John Woo Presents Stranglehold | CBS012007DVD | 2 |
-| John Woo Presents Stranglehold v 1 | CBS042009DVD | 1 |
+| John Woo Presents Stranglehold | CBS012007DVD | 3 |
 | John Woos Stranglehold | CBS062006DVD | 1 |
 | Joint Task Force | CBS042006DVD | 1 |
-| Juiced | CBS072005DVD | 3 |
+| Juiced | CBS072005DVD | 4 |
 | Juiced Hot Import Nights | CBS082007DVD | 2 |
-| Juiced v 1 01 | CBS122005DVD | 1 |
 | Jumper | CBS082007DVDBonus | 1 |
 | Jumping Jack | CBS082007DVDBonus | 1 |
 | Jumping Jokers | CBS092001 | 1 |
@@ -1053,7 +1008,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Keepsakev | CBS062006DVD | 1 |
 | Kiki the Nanobot | CBS032006DVD | 1 |
 | Kikithe Nanobot | CBS082007DVDBonus | 1 |
-| Kinder des Nils v 1 | CBS052005DVD | 1 |
+| Kinder des Nils | CBS052005DVD | 1 |
 | King of the Road | CBS122005DVD | 1 |
 | King's Bounty - The Legend | CBS022009DVD | 1 |
 | King's Quest 7 | CBS062000 | 1 |
@@ -1077,7 +1032,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | kompas busola | CBS012005DVD | 1 |
 | kompas damage | CBS012005DVD | 1 |
 | Krackthe Waves | CBS082007DVDBonus | 1 |
-| Kran Simulator 2009 v 1 0 3 | CBS032009DVD | 2 |
+| Kran Simulator 2009 | CBS032009DVD | 2 |
 | Kransimulator 2009 | CBS022009DVD | 1 |
 | kreska 1 | CBS012005DVD | 1 |
 | kreska 2 | CBS012005DVD | 1 |
@@ -1093,8 +1048,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | kreska na srodkowym oknie wyzsza | CBS012005DVD | 1 |
 | kreska 10 | CBS012005DVD | 1 |
 | kreska 11 | CBS012005DVD | 1 |
-| Kult Heretic Kingdoms | CBS122004DVD | 1 |
-| Kult Heretic Kingdoms v 1 | CBS012005DVD | 2 |
+| Kult Heretic Kingdoms | CBS122004DVD | 3 |
 | Kumoon | CBS022006DVD | 2 |
 | Kung Fu Panda | CBS072008DVDGold | 1 |
 | Landwirtschafts Simulator2008 | CBS072008DVD | 1 |
@@ -1114,9 +1068,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | LEFT ARROW | CBS012005DVD | 1 |
 | Legacy of Kain Defiance | CBS012009DVDSonder | 1 |
 | Legacy of Kain Soul Reaver | CBS022002 | 1 |
-| Legend Handof God | CBS012008DVDGold | 1 |
-| Legend Handof Godv101 | CBS012008DVD | 1 |
-| Legend Handof Godv102 | CBS042008DVD | 1 |
+| Legend Hand of God | CBS012008DVD | 2 |
+| Legend Handof God | CBS012008DVD | 3 |
 | Lego Batman | CBS012009DVDGold | 1 |
 | Lego Indiana Jones | CBS082008DVDGold | 1 |
 | Lego Indiana Jones Die legendären Abenteuer | CBS012009DVDSonder | 1 |
@@ -1134,13 +1087,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Lock On Air Combat Simulation | CBS022007DVD | 1 |
 | Loco Mania | CBS052006DVD | 1 |
 | Loesung | CBS102008DVD | 2 |
-| Loesungsbuecher | CBS102008DVD | 16 |
 | Logistik Master | CBS032008DVD | 1 |
-| Loki Im Bannkreisder Gtter | CBS052007DVD | 3 |
-| Loki Im Bannkreisder Gtterv1040 | CBS092007DVD | 1 |
-| Loki Im Bannkreisder Gtterv1050 | CBS102007DVD | 1 |
-| Loki v 1 0 8 | CBS052008DVD | 1 |
-| Lokiv1082 | CBS052008DVD | 1 |
+| Loki Im Bannkreisder Gtter | CBS052007DVD | 5 |
 | London Racer | CBS062006DVD | 1 |
 | Looman | CBS082007DVDBonus | 1 |
 | Lost Empire Immortals | CBS062008DVDGold | 1 |
@@ -1170,15 +1118,16 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Mc Afee Avert Stinger | CBS052008DVD | 1 |
 | Mc Afee Rootkit Detective | CBS052008DVD | 1 |
 | MDK | CBS032001 | 1 |
-| Medalof Honor Airbornev13 | CBS062008DVD | 1 |
+| Medal of Honor Airborne | CBS062008DVD | 1 |
+| Medalof Honor Airborne | CBS062008DVD | 1 |
 | Medicalat | CBS082007DVDBonus | 1 |
-| Medieval 2 Total War Kingdoms v 1 | CBS072008DVD | 1 |
-| Medieval 2 Total War v 1 | CBS122007DVD | 1 |
+| Medieval 2 Total War | CBS122007DVD | 1 |
+| Medieval 2 Total War Kingdoms | CBS072008DVD | 1 |
 | Medieval Lords | CBS112004DVD | 2 |
 | Medieval Total War | CBS122006DVD | 2 |
 | Medieval Total Warv | CBS082007DVD | 1 |
-| Medieval2 Total War Kingdomsv105 | CBS072008DVD | 1 |
-| Medieval2 Total Warv13 | CBS122007DVD | 1 |
+| Medieval2 Total War | CBS122007DVD | 1 |
+| Medieval2 Total War Kingdoms | CBS072008DVD | 1 |
 | Meine Tierklinik in Australien Joey Screenmate | CBS072008DVD | 1 |
 | Meine Tierklinik Löwenbaby | CBS102007DVD | 1 |
 | Meine Tierklinik Lwenbaby | CBS102007DVD | 1 |
@@ -1218,7 +1167,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | minus TECHNIK | CBS012005DVD | 1 |
 | Miranda Vista | CBS072008DVD | 1 |
 | Miranda XP | CBS072008DVD | 1 |
-| Mirrors Edge v 1 | CBS042009DVD | 1 |
+| Mirrors Edge | CBS042009DVD | 1 |
 | Mllabfuhr Simulator2008 | CBS082008DVD | 1 |
 | Mobility 1 | CBS032001 | 1 |
 | Monsters vs | CBS052009DVD | 1 |
@@ -1258,13 +1207,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Navy Field | CBS042008DVD | 2 |
 | NBAStreet Homecourt | CBS042007DVD | 1 |
 | nd Americas Cup Das Spiel | CBS072007DVD | 1 |
-| Need for Speed Carbon v 1 | CBS032008DVD | 1 |
+| Need for Speed Carbon | CBS032008DVD | 1 |
 | Need for Speed Most Wanted | CBS122005DVD | 2 |
 | Need for Speed Most Wanted v | CBS032006DVD | 1 |
 | Need for Speed Pro Street | CBS012008DVD | 2 |
-| Need for Speed - Underground v 1 1 | CBS052009DVD | 1 |
-| Needfor Speed Carbon | CBS092006DVDGOLD | 2 |
-| Needfor Speed Carbonv14 | CBS032008DVD | 1 |
+| Need for Speed - Underground | CBS052009DVD | 1 |
+| Needfor Speed Carbon | CBS092006DVDGOLD | 3 |
 | Needfor Speed Pro Street | CBS012008DVD | 2 |
 | Neocron 2 Evolution v | CBS032006DVD | 1 |
 | Neocron Arcade | CBS042006DVD | 2 |
@@ -1279,11 +1227,10 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Neue Abenteueraufder Schatzinsel | CBS062007DVDGold | 1 |
 | NEUES SPIEL | CBS012005DVD | 1 |
 | Neuro Hunter | CBS032006DVD | 1 |
-| Neverwinter Nights v 1 | CBS032005DVD | 2 |
+| Neverwinter Nights | CBS032005DVD | 2 |
 | Neverwinter Nightsv | CBS112006DVD | 2 |
 | Nexus The Jupiter Incident | CBS012005DVD | 1 |
 | NFS Underground 2 | CBS012005DVD | 2 |
-| NFS Underground 2 v 1 | CBS022005DVD | 1 |
 | NHL08 Vista | CBS032008DVD | 1 |
 | Nibiru Der Bote der Götter | CBS042005DVD | 2 |
 | Nibiru Der Boteder Gtter Lsungsbuch | CBS052007DVD | 1 |
@@ -1321,15 +1268,11 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Outlaw Golf 2 | CBS122004DVD | 1 |
 | Over GFighters | CBS102006DVD | 1 |
 | Overclocked Eine Geschichteber Gewalt | CBS012008DVDGold | 1 |
-| Overlord | CBS072007DVD | 3 |
-| Overlord v 1 | CBS102007DVD | 1 |
-| Overlordv12 | CBS102007DVD | 1 |
+| Overlord | CBS072007DVD | 4 |
 | Pacific Fighters | CBS122004DVD | 1 |
 | Pacific Fighters Strategiebuch | CBS042008DVDGold | 1 |
-| Pacific Storm | CBS082006DVD | 2 |
+| Pacific Storm | CBS082006DVD | 3 |
 | Pacific Storm Allies | CBS082007DVDGold | 1 |
-| Pacific Storm v 1 | CBS032008DVD | 1 |
-| Pacific Stormv14 | CBS032008DVD | 1 |
 | Pacman EX | CBS022007DVD | 2 |
 | Pangya | CBS072007DVDGold | 1 |
 | Panzer Elite Action | CBS032006DVD | 1 |
@@ -1349,8 +1292,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | parent single | CBS012005DVD | 1 |
 | Parent srodkowego shopa | CBS012005DVD | 1 |
 | Parent testowy | CBS012005DVD | 1 |
-| Pariah | CBS022005DVD | 1 |
-| Pariah v 1 | CBS082005DVD | 2 |
+| Pariah | CBS022005DVD | 3 |
 | Paris Chase | CBS102007DVD | 1 |
 | Passage Sonder Edition | CBS082007DVDBonus | 1 |
 | Pathologic | CBS082006DVD | 2 |
@@ -1360,9 +1302,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | PEBuilder | CBS092006DVD | 1 |
 | Pekka Kana | CBS082007DVDBonus | 1 |
 | Pentalego | CBS082007DVDBonus | 1 |
-| Penumbra Black Plague | CBS052008DVDGold | 2 |
-| Penumbra Black Plague v 1 0 | CBS062008DVD | 1 |
-| Penumbra Black Plaguev101 | CBS062008DVD | 1 |
+| Penumbra Black Plague | CBS052008DVDGold | 3 |
 | Penumbra Im Halbschatten | CBS062007DVDGold | 1 |
 | Performance Test | CBS092008DVD | 1 |
 | Perry Rhodan | CBS072008DVDGold | 1 |
@@ -1384,7 +1324,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Pings Pizza | CBS082007DVDBonus | 1 |
 | Pipemania | CBS122008DVD | 1 |
 | Pirate Galaxy | CBS032009DVD | 1 |
-| Piraten Herrscher der Karibik v 1 1 0 | CBS042006DVD | 1 |
+| Piraten Herrscher der Karibik | CBS042006DVD | 1 |
 | Piratesofthe Carribean Am Endeder Welt | CBS092007DVD | 1 |
 | Pixelzentrierung | CBS012005DVD | 1 |
 | Pizza Commander | CBS022007DVD | 1 |
@@ -1423,12 +1363,10 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Prince of Persia Warrior Within | CBS112008DVDGold | 1 |
 | Princeof Persia The Sandsof Time | CBS102007DVDGold | 1 |
 | Pro Evolution Soccer | CBS092006DVD | 2 |
-| Pro Evolution Soccer 4 | CBS022005DVD | 1 |
-| Pro Evolution Soccer 4 v 1 | CBS032005DVD | 1 |
+| Pro Evolution Soccer 4 | CBS022005DVD | 2 |
 | Pro Evolution Soccer 5 | CBS122005DVD | 1 |
 | Pro Evolution Soccer2008 | CBS122007DVD | 1 |
-| Pro Evolution Soccer2009 | CBS122008DVD | 1 |
-| Pro Evolution Soccer 2009 v 1 | CBS022009DVD | 1 |
+| Pro Evolution Soccer2009 | CBS122008DVD | 2 |
 | Pro Jger | CBS082008DVDGold | 1 |
 | Pro Pinball Timeshock | CBS032005DVD | 1 |
 | Pro Stroke Golf World Tour | CBS112006DVD | 1 |
@@ -1456,10 +1394,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Puzzle | CBS082006DVD | 1 |
 | PWGen | CBS082008DVD | 1 |
 | Pyro Tycoon | CBS032005DVD | 1 |
-| Quake 4 v 1 | CBS092007DVD | 1 |
-| Quake 4 v 1 04 | CBS022006DVD | 1 |
+| Quake 4 | CBS022006DVD | 2 |
 | Quake SDK | CBS102006DVDGOLD | 1 |
-| Quake4v142 | CBS092007DVD | 1 |
 | Quakev | CBS072006DVD | 2 |
 | Quarry | CBS082007DVDBonus | 1 |
 | Rückkehr zur Insel | CBS022005DVD | 1 |
@@ -1468,14 +1404,11 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Race 07 Official WTCC Game | CBS092007DVD | 1 |
 | Race07 Official WTCCGame | CBS092007DVD | 1 |
 | Racing Simulation 2 | CBS102002 | 1 |
-| Radsport Manager Pro | CBS082007DVDGold | 2 |
+| Radsport Manager Pro | CBS082007DVDGold | 3 |
 | Radsport Manager Pro Le Tourde France | CBS092006DVD | 1 |
 | Radsport Manager Pro Le Tourde Francev | CBS102006DVD | 1 |
 | Radsport Manager Pro Saison 05 06 | CBS092005DVD | 1 |
-| Radsport Manager Pro v 1 0 2 | CBS112007DVD | 1 |
-| Radsport Manager Pro 2007 v 1 0 1 | CBS102007DVD | 1 |
-| Radsport Manager Pro2007v1010 | CBS102007DVD | 1 |
-| Radsport Manager Prov1020 | CBS112007DVD | 1 |
+| Radsport Manager Pro 2007 | CBS102007DVD | 1 |
 | Radsport Manager 2003 2004 | CBS102005DVD | 1 |
 | Ragdoll Kung Fu | CBS082006DVD | 1 |
 | rageclaw online | CBS092009DVD | 1 |
@@ -1487,8 +1420,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Rainbow Six 4 Lockdown | CBS062005DVD | 1 |
 | Rainbow Six Covert Ops E | CBS042005DVD | 1 |
 | Rainbow Six Lockdown | CBS032005DVD | 2 |
-| Rainbow Six Vegas 2 v 1 | CBS102008DVD | 1 |
-| Rainbow Six Vegas2v103 | CBS102008DVD | 1 |
+| Rainbow Six Vegas 2 | CBS102008DVD | 1 |
 | ramka niska | CBS012005DVD | 1 |
 | ramka wstanie | CBS012005DVD | 1 |
 | ramka wysoka | CBS012005DVD | 1 |
@@ -1507,24 +1439,19 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Renny Claus Snow Bomb Battle | CBS082007DVDBonus | 1 |
 | Renny Claus Weihnachts Flipper | CBS082007DVDBonus | 1 |
 | Renny Claus XMas Hockey | CBS082007DVDBonus | 1 |
-| Reprobates Insel der Verdammten | CBS022008DVD | 1 |
-| Reprobates Insel der Verdammten v 1 3 | CBS102008DVD | 1 |
-| Reprobates Insel der Verdammten v 2 | CBS012008DVD | 1 |
-| Reprobates Inselder Verdammten | CBS022008DVD | 1 |
-| Reprobates Inselder Verdammtenv133 | CBS102008DVD | 1 |
-| Reprobates Inselder Verdammtenv214 | CBS012008DVD | 1 |
+| Reprobates Insel der Verdammten | CBS012008DVD | 3 |
+| Reprobates Inselder Verdammten | CBS012008DVD | 3 |
 | Republic Commando | CBS052005DVD | 1 |
 | reserved for progress copy | CBS012005DVD | 1 |
 | reserved for status bar | CBS012005DVD | 1 |
 | reserved for statusbar | CBS012005DVD | 1 |
 | Resident Evilv | CBS072007DVD | 1 |
-| Restricted Area | CBS112004DVD | 2 |
+| Restricted Area | CBS112004DVD | 3 |
 | Restricted Area 1 | CBS022005DVD | 1 |
-| Restricted Area v 1 | CBS012005DVD | 1 |
 | Retro Ping | CBS082007DVDBonus | 1 |
 | Rettunghelicopter 112 | CBS072005DVD | 1 |
 | RF Online | CBS042006DVD | 1 |
-| Richard Burns Rally v 1 | CBS022005DVD | 1 |
+| Richard Burns Rally | CBS022005DVD | 1 |
 | Ridge Racer 6 | CBS022006DVD | 1 |
 | RIGHT ARROW | CBS012005DVD | 1 |
 | RIP 3 The Last Hero | CBS112007DVD | 1 |
@@ -1533,8 +1460,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Rise Fall Civilizationsat War | CBS052006DVD | 1 |
 | Rise Fall Civilizationsat Warv | CBS092006DVD | 1 |
 | Riseof Nations Riseof Legends | CBS052006DVD | 2 |
-| Rising Kingdoms | CBS082005DVD | 1 |
-| Rising Kingdoms v 1 | CBS042006DVD | 1 |
+| Rising Kingdoms | CBS082005DVD | 2 |
 | Rival Chess | CBS082007DVDBonus | 1 |
 | Robert's Passwort Safe | CBS082008DVD | 1 |
 | Roberts Passwort Safe | CBS082008DVD | 1 |
@@ -1543,24 +1469,22 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Rocky Balboa | CBS042007DVD | 1 |
 | Roller Ball | CBS082007DVDBonus | 1 |
 | Rollercoaster Tycoon | CBS102004DVD | 1 |
-| Rollercoaster Tycoon 3 | CBS012005DVD | 1 |
+| Rollercoaster Tycoon 3 | CBS012005DVD | 2 |
 | Rollercoaster Tycoon 3 Wild | CBS022006DVD | 1 |
-| Rollercoaster Tycoon 3 v 1 | CBS022005DVD | 1 |
 | Romance of the Three Kingdoms 11 | CBS112008DVD | 1 |
 | Romanceofthe Three Kingdoms | CBS112008DVD | 1 |
 | Rome Barbarian Invasion | CBS112005DVD | 1 |
+| Rome Total War | CBS052005DVD | 1 |
 | Rome Total War Alexander | CBS092006DVD | 1 |
 | Rome Total War Barbarian Invasion v | CBS032006DVD | 1 |
-| Rome Total War v 1 | CBS052005DVD | 1 |
 | Rosso Rabbitin Trouble | CBS052006DVD | 1 |
 | Roter Baron Herrscherder Lfte | CBS042007DVD | 1 |
 | Rotlicht Tycoonv | CBS082007DVD | 1 |
 | RPM Tuning | CBS082005DVD | 1 |
-| RTL Racing Team Manager v 1 | CBS072008DVD | 1 |
+| RTL Racing Team Manager | CBS072008DVD | 1 |
 | RTL Winter Sports 2008 The Ultimate Challenge | CBS022008DVD | 2 |
 | RTLBiathlon2008 | CBS022008DVD | 1 |
-| RTLRacing Team Manager | CBS052008DVDGold | 1 |
-| RTLRacing Team Managerv104 | CBS072008DVD | 1 |
+| RTLRacing Team Manager | CBS052008DVDGold | 2 |
 | RTLSkispringen | CBS012007DVD | 1 |
 | RTLWinter Sports2008 The Ultimate Challenge | CBS022008DVD | 1 |
 | Rubiks Clock | CBS082007DVDBonus | 1 |
@@ -1575,8 +1499,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Rushfor Berlinv | CBS092006DVD | 3 |
 | Rushforthe Bomb Rushfor Berlin Expansion Pack | CBS072007DVD | 1 |
 | Sacred | CBS122004DVD | 2 |
-| Sacred 2 - Fallen Angel | CBS122008DVDGold | 1 |
-| Sacred 2 - Fallen Angel v 2 34 0 | CBS032009DVD | 1 |
+| Sacred 2 - Fallen Angel | CBS122008DVDGold | 2 |
 | Sacred Fallen Angel | CBS052007DVD | 1 |
 | Sacred Plusinkl Lsungsbuch | CBS092007DVDGold | 1 |
 | Sacred Underworld | CBS102007DVDGold | 1 |
@@ -1584,7 +1507,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Santa Claus in Trouble | CBS012005DVD | 1 |
 | Santa Clausin Trouble Gold | CBS012007DVD | 1 |
 | Sataan | CBS122004DVD | 1 |
-| Sataan Das Spiel v 1 | CBS042005DVD | 1 |
+| Sataan Das Spiel | CBS042005DVD | 1 |
 | Savage ATortured Soul | CBS062008DVDGold | 1 |
 | Save Kolchez'a 21:22:22 2002 10 22 | CBS012005DVD | 1 |
 | Schatten | CBS012005DVD | 1 |
@@ -1592,6 +1515,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Schiff Simulator2008 | CBS112007DVD | 1 |
 | Schiffbruch | CBS082007DVDBonus | 1 |
 | Schiffe versenken | CBS102005DVD | 1 |
+| Schlacht um Mittelerde | CBS052005DVD | 1 |
 | Schlacht um Mittelerde 1 | CBS082005DVD | 1 |
 | Schlachtum Mittelerde DAufstiegd Hexenknigsv | CBS072007DVD | 1 |
 | Schnappi Das kl | CBS062005DVD | 1 |
@@ -1610,8 +1534,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Sensible Soccer | CBS092006DVD | 1 |
 | Sentinel Verborg | CBS032005DVD | 1 |
 | Serious Sam 2 | CBS092005DVD | 1 |
-| Seven Kingdoms Conquest v 1 | CBS072008DVD | 1 |
-| Seven Kingdoms Conquestv104 | CBS072008DVD | 1 |
+| Seven Kingdoms Conquest | CBS072008DVD | 1 |
 | Shade Zorn der Engel | CBS012005DVD | 1 |
 | Shadow Company | CBS032002 | 1 |
 | Shadow Man | CBS072002 | 1 |
@@ -1653,11 +1576,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Show TECHNIKxp Needed | CBS012005DVD | 1 |
 | Shrekder Dritte | CBS072007DVDGold | 1 |
 | Sid Meier's Civilization 4 | CBS012008DVDSonder | 1 |
+| Sid Meier's Civilization 4 Beyond the Sword | CBS112007DVD | 1 |
 | Sid Meier's Civilization 4 - Fall from Heaven 2 0 | CBS112008DVD | 1 |
 | Sid Meier's Pirates! | CBS112004DVD | 3 |
 | Sid Meiers Civilization Beyond The Sword | CBS102007DVDGold | 1 |
 | Sid Meiers Civilization4 | CBS012008DVDSonder | 1 |
-| Sid Meiers Civilization4 Beyondthe Swordv303 | CBS112007DVD | 1 |
+| Sid Meiers Civilization4 Beyondthe Sword | CBS112007DVD | 1 |
 | Sid Meiers Railroads | CBS012007DVDGOLD | 1 |
 | Sid Meiers Railroadsv | CBS022007DVD | 1 |
 | Siedler Das Erbe der Könige | CBS112004DVD | 1 |
@@ -1665,23 +1589,19 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | silencer 0 | CBS012005DVD | 1 |
 | silencer 1 | CBS012005DVD | 1 |
 | silencer 2 | CBS012005DVD | 1 |
-| Silent Hunter 3 | CBS042005DVD | 2 |
-| Silent Hunter 3 v 1 | CBS062005DVD | 2 |
+| Silent Hunter 3 | CBS042005DVD | 4 |
+| Silent Hunter 4 Wolves of the Pacific | CBS102007DVD | 1 |
 | Silent Hunter Wolves Of The Pacific | CBS062007DVD | 1 |
 | Silent Hunter Wolves Of The Pacific Sprach | CBS062007DVD | 1 |
 | Silent Hunter Wolves Of The Pacificv | CBS062007DVD | 1 |
 | Silent Hunter Wolvesofthe Pacificv | CBS072007DVD | 1 |
-| Silent Hunter4 Wolvesofthe Pacificv12 | CBS102007DVD | 1 |
+| Silent Hunter4 Wolvesofthe Pacific | CBS102007DVD | 1 |
 | Silver Wings | CBS092006DVD | 1 |
 | Silverfall | CBS042007DVDGold | 1 |
 | Silverfall Editor | CBS062007DVD | 1 |
 | Silverfall Wchterder Elemente | CBS042008DVDGold | 1 |
 | Silverfallv | CBS062007DVD | 1 |
-| Sim City Societies | CBS092008DVDGold | 1 |
-| Sim City Societies v 1 02 | CBS062008DVD | 1 |
-| Sim City Societies v 1 03 | CBS072008DVD | 1 |
-| Sim City Societiesv102119 | CBS062008DVD | 1 |
-| Sim City Societiesv103140 | CBS072008DVD | 1 |
+| Sim City Societies | CBS062008DVD | 3 |
 | Simonthe Sorcerer Chaosistdashalbe Leben | CBS052007DVD | 1 |
 | Simonthe Sorcerer Chaosistdashalbe Lebenv | CBS062007DVD | 1 |
 | Singles 2 Wilde Zeiten | CBS082005DVD | 1 |
@@ -1746,10 +1666,10 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Speedsudoku | CBS092007DVD | 1 |
 | Speedtrain | CBS112007DVD | 1 |
 | Spellforce 2 | CBS022006DVD | 1 |
-| Spellforce 2 Dragon Storm v 2 | CBS072008DVD | 1 |
+| Spellforce 2 Dragon Storm | CBS072008DVD | 1 |
 | Spellforce 2 Shadow Wars | CBS022009DVDGold | 1 |
 | Spellforce Shadow Wars | CBS062006DVD | 1 |
-| Spellforce2 Dragon Stormv201 | CBS072008DVD | 1 |
+| Spellforce2 Dragon Storm | CBS072008DVD | 1 |
 | Spezial | CBS012006DVD | 1 |
 | Sphere | CBS082007DVDBonus | 1 |
 | Spider Man | CBS072007DVD | 1 |
@@ -1771,15 +1691,15 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Spybot Search Destroy | CBS012007DVD | 2 |
 | Spybot Search & Destroy 1 6 | CBS042009DVD | 1 |
 | Squirm | CBS082007DVDBonus | 1 |
-| Stalker Shadowof Chernobylv10005 | CBS022008DVD | 1 |
+| Stalker Shadow of Chernobyl | CBS022008DVD | 1 |
+| Stalker Shadowof Chernobyl | CBS022008DVD | 1 |
 | STALKERShadowof Chernobylv | CBS062007DVD | 2 |
-| STALKERv10003v10004v10005 | CBS032008DVD | 1 |
 | stamina digit | CBS012005DVD | 1 |
 | Star Assault | CBS092007DVD | 1 |
 | Star Craft | CBS082007DVDGold | 1 |
 | Star Force Vista Update | CBS032008DVD | 1 |
 | Star Wars | CBS032006DVD | 1 |
-| Star Wars Battlefront v 1 | CBS012005DVD | 1 |
+| Star Wars Battlefront | CBS012005DVD | 1 |
 | Star Wars Battlefrontv | CBS052006DVD | 1 |
 | Star Wars Empireat War Forcesof Corruption | CBS012007DVDGOLD | 2 |
 | Star Wars Empireat War Leveleditor | CBS092006DVDGOLD | 1 |
@@ -1791,7 +1711,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Star Wolves2 | CBS012008DVD | 1 |
 | Starlight Racing | CBS082007DVDBonus | 1 |
 | Starship Troopers | CBS012006DVD | 3 |
-| Starship Troopers v 3 2 | CBS012006DVD | 1 |
 | Starsky & Hutch | CBS092005DVD | 1 |
 | Startgeld | CBS012005DVD | 1 |
 | Startzeit | CBS012005DVD | 1 |
@@ -1808,19 +1727,16 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Strategic Command | CBS082006DVD | 1 |
 | Strategic Commandv | CBS102006DVD | 1 |
 | Stromberg Broist Krieg | CBS082007DVD | 1 |
-| Stronghold 2 | CBS012005DVD | 2 |
-| Stronghold 2 v 1 | CBS122007DVD | 1 |
-| Stronghold 2 v 1 31 | CBS022006DVD | 1 |
+| Stronghold 2 | CBS012005DVD | 4 |
 | Stronghold Castle Attack | CBS082007DVDBonus | 1 |
 | Stronghold Crusader Extreme | CBS092008DVDGold | 1 |
 | Stronghold Legendsv | CBS012007DVD | 2 |
-| Stronghold2v14 | CBS122007DVD | 1 |
 | Stuntman Ignition | CBS062007DVD | 2 |
 | Sudden Strike | CBS092006DVD | 1 |
 | Sudden Strike 2 | CBS122005DVD | 1 |
-| Sudden Strike 3 Arms for Victory v 1 | CBS052008DVD | 1 |
+| Sudden Strike 3 Arms for Victory | CBS052008DVD | 1 |
+| Sudden Strike3 Armsfor Victory | CBS052008DVD | 1 |
 | Sudden Strike3 Armsfor Victory Ardennen Offensive | CBS092008DVDGold | 1 |
-| Sudden Strike3 Armsfor Victoryv131 | CBS052008DVD | 1 |
 | Sudeki | CBS122006DVD | 1 |
 | Sudoko Meister | CBS082007DVD | 1 |
 | Sudoku | CBS052006DVD | 1 |
@@ -1829,7 +1745,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Super Nautica | CBS042007DVD | 2 |
 | Super Tux Kart | CBS062008DVD | 1 |
 | Supreme Commander | CBS032007DVD | 2 |
-| Supreme Commander Forged Alliancev153596aufv153599 | CBS072008DVD | 1 |
+| Supreme Commander Forged Alliance | CBS072008DVD | 1 |
 | Supreme Commanderv | CBS052007DVD | 2 |
 | Supreme Ruler2020 | CBS092008DVD | 1 |
 | Surf Attack | CBS122004DVD | 2 |
@@ -1855,7 +1771,6 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Tarr Chronicles | CBS122007DVDGold | 1 |
 | Taxi 3 Extreme Rush | CBS082005DVD | 1 |
 | Taxi Raser | CBS092006DVD | 1 |
-| tcp optimizer | CBS082009DVD | 1 |
 | TEAM A | CBS012005DVD | 1 |
 | TEAM B | CBS012005DVD | 1 |
 | Team Fortress | CBS102006DVD | 1 |
@@ -1879,7 +1794,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | The Chosen | CBS012008DVDGold | 1 |
 | The Chronicles of Riddick | CBS032005DVD | 1 |
 | The Chroniclesof Spellborn | CBS032007DVD | 1 |
-| The Cleaner v5 | CBS052008DVD | 1 |
+| The Cleaner | CBS052008DVD | 1 |
 | The Elder Scrolls 4 Oblivion | CBS092005DVD | 1 |
 | The Elder Scrolls Construction Set | CBS092008DVDGold | 1 |
 | The Elder Scrolls Oblivion | CBS062006DVD | 1 |
@@ -1907,11 +1822,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | The Show | CBS052007DVDGold | 1 |
 | The Westerner | CBS032006DVD | 1 |
 | The Wheelman | CBS052007DVD | 1 |
-| The Witcher | CBS112005DVD | 2 |
-| The Witcher Adventure Editor v 1 | CBS072008DVD | 1 |
-| The Witcher Adventure Editorv13 | CBS072008DVD | 1 |
-| The Witcher v 1 | CBS062008DVD | 2 |
-| The Witcher v 1 2 | CBS042008DVD | 1 |
+| The Witcher | CBS112005DVD | 5 |
+| The Witcher Adventure Editor | CBS072008DVD | 1 |
 | Theatreof War | CBS072007DVD | 1 |
 | Theseus Returnofthe Hero | CBS052006DVD | 1 |
 | Thirsty Punk | CBS052005DVD | 2 |
@@ -1922,8 +1834,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Tiger Woods PGATour08 | CBS092007DVD | 2 |
 | Timanfaya Verschollen in den Feuerbergen | CBS062008DVD | 1 |
 | Timanfaya Verscholleninden Feuerbergen | CBS062008DVD | 1 |
-| Time Shift v 1 | CBS022008DVD | 1 |
-| Time Shiftv12 | CBS022008DVD | 1 |
+| Time Shift | CBS022008DVD | 1 |
 | Timeshift | CBS042006DVD | 1 |
 | Tips einblenden | CBS012005DVD | 1 |
 | Tischfuball | CBS082006DVD | 1 |
@@ -1934,15 +1845,13 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | TMNTTeenage Mutant Ninja Turtles | CBS052007DVD | 1 |
 | Tom Clancy's Ghost Recon 2 | CBS022005DVD | 1 |
 | Tom Clancy's Ghost Recon Advanced Warfighter | CBS012008DVDSonder | 1 |
-| Tom Clancy's Ghost Recon Advanced Warfighter 2 v 1 | CBS102007DVD | 2 |
-| Tom Clancy's Splinter Cell Chaos Theory | CBS022010DVDGold | 1 |
+| Tom Clancy's Ghost Recon Advanced Warfighter 2 | CBS102007DVD | 2 |
+| Tom Clancy's Rainbow Six Vegas | CBS102007DVD | 1 |
+| Tom Clancy's Splinter Cell Chaos Theory | CBS092005DVD | 2 |
 | Tom Clancys Ghost Recon Advanced Warfighter | CBS052006DVD | 5 |
-| Tom Clancys Ghost Recon Advanced Warfighter2v102 | CBS102007DVD | 1 |
-| Tom Clancys Ghost Recon Advanced Warfighter2v104 | CBS112007DVD | 1 |
 | Tom Clancys Ghost Recon Advanced Warfighterv | CBS082006DVD | 4 |
-| Tom Clancys Rainbow Six Vegas | CBS092006DVDGOLD | 2 |
+| Tom Clancys Rainbow Six Vegas | CBS092006DVDGOLD | 3 |
 | Tom Clancys Rainbow Six Vegasv | CBS032007DVD | 3 |
-| Tom Clancys Rainbow Six Vegasv105 | CBS102007DVD | 1 |
 | Tom Clancys Splinter Cell | CBS092006DVDGOLD | 1 |
 | Tom Clancys Splinter Cell Conviction | CBS082007DVDGold | 1 |
 | Tom Clancys Splinter Cell Double Agent | CBS052006DVD | 1 |
@@ -1956,8 +1865,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Tomb Raider Legend | CBS082005DVD | 1 |
 | Tomb Raider Legend Spieltricks | CBS052006DVD | 1 |
 | Tomb Raider Legendv | CBS072006DVD | 2 |
-| Tomb Raider - Underworld | CBS012009DVDGold | 1 |
-| Tomb Raider - Underworld v 1 | CBS032009DVD | 1 |
+| Tomb Raider - Underworld | CBS012009DVDGold | 2 |
 | Tony Hawk Underground 2 | CBS112004DVD | 1 |
 | Tony Hawks Project | CBS092006DVD | 3 |
 | Tony Hawks Proving Ground | CBS092007DVDGold | 1 |
@@ -1974,6 +1882,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Torus Trooper | CBS062005DVD | 2 |
 | Total Overdose | CBS062005DVD | 1 |
 | Toucan | CBS012009DVD | 1 |
+| Trackmania | CBS032008DVD | 1 |
 | Trackmania Nations | CBS042006DVD | 1 |
 | Trackmania Nations ESWC | CBS052006DVD | 1 |
 | Trackmania Nations Forever | CBS072008DVD | 1 |
@@ -1981,16 +1890,12 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Trackmania Sunrise | CBS072005DVD | 1 |
 | Trackmania Sunrise Ex Upgr | CBS022006DVD | 1 |
 | Trackmania United | CBS022007DVD | 1 |
-| Trackmania v 1 50 1 | CBS032008DVD | 1 |
-| Trackmaniav150152 | CBS032008DVD | 1 |
 | Trainz Railroad Sim | CBS032005DVD | 2 |
 | transaction value | CBS012005DVD | 1 |
 | Transformers The Game | CBS102007DVD | 1 |
 | Transformers The Game Gameplay | CBS092007DVDGold | 1 |
 | Transformers The Game Intro | CBS092007DVDGold | 1 |
-| Treasure Island | CBS052008DVDGold | 1 |
-| Treasure Island v 1 | CBS102008DVD | 1 |
-| Treasure Islandv1002 | CBS102008DVD | 1 |
+| Treasure Island | CBS052008DVDGold | 2 |
 | Trials 2 Second Edition | CBS072008DVD | 1 |
 | Trials2 Second Edition | CBS072008DVD | 1 |
 | Tribal Trouble | CBS022006DVD | 1 |
@@ -2005,10 +1910,9 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Tux Racer | CBS082007DVDBonus | 1 |
 | Tversity 1 | CBS052009DVD | 1 |
 | Tweak VI | CBS032008DVD | 1 |
-| Two Worlds | CBS102007DVDGold | 1 |
+| Two Worlds | CBS092007DVD | 2 |
 | Two Worlds Service Release 1 | CBS102007DVD | 1 |
 | Two Worlds Service Release15 | CBS102007DVD | 1 |
-| Two Worlds v 1 | CBS092007DVD | 1 |
 | Two Worldsv | CBS082007DVD | 1 |
 | Game Tycoon 1 | CBS082005DVD | 1 |
 | Tycoon City New York | CBS042006DVD | 1 |
@@ -2026,9 +1930,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Universeat War Angriffsziel Erde | CBS022008DVDGold | 1 |
 | Unreal Tourn 2004 v | CBS062005DVD | 1 |
 | Unreal Tournament | CBS052007DVD | 1 |
-| Unreal Tournament 3 v 1 | CBS052008DVD | 1 |
+| Unreal Tournament 3 | CBS052008DVD | 1 |
 | Unreal Tournament 2004 | CBS122004DVD | 1 |
-| Unreal Tournament3v12 | CBS052008DVD | 1 |
 | Up Yours | CBS082007DVDBonus | 1 |
 | Uprising 2 | CBS112000 | 1 |
 | Urlaubsraser | CBS052003 | 1 |
@@ -2057,18 +1960,19 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Wallace Gromit | CBS012006DVD | 1 |
 | War Front | CBS122005DVD | 1 |
 | War Front Turning Point | CBS082006DVD | 3 |
-| War Leaders Clashof Nationsv101 | CBS062008DVD | 1 |
+| War Leaders Clash of Nations | CBS062008DVD | 1 |
+| War Leaders Clashof Nations | CBS062008DVD | 1 |
 | War World Tactical Combat | CBS052006DVD | 1 |
-| Warcraft The Frozen Throne v 1 | CBS052008DVD | 1 |
-| Warcraft The Frozen Thronev121b | CBS052008DVD | 1 |
-| Warcraft3 Reignof Chaosv121b | CBS052008DVD | 1 |
+| Warcraft 3 Reign of Chaos | CBS052008DVD | 1 |
+| Warcraft The Frozen Throne | CBS052008DVD | 1 |
+| Warcraft3 Reignof Chaos | CBS052008DVD | 1 |
 | Warhammer 40000 | CBS012005DVD | 1 |
 | Warhammer Dawnof War Dark Crusade | CBS092006DVD | 3 |
 | Warhammer Dawnof War Soulstorm | CBS042008DVDGold | 1 |
-| Warhammer Markof Chaos | CBS092006DVD | 3 |
+| Warhammer Mark of Chaos | CBS122007DVD | 1 |
+| Warhammer Markof Chaos | CBS092006DVD | 4 |
 | Warhammer Markof Chaos Map Editor | CBS032007DVD | 1 |
 | Warhammer Markof Chaosv | CBS032007DVD | 1 |
-| Warhammer Markof Chaosv172 | CBS122007DVD | 1 |
 | Warhammer Online Ageof Reckoning | CBS102006DVD | 1 |
 | Warhammer Winter Assault | CBS012006DVD | 1 |
 | Warhammer40000 Dawnof War2 | CBS072009DVDGold | 1 |
@@ -2104,7 +2008,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | World Challenge | CBS082005DVD | 1 |
 | World Champion Billard Featuring Gustavo Zito | CBS052006DVD | 1 |
 | World Conflict | CBS052006DVD | 1 |
-| World in Conflict | CBS112007DVD | 1 |
+| World in Conflict | CBS112007DVD | 4 |
 | World of Goo | CBS032009DVDGold | 1 |
 | World of Warcraft | CBS112004DVD | 3 |
 | World Poker Championship 2 Final Table Showdown | CBS062008DVD | 1 |
@@ -2114,12 +2018,9 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | World Shift | CBS072008DVDGold | 1 |
 | World War 2 Pacific Heroes | CBS072006DVD | 1 |
 | World War Pacific Heroes | CBS072006DVD | 1 |
-| Worldin Conflict | CBS012007DVD | 4 |
-| Worldin Conflict Collectors Editionv1002 | CBS012008DVD | 1 |
+| Worldin Conflict | CBS012007DVD | 7 |
+| Worldin Conflict Collectors Edition | CBS012008DVD | 1 |
 | Worldin Conflict Mod Kit | CBS042008DVD | 1 |
-| Worldin Conflictv1002 | CBS012008DVD | 1 |
-| Worldin Conflictv1006 | CBS052008DVD | 1 |
-| Worldin Conflictv1009 | CBS102008DVD | 1 |
 | Worldof Chaos | CBS062007DVD | 1 |
 | Worldof Qin | CBS042007DVD | 1 |
 | Worldof Qin Collectors Edition | CBS102006DVDGOLD | 1 |
@@ -2140,8 +2041,7 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | X Moto | CBS102007DVD | 1 |
 | X2 Die Bedrohung | CBS042006DVD | 1 |
 | X2 Die Rueckkehr | CBS012005DVD | 1 |
-| X3 Reunion | CBS092005DVD | 2 |
-| X3 Reunion v 1 2 01 | CBS022006DVD | 1 |
+| X3 Reunion | CBS092005DVD | 3 |
 | Xfire | CBS102006DVD | 3 |
 | XMen The Official Game | CBS092006DVD | 1 |
 | XMoto | CBS102007DVD | 1 |
@@ -2165,9 +2065,8 @@ This appendix mirrors `results/published-20260325/publishable_master_games.csv` 
 | Zoo Empire CBSVersionv | CBS112006DVD | 1 |
 | Zoo Empire Tier Memory | CBS122004DVD | 2 |
 | Zoo Empirev | CBS052006DVD | 1 |
-| Zoo Tycoon 2 | CBS032005DVD | 1 |
+| Zoo Tycoon 2 | CBS032005DVD | 2 |
 | Zoo Tycoon 2 En Species | CBS022006DVD | 1 |
-| Zoo Tycoon 2 v 20 11 00 | CBS042005DVD | 1 |
 | Zosso Bowling | CBS072001 | 1 |
 | Zweistein | CBS102008DVD | 1 |
 | Zwlfzehn | CBS082006DVD | 2 |
