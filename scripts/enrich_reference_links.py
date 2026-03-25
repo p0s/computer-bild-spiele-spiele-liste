@@ -20,6 +20,8 @@ from pathlib import Path
 
 
 HTTP_USER_AGENT = "cbs-reference-enricher/1.0"
+HTTP_TIMEOUT_SECONDS = 5
+HTTP_RETRY_ATTEMPTS = 2
 WIKIDATA_API = "https://www.wikidata.org/w/api.php"
 WIKIPEDIA_API = "https://{lang}.wikipedia.org/w/api.php"
 REFERENCE_COLUMNS = [
@@ -179,19 +181,19 @@ def connect_cache(path: Path) -> sqlite3.Connection:
 
 def http_get_json(url: str) -> dict[str, object]:
     last_error: Exception | None = None
-    for attempt in range(4):
+    for attempt in range(HTTP_RETRY_ATTEMPTS):
         request = urllib.request.Request(
             url,
             headers={"User-Agent": HTTP_USER_AGENT},
         )
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
+            with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
                 return json.loads(response.read().decode("utf-8"))
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             last_error = exc
-            if attempt == 3:
+            if attempt == HTTP_RETRY_ATTEMPTS - 1:
                 break
-            time.sleep(1.5 * (attempt + 1))
+            time.sleep(1.0 * (attempt + 1))
     raise RuntimeError(f"request failed for {url}: {last_error}")
 
 
