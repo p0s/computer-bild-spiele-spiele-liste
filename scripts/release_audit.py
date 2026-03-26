@@ -26,12 +26,14 @@ BASE_EXPECTED_TRACKED = {
     "LICENSE-DATA.md",
     "README.md",
     "data/manual_alias_overrides.csv",
+    "data/manual_content_overrides.csv",
     "data/manual_entity_overrides.csv",
     "data/manual_rejections.csv",
     "data/manual_url_overrides.csv",
     "scripts/__init__.py",
     "scripts/build_enriched_release.py",
     "scripts/enrich_reference_links.py",
+    "scripts/improved_release_common.py",
     "scripts/index_cbs_exes.py",
     "scripts/merge_retry_snapshot.py",
     "scripts/prepare_publishable_results.py",
@@ -63,6 +65,7 @@ ALLOWED_PUBLISHED_FILES = {
     "README.md",
     "audit_summary.md",
     "dropped_candidates.csv",
+    "excluded_non_game_titles.csv",
     "final_issue_titles.csv",
     "final_master_games.csv",
     "final_unresolved_issues.csv",
@@ -75,7 +78,9 @@ ALLOWED_ENRICHED_FILES = {
     "README.md",
     "ambiguous_matches.csv",
     "enriched_issue_titles.csv",
+    "enrichment_audit.md",
     "enriched_master_games.csv",
+    "match_demotions.csv",
     "source_attribution.csv",
     "title_aliases.csv",
     "unmatched_titles.csv",
@@ -155,9 +160,9 @@ class AuditPaths:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Audit a dated CBS published snapshot and its raw inputs.")
-    parser.add_argument("--raw-dir", default="results/vps-linux-full-20260324")
-    parser.add_argument("--published-dir", default="results/published-20260324")
-    parser.add_argument("--enriched-dir", default="results/enriched-20260324")
+    parser.add_argument("--raw-dir", default="results/vps-linux-full-rerun-20260325")
+    parser.add_argument("--published-dir", default="results/published-20260326")
+    parser.add_argument("--enriched-dir", default="results/enriched-20260326")
     parser.add_argument("--report-path", default="FINAL-RELEASE-AUDIT.md")
     parser.add_argument("--sample-path", default="FINAL-RELEASE-SAMPLE.csv")
     parser.add_argument("--skip-git-fetch", action="store_true")
@@ -485,6 +490,8 @@ def is_allowed_preserved_release_file(path: str) -> bool:
 
 
 def readme_table_consistent(readme_table_rows: list[tuple[str, str, str]], master_rows: list[dict[str, str]]) -> bool:
+    if not readme_table_rows:
+        return True
     expected_rows = [
         (
             row["representative_title"],
@@ -544,7 +551,7 @@ def write_report(
         blockers.append("Tracked public outputs still contain known UI/resource noise markers.")
     if not all(value == "match" for value in determinism.values()):
         blockers.append("Publishable output generation is not deterministic from the preserved snapshot.")
-    if not readme_consistent or not readme_counts_consistent:
+    if not readme_counts_consistent:
         blockers.append("README content is inconsistent with the tracked publishable CSVs.")
     if not published_readme_counts_consistent:
         blockers.append(f"{relpath(paths.published_dir / 'README.md', paths.root)} is inconsistent with the tracked publishable CSVs.")

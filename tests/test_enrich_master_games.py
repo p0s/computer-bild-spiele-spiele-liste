@@ -5,13 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
-from unittest import mock
 
 from scripts.build_enriched_release import run_build
-from scripts.enrich_reference_links import Resolution
-
-
-FIXTURE_DIR = Path(__file__).parent / "fixtures" / "enrichment"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -19,12 +14,22 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 class BuildEnrichedReleaseTests(unittest.TestCase):
     def _args(self, root: Path, **overrides: object) -> SimpleNamespace:
         values = {
-            "input_master": str(FIXTURE_DIR / "publishable_master_games.csv"),
-            "input_issues": str(FIXTURE_DIR / "publishable_issue_titles.csv"),
-            "output_dir": str(root / "results" / "enriched-20260324"),
+            "input_master": str(root / "results" / "published-20260326" / "publishable_master_games.csv"),
+            "input_issues": str(root / "results" / "published-20260326" / "publishable_issue_titles.csv"),
+            "baseline_enriched_master": str(root / "results" / "enriched-20260325" / "enriched_master_games.csv"),
+            "output_dir": str(root / "results" / "enriched-20260326"),
+            "manual_rejections": str(root / "data" / "manual_rejections.csv"),
             "cache_db": str(root / "results" / "enrichment.sqlite"),
             "resume": False,
             "refresh_cache": False,
@@ -34,162 +39,337 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
             "manual_alias_overrides": str(root / "data" / "manual_alias_overrides.csv"),
             "manual_entity_overrides": str(root / "data" / "manual_entity_overrides.csv"),
             "manual_url_overrides": str(root / "data" / "manual_url_overrides.csv"),
-            "manual_rejections": str(root / "data" / "manual_rejections.csv"),
             "review_csv": str(root / "results" / "reference_review.csv"),
         }
         values.update(overrides)
         return SimpleNamespace(**values)
 
-    def _write_override_files(self, root: Path) -> None:
-        data_dir = root / "data"
-        data_dir.mkdir(parents=True, exist_ok=True)
-        (data_dir / "manual_alias_overrides.csv").write_text(
-            "normalized_title,canonical_slug,canonical_title,reason\n"
-            "18 wheelsof steel haulin,18-wheels-of-steel-haulin,18 Wheels of Steel Haulin,spacing variant\n",
-            encoding="utf-8",
-        )
-        (data_dir / "manual_entity_overrides.csv").write_text(
-            "normalized_title,wikidata_id,wikipedia_url,canonical_title,entity_type,reason\n",
-            encoding="utf-8",
-        )
-        (data_dir / "manual_url_overrides.csv").write_text(
-            "canonical_slug,wikipedia_url,wikidata_id,source_url,reason\n",
-            encoding="utf-8",
-        )
-        (data_dir / "manual_rejections.csv").write_text(
-            "normalized_title,rejected_candidate,source,reason\n",
-            encoding="utf-8",
-        )
-
-    def test_builds_enriched_outputs_and_propagates_master_mapping(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            root = Path(temp_dir)
-            self._write_override_files(root)
-
-            def fake_resolution(_conn, normalized_title: str, representative_title: str) -> Resolution:
-                if normalized_title in {"18 wheels of steel haulin", "18 wheelsof steel haulin"}:
-                    return Resolution(
-                        normalized_title=normalized_title,
-                        representative_title=representative_title,
-                        canonical_title="18 Wheels of Steel Haulin",
-                        canonical_slug="18-wheels-of-steel-haulin",
-                        reference_url="https://en.wikipedia.org/wiki/18_Wheels_of_Steel:_Haulin%27",
-                        reference_source="wikipedia-en",
-                        reference_lang="en",
-                        reference_title="18 Wheels of Steel: Haulin'",
-                        reference_confidence="high",
-                        reference_status="matched",
-                        match_method="wikimedia-search",
-                        match_source="wikipedia-en",
-                        match_source_url="https://en.wikipedia.org/wiki/18_Wheels_of_Steel:_Haulin%27",
-                        wikidata_id="Q1",
-                        wikidata_url="https://www.wikidata.org/wiki/Q1",
-                        match_fetched_at="2026-03-24T00:00:00+00:00",
-                        failure_reason="",
-                        top_candidates=tuple(),
-                    )
-                if normalized_title == "arena wars":
-                    return Resolution(
-                        normalized_title=normalized_title,
-                        representative_title=representative_title,
-                        canonical_title="Arena Wars",
-                        canonical_slug="arena-wars",
-                        reference_url="https://en.wikipedia.org/wiki/Arena_Wars",
-                        reference_source="wikipedia-en",
-                        reference_lang="en",
-                        reference_title="Arena Wars",
-                        reference_confidence="high",
-                        reference_status="matched",
-                        match_method="wikimedia-search",
-                        match_source="wikipedia-en",
-                        match_source_url="https://en.wikipedia.org/wiki/Arena_Wars",
-                        wikidata_id="Q2",
-                        wikidata_url="https://www.wikidata.org/wiki/Q2",
-                        match_fetched_at="2026-03-24T00:00:00+00:00",
-                        failure_reason="",
-                        top_candidates=tuple(),
-                    )
-                if normalized_title == "arena wars v 1 1":
-                    return Resolution(
-                        normalized_title=normalized_title,
-                        representative_title=representative_title,
-                        canonical_title="",
-                        canonical_slug="",
-                        reference_url="",
-                        reference_source="",
-                        reference_lang="",
-                        reference_title="",
-                        reference_confidence="",
-                        reference_status="ambiguous",
-                        match_method="wikimedia-search",
-                        match_source="",
-                        match_source_url="",
-                        wikidata_id="",
-                        wikidata_url="",
-                        match_fetched_at="2026-03-24T00:00:00+00:00",
-                        failure_reason="multiple plausible entities",
-                        top_candidates=tuple(),
-                    )
-                return Resolution(
-                    normalized_title=normalized_title,
-                    representative_title=representative_title,
-                    canonical_title="",
-                    canonical_slug="",
-                    reference_url="",
-                    reference_source="",
-                    reference_lang="",
-                    reference_title="",
-                    reference_confidence="",
-                    reference_status="unmatched",
-                    match_method="wikimedia-search",
-                    match_source="",
-                    match_source_url="",
-                    wikidata_id="",
-                    wikidata_url="",
-                    match_fetched_at="2026-03-24T00:00:00+00:00",
-                    failure_reason="no confident match",
-                    top_candidates=tuple(),
-                )
-
-            def fake_entity(_conn, qid: str) -> dict[str, object]:
-                entities = {
-                    "Q1": {
-                        "claims": {
-                            "P31": [{"mainsnak": {"datavalue": {"value": {"id": "Q7889"}}}}],
-                            "P136": [{"mainsnak": {"datavalue": {"value": {"id": "Q860750"}}}}],
-                            "P577": [{"mainsnak": {"datavalue": {"value": {"time": "+2006-01-01T00:00:00Z"}}}}],
-                        }
-                    },
-                    "Q2": {
-                        "claims": {
-                            "P31": [{"mainsnak": {"datavalue": {"value": {"id": "Q7889"}}}}],
-                            "P136": [{"mainsnak": {"datavalue": {"value": {"id": "Q27670585"}}}}],
-                            "P577": [{"mainsnak": {"datavalue": {"value": {"time": "+2004-01-01T00:00:00Z"}}}}],
-                        }
-                    },
-                }
-                return entities[qid]
-
-            def fake_labels(_conn, ids):
-                mapping = {
-                    "Q7889": "video game",
-                    "Q860750": "racing",
-                    "Q27670585": "real-time strategy",
-                }
-                return {entity_id: mapping[entity_id] for entity_id in ids if entity_id in mapping}
-
-            with mock.patch("scripts.build_enriched_release.resolve_title_reference", side_effect=fake_resolution), mock.patch(
-                "scripts.build_enriched_release.fetch_entity_with_claims",
-                side_effect=fake_entity,
-            ), mock.patch(
-                "scripts.build_enriched_release.fetch_labels",
-                side_effect=fake_labels,
-            ), mock.patch(
-                "scripts.build_enriched_release.fetch_mobygames_metadata",
-                return_value={
-                    "genres": "",
+    def _write_inputs(self, root: Path) -> None:
+        write_csv(
+            root / "results" / "published-20260326" / "publishable_master_games.csv",
+            [
+                "normalized_title",
+                "representative_title",
+                "first_seen_issue",
+                "issue_count",
+                "occurrence_count",
+                "best_confidence",
+                "source_kinds",
+                "game_id",
+                "first_seen_year",
+                "last_seen_issue",
+                "last_seen_year",
+                "alias_count",
+                "alias_titles",
+                "legacy_normalized_titles",
+                "observed_content_kinds",
+                "observed_content_forms",
+                "content_class",
+                "cleanup_flags",
+                "merge_confidence",
+                "match_status",
+                "match_confidence",
+                "canonical_title",
+                "canonical_slug",
+                "entity_type",
+                "release_year",
+                "wikipedia_url",
+                "wikidata_id",
+                "wikidata_url",
+                "categories",
+                "genres",
+                "themes",
+                "rating_value",
+                "rating_scale",
+                "rating_count",
+                "rating_source",
+                "rating_url",
+                "metadata_sources",
+                "match_action",
+                "match_notes",
+                "data_quality_score",
+            ],
+            [
+                {
+                    "normalized_title": "age of empires 3",
+                    "representative_title": "Age Of Empires 3",
+                    "first_seen_issue": "CBS022006DVD",
+                    "issue_count": "1",
+                    "occurrence_count": "2",
+                    "best_confidence": "high",
+                    "source_kinds": "disc-metadata-value",
+                    "game_id": "ageofempires3",
+                    "first_seen_year": "2006",
+                    "last_seen_issue": "CBS022006DVD",
+                    "last_seen_year": "2006",
+                    "alias_count": "2",
+                    "alias_titles": "Age of Empires 3 v 1; Age of Empires 3 v 1 01a",
+                    "legacy_normalized_titles": "age of empires 3 v 1; age of empires 3 v 1 01a",
+                    "observed_content_kinds": "unknown",
+                    "observed_content_forms": "game_title",
+                    "content_class": "game",
+                    "cleanup_flags": "stripped_version_suffix",
+                    "merge_confidence": "high",
+                    "match_status": "unmatched",
+                    "match_confidence": "low",
+                    "canonical_title": "",
+                    "canonical_slug": "",
+                    "entity_type": "",
+                    "release_year": "",
+                    "wikipedia_url": "",
+                    "wikidata_id": "",
+                    "wikidata_url": "",
                     "categories": "",
+                    "genres": "",
                     "themes": "",
+                    "rating_value": "",
+                    "rating_scale": "",
+                    "rating_count": "",
+                    "rating_source": "",
+                    "rating_url": "",
+                    "metadata_sources": "",
+                    "match_action": "",
+                    "match_notes": "",
+                    "data_quality_score": "",
+                },
+                {
+                    "normalized_title": "absolute blue",
+                    "representative_title": "Absolute Blue",
+                    "first_seen_issue": "CBS082005DVD",
+                    "issue_count": "1",
+                    "occurrence_count": "1",
+                    "best_confidence": "high",
+                    "source_kinds": "disc-metadata-value",
+                    "game_id": "absoluteblue",
+                    "first_seen_year": "2005",
+                    "last_seen_issue": "CBS082005DVD",
+                    "last_seen_year": "2005",
+                    "alias_count": "1",
+                    "alias_titles": "Absolute Blue",
+                    "legacy_normalized_titles": "absolute blue",
+                    "observed_content_kinds": "unknown",
+                    "observed_content_forms": "game_title",
+                    "content_class": "game",
+                    "cleanup_flags": "",
+                    "merge_confidence": "high",
+                    "match_status": "unmatched",
+                    "match_confidence": "low",
+                    "canonical_title": "",
+                    "canonical_slug": "",
+                    "entity_type": "",
+                    "release_year": "",
+                    "wikipedia_url": "",
+                    "wikidata_id": "",
+                    "wikidata_url": "",
+                    "categories": "",
+                    "genres": "",
+                    "themes": "",
+                    "rating_value": "",
+                    "rating_scale": "",
+                    "rating_count": "",
+                    "rating_source": "",
+                    "rating_url": "",
+                    "metadata_sources": "",
+                    "match_action": "",
+                    "match_notes": "",
+                    "data_quality_score": "",
+                },
+            ],
+        )
+        write_csv(
+            root / "results" / "published-20260326" / "publishable_issue_titles.csv",
+            [
+                "archive_item",
+                "archive_name",
+                "issue_code",
+                "year",
+                "variant",
+                "normalized_title",
+                "representative_title",
+                "source_kinds",
+                "confidence",
+                "content_kind",
+                "clean_reason",
+                "game_id",
+                "source_title",
+                "source_normalized_title",
+                "observed_title_variants",
+                "source_normalized_variants",
+                "occurrence_count_in_issue",
+                "content_class",
+                "content_form",
+                "content_kinds_merged",
+                "content_forms_merged",
+                "cleanup_flags",
+                "merge_confidence",
+                "match_status",
+                "match_confidence",
+                "canonical_title",
+                "canonical_slug",
+                "entity_type",
+                "release_year",
+                "wikipedia_url",
+                "wikidata_id",
+                "wikidata_url",
+                "categories",
+                "genres",
+                "themes",
+                "match_action",
+                "match_notes",
+                "data_quality_score",
+            ],
+            [
+                {
+                    "archive_item": "cbs-2000-09",
+                    "archive_name": "2006/CBS022006DVD.7z",
+                    "issue_code": "CBS022006DVD",
+                    "year": "2006",
+                    "variant": "DVD",
+                    "normalized_title": "age of empires 3",
+                    "representative_title": "Age Of Empires 3",
+                    "source_kinds": "disc-metadata-value",
+                    "confidence": "high",
+                    "content_kind": "unknown",
+                    "clean_reason": "multiword",
+                    "game_id": "ageofempires3",
+                    "source_title": "Age of Empires 3 v 1",
+                    "source_normalized_title": "age of empires 3 v 1",
+                    "observed_title_variants": "Age of Empires 3 v 1; Age of Empires 3 v 1 01a",
+                    "source_normalized_variants": "age of empires 3 v 1; age of empires 3 v 1 01a",
+                    "occurrence_count_in_issue": "2",
+                    "content_class": "game",
+                    "content_form": "game_title",
+                    "content_kinds_merged": "unknown",
+                    "content_forms_merged": "game_title",
+                    "cleanup_flags": "stripped_version_suffix",
+                    "merge_confidence": "high",
+                    "match_status": "unmatched",
+                    "match_confidence": "low",
+                    "canonical_title": "",
+                    "canonical_slug": "",
+                    "entity_type": "",
+                    "release_year": "",
+                    "wikipedia_url": "",
+                    "wikidata_id": "",
+                    "wikidata_url": "",
+                    "categories": "",
+                    "genres": "",
+                    "themes": "",
+                    "match_action": "",
+                    "match_notes": "",
+                    "data_quality_score": "",
+                },
+                {
+                    "archive_item": "cbs-2000-09",
+                    "archive_name": "2005/CBS082005DVD.7z",
+                    "issue_code": "CBS082005DVD",
+                    "year": "2005",
+                    "variant": "DVD",
+                    "normalized_title": "absolute blue",
+                    "representative_title": "Absolute Blue",
+                    "source_kinds": "disc-metadata-value",
+                    "confidence": "high",
+                    "content_kind": "unknown",
+                    "clean_reason": "multiword",
+                    "game_id": "absoluteblue",
+                    "source_title": "Absolute Blue",
+                    "source_normalized_title": "absolute blue",
+                    "observed_title_variants": "Absolute Blue",
+                    "source_normalized_variants": "absolute blue",
+                    "occurrence_count_in_issue": "1",
+                    "content_class": "game",
+                    "content_form": "game_title",
+                    "content_kinds_merged": "unknown",
+                    "content_forms_merged": "game_title",
+                    "cleanup_flags": "",
+                    "merge_confidence": "high",
+                    "match_status": "unmatched",
+                    "match_confidence": "low",
+                    "canonical_title": "",
+                    "canonical_slug": "",
+                    "entity_type": "",
+                    "release_year": "",
+                    "wikipedia_url": "",
+                    "wikidata_id": "",
+                    "wikidata_url": "",
+                    "categories": "",
+                    "genres": "",
+                    "themes": "",
+                    "match_action": "",
+                    "match_notes": "",
+                    "data_quality_score": "",
+                },
+            ],
+        )
+        write_csv(
+            root / "results" / "enriched-20260325" / "enriched_master_games.csv",
+            [
+                "normalized_title",
+                "representative_title",
+                "first_seen_issue",
+                "issue_count",
+                "occurrence_count",
+                "best_confidence",
+                "source_kinds",
+                "canonical_title",
+                "canonical_slug",
+                "match_status",
+                "match_confidence",
+                "match_method",
+                "match_source",
+                "match_source_url",
+                "match_fetched_at",
+                "entity_type",
+                "release_year",
+                "wikipedia_url",
+                "wikidata_id",
+                "wikidata_url",
+                "categories",
+                "genres",
+                "themes",
+                "category_source",
+                "category_source_url",
+                "category_fetched_at",
+                "category_confidence",
+                "rating_value",
+                "rating_scale",
+                "rating_count",
+                "rating_source",
+                "rating_url",
+                "rating_fetched_at",
+                "rating_confidence",
+                "metadata_sources",
+                "notes",
+            ],
+            [
+                {
+                    "normalized_title": "age of empires 3 v 1",
+                    "representative_title": "Age of Empires 3 v 1",
+                    "first_seen_issue": "CBS022006DVD",
+                    "issue_count": "1",
+                    "occurrence_count": "1",
+                    "best_confidence": "high",
+                    "source_kinds": "disc-metadata-value",
+                    "canonical_title": "Age of Empires III: Definitive Edition",
+                    "canonical_slug": "age-of-empires-iii-definitive-edition",
+                    "match_status": "matched",
+                    "match_confidence": "high",
+                    "match_method": "wikidata-search",
+                    "match_source": "wikimedia",
+                    "match_source_url": "https://en.wikipedia.org/wiki/Age_of_Empires_III:_Definitive_Edition",
+                    "match_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "entity_type": "game",
+                    "release_year": "2020",
+                    "wikipedia_url": "https://en.wikipedia.org/wiki/Age_of_Empires_III:_Definitive_Edition",
+                    "wikidata_id": "Q1",
+                    "wikidata_url": "https://www.wikidata.org/wiki/Q1",
+                    "categories": "strategy",
+                    "genres": "real-time strategy",
+                    "themes": "",
+                    "category_source": "wikidata",
+                    "category_source_url": "https://www.wikidata.org/wiki/Q1",
+                    "category_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "category_confidence": "high",
                     "rating_value": "",
                     "rating_scale": "",
                     "rating_count": "",
@@ -197,93 +377,133 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
                     "rating_url": "",
                     "rating_fetched_at": "",
                     "rating_confidence": "",
+                    "metadata_sources": "wikidata",
                     "notes": "",
                 },
-            ):
-                run_build(self._args(root))
+                {
+                    "normalized_title": "age of empires 3 v 1 01a",
+                    "representative_title": "Age of Empires 3 v 1 01a",
+                    "first_seen_issue": "CBS022006DVD",
+                    "issue_count": "1",
+                    "occurrence_count": "1",
+                    "best_confidence": "high",
+                    "source_kinds": "disc-metadata-value",
+                    "canonical_title": "Age of Empires III: Definitive Edition",
+                    "canonical_slug": "age-of-empires-iii-definitive-edition",
+                    "match_status": "matched",
+                    "match_confidence": "high",
+                    "match_method": "wikidata-search",
+                    "match_source": "wikimedia",
+                    "match_source_url": "https://en.wikipedia.org/wiki/Age_of_Empires_III:_Definitive_Edition",
+                    "match_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "entity_type": "game",
+                    "release_year": "2020",
+                    "wikipedia_url": "https://en.wikipedia.org/wiki/Age_of_Empires_III:_Definitive_Edition",
+                    "wikidata_id": "Q1",
+                    "wikidata_url": "https://www.wikidata.org/wiki/Q1",
+                    "categories": "strategy",
+                    "genres": "real-time strategy",
+                    "themes": "",
+                    "category_source": "wikidata",
+                    "category_source_url": "https://www.wikidata.org/wiki/Q1",
+                    "category_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "category_confidence": "high",
+                    "rating_value": "",
+                    "rating_scale": "",
+                    "rating_count": "",
+                    "rating_source": "",
+                    "rating_url": "",
+                    "rating_fetched_at": "",
+                    "rating_confidence": "",
+                    "metadata_sources": "wikidata",
+                    "notes": "",
+                },
+                {
+                    "normalized_title": "absolute blue",
+                    "representative_title": "Absolute Blue",
+                    "first_seen_issue": "CBS082005DVD",
+                    "issue_count": "1",
+                    "occurrence_count": "1",
+                    "best_confidence": "high",
+                    "source_kinds": "disc-metadata-value",
+                    "canonical_title": "Q122386684",
+                    "canonical_slug": "q122386684",
+                    "match_status": "matched",
+                    "match_confidence": "high",
+                    "match_method": "wikidata-search",
+                    "match_source": "wikimedia",
+                    "match_source_url": "https://www.wikidata.org/wiki/Q122386684",
+                    "match_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "entity_type": "game",
+                    "release_year": "2018",
+                    "wikipedia_url": "",
+                    "wikidata_id": "Q122386684",
+                    "wikidata_url": "https://www.wikidata.org/wiki/Q122386684",
+                    "categories": "shooter",
+                    "genres": "shooter game",
+                    "themes": "",
+                    "category_source": "wikidata",
+                    "category_source_url": "https://www.wikidata.org/wiki/Q122386684",
+                    "category_fetched_at": "2026-03-25T00:00:00+00:00",
+                    "category_confidence": "high",
+                    "rating_value": "",
+                    "rating_scale": "",
+                    "rating_count": "",
+                    "rating_source": "",
+                    "rating_url": "",
+                    "rating_fetched_at": "",
+                    "rating_confidence": "",
+                    "metadata_sources": "wikidata",
+                    "notes": "",
+                },
+            ],
+        )
+        data_dir = root / "data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        (data_dir / "manual_rejections.csv").write_text(
+            "normalized_title,rejected_candidate,source,reason\n"
+            "age of empires 3 v 1,Age of Empires III: Definitive Edition,wikimedia,matched the 2020 remaster instead of the original game\n"
+            "age of empires 3 v 1 01a,Age of Empires III: Definitive Edition,wikimedia,matched the 2020 remaster instead of the original game\n"
+            "absolute blue,Q122386684,wikimedia,matched a raw Wikidata placeholder label with a release-year conflict\n",
+            encoding="utf-8",
+        )
+        for name in ["manual_alias_overrides.csv", "manual_entity_overrides.csv", "manual_url_overrides.csv"]:
+            (data_dir / name).write_text("", encoding="utf-8")
 
-            out_dir = root / "results" / "enriched-20260324"
+    def test_builds_clustered_outputs_and_demotions(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_inputs(root)
+
+            rc = run_build(self._args(root))
+            self.assertEqual(rc, 0)
+
+            out_dir = root / "results" / "enriched-20260326"
             master_rows = read_csv(out_dir / "enriched_master_games.csv")
             issue_rows = read_csv(out_dir / "enriched_issue_titles.csv")
             alias_rows = read_csv(out_dir / "title_aliases.csv")
-            ambiguous_rows = read_csv(out_dir / "ambiguous_matches.csv")
-            unmatched_rows = read_csv(out_dir / "unmatched_titles.csv")
+            demotion_rows = read_csv(out_dir / "match_demotions.csv")
 
-            self.assertIn("canonical_slug", master_rows[0])
-            self.assertIn("wikipedia_url", master_rows[0])
-            self.assertIn("rating_source", master_rows[0])
-            haulin = next(row for row in master_rows if row["normalized_title"] == "18 wheels of steel haulin")
-            self.assertEqual(haulin["canonical_slug"], "18-wheels-of-steel-haulin")
-            self.assertEqual(haulin["entity_type"], "game")
-            self.assertEqual(haulin["categories"], "racing")
-            self.assertEqual(haulin["release_year"], "2006")
+            age = next(row for row in master_rows if row["game_id"] == "ageofempires3")
+            absolute = next(row for row in master_rows if row["game_id"] == "absoluteblue")
 
-            variant_issue = next(row for row in issue_rows if row["normalized_title"] == "18 wheelsof steel haulin")
-            self.assertEqual(variant_issue["canonical_slug"], "18-wheels-of-steel-haulin")
-            self.assertEqual(variant_issue["match_status"], "matched")
-
-            alias_variant = next(row for row in alias_rows if row["normalized_title"] == "18 wheelsof steel haulin")
-            self.assertEqual(alias_variant["override_applied"], "true")
-
-            self.assertEqual(len(ambiguous_rows), 1)
-            self.assertEqual(ambiguous_rows[0]["normalized_title"], "arena wars v 1 1")
-            self.assertEqual(len(unmatched_rows), 2)
-            self.assertEqual(
-                {row["normalized_title"] for row in unmatched_rows},
-                {"hell copter", "4 story"},
-            )
+            self.assertEqual(age["match_status"], "unmatched")
+            self.assertEqual(age["match_action"], "demoted_weak_alias_match")
+            self.assertIn("demoted_release_year_conflict", age["match_notes"])
+            self.assertEqual(absolute["match_status"], "unmatched")
+            self.assertIn("demoted_raw_qid_title", absolute["match_notes"])
+            self.assertEqual(issue_rows[0]["game_id"], "absoluteblue")
+            self.assertTrue(any(row["game_id"] == "ageofempires3" for row in alias_rows))
+            self.assertEqual(len(demotion_rows), 2)
+            self.assertTrue((out_dir / "enrichment_audit.md").exists())
 
     def test_repeat_run_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            self._write_override_files(root)
+            self._write_inputs(root)
 
-            def fake_resolution(_conn, normalized_title: str, representative_title: str) -> Resolution:
-                return Resolution(
-                    normalized_title=normalized_title,
-                    representative_title=representative_title,
-                    canonical_title=representative_title if normalized_title != "4 story" else "",
-                    canonical_slug=representative_title.lower().replace(" ", "-") if normalized_title != "4 story" else "",
-                    reference_url="https://example.invalid/" + normalized_title.replace(" ", "-") if normalized_title != "4 story" else "",
-                    reference_source="wikidata" if normalized_title != "4 story" else "",
-                    reference_lang="" if normalized_title != "4 story" else "",
-                    reference_title=representative_title if normalized_title != "4 story" else "",
-                    reference_confidence="high" if normalized_title != "4 story" else "",
-                    reference_status="matched" if normalized_title != "4 story" else "ambiguous",
-                    match_method="wikimedia-search",
-                    match_source="wikidata" if normalized_title != "4 story" else "",
-                    match_source_url="https://example.invalid/" + normalized_title.replace(" ", "-") if normalized_title != "4 story" else "",
-                    wikidata_id="QX" if normalized_title != "4 story" else "",
-                    wikidata_url="https://www.wikidata.org/wiki/QX" if normalized_title != "4 story" else "",
-                    match_fetched_at="2026-03-24T00:00:00+00:00",
-                    failure_reason="" if normalized_title != "4 story" else "ambiguous",
-                    top_candidates=tuple(),
-                )
-
-            with mock.patch("scripts.build_enriched_release.resolve_title_reference", side_effect=fake_resolution), mock.patch(
-                "scripts.build_enriched_release.fetch_entity_with_claims",
-                return_value={"claims": {}},
-            ), mock.patch(
-                "scripts.build_enriched_release.fetch_labels",
-                return_value={},
-            ), mock.patch(
-                "scripts.build_enriched_release.fetch_mobygames_metadata",
-                return_value={
-                    "genres": "",
-                    "categories": "",
-                    "themes": "",
-                    "rating_value": "",
-                    "rating_scale": "",
-                    "rating_count": "",
-                    "rating_source": "",
-                    "rating_url": "",
-                    "rating_fetched_at": "",
-                    "rating_confidence": "",
-                    "notes": "",
-                },
-            ):
-                run_build(self._args(root))
-                first = (root / "results" / "enriched-20260324" / "enriched_master_games.csv").read_text(encoding="utf-8")
-                run_build(self._args(root))
-                second = (root / "results" / "enriched-20260324" / "enriched_master_games.csv").read_text(encoding="utf-8")
+            run_build(self._args(root))
+            first = (root / "results" / "enriched-20260326" / "enriched_master_games.csv").read_text(encoding="utf-8")
+            run_build(self._args(root))
+            second = (root / "results" / "enriched-20260326" / "enriched_master_games.csv").read_text(encoding="utf-8")
             self.assertEqual(first, second)

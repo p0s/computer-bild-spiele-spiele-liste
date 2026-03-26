@@ -37,7 +37,7 @@ from scripts.index_cbs_exes import (
     title_candidates_from_exe_path,
     title_candidates_from_metadata_file,
 )
-from scripts.prepare_publishable_results import publishable_issue_rows, repair_issue_row
+from scripts.prepare_publishable_results import build_improved_publishable_outputs, publishable_issue_rows, repair_issue_row
 
 
 def candidate(source_kind: str, source_path: str, title: str, normalized: str, confidence: str = "high") -> tuple:
@@ -277,7 +277,7 @@ class PublishableRepairTests(unittest.TestCase):
         self.assertEqual(repaired["representative_title"], "Rückkehr zur Insel")
         self.assertEqual(repaired["normalized_title"], "r ckkehr zur insel")
 
-    def test_strips_trailing_version_metadata_from_title(self) -> None:
+    def test_preserves_versioned_title_for_clustering(self) -> None:
         row = {
             "archive_item": "cbs-2000-09",
             "archive_name": "2008/CBS032008DVD.7z",
@@ -291,8 +291,8 @@ class PublishableRepairTests(unittest.TestCase):
             "content_kind": "unknown",
         }
         repaired = repair_issue_row(row)
-        self.assertEqual(repaired["representative_title"], "Codename Panzers Phase 2")
-        self.assertEqual(repaired["normalized_title"], "codename panzers phase 2")
+        self.assertEqual(repaired["representative_title"], "Codename Panzers Phase 2 v 1")
+        self.assertEqual(repaired["normalized_title"], "codename panzers phase 2v 1")
 
     def test_publishable_filter_drops_ui_noise(self) -> None:
         rows = [
@@ -367,6 +367,92 @@ class PublishableRepairTests(unittest.TestCase):
             [row["representative_title"] for row in publishable],
             ["Baldur's Gate - Compilation", "Codename Panzers Phase 2"],
         )
+
+    def test_cluster_builder_collapses_issue_duplicates_and_excludes_non_games(self) -> None:
+        rows = [
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2006/CBS022006DVD.7z",
+                "issue_code": "CBS022006DVD",
+                "year": "2006",
+                "variant": "DVD",
+                "normalized_title": "age of empires 3 v 1",
+                "representative_title": "Age of Empires 3 v 1",
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            },
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2006/CBS022006DVD.7z",
+                "issue_code": "CBS022006DVD",
+                "year": "2006",
+                "variant": "DVD",
+                "normalized_title": "age of empires 3 v 1 01a",
+                "representative_title": "Age of Empires 3 v 1 01a",
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            },
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2008/CBS072008DVD.7z",
+                "issue_code": "CBS072008DVD",
+                "year": "2008",
+                "variant": "DVD",
+                "normalized_title": "webde smart surfer",
+                "representative_title": "WEBDESmart Surfer",
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            },
+        ]
+
+        master_rows, issue_rows, excluded_rows = build_improved_publishable_outputs(
+            rows,
+            baseline_match_map={},
+            manual_content_overrides={},
+            rejection_map={},
+        )
+
+        self.assertEqual(len(master_rows), 1)
+        self.assertEqual(len(issue_rows), 1)
+        self.assertEqual(len(excluded_rows), 1)
+        self.assertEqual(master_rows[0]["game_id"], "ageofempires3")
+        self.assertEqual(issue_rows[0]["occurrence_count_in_issue"], 2)
+        self.assertEqual(excluded_rows[0]["content_class"], "utility")
+
+    def test_cluster_builder_preserves_official_edition_titles(self) -> None:
+        rows = [
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2004/CBS082004.7z",
+                "issue_code": "CBS082004",
+                "year": "2004",
+                "variant": "CD",
+                "normalized_title": "age of empires gold edition",
+                "representative_title": "Age of Empires Gold Edition",
+                "source_kinds": "vollversion-fullversion",
+                "confidence": "high",
+                "content_kind": "full_version",
+                "clean_reason": "vollversion-fullversion",
+            }
+        ]
+
+        master_rows, issue_rows, excluded_rows = build_improved_publishable_outputs(
+            rows,
+            baseline_match_map={},
+            manual_content_overrides={},
+            rejection_map={},
+        )
+
+        self.assertEqual(len(excluded_rows), 0)
+        self.assertEqual(master_rows[0]["representative_title"], "Age of Empires Gold Edition")
+        self.assertEqual(master_rows[0]["game_id"], "ageofempiresgoldedition")
+        self.assertEqual(issue_rows[0]["content_form"], "full_version_game")
 
 
 class DownloadTests(unittest.TestCase):

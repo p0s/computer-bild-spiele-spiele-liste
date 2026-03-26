@@ -1,0 +1,14 @@
+game_id,representative_title,demotion_reason,source_alias_titles,candidate_match_statuses
+absoluteblue,Absolute Blue,demoted_raw_qid_title; demoted_release_year_conflict; wikidata_only_match,Absolute Blue,Absolute Blue:matched:Q122386684
+airtaxi,Air Taxi,demoted_raw_qid_title; wikidata_only_match,Air Taxi,Air Taxi:matched:Q115799507
+astroman,Astro Man,demoted_raw_qid_title; wikidata_only_match,Astro Man,Astro Man:matched:Q115104177
+atoll,Atoll,demoted_raw_qid_title; demoted_release_year_conflict; wikidata_only_match,Atoll,Atoll:matched:Q135022434
+crillion,Crillion,demoted_raw_qid_title; wikidata_only_match,Crillion,Crillion:matched:Q108577051
+dasbergwerk,Das Bergwerk,demoted_raw_qid_title; wikidata_only_match,Das Bergwerk,Das Bergwerk:matched:Q56254541
+fragoria,Fragoria,demoted_release_year_conflict,Fragoria,Fragoria:matched:Fragoria
+geniusmove,Genius Move,demoted_raw_qid_title; demoted_release_year_conflict; wikidata_only_match,Genius Move,Genius Move:matched:Q135046415
+jardinains,Jardinains,demoted_raw_qid_title; demoted_release_year_conflict; wikidata_only_match,Jardinains,Jardinains:matched:Q122373947
+startzeit,Startzeit,demoted_raw_qid_title; wikidata_only_match,Startzeit,Startzeit:matched:Q39329711
+steelsaviour,Steel Saviour,demoted_raw_qid_title; demoted_release_year_conflict; wikidata_only_match,Steel Saviour,Steel Saviour:matched:Q114946949
+switchfire,Switchfire,demoted_raw_qid_title; wikidata_only_match,Switchfire,Switchfire:matched:Q132735999
+theshow,The Show,demoted_raw_qid_title; wikidata_only_match,The Show,The Show:matched:Q110817152

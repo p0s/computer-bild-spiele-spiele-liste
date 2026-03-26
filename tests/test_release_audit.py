@@ -45,11 +45,29 @@ class ReleaseAuditCliTests(unittest.TestCase):
             enriched_dir.mkdir()
 
             for name in ["issue_titles.csv", "master_games.csv", "unresolved_issues.csv"]:
-                shutil.copy2(REPO_ROOT / "results" / "vps-linux-full-20260324" / name, raw_dir / name)
-            for name in ["publishable_master_games.csv", "publishable_issue_titles.csv", "final_unresolved_issues.csv", "README.md", "audit_summary.md", "unresolved_summary.md"]:
-                shutil.copy2(REPO_ROOT / "results" / "published-20260324" / name, published_dir / name)
-            for name in ["README.md", "ambiguous_matches.csv", "enriched_issue_titles.csv", "enriched_master_games.csv", "source_attribution.csv", "title_aliases.csv", "unmatched_titles.csv"]:
-                shutil.copy2(REPO_ROOT / "results" / "enriched-20260324" / name, enriched_dir / name)
+                shutil.copy2(REPO_ROOT / "results" / "vps-linux-full-rerun-20260325" / name, raw_dir / name)
+            for name in [
+                "publishable_master_games.csv",
+                "publishable_issue_titles.csv",
+                "excluded_non_game_titles.csv",
+                "final_unresolved_issues.csv",
+                "README.md",
+                "audit_summary.md",
+                "unresolved_summary.md",
+            ]:
+                shutil.copy2(REPO_ROOT / "results" / "published-20260326" / name, published_dir / name)
+            for name in [
+                "README.md",
+                "ambiguous_matches.csv",
+                "enriched_issue_titles.csv",
+                "enriched_master_games.csv",
+                "enrichment_audit.md",
+                "match_demotions.csv",
+                "source_attribution.csv",
+                "title_aliases.csv",
+                "unmatched_titles.csv",
+            ]:
+                shutil.copy2(REPO_ROOT / "results" / "enriched-20260326" / name, enriched_dir / name)
 
             report_path = root / "audit.md"
             sample_path = root / "sample.csv"

@@ -1,0 +1,20 @@
+game_id,representative_title,content_class,publishable,reason
+acronistrueimage10home,Acronis True Image 10 Home,utility,false,backup utility not a game
+aloneinthedarkkomplettlosung,Alone in the Dark Komplettlösung,guide_media,false,walkthrough media not a game
+ashampoofirewall,Ashampoo Firewall,utility,false,firewall utility not a game
+battlefieldtoolkit,Battlefield Toolkit,editor_sdk,false,toolkit/editor should not publish as a game
+ccleaner,CCleaner,utility,false,system utility not a game
+commandandconquer3tiberiumwarssdk,Command & Conquer 3 Tiberium Wars SDK,editor_sdk,false,sdk should not publish as a game
+cheats,Cheats,disc_noise,false,disc section label not a title
+codeaktionen,Code Aktionen,disc_noise,false,disc section label not a title
+divx52,Divx 5 2,utility,false,codec utility not a game
+driveimagexml,Drive Image XML,utility,false,backup utility not a game
+easytoolz2,Easytoolz 2,utility,false,utility bundle not a game
+gta4komplettlosung,GTA 4 Komplettlösung,guide_media,false,walkthrough media not a game
+netframework2,.NET Framework 2,utility,false,framework runtime not a game
+theelderscrollsoblivioneditor,The Elder Scrolls Oblivion Editor,editor_sdk,false,editor should not publish as a game
+skype3,Skype 3,utility,false,chat client not a game
+teamspeak2,Team Speak 2,utility,false,voice chat client not a game
+webdesmartsurfer,WEBDE Smart Surfer,utility,false,utility/browser client not a game
+werbung,Werbung,disc_noise,false,advertising label not a game
+xfire,Xfire,utility,false,chat utility not a game
