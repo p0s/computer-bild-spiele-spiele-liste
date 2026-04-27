@@ -6,6 +6,7 @@ import csv
 import re
 import sys
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
 if __package__ in {None, ""}:
@@ -22,6 +23,7 @@ from scripts.improved_release_common import (
     normalize_public_title,
     safe_text,
     semicolon_join,
+    sanitized_semicolon_join,
     slugify,
     to_int,
 )
@@ -272,12 +274,50 @@ REPRESENTATIVE_TITLE_REPAIRS = {
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Prepare a cleaned publishable result set from a raw VPS snapshot.")
-    parser.add_argument("--input-dir", default="results/vps-linux-full-20260324")
-    parser.add_argument("--output-dir", default="results/published-20260324")
-    parser.add_argument("--baseline-enriched-master", default="results/enriched-20260325/enriched_master_games.csv")
+    parser.add_argument("--input-dir", default=str(latest_raw_snapshot_dir() or Path("results/raw-latest")))
+    parser.add_argument("--output-dir", default=None)
+    parser.add_argument("--baseline-enriched-master", default=None)
     parser.add_argument("--manual-content-overrides", default="data/manual_content_overrides.csv")
     parser.add_argument("--manual-rejections", default="data/manual_rejections.csv")
     return parser.parse_args()
+
+
+def snapshot_date(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    for token in reversed(path.name.split("-")):
+        if len(token) == 8 and token.isdigit():
+            return token
+    return None
+
+
+def latest_raw_snapshot_dir() -> Path | None:
+    candidates: list[tuple[str, Path]] = []
+    for path in Path("results").glob("vps-*"):
+        date = snapshot_date(path)
+        if (
+            path.is_dir()
+            and date
+            and (path / "issue_titles.csv").exists()
+            and (path / "master_games.csv").exists()
+            and (path / "unresolved_issues.csv").exists()
+        ):
+            candidates.append((date, path))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1][1]
+
+
+def latest_enriched_master(before_date: str | None = None) -> Path | None:
+    candidates: list[tuple[str, Path]] = []
+    for path in Path("results").glob("enriched-*"):
+        date = snapshot_date(path)
+        master = path / "enriched_master_games.csv"
+        if path.is_dir() and date and master.exists() and (before_date is None or date < before_date):
+            candidates.append((date, master))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1][1]
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -288,7 +328,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({field: row.get(field, "") for field in fieldnames})
@@ -787,7 +827,7 @@ def build_improved_publishable_outputs(
             "rating_url": safe_text(best_match.get("rating_url")),
             "metadata_sources": safe_text(best_match.get("metadata_sources")),
             "match_action": match_action,
-            "match_notes": semicolon_join(notes_parts),
+            "match_notes": sanitized_semicolon_join(notes_parts),
         }
         if (
             master_row["match_status"] == "matched"
@@ -1037,13 +1077,20 @@ This is a best-effort public game catalog. Observed CBS titles remain distinct f
 def main() -> int:
     args = parse_args()
     input_dir = Path(args.input_dir)
-    output_dir = Path(args.output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else Path(
+        f"results/published-{snapshot_date(input_dir) or datetime.now(timezone.utc).strftime('%Y%m%d')}"
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
 
     issue_rows = read_csv(input_dir / "issue_titles.csv")
     unresolved_rows = read_csv(input_dir / "unresolved_issues.csv")
     master_rows = read_csv(input_dir / "master_games.csv")
-    baseline_match_map = read_baseline_match_map(Path(args.baseline_enriched_master))
+    baseline_master = (
+        Path(args.baseline_enriched_master)
+        if args.baseline_enriched_master
+        else latest_enriched_master(before_date=snapshot_date(output_dir))
+    )
+    baseline_match_map = read_baseline_match_map(baseline_master) if baseline_master is not None else {}
     manual_content_overrides = read_manual_content_overrides(Path(args.manual_content_overrides))
     rejection_map = read_rejections(Path(args.manual_rejections))
 

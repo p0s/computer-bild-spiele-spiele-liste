@@ -1,13 +1,13 @@
 # Enriched Results
 
-This directory contains the cluster-aware enriched CBS release built on top of the canonical `20260326` published outputs.
+This directory contains the cluster-aware enriched CBS release built on top of the canonical `results/published-20260326` outputs.
 
 Current enriched snapshot:
 
-- canonical master rows: `1711`
-- enriched issue/title rows: `2183`
-- ambiguous titles: `142`
-- unmatched titles: `1428`
+- canonical master rows: `1642`
+- enriched issue/title rows: `2125`
+- ambiguous titles: `141`
+- unmatched titles: `1360`
 - match demotions: `13`
 
 Files:

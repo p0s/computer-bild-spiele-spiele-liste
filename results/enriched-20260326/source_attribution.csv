@@ -1,3 +1,3 @@
 source_name,source_type,homepage,fields_used,attribution_note,terms_note
 Clustered Published Release,derived-csv,,"observed titles, clustering, content-class audit columns",Cluster-level public title reconstruction,Derived from tracked CBS release artifacts
-Wikimedia Baseline Release,derived-csv,https://www.wikidata.org/,"canonical entity, release year, categories, genres, ratings when present",Carried forward from the 20260325 alias-level enriched release,Use minimal factual metadata with source attribution
+Wikimedia Baseline Release,derived-csv,https://www.wikidata.org/,"canonical entity, release year, categories, genres, ratings when present",Carried forward from the prior alias-level enriched release,Use minimal factual metadata with source attribution

@@ -23,13 +23,13 @@ This is an unofficial research dataset. `Computer Bild Spiele`, game titles, and
 
 Current `20260326` counts:
 
-- publishable master rows: `1711`
-- publishable issue/title rows: `2183`
-- excluded non-game/media clusters: `83`
+- publishable master rows: `1642`
+- publishable issue/title rows: `2125`
+- excluded non-game/media clusters: `114`
 - unresolved issues: `0`
 - enriched matched rows: `141`
-- enriched ambiguous rows: `142`
-- enriched unmatched rows: `1428`
+- enriched ambiguous rows: `141`
+- enriched unmatched rows: `1360`
 - explicit match demotions: `13`
 
 The tracked CSVs are a best-effort public dataset, not a claim of perfect completeness.

@@ -2957,7 +2957,7 @@ def export_exe_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
     dedup_path = out_dir / "executables_dedup.csv"
 
     with raw_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=RAW_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=RAW_COLUMNS, lineterminator="\n")
         writer.writeheader()
         rows = conn.execute(
             """
@@ -3003,7 +3003,7 @@ def export_exe_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
         ),
     )
     with dedup_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=DEDUP_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=DEDUP_COLUMNS, lineterminator="\n")
         writer.writeheader()
         for row in ordered_rows:
             writer.writerow(row)
@@ -3019,7 +3019,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
     benchmark_path = out_dir / "strategy_benchmark.csv"
 
     with raw_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=TITLE_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=TITLE_COLUMNS, lineterminator="\n")
         writer.writeheader()
         rows = conn.execute(
             """
@@ -3076,7 +3076,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
         ),
     )
     with dedup_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=TITLE_DEDUP_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=TITLE_DEDUP_COLUMNS, lineterminator="\n")
         writer.writeheader()
         for row in ordered_rows:
             normalized = str(row["normalized_title"])
@@ -3091,7 +3091,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
             )
 
     with master_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=MASTER_GAME_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=MASTER_GAME_COLUMNS, lineterminator="\n")
         writer.writeheader()
         for row in ordered_rows:
             normalized = str(row["normalized_title"])
@@ -3145,7 +3145,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
             current["_rank"] = current_rank
 
     with issue_titles_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=ISSUE_TITLE_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=ISSUE_TITLE_COLUMNS, lineterminator="\n")
         writer.writeheader()
         for key in sorted(issue_grouped):
             row = issue_grouped[key]
@@ -3165,7 +3165,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
             )
 
     with unresolved_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=UNRESOLVED_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=UNRESOLVED_COLUMNS, lineterminator="\n")
         writer.writeheader()
         rows = conn.execute(
             """
@@ -3179,7 +3179,7 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
             writer.writerow({column: row[column] if row[column] is not None else "" for column in UNRESOLVED_COLUMNS})
 
     with benchmark_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=BENCHMARK_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=BENCHMARK_COLUMNS, lineterminator="\n")
         writer.writeheader()
         rows = conn.execute(
             """

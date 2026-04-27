@@ -145,6 +145,14 @@ NON_GAME_EXACT = {
     "cheats",
 }
 
+DISC_NOISE_PATTERNS = [
+    r"^chk\b",
+    r"^die fischverladestelle$",
+    r"^kreska(?:\b|$)",
+    r"^(?:plus|minus) schwierigkeitsgrad$",
+    r"^schwierigkeitsgrad$",
+]
+
 GUIDE_MEDIA_PATTERNS = [
     r"komplettl",
     r"loesungs",
@@ -219,6 +227,12 @@ UTILITY_PATTERNS = [
     r"sound blaster",
     r"mc afee",
     r"\bstinger\b",
+    r"\bdisk defrag\b",
+    r"\beasy bcd ?\d*",
+    r"\breg cleaner\b",
+    r"\bstar ?force\b.*\bvista\b",
+    r"\btweak vi\b",
+    r"\bvista boot pro ?\d*",
 ]
 
 EXPANSION_PATTERNS = [
@@ -244,7 +258,7 @@ VERSION_SUFFIX_PATTERNS = [
     re.compile(r"\bversion\s*[0-9][0-9a-z ._-]*$", re.IGNORECASE),
     re.compile(r"\bupdate\s*[0-9][0-9a-z ._-]*$", re.IGNORECASE),
     re.compile(r"\bv\s*[0-9][0-9a-z ._-]*$", re.IGNORECASE),
-    re.compile(r"(?<=[A-Za-z]{4})v[0-9][0-9a-z._ -]*$", re.IGNORECASE),
+    re.compile(r"(?<=[A-Za-z]{4})v\s*[0-9][0-9a-z._ -]*$", re.IGNORECASE),
     re.compile(r"(?<=[A-Za-z]{4})v$", re.IGNORECASE),
     re.compile(r"\bv$", re.IGNORECASE),
 ]
@@ -252,6 +266,18 @@ VERSION_SUFFIX_PATTERNS = [
 SMALL_WORDS_LOWER = STOPWORDS | {"de", "la", "le"}
 
 POST_CLEAN_REPAIRS = [
+    (re.compile(r"\bAgeof\b"), "Age of"),
+    (re.compile(r"\bNeedfor\b"), "Need for"),
+    (re.compile(r"\bRageof\b"), "Rage of"),
+    (re.compile(r"\bRiseofa\b"), "Rise of a"),
+    (re.compile(r"\bDieheiligen\b"), "Die heiligen"),
+    (re.compile(r"\bUpdateauf\b"), "Update auf"),
+    (re.compile(r"\bCity Life Update auf City Life 2008\b"), "City Life & Update auf City Life 2008"),
+    (re.compile(r"\bHolmesjagt\b"), "Holmes jagt"),
+    (re.compile(r"\bArsne\b"), "Arsène"),
+    (re.compile(r"\bLegendender\b"), "Legenden der"),
+    (re.compile(r"\bSchwertkste\b"), "Schwertküste"),
+    (re.compile(r"\bCommand Conquer\b"), "Command & Conquer"),
     (re.compile(r"\bSim on the\b"), "Simon the"),
     (re.compile(r"\bChaosistdashalbe\b"), "Chaos ist das halbe"),
     (re.compile(r"\bOrdendes\b"), "Orden des"),
@@ -402,6 +428,8 @@ def build_cluster_key(text: str) -> str:
 def classify_content(title: str) -> str:
     lower = normalize_public_title(title)
     if lower in NON_GAME_EXACT:
+        return "disc_noise"
+    if any(re.search(pattern, lower) for pattern in DISC_NOISE_PATTERNS):
         return "disc_noise"
     if any(re.search(pattern, lower) for pattern in GUIDE_MEDIA_PATTERNS):
         return "guide_media"
@@ -624,7 +652,14 @@ def choose_best_display_title(rows: list[dict[str, object]]) -> tuple[str, list[
 
     candidates = sorted(rows, key=title_score)
     best = candidates[0]
-    merged_flags = sorted({flag for row in rows for flag in safe_text(row.get("title_cleanup_flags")).split(";") if flag})
+    merged_flags = sorted(
+        {
+            flag.strip()
+            for row in rows
+            for flag in safe_text(row.get("title_cleanup_flags")).split(";")
+            if flag.strip()
+        }
+    )
     merge_confidence = "high"
     if "split_compound_token" in merged_flags:
         merge_confidence = "medium"
@@ -653,6 +688,28 @@ def semicolon_join(values: Iterable[object]) -> str:
     if not cleaned:
         return ""
     return "; ".join(dict.fromkeys(cleaned))
+
+
+def sanitize_match_note(value: object) -> str:
+    text = safe_text(value).strip()
+    if not text:
+        return ""
+    lowered = text.casefold()
+    if "http error 429" in lowered or "too many requests" in lowered:
+        return "reference_lookup_rate_limited"
+    if lowered.startswith("request failed for http") or "urlopen error" in lowered or "timed out" in lowered:
+        return "reference_lookup_failed"
+    return text
+
+
+def sanitized_semicolon_join(values: Iterable[object]) -> str:
+    parts: list[str] = []
+    for value in values:
+        for part in safe_text(value).split(";"):
+            sanitized = sanitize_match_note(part)
+            if sanitized:
+                parts.append(sanitized)
+    return semicolon_join(parts)
 
 
 def compute_match_quality(row: dict[str, object], cluster_first_year: int | None) -> tuple[int, list[str]]:
@@ -743,20 +800,20 @@ def choose_best_match(rows: list[dict[str, object]], first_issue_year: int | Non
     if is_bad_qid_title(safe_text(best_row.get("canonical_title"))) and "raw_qid_title_backfill_candidate" in safe_text(best_row.get("_match_notes")):
         best_row["canonical_title"] = safe_text(best_row.get("source_title") or best_row.get("representative_title"))
         best_row["canonical_slug"] = slugify(best_row["canonical_title"])
-        best_row["notes"] = semicolon_join([best_row.get("notes"), "canonical_title_backfilled_from_local_title"])
+        best_row["notes"] = sanitized_semicolon_join([best_row.get("notes"), "canonical_title_backfilled_from_local_title"])
 
     if best_quality < 50:
         ambiguous_exists = any(safe_text(row.get("match_status")) == "ambiguous" for _, row, _ in candidates)
         blank = {field: "" for field in MATCH_FIELDS}
         blank["match_status"] = "ambiguous" if ambiguous_exists else "unmatched"
         blank["match_confidence"] = "low"
-        blank["notes"] = semicolon_join([best_row.get("_match_notes"), best_row.get("notes")])
+        blank["notes"] = sanitized_semicolon_join([best_row.get("_match_notes"), best_row.get("notes")])
         blank["_match_quality"] = best_quality
         blank["_match_notes"] = safe_text(best_row.get("_match_notes"))
         return blank, "demoted_weak_alias_match", [row for _, row, _ in candidates]
 
     if len(conflicting) > 1:
-        best_row["notes"] = semicolon_join([best_row.get("notes"), "cluster_has_multiple_canonical_targets"])
+        best_row["notes"] = sanitized_semicolon_join([best_row.get("notes"), "cluster_has_multiple_canonical_targets"])
         action = "retained_with_cluster_conflict"
 
     return best_row, action, [row for _, row, _ in candidates]

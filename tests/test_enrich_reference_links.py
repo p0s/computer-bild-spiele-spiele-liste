@@ -10,6 +10,7 @@ from scripts.enrich_reference_links import (
     connect_cache,
     fetch_json_cached,
     pick_wikimedia_link,
+    public_failure_reason,
     resolve_title_reference,
 )
 
@@ -61,6 +62,12 @@ class CacheTests(unittest.TestCase):
                 self.assertEqual(get_json.call_count, 1)
             finally:
                 conn.close()
+
+    def test_public_failure_reason_hides_transient_request_details(self) -> None:
+        reason = public_failure_reason(
+            "request failed for https://www.wikidata.org/w/api.php?action=wbsearchentities: HTTP Error 429: Too Many Requests"
+        )
+        self.assertEqual(reason, "reference_lookup_rate_limited")
 
 
 class ResolutionTests(unittest.TestCase):

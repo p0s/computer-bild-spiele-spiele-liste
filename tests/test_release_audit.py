@@ -5,13 +5,31 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.release_audit import build_paths, parse_args, run_audit
+from scripts.release_audit import build_paths, classify_sample, parse_args, readme_snapshot_counts, run_audit
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class ReleaseAuditCliTests(unittest.TestCase):
+    def test_readme_snapshot_counts_accepts_current_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "README.md").write_text(
+                "- publishable master rows: `1711`\n"
+                "- publishable issue/title rows: `2183`\n"
+                "- unresolved issues: `0`\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual(
+                readme_snapshot_counts(root),
+                {"master_titles": 1711, "issue_rows": 2183, "unresolved": 0},
+            )
+
+    def test_classify_sample_keeps_known_knights_title(self) -> None:
+        self.assertEqual(classify_sample("Knights of Honor"), ("keep", "known valid game title"))
+
     def test_build_paths_respects_explicit_arguments(self) -> None:
         args = parse_args(
             [

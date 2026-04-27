@@ -134,6 +134,10 @@ SAMPLE_SUSPICIOUS_SUBSTRINGS = (
     "dutchmans",
 )
 
+SAMPLE_SUSPICIOUS_EXCEPTIONS = {
+    "knights of honor",
+}
+
 SAMPLE_DROP_SUBSTRINGS = (
     "bildschirmhintergr",
     "bildschirmschoner",
@@ -158,11 +162,37 @@ class AuditPaths:
     audit_date: str
 
 
+def snapshot_date(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    for token in reversed(path.name.split("-")):
+        if len(token) == 8 and token.isdigit():
+            return token
+    return None
+
+
+def latest_dated_dir(pattern: str, *, required_files: tuple[str, ...] = ()) -> Path | None:
+    candidates: list[tuple[str, Path]] = []
+    for path in Path("results").glob(pattern):
+        date = snapshot_date(path)
+        if path.is_dir() and date and all((path / name).exists() for name in required_files):
+            candidates.append((date, path))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1][1]
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    raw_default = latest_dated_dir(
+        "vps-*",
+        required_files=("issue_titles.csv", "master_games.csv", "unresolved_issues.csv"),
+    )
+    published_default = latest_dated_dir("published-*")
+    enriched_default = latest_dated_dir("enriched-*")
     parser = argparse.ArgumentParser(description="Audit a dated CBS published snapshot and its raw inputs.")
-    parser.add_argument("--raw-dir", default="results/vps-linux-full-rerun-20260325")
-    parser.add_argument("--published-dir", default="results/published-20260326")
-    parser.add_argument("--enriched-dir", default="results/enriched-20260326")
+    parser.add_argument("--raw-dir", default=str(raw_default or Path("results/raw-latest")))
+    parser.add_argument("--published-dir", default=str(published_default or Path("results/published-latest")))
+    parser.add_argument("--enriched-dir", default=str(enriched_default or Path("results/enriched-latest")))
     parser.add_argument("--report-path", default="FINAL-RELEASE-AUDIT.md")
     parser.add_argument("--sample-path", default="FINAL-RELEASE-SAMPLE.csv")
     parser.add_argument("--skip-git-fetch", action="store_true")
@@ -208,7 +238,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -294,6 +324,8 @@ def near_variant_groups(master_rows: list[dict[str, str]]) -> list[list[str]]:
 
 def classify_sample(title: str) -> tuple[str, str]:
     lower = title.casefold()
+    if lower in SAMPLE_SUSPICIOUS_EXCEPTIONS:
+        return "keep", "known valid game title"
     if any(fragment in lower for fragment in SAMPLE_DROP_SUBSTRINGS):
         return "drop", "obvious non-game or resource/tool string"
     if re.search(r"\bv\s*\d", lower) or re.search(r"v\d{2,}", lower):
@@ -398,8 +430,8 @@ def parse_readme_table(root: Path) -> list[tuple[str, str, str]]:
 
 def readme_snapshot_counts(root: Path) -> dict[str, int] | None:
     text = (root / "README.md").read_text(encoding="utf-8")
-    match_master = re.search(r"master titles: `(\d+)`", text)
-    match_issue = re.search(r"issue/title rows: `(\d+)`", text)
+    match_master = re.search(r"(?:publishable master rows|master titles): `(\d+)`", text)
+    match_issue = re.search(r"(?:publishable issue/title rows|issue/title rows): `(\d+)`", text)
     match_unresolved = re.search(r"unresolved issues: `(\d+)`", text)
     if not (match_master and match_issue and match_unresolved):
         return None

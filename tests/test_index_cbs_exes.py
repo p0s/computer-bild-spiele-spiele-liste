@@ -425,6 +425,96 @@ class PublishableRepairTests(unittest.TestCase):
         self.assertEqual(issue_rows[0]["occurrence_count_in_issue"], 2)
         self.assertEqual(excluded_rows[0]["content_class"], "utility")
 
+    def test_cluster_builder_excludes_utility_and_ui_noise_titles(self) -> None:
+        rows = []
+        for index, title in enumerate(
+            [
+                "Disk Defrag",
+                "Easy BCD 171",
+                "Reg Cleaner",
+                "Star Force Vista Update",
+                "Tweak VI",
+                "Vista Boot PRO 3 3",
+                "Chk Schatten",
+                "kreska 1",
+                "plus Schwierigkeitsgrad",
+                "Schwierigkeitsgrad",
+            ],
+            start=1,
+        ):
+            rows.append(
+                {
+                    "archive_item": "cbs-2000-09",
+                    "archive_name": "2008/CBS032008DVD.7z",
+                    "issue_code": "CBS032008DVD",
+                    "year": "2008",
+                    "variant": "DVD",
+                    "normalized_title": normalize_title(title) or "",
+                    "representative_title": title,
+                    "source_kinds": "disc-metadata-value",
+                    "confidence": "high",
+                    "content_kind": "unknown",
+                    "clean_reason": f"fixture-{index}",
+                }
+            )
+
+        master_rows, issue_rows, excluded_rows = build_improved_publishable_outputs(
+            rows,
+            baseline_match_map={},
+            manual_content_overrides={},
+            rejection_map={},
+        )
+
+        self.assertEqual(master_rows, [])
+        self.assertEqual(issue_rows, [])
+        self.assertEqual(len(excluded_rows), len(rows))
+        self.assertEqual(
+            {row["content_class"] for row in excluded_rows},
+            {"disc_noise", "utility"},
+        )
+
+    def test_cluster_builder_repairs_common_compound_tokens(self) -> None:
+        rows = [
+            {
+                "archive_item": "cbs-2000-09",
+                "archive_name": "2008/CBS032008DVD.7z",
+                "issue_code": "CBS032008DVD",
+                "year": "2008",
+                "variant": "DVD",
+                "normalized_title": normalize_title(title) or "",
+                "representative_title": title,
+                "source_kinds": "disc-metadata-value",
+                "confidence": "high",
+                "content_kind": "unknown",
+                "clean_reason": "multiword",
+            }
+            for title in [
+                "Ageof Empires The War Chiefs",
+                "Needfor Speed Carbonv 14",
+                "Galactic Dream Rageof War",
+                "Sherlock Holmesjagt Arsne Lupin",
+                "City Life Updateauf City Life 2008",
+                "Command Conquer3 Tiberium Wars Kanev105",
+            ]
+        ]
+
+        master_rows, issue_rows, excluded_rows = build_improved_publishable_outputs(
+            rows,
+            baseline_match_map={},
+            manual_content_overrides={},
+            rejection_map={},
+        )
+
+        self.assertEqual(excluded_rows, [])
+        representatives = {row["representative_title"] for row in master_rows}
+        self.assertIn("Age of Empires The War Chiefs", representatives)
+        self.assertIn("Need for Speed Carbon", representatives)
+        self.assertIn("Galactic Dream Rage of War", representatives)
+        self.assertIn("Sherlock Holmes jagt Arsène Lupin", representatives)
+        self.assertIn("City Life & Update auf City Life 2008", representatives)
+        self.assertIn("Command & Conquer 3 Tiberium Wars Kane", representatives)
+        self.assertEqual(len(issue_rows), 6)
+
     def test_cluster_builder_preserves_official_edition_titles(self) -> None:
         rows = [
             {

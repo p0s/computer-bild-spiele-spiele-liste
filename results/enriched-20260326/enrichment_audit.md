@@ -1,10 +1,10 @@
 # Enrichment Audit
 
-- enriched master rows: 1711
-- enriched issue rows: 2183
+- enriched master rows: 1642
+- enriched issue rows: 2125
 - matched: 141
-- ambiguous: 142
-- unmatched: 1428
+- ambiguous: 141
+- unmatched: 1360
 - match demotions: 13
 - data quality >= 80: 141
-- data quality >= 60: 277
+- data quality >= 60: 276

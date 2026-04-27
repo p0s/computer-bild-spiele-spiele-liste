@@ -18,6 +18,8 @@ from scripts.improved_release_common import (
     normalize_public_title,
     safe_text,
     semicolon_join,
+    sanitized_semicolon_join,
+    sanitize_match_note,
     slugify,
     to_int,
 )
@@ -208,10 +210,22 @@ MATCH_DEMOTIONS_FIELDS = [
 
 def parse_args() -> argparse.Namespace:
     today = datetime.now(timezone.utc).strftime("%Y%m%d")
+    published_dir = latest_snapshot_dir("published")
+    published_date = snapshot_date(published_dir) if published_dir else None
+    baseline_dir = latest_snapshot_dir("enriched", before_date=published_date)
     parser = argparse.ArgumentParser(description="Build the clustered enriched CBS release outputs.")
-    parser.add_argument("--input-master", default="results/published-20260326/publishable_master_games.csv")
-    parser.add_argument("--input-issues", default="results/published-20260326/publishable_issue_titles.csv")
-    parser.add_argument("--baseline-enriched-master", default="results/enriched-20260325/enriched_master_games.csv")
+    parser.add_argument(
+        "--input-master",
+        default=str((published_dir or Path("results/published-latest")) / "publishable_master_games.csv"),
+    )
+    parser.add_argument(
+        "--input-issues",
+        default=str((published_dir or Path("results/published-latest")) / "publishable_issue_titles.csv"),
+    )
+    parser.add_argument(
+        "--baseline-enriched-master",
+        default=str((baseline_dir or Path("results/enriched-baseline")) / "enriched_master_games.csv"),
+    )
     parser.add_argument("--output-dir", default=f"results/enriched-{today}")
     parser.add_argument("--manual-rejections", default="data/manual_rejections.csv")
     parser.add_argument("--cache-db", default="results/enrichment.sqlite")
@@ -227,6 +241,26 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def snapshot_date(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    token = path.name.rsplit("-", 1)[-1]
+    if len(token) == 8 and token.isdigit():
+        return token
+    return None
+
+
+def latest_snapshot_dir(kind: str, *, before_date: str | None = None) -> Path | None:
+    candidates: list[tuple[str, Path]] = []
+    for path in Path("results").glob(f"{kind}-*"):
+        date = snapshot_date(path)
+        if path.is_dir() and date and (before_date is None or date < before_date):
+            candidates.append((date, path))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1][1]
+
+
 def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
@@ -235,7 +269,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({field: row.get(field, "") for field in fieldnames})
@@ -289,7 +323,7 @@ def build_source_attribution_rows() -> list[dict[str, str]]:
             "source_type": "derived-csv",
             "homepage": "https://www.wikidata.org/",
             "fields_used": "canonical entity, release year, categories, genres, ratings when present",
-            "attribution_note": "Carried forward from the 20260325 alias-level enriched release",
+            "attribution_note": "Carried forward from the prior alias-level enriched release",
             "terms_note": "Use minimal factual metadata with source attribution",
         },
     ]
@@ -331,10 +365,19 @@ def build_enrichment_audit(
     )
 
 
-def write_enriched_readme(path: Path, master_count: int, issue_count: int, ambiguous_count: int, unmatched_count: int, demotions_count: int) -> None:
+def write_enriched_readme(
+    path: Path,
+    *,
+    published_dir: Path,
+    master_count: int,
+    issue_count: int,
+    ambiguous_count: int,
+    unmatched_count: int,
+    demotions_count: int,
+) -> None:
     text = f"""# Enriched Results
 
-This directory contains the cluster-aware enriched CBS release built on top of the canonical `20260326` published outputs.
+This directory contains the cluster-aware enriched CBS release built on top of the canonical `{published_dir.as_posix()}` outputs.
 
 Current enriched snapshot:
 
@@ -414,7 +457,7 @@ def run_build(args: argparse.Namespace) -> int:
                 {
                     "game_id": game_id,
                     "representative_title": safe_text(published_master.get("representative_title")),
-                    "demotion_reason": safe_text(best_match.get("_match_notes") or best_match.get("notes")),
+                    "demotion_reason": sanitize_match_note(best_match.get("_match_notes") or best_match.get("notes")),
                     "source_alias_titles": semicolon_join(row.get("source_title", "") for row in ranked_candidates),
                     "candidate_match_statuses": semicolon_join(
                         f"{safe_text(row.get('source_title'))}:{safe_text(row.get('match_status'))}:{safe_text(row.get('canonical_title'))}"
@@ -473,7 +516,7 @@ def run_build(args: argparse.Namespace) -> int:
                 "usk_rating": "",
                 "pegi_rating": "",
                 "metadata_sources": safe_text(best_match.get("metadata_sources")),
-                "match_notes": semicolon_join(notes_parts),
+                "match_notes": sanitized_semicolon_join(notes_parts),
                 "match_action": match_action,
             }
         )
@@ -599,6 +642,7 @@ def run_build(args: argparse.Namespace) -> int:
     )
     write_enriched_readme(
         output_dir / "README.md",
+        published_dir=Path(args.input_master).parent,
         master_count=len(enriched_master_rows),
         issue_count=len(enriched_issue_rows),
         ambiguous_count=len(ambiguous_rows),

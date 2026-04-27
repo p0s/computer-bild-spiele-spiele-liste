@@ -71,10 +71,31 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
+def snapshot_date(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    token = path.name.rsplit("-", 1)[-1]
+    if len(token) == 8 and token.isdigit():
+        return token
+    return None
+
+
+def latest_snapshot_dir(kind: str) -> Path | None:
+    candidates: list[tuple[str, Path]] = []
+    for path in Path("results").glob(f"{kind}-*"):
+        date = snapshot_date(path)
+        if path.is_dir() and date:
+            candidates.append((date, path))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1][1]
+
+
 def parse_args() -> argparse.Namespace:
+    published_dir = latest_snapshot_dir("published") or Path("results/published-latest")
     parser = argparse.ArgumentParser(description="Enrich published CBS game titles with one reference URL each.")
-    parser.add_argument("--master-csv", default="results/published-20260324/publishable_master_games.csv")
-    parser.add_argument("--issue-csv", default="results/published-20260324/publishable_issue_titles.csv")
+    parser.add_argument("--master-csv", default=str(published_dir / "publishable_master_games.csv"))
+    parser.add_argument("--issue-csv", default=str(published_dir / "publishable_issue_titles.csv"))
     parser.add_argument("--cache-db", default="results/enrichment.sqlite")
     parser.add_argument("--review-csv", default="results/reference_review.csv")
     return parser.parse_args()
@@ -195,6 +216,18 @@ def http_get_json(url: str) -> dict[str, object]:
                 break
             time.sleep(1.0 * (attempt + 1))
     raise RuntimeError(f"request failed for {url}: {last_error}")
+
+
+def public_failure_reason(value: object) -> str:
+    text = str(value).strip()
+    if not text:
+        return ""
+    lowered = text.casefold()
+    if "http error 429" in lowered or "too many requests" in lowered:
+        return "reference_lookup_rate_limited"
+    if lowered.startswith("request failed for http") or "urlopen error" in lowered or "timed out" in lowered:
+        return "reference_lookup_failed"
+    return text
 
 
 def fetch_json_cached(conn: sqlite3.Connection, cache_key: str, url: str) -> dict[str, object]:
@@ -406,7 +439,7 @@ def resolve_title_reference(
             wikidata_id=str(data.get("wikidata_id", "")),
             wikidata_url=str(data.get("wikidata_url", "")),
             match_fetched_at=str(data.get("match_fetched_at", utc_now())),
-            failure_reason=str(data.get("failure_reason", "")),
+            failure_reason=public_failure_reason(data.get("failure_reason", "")),
             top_candidates=tuple(CandidateLink(**item) for item in data.get("top_candidates", [])),
         )
 
@@ -618,7 +651,7 @@ def resolve_title_reference(
             wikidata_id="",
             wikidata_url="",
             match_fetched_at=utc_now(),
-            failure_reason=str(exc),
+            failure_reason=public_failure_reason(exc),
             top_candidates=tuple(sorted(wikidata_candidates.values(), key=lambda item: (-item.score, item.source, item.label.casefold()))[:3]),
         )
     store_resolution(conn, resolution)
@@ -670,7 +703,7 @@ def store_resolution(conn: sqlite3.Connection, resolution: Resolution) -> None:
 
 def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) -> None:
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

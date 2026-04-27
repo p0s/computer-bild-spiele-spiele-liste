@@ -4,9 +4,9 @@
 - cleaned master rows: 2602
 - raw issue/title rows: 7407
 - cleaned issue/title rows: 3965
-- publishable clustered master rows: 1711
-- publishable clustered issue/title rows: 2183
-- excluded non-game/media clusters: 83
+- publishable clustered master rows: 1642
+- publishable clustered issue/title rows: 2125
+- excluded non-game/media clusters: 114
 - dropped noisy rows: 3442
 - unresolved issues: 0
 
