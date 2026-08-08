@@ -1,0 +1,97 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/data-package.json",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "LICENSE-DATA.md",
+      "title": "Creative Commons Attribution 4.0"
+    }
+  ],
+  "name": "computer-bild-spiele-game-list",
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "publishable-master-games",
+      "path": "results/published-20260808/publishable_master_games.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/publishable-master-games.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "publishable-issue-titles",
+      "path": "results/published-20260808/publishable_issue_titles.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/publishable-issue-titles.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "source-issue-inventory",
+      "path": "results/published-20260808/source_issue_inventory.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/source-issue-inventory.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "unresolved-issues",
+      "path": "results/published-20260808/final_unresolved_issues.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/unresolved-issues.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "enriched-master-games",
+      "path": "results/enriched-20260808/enriched_master_games.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/enriched-master-games.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "enriched-issue-titles",
+      "path": "results/enriched-20260808/enriched_issue_titles.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/enriched-issue-titles.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "ambiguous-matches",
+      "path": "results/enriched-20260808/ambiguous_matches.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/ambiguous-matches.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "unmatched-titles",
+      "path": "results/enriched-20260808/unmatched_titles.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/unmatched-titles.schema.json"
+    },
+    {
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "pending-lookups",
+      "path": "results/enriched-20260808/pending_lookups.csv",
+      "profile": "tabular-data-resource",
+      "schema": "schemas/pending-lookups.schema.json"
+    }
+  ],
+  "title": "Computer Bild Spiele Cover-disc Game List",
+  "version": "2026.8.8"
+}

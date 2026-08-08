@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import functools
 import math
 import re
 import unicodedata
 from collections import Counter
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
-
 
 STOPWORDS = {
     "a",
@@ -369,6 +369,19 @@ def safe_text(value: object) -> str:
     return str(value)
 
 
+def normalize_rating(value: object, scale: object) -> tuple[str, str]:
+    """Return a numeric rating value and a separate scale when safely parseable."""
+
+    rating_value = safe_text(value).strip()
+    rating_scale = safe_text(scale).strip()
+    if rating_scale:
+        return rating_value, rating_scale
+    match = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*/\s*([0-9]+(?:\.[0-9]+)?)", rating_value)
+    if match:
+        return match.group(1), match.group(2)
+    return rating_value, rating_scale
+
+
 def ascii_fold(text: str) -> str:
     text = safe_text(text)
     text = text.replace("ß", "ss").replace("ẞ", "SS")
@@ -519,13 +532,11 @@ def best_segmentation(token: str, vocab: Counter[str]) -> list[str] | None:
         return None
     max_len = len(folded)
 
-    from functools import lru_cache
-
-    @lru_cache(maxsize=None)
+    @functools.cache
     def solve(index: int) -> tuple[float, tuple[str, ...] | None]:
         if index == max_len:
             return 0.0, tuple()
-        best_score = -10**9
+        best_score = -(10**9)
         best_parts: tuple[str, ...] | None = None
         for end in range(index + 2, min(max_len, index + 20) + 1):
             part = folded[index:end]
@@ -653,18 +664,15 @@ def choose_best_display_title(rows: list[dict[str, object]]) -> tuple[str, list[
     candidates = sorted(rows, key=title_score)
     best = candidates[0]
     merged_flags = sorted(
-        {
-            flag.strip()
-            for row in rows
-            for flag in safe_text(row.get("title_cleanup_flags")).split(";")
-            if flag.strip()
-        }
+        {flag.strip() for row in rows for flag in safe_text(row.get("title_cleanup_flags")).split(";") if flag.strip()}
     )
     merge_confidence = "high"
     if "split_compound_token" in merged_flags:
         merge_confidence = "medium"
     cleaned_titles = {safe_text(row.get("cleaned_title")) for row in rows}
-    if len(cleaned_titles) > 1 and any("stripped_version_suffix" not in safe_text(row.get("title_cleanup_flags")) for row in rows):
+    if len(cleaned_titles) > 1 and any(
+        "stripped_version_suffix" not in safe_text(row.get("title_cleanup_flags")) for row in rows
+    ):
         merge_confidence = "medium"
     return safe_text(best.get("cleaned_title") or best.get("representative_title")), merged_flags, merge_confidence
 
@@ -771,7 +779,9 @@ def compute_match_quality(row: dict[str, object], cluster_first_year: int | None
     return score, notes
 
 
-def choose_best_match(rows: list[dict[str, object]], first_issue_year: int | None) -> tuple[dict[str, object], str, list[dict[str, object]]]:
+def choose_best_match(
+    rows: list[dict[str, object]], first_issue_year: int | None
+) -> tuple[dict[str, object], str, list[dict[str, object]]]:
     candidates: list[tuple[int, dict[str, object], list[str]]] = []
     for row in rows:
         quality, notes = compute_match_quality(row, first_issue_year)
@@ -779,7 +789,10 @@ def choose_best_match(rows: list[dict[str, object]], first_issue_year: int | Non
         enriched["_match_quality"] = quality
         enriched["_match_notes"] = "; ".join(notes)
         candidates.append((quality, enriched, notes))
-    candidates.sort(key=lambda item: (item[0], safe_text(item[1].get("canonical_title")), safe_text(item[1].get("wikipedia_url"))), reverse=True)
+    candidates.sort(
+        key=lambda item: (item[0], safe_text(item[1].get("canonical_title")), safe_text(item[1].get("wikipedia_url"))),
+        reverse=True,
+    )
 
     if not candidates:
         blank = {field: "" for field in MATCH_FIELDS}
@@ -797,10 +810,14 @@ def choose_best_match(rows: list[dict[str, object]], first_issue_year: int | Non
     }
 
     action = "retained_best_alias_match"
-    if is_bad_qid_title(safe_text(best_row.get("canonical_title"))) and "raw_qid_title_backfill_candidate" in safe_text(best_row.get("_match_notes")):
+    if is_bad_qid_title(safe_text(best_row.get("canonical_title"))) and "raw_qid_title_backfill_candidate" in safe_text(
+        best_row.get("_match_notes")
+    ):
         best_row["canonical_title"] = safe_text(best_row.get("source_title") or best_row.get("representative_title"))
         best_row["canonical_slug"] = slugify(best_row["canonical_title"])
-        best_row["notes"] = sanitized_semicolon_join([best_row.get("notes"), "canonical_title_backfilled_from_local_title"])
+        best_row["notes"] = sanitized_semicolon_join(
+            [best_row.get("notes"), "canonical_title_backfilled_from_local_title"]
+        )
 
     if best_quality < 50:
         ambiguous_exists = any(safe_text(row.get("match_status")) == "ambiguous" for _, row, _ in candidates)

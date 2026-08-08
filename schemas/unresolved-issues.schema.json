@@ -1,0 +1,60 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "archive_item",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "required": true
+      },
+      "name": "archive_name",
+      "type": "string"
+    },
+    {
+      "name": "issue_code",
+      "type": "string"
+    },
+    {
+      "name": "year",
+      "type": "integer"
+    },
+    {
+      "name": "variant",
+      "type": "string"
+    },
+    {
+      "name": "title_strategy",
+      "type": "string"
+    },
+    {
+      "name": "resolution_path",
+      "type": "string"
+    },
+    {
+      "name": "reason",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "root_cause",
+      "type": "string"
+    },
+    {
+      "name": "retry_recommended",
+      "type": "string"
+    },
+    {
+      "name": "suggestion",
+      "type": "string"
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": "archive_name"
+}

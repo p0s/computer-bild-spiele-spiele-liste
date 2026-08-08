@@ -4,8 +4,8 @@ from __future__ import annotations
 import argparse
 import csv
 from collections import defaultdict
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 if __package__ in {None, ""}:
     import sys
@@ -13,7 +13,6 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from scripts.prepare_publishable_results import rebuild_master
-
 
 ISSUE_TITLE_FIELDS = [
     "archive_item",
@@ -48,6 +47,17 @@ UNRESOLVED_FIELDS = [
     "resolution_path",
     "reason",
     "status",
+]
+
+SOURCE_ARCHIVE_FIELDS = [
+    "archive_item",
+    "archive_name",
+    "archive_url",
+    "size_bytes",
+    "sha1",
+    "issue_code",
+    "year",
+    "variant",
 ]
 
 
@@ -88,8 +98,17 @@ def archive_names_from_rows(rows: Iterable[dict[str, str]]) -> set[str]:
     return {row["archive_name"] for row in rows if row.get("archive_name")}
 
 
-def load_retry_archive_names(retry_dir: Path, issue_rows: list[dict[str, str]], unresolved_rows: list[dict[str, str]]) -> set[str]:
-    archive_names = archive_names_from_rows(issue_rows) | archive_names_from_rows(unresolved_rows)
+def load_retry_archive_names(
+    retry_dir: Path,
+    issue_rows: list[dict[str, str]],
+    unresolved_rows: list[dict[str, str]],
+    source_archive_rows: list[dict[str, str]],
+) -> set[str]:
+    archive_names = (
+        archive_names_from_rows(issue_rows)
+        | archive_names_from_rows(unresolved_rows)
+        | archive_names_from_rows(source_archive_rows)
+    )
     all_candidates_path = retry_dir / "all_title_candidates.csv"
     if all_candidates_path.exists():
         header, rows = read_csv_with_header(all_candidates_path)
@@ -98,7 +117,9 @@ def load_retry_archive_names(retry_dir: Path, issue_rows: list[dict[str, str]], 
     return archive_names
 
 
-def merged_issue_rows(base_rows: list[dict[str, str]], retry_rows: list[dict[str, str]], retry_archive_names: set[str]) -> list[dict[str, str]]:
+def merged_issue_rows(
+    base_rows: list[dict[str, str]], retry_rows: list[dict[str, str]], retry_archive_names: set[str]
+) -> list[dict[str, str]]:
     kept = [row for row in base_rows if row["archive_name"] not in retry_archive_names]
     merged = kept + [dict(row) for row in retry_rows]
     merged.sort(
@@ -120,6 +141,17 @@ def merged_unresolved_rows(
     kept = [row for row in base_rows if row["archive_name"] not in retry_archive_names]
     merged = kept + [dict(row) for row in retry_rows]
     merged.sort(key=lambda row: (row["archive_name"], row["issue_code"], row["status"], row["reason"]))
+    return merged
+
+
+def merged_source_archive_rows(
+    base_rows: list[dict[str, str]],
+    retry_rows: list[dict[str, str]],
+    retry_archive_names: set[str],
+) -> list[dict[str, str]]:
+    kept = [row for row in base_rows if row["archive_name"] not in retry_archive_names]
+    merged = kept + [dict(row) for row in retry_rows]
+    merged.sort(key=lambda row: row["archive_name"])
     return merged
 
 
@@ -191,15 +223,15 @@ def build_report(
 
     lines.extend(["", "## Per-Archive Deltas", ""])
     for archive_name in sorted(retry_archive_names):
+        base_count = len(base_issue_by_archive.get(archive_name, []))
+        retry_count = len(retry_issue_by_archive.get(archive_name, []))
+        merged_count = len(merged_issue_by_archive.get(archive_name, []))
+        unresolved_before = str(archive_name in base_unresolved).lower()
+        unresolved_after = str(archive_name in merged_unresolved).lower()
         lines.append(
-            "- `{archive}`: base issue rows `{base_issue}`, retry issue rows `{retry_issue}`, merged issue rows `{merged_issue}`, unresolved before `{before}`, unresolved after `{after}`".format(
-                archive=archive_name,
-                base_issue=len(base_issue_by_archive.get(archive_name, [])),
-                retry_issue=len(retry_issue_by_archive.get(archive_name, [])),
-                merged_issue=len(merged_issue_by_archive.get(archive_name, [])),
-                before=str(archive_name in base_unresolved).lower(),
-                after=str(archive_name in merged_unresolved).lower(),
-            )
+            f"- `{archive_name}`: base issue rows `{base_count}`, retry issue rows `{retry_count}`, "
+            f"merged issue rows `{merged_count}`, unresolved before `{unresolved_before}`, "
+            f"unresolved after `{unresolved_after}`"
         )
 
     lines.extend(["", "## Title Deltas", ""])
@@ -230,6 +262,8 @@ def run_merge(args: argparse.Namespace) -> int:
     retry_master_header, _retry_master_rows = read_csv_with_header(retry_dir / "master_games.csv")
     base_unresolved_header, base_unresolved_rows = read_csv_with_header(base_dir / "unresolved_issues.csv")
     retry_unresolved_header, retry_unresolved_rows = read_csv_with_header(retry_dir / "unresolved_issues.csv")
+    base_source_header, base_source_rows = read_csv_with_header(base_dir / "source_archives.csv")
+    retry_source_header, retry_source_rows = read_csv_with_header(retry_dir / "source_archives.csv")
 
     ensure_header(base_dir / "issue_titles.csv", base_issue_header, ISSUE_TITLE_FIELDS)
     ensure_header(retry_dir / "issue_titles.csv", retry_issue_header, ISSUE_TITLE_FIELDS)
@@ -237,13 +271,17 @@ def run_merge(args: argparse.Namespace) -> int:
     ensure_header(retry_dir / "master_games.csv", retry_master_header, MASTER_GAME_FIELDS)
     ensure_header(base_dir / "unresolved_issues.csv", base_unresolved_header, UNRESOLVED_FIELDS)
     ensure_header(retry_dir / "unresolved_issues.csv", retry_unresolved_header, UNRESOLVED_FIELDS)
+    ensure_header(base_dir / "source_archives.csv", base_source_header, SOURCE_ARCHIVE_FIELDS)
+    ensure_header(retry_dir / "source_archives.csv", retry_source_header, SOURCE_ARCHIVE_FIELDS)
 
     published_unresolved_header, published_unresolved_rows = read_csv_with_header(Path(args.base_published_unresolved))
     if "archive_name" not in published_unresolved_header:
         raise SystemExit(f"{args.base_published_unresolved} is missing archive_name")
     expected_retry_queue = archive_names_from_rows(published_unresolved_rows)
 
-    retry_archive_names = load_retry_archive_names(retry_dir, retry_issue_rows, retry_unresolved_rows)
+    retry_archive_names = load_retry_archive_names(
+        retry_dir, retry_issue_rows, retry_unresolved_rows, retry_source_rows
+    )
     if not retry_archive_names:
         raise SystemExit(f"{retry_dir} did not expose any retry archive names")
 
@@ -256,12 +294,14 @@ def run_merge(args: argparse.Namespace) -> int:
 
     merged_issue = merged_issue_rows(base_issue_rows, retry_issue_rows, retry_archive_names)
     merged_unresolved = merged_unresolved_rows(base_unresolved_rows, retry_unresolved_rows, retry_archive_names)
+    merged_sources = merged_source_archive_rows(base_source_rows, retry_source_rows, retry_archive_names)
     merged_master = rebuild_master(merged_issue)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     write_csv(output_dir / "issue_titles.csv", merged_issue, ISSUE_TITLE_FIELDS)
     write_csv(output_dir / "unresolved_issues.csv", merged_unresolved, UNRESOLVED_FIELDS)
     write_csv(output_dir / "master_games.csv", merged_master, MASTER_GAME_FIELDS)
+    write_csv(output_dir / "source_archives.csv", merged_sources, SOURCE_ARCHIVE_FIELDS)
 
     report_text = build_report(
         base_dir=base_dir,

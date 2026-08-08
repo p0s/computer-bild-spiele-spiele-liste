@@ -1,0 +1,280 @@
+{
+  "code_license": "MIT",
+  "dataset_license": "CC-BY-4.0",
+  "enrichment": {
+    "ambiguous": 27,
+    "matched": 121,
+    "pending": 90,
+    "unmatched": 1363
+  },
+  "files": [
+    {
+      "bytes": 55,
+      "path": "data/manual_alias_overrides.csv",
+      "rows": 0,
+      "sha256": "0130a5db6f0fd8b87be61c1b306a731976ad69e800ba0bd7bf503967389614c4"
+    },
+    {
+      "bytes": 1519,
+      "path": "data/manual_candidate_overrides.csv",
+      "rows": 13,
+      "sha256": "b557c43acccccd4c3c7ab6d8aa0d5c88504f33d80b67e7cc7ef31cb259da4786"
+    },
+    {
+      "bytes": 1963,
+      "path": "data/manual_cluster_overrides.csv",
+      "rows": 16,
+      "sha256": "3839586deb9a11d8609513bc387539809b5c4b25e712912b501cf6880beb43ff"
+    },
+    {
+      "bytes": 5309,
+      "path": "data/manual_content_overrides.csv",
+      "rows": 54,
+      "sha256": "d91df251247d5956d72ebbba570847d30c2bb85f5795839d0ca2ea8dc50018f8"
+    },
+    {
+      "bytes": 78,
+      "path": "data/manual_entity_overrides.csv",
+      "rows": 0,
+      "sha256": "552dd57ed7a7358dd1b6bad2fe941069c2e0ac53212327dbb445aa4297a723c1"
+    },
+    {
+      "bytes": 2216,
+      "path": "data/manual_rejections.csv",
+      "rows": 20,
+      "sha256": "25a1e22f2478a2af6b302cf1b427cca211cf85af006ac043650e2e5c53dc1797"
+    },
+    {
+      "bytes": 59,
+      "path": "data/manual_url_overrides.csv",
+      "rows": 0,
+      "sha256": "04a2047520049e8df3cdad6847953e55a4e0012398f90b242e7fd51322740b72"
+    },
+    {
+      "bytes": 3115,
+      "path": "datapackage.json",
+      "sha256": "5b07bc3932c305f7cca910199c55a0649d3078b772dab9c426c6b233effb83a1"
+    },
+    {
+      "bytes": 919,
+      "path": "results/enriched-20260808/README.md",
+      "sha256": "210f1528c8b714a5a6f8b51957f009ef44e6530098db3467c8788723aed2700e"
+    },
+    {
+      "bytes": 8306,
+      "path": "results/enriched-20260808/ambiguous_matches.csv",
+      "rows": 27,
+      "sha256": "b05c89a988e61c61ffcdca1a0fadea9eb46e06e90166ee88e964c04c9a40cf04"
+    },
+    {
+      "bytes": 989165,
+      "path": "results/enriched-20260808/enriched_issue_titles.csv",
+      "rows": 2100,
+      "sha256": "2d1ac6095de7afbe01b9ff42f412a0f973f63f4211634e7ae950b2635d857caa"
+    },
+    {
+      "bytes": 629848,
+      "path": "results/enriched-20260808/enriched_master_games.csv",
+      "rows": 1601,
+      "sha256": "3d860df959bed84295af29268c2c323b4a932ae4034af23c4dbd6d75fc88f41c"
+    },
+    {
+      "bytes": 220,
+      "path": "results/enriched-20260808/enrichment_audit.md",
+      "sha256": "b5607852fc9fa1f689959d06eea1de3cbcb3596fb9b88fa7f727e09cacd7c561"
+    },
+    {
+      "bytes": 90,
+      "path": "results/enriched-20260808/match_demotions.csv",
+      "rows": 0,
+      "sha256": "32464062906de332ee3dbf7f08751d7958566835a5d52816d5d05125a55cf377"
+    },
+    {
+      "bytes": 16715,
+      "path": "results/enriched-20260808/pending_lookups.csv",
+      "rows": 90,
+      "sha256": "64dadd60d022b86c5055d3640c3f6a2f80370cf498deb0b80e2b5ecfc7f5414c"
+    },
+    {
+      "bytes": 742,
+      "path": "results/enriched-20260808/source_attribution.csv",
+      "rows": 3,
+      "sha256": "783af7d87c8235f2318117fa25758f78b48a819ca72a2dceb78ba1302ceb38fc"
+    },
+    {
+      "bytes": 242052,
+      "path": "results/enriched-20260808/title_aliases.csv",
+      "rows": 1862,
+      "sha256": "dc25770aa49d554e1b6316e4bb4e05576751925294be34a76e1decc49be28b23"
+    },
+    {
+      "bytes": 218730,
+      "path": "results/enriched-20260808/unmatched_titles.csv",
+      "rows": 1363,
+      "sha256": "70f1fee104a6fc5b5e06de407f47d1eccb21a602477ee8484af97280ef0f6f66"
+    },
+    {
+      "bytes": 1742,
+      "path": "results/published-20260808/README.md",
+      "sha256": "6c60dea878090d27f3319605dcaca043db2cdabeca56543f15f9940184a739ac"
+    },
+    {
+      "bytes": 1007,
+      "path": "results/published-20260808/audit_summary.md",
+      "sha256": "a0f10dba07c4f72c75b60a5a7da8a892943f9ce4ac952fcebf583830b4832622"
+    },
+    {
+      "bytes": 355518,
+      "path": "results/published-20260808/dropped_candidates.csv",
+      "rows": 3432,
+      "sha256": "ddcab4a022d7b17093e4ac352a42c3e9db0e9937fbdf710989e0f615b7dccff4"
+    },
+    {
+      "bytes": 13431,
+      "path": "results/published-20260808/excluded_non_game_titles.csv",
+      "rows": 148,
+      "sha256": "a39f701763f0757afd99bbe3e69599f767823662a7245ee34a523a29ef26aa8e"
+    },
+    {
+      "bytes": 559263,
+      "path": "results/published-20260808/final_issue_titles.csv",
+      "rows": 3975,
+      "sha256": "c93a381f79d8547ccdafbdb2f63da9920e048ce73ec2ba3d39b628126be1ba4a"
+    },
+    {
+      "bytes": 216777,
+      "path": "results/published-20260808/final_master_games.csv",
+      "rows": 2608,
+      "sha256": "cfb08b1724c5ccfa6954c865e8e9f6fc788c90c8087f4d0d7d224a4eabc34d89"
+    },
+    {
+      "bytes": 6989,
+      "path": "results/published-20260808/final_unresolved_issues.csv",
+      "rows": 25,
+      "sha256": "eca1d36cbcdcdbc257f5863a1ecb824d8043205db6254f3037be8857cb83278e"
+    },
+    {
+      "bytes": 845089,
+      "path": "results/published-20260808/publishable_issue_titles.csv",
+      "rows": 2100,
+      "sha256": "a7a5f78152793f211c54a225934768192dfd3f353e678a1079371edfe5e23cb6"
+    },
+    {
+      "bytes": 515284,
+      "path": "results/published-20260808/publishable_master_games.csv",
+      "rows": 1601,
+      "sha256": "7de465218c7ecffa928516e50c2eb2d7fd44eb58765fbf5c83e884523103902d"
+    },
+    {
+      "bytes": 46893,
+      "path": "results/published-20260808/source_issue_inventory.csv",
+      "rows": 193,
+      "sha256": "83015bd1a9d6ce0b4d34ecc03bf940e11d638a8cacbb1c951152ced22f5a9af1"
+    },
+    {
+      "bytes": 74,
+      "path": "results/published-20260808/unresolved_summary.md",
+      "sha256": "00585ac958a30b1aa19f17ece94308b5c17391ad3d0a065e136f5799523cbeed"
+    },
+    {
+      "bytes": 981,
+      "path": "results/raw-candidates-20260325/README.md",
+      "sha256": "6d017e86334e523fc7041a1362940b94fdbe24c64d2b5f034de2c82f2559bbcf"
+    },
+    {
+      "bytes": 920170,
+      "path": "results/raw-candidates-20260325/issue_titles.csv",
+      "rows": 7407,
+      "sha256": "c6c0d95e89cbc517c8e26da7f2aabf9f97f41eff30fb5dda14fd6367a2c9eee5"
+    },
+    {
+      "bytes": 1084,
+      "path": "results/raw-candidates-20260325/manifest.json",
+      "sha256": "7c31e17b0e579739ad332f47840c9312ea6906b9acc438f9b0db6b6a5a4ed994"
+    },
+    {
+      "bytes": 306589,
+      "path": "results/raw-candidates-20260325/master_games.csv",
+      "rows": 3856,
+      "sha256": "16a3a5e016df4c39df993d0400bdd1000732292993a13e7f13abddad4673fda3"
+    },
+    {
+      "bytes": 35423,
+      "path": "results/raw-candidates-20260325/source_archives.csv",
+      "rows": 193,
+      "sha256": "d49bd0ff706e65ad2b69db03cdbb5739710d4a4dbe67df0ea7bfeb6f47beae16"
+    },
+    {
+      "bytes": 95,
+      "path": "results/raw-candidates-20260325/unresolved_issues.csv",
+      "rows": 0,
+      "sha256": "06e3ac21b2e73dc9381aa095fcf39ceb5a4ab34888d072dd9b76c2c99ccc73dc"
+    },
+    {
+      "bytes": 19335,
+      "path": "results/reference_results-20260325.csv",
+      "rows": 142,
+      "sha256": "a0f243da46a42df0e04c10ec3c25deebf06a6897e80cc69b4795f52d5f71fc4a"
+    },
+    {
+      "bytes": 1219,
+      "path": "schemas/ambiguous-matches.schema.json",
+      "sha256": "6919aab4eb084e41857270d5919f99a32229407b36dfadbe54cf44fbfa78d3d4"
+    },
+    {
+      "bytes": 5084,
+      "path": "schemas/enriched-issue-titles.schema.json",
+      "sha256": "b9528555adde45539f7b14741e35a7beb2ba994f85de55f8775a43c9e0a94f1c"
+    },
+    {
+      "bytes": 5472,
+      "path": "schemas/enriched-master-games.schema.json",
+      "sha256": "bc407d6a2d7e0343045bcec74399d33ceb04e9c594950b0fa1bbb36a863ba07f"
+    },
+    {
+      "bytes": 868,
+      "path": "schemas/pending-lookups.schema.json",
+      "sha256": "d7ee05897f9c184c1c460818a1df4f3e418f3e726313edebdfe1054ba4ae842c"
+    },
+    {
+      "bytes": 3218,
+      "path": "schemas/publishable-issue-titles.schema.json",
+      "sha256": "9fb08f196a6c46cbddc2bedcc966fc941218e29d1e8824be4bc7c1818172296a"
+    },
+    {
+      "bytes": 3105,
+      "path": "schemas/publishable-master-games.schema.json",
+      "sha256": "d4d55428476a68b8d3a0f2209b6a010b8410bb079f77f62774ac7246fa2f02da"
+    },
+    {
+      "bytes": 1249,
+      "path": "schemas/source-issue-inventory.schema.json",
+      "sha256": "ccdeafa2dd2e3fa69a85af32f53c8efb307f07fe50ee7c406a001b1b7d6cb869"
+    },
+    {
+      "bytes": 868,
+      "path": "schemas/unmatched-titles.schema.json",
+      "sha256": "d7ee05897f9c184c1c460818a1df4f3e418f3e726313edebdfe1054ba4ae842c"
+    },
+    {
+      "bytes": 991,
+      "path": "schemas/unresolved-issues.schema.json",
+      "sha256": "a573d6fb8d385b033c4dc7e734739e23963db5cc1df381eb9bba44be561f43d2"
+    }
+  ],
+  "identity": {
+    "policy": "stable from release 20260326; retired IDs remain resolvable through the redirect registry",
+    "primary_key": "game_id",
+    "redirect_registry": "data/manual_cluster_overrides.csv"
+  },
+  "provenance": {
+    "raw_snapshot": "results/raw-candidates-20260325",
+    "reference_results": "results/reference_results-20260325.csv",
+    "source_archives": 193,
+    "source_archives_unresolved": 25,
+    "source_archives_with_public_rows": 168
+  },
+  "release_date": "2026-08-08",
+  "release_id": "20260808",
+  "schema_version": "1.0.0"
+}

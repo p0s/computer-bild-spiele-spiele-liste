@@ -1,5 +1,7 @@
 # Computer Bild Spiele Game List
 
+[![CI](https://github.com/p0s/computer-bild-spiele-spiele-liste/actions/workflows/ci.yml/badge.svg)](https://github.com/p0s/computer-bild-spiele-spiele-liste/actions/workflows/ci.yml)
+
 This repo contains the extraction pipeline and the current best public CSV reconstruction of game titles found on `Computer Bild Spiele` cover discs from the `cbs-2000-09` Internet Archive set.
 
 This is an unofficial research dataset. `Computer Bild Spiele`, game titles, and other product names mentioned here may be trademarks of their respective owners. No affiliation with, endorsement by, or sponsorship from any publisher, rights holder, or archive source is implied.
@@ -9,34 +11,42 @@ This is an unofficial research dataset. `Computer Bild Spiele`, game titles, and
 - `scripts/index_cbs_exes.py`: raw extraction and title-candidate collection
 - `scripts/prepare_publishable_results.py`: publishable cleanup, clustering, and exclusion audit
 - `scripts/improved_release_common.py`: shared clustering, normalization, and match-audit helpers
-- `scripts/build_enriched_release.py`: cluster-aware enrichment rebuild from the published release plus the March 25 enriched baseline
+- `scripts/build_enriched_release.py`: cluster-aware enrichment rebuild from a published release plus a pinned baseline
 - `scripts/merge_retry_snapshot.py`: overlay a retry snapshot onto the preserved raw base snapshot
 - `scripts/release_audit.py`: audit a raw/published/enriched release trio
+- `scripts/release_contract.py`: validate schemas, keys, redirects, state semantics, and frozen artifact hashes
 - `data/manual_content_overrides.csv`: durable non-game/manual content overrides
+- `data/manual_candidate_overrides.csv`: reviewed source-disc candidates that automated extraction missed
+- `data/manual_cluster_overrides.csv`: reviewed alias redirects for stable game clusters
 - `data/manual_rejections.csv`: explicit bad canonical matches that must be rejected
 
 ## Current Canonical Release
 
-- published snapshot: `results/published-20260326/`
-- enriched snapshot: `results/enriched-20260326/`
-- previous preserved release: `results/published-20260325/` and `results/enriched-20260325/`
+- published snapshot: `results/published-20260808/`
+- enriched snapshot: `results/enriched-20260808/`
+- preserved historical release: `results/published-20260326/` and `results/enriched-20260326/`
 
-Current `20260326` counts:
+Current `20260808` counts:
 
-- publishable master rows: `1642`
-- publishable issue/title rows: `2125`
-- excluded non-game/media clusters: `114`
-- unresolved issues: `0`
-- enriched matched rows: `141`
-- enriched ambiguous rows: `141`
-- enriched unmatched rows: `1360`
-- explicit match demotions: `13`
+- publishable master rows: `1601`
+- publishable issue/title rows: `2100`
+- excluded non-game/media clusters: `148`
+- unresolved source archives: `25`
+- source archives inventoried: `193`
+- source archives with public game rows: `168`
+- enriched matched rows: `121`
+- enriched ambiguous rows: `27`
+- enriched unmatched rows: `1363`
+- enriched pending lookups: `90`
+- explicit match demotions: `0`
 
 The tracked CSVs are a best-effort public dataset, not a claim of perfect completeness.
 
 ## Data Contract
 
 The canonical public release is now cluster-based.
+
+The versioned contract is documented in `docs/DATA-CONTRACT.md`, described for tools by `datapackage.json` and `schemas/`, and frozen by the release manifest in the published snapshot.
 
 - `publishable_master_games.csv` is one row per clustered game keyed by `game_id`
 - `publishable_issue_titles.csv` is one row per `issue_code + game_id`
@@ -56,6 +66,15 @@ Important public fields:
 
 The key design rule is still that enrichment is separate from extraction. Blanks are preferred over weak guesses.
 
+## Operational Integrity
+
+- downloaded source archives are accepted only when byte size and SHA-1 match the HTTPS metadata record
+- archive member paths are validated before extraction, and extracted symbolic links are rejected
+- VPS result bundles are checksum-verified and structurally inspected before extraction; their individual files are verified before an atomic move into `results/`
+- VPS sync is restricted to the exact configured repository path and either one unambiguous running worker container or an explicitly named container
+
+These checks establish integrity against transfer corruption, path traversal, and accidental target selection. The upstream archive metadata remains a trusted input; the tracked raw manifest and release manifest freeze the exact values used for this published snapshot.
+
 ## Pipeline
 
 The pipeline is intentionally layered:
@@ -66,18 +85,28 @@ The pipeline is intentionally layered:
 4. cluster-aware enrichment rebuild
 5. release audit
 
-The `20260326` publishable step is deterministic from the preserved March 25 rerun raw snapshot plus the tracked manual policy files and March 25 enriched baseline.
+The worker exports `source_archives.csv` directly from its database, including source size and SHA-1, so future raw snapshots carry their own provenance. Retry overlays merge that inventory together with issue and unresolved rows. Strategy and HTTP caches are versioned, failed requests do not poison persistent caches, and SQLite writes use WAL plus batched candidate transactions.
+
+The `20260808` publishable step is reproducible from the tracked March 25 raw-candidate snapshot, the immutable March 26 enriched baseline, the pinned reference-result export, and the tracked manual policy files. Extraction completion and public game coverage are measured separately; a source archive with no public game rows remains explicitly unresolved.
 
 ## Commands
+
+Run the complete local gate with Python 3.10+ and `uv`:
+
+```bash
+uv run --group dev ./scripts/check_repo.sh
+```
 
 Generate the canonical published release:
 
 ```bash
 python3 scripts/prepare_publishable_results.py \
-  --input-dir results/vps-linux-full-rerun-20260325 \
-  --output-dir results/published-20260326 \
-  --baseline-enriched-master results/enriched-20260325/enriched_master_games.csv \
+  --input-dir results/raw-candidates-20260325 \
+  --output-dir results/published-20260808 \
+  --baseline-enriched-master results/enriched-20260326/enriched_master_games.csv \
   --manual-content-overrides data/manual_content_overrides.csv \
+  --manual-candidate-overrides data/manual_candidate_overrides.csv \
+  --manual-cluster-overrides data/manual_cluster_overrides.csv \
   --manual-rejections data/manual_rejections.csv
 ```
 
@@ -85,21 +114,28 @@ Build the cluster-aware enriched release:
 
 ```bash
 python3 scripts/build_enriched_release.py \
-  --input-master results/published-20260326/publishable_master_games.csv \
-  --input-issues results/published-20260326/publishable_issue_titles.csv \
-  --baseline-enriched-master results/enriched-20260325/enriched_master_games.csv \
-  --output-dir results/enriched-20260326 \
+  --input-master results/published-20260808/publishable_master_games.csv \
+  --input-issues results/published-20260808/publishable_issue_titles.csv \
+  --baseline-enriched-master results/enriched-20260326/enriched_master_games.csv \
+  --output-dir results/enriched-20260808 \
   --manual-rejections data/manual_rejections.csv \
-  --review-csv results/reference_review-20260326.csv
+  --reference-results-input results/reference_results-20260325.csv \
+  --review-csv results/reference_review-20260808.csv
 ```
 
 Audit the release trio:
 
 ```bash
 python3 scripts/release_audit.py \
-  --raw-dir results/vps-linux-full-rerun-20260325 \
-  --published-dir results/published-20260326 \
-  --enriched-dir results/enriched-20260326
+  --raw-dir results/raw-candidates-20260325 \
+  --published-dir results/published-20260808 \
+  --enriched-dir results/enriched-20260808
+```
+
+Validate the machine-readable data contract and frozen artifact manifest:
+
+```bash
+python3 scripts/release_contract.py check
 ```
 
 For unresolved-only overlays against the March 24 raw snapshot, use `scripts/merge_retry_snapshot.py`.
@@ -114,6 +150,7 @@ Published release:
 - `final_unresolved_issues.csv`
 - `audit_summary.md`
 - `unresolved_summary.md`
+- `release-manifest.json`
 
 Enriched release:
 
@@ -122,6 +159,7 @@ Enriched release:
 - `title_aliases.csv`
 - `ambiguous_matches.csv`
 - `unmatched_titles.csv`
+- `pending_lookups.csv`
 - `match_demotions.csv`
 - `source_attribution.csv`
 - `enrichment_audit.md`
@@ -129,7 +167,7 @@ Enriched release:
 Local-only artifacts:
 
 - `results/enrichment.sqlite`
-- `results/reference_review*.csv`
+- newly generated `results/reference_review*.csv` working queues; the March 25 review and lookup-result exports are pinned tracked inputs
 
 ## Licensing
 

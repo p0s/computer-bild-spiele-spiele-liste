@@ -12,6 +12,7 @@ import random
 import re
 import shutil
 import sqlite3
+import stat
 import subprocess
 import sys
 import time
@@ -19,13 +20,17 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
+import zipfile
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
-from pathlib import Path
-from typing import Callable, Iterator
+from pathlib import Path, PurePosixPath
 
-HTTP_USER_AGENT = "cbs-title-collector/1.0"
+HTTP_USER_AGENT = (
+    "cbs-title-collector/2.0 (https://github.com/p0s/computer-bild-spiele-spiele-liste; preservation research)"
+)
+CACHE_SCHEMA_VERSION = "v2"
 
 
 RAW_COLUMNS = [
@@ -112,6 +117,17 @@ UNRESOLVED_COLUMNS = [
     "resolution_path",
     "reason",
     "status",
+]
+
+SOURCE_ARCHIVE_COLUMNS = [
+    "archive_item",
+    "archive_name",
+    "archive_url",
+    "size_bytes",
+    "sha1",
+    "issue_code",
+    "year",
+    "variant",
 ]
 
 BENCHMARK_COLUMNS = [
@@ -288,6 +304,7 @@ class ArchiveRecord:
     year: int
     issue_code: str
     variant: str
+    sha1: str = ""
 
 
 @dataclass(frozen=True)
@@ -433,6 +450,7 @@ def fetch_archive_records(item: str) -> list[ArchiveRecord]:
                 year=year,
                 issue_code=issue_code,
                 variant=variant,
+                sha1=str(file_info.get("sha1", "")).strip().lower(),
             )
         )
     records.sort(key=lambda record: record.archive_name)
@@ -447,12 +465,16 @@ def connect_database(path: Path) -> sqlite3.Connection:
         """
         PRAGMA journal_mode = WAL;
         PRAGMA foreign_keys = ON;
+        PRAGMA synchronous = NORMAL;
+        PRAGMA temp_store = MEMORY;
+        PRAGMA busy_timeout = 5000;
 
         CREATE TABLE IF NOT EXISTS archives (
             archive_name TEXT PRIMARY KEY,
             archive_item TEXT NOT NULL,
             archive_url TEXT NOT NULL,
             size_bytes INTEGER NOT NULL,
+            source_sha1 TEXT,
             year INTEGER NOT NULL,
             issue_code TEXT NOT NULL,
             variant TEXT NOT NULL,
@@ -570,6 +592,10 @@ def connect_database(path: Path) -> sqlite3.Connection:
         );
         """
     )
+    archive_columns = {str(row[1]) for row in conn.execute("PRAGMA table_info(archives)")}
+    if "source_sha1" not in archive_columns:
+        conn.execute("ALTER TABLE archives ADD COLUMN source_sha1 TEXT")
+        conn.commit()
     return conn
 
 
@@ -593,6 +619,7 @@ def mark_archive_started(conn: sqlite3.Connection, record: ArchiveRecord, mode: 
             archive_item,
             archive_url,
             size_bytes,
+            source_sha1,
             year,
             issue_code,
             variant,
@@ -600,11 +627,12 @@ def mark_archive_started(conn: sqlite3.Connection, record: ArchiveRecord, mode: 
             error,
             started_at,
             finished_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL)
         ON CONFLICT(archive_name) DO UPDATE SET
             archive_item = excluded.archive_item,
             archive_url = excluded.archive_url,
             size_bytes = excluded.size_bytes,
+            source_sha1 = excluded.source_sha1,
             year = excluded.year,
             issue_code = excluded.issue_code,
             variant = excluded.variant,
@@ -618,6 +646,7 @@ def mark_archive_started(conn: sqlite3.Connection, record: ArchiveRecord, mode: 
             record.archive_item,
             record.archive_url,
             record.size_bytes,
+            record.sha1,
             record.year,
             record.issue_code,
             record.variant,
@@ -657,6 +686,7 @@ def insert_inventory_row(
     sha1: str | None,
     status: str,
     error: str | None,
+    commit: bool = True,
 ) -> None:
     conn.execute(
         """
@@ -694,7 +724,8 @@ def insert_inventory_row(
             error,
         ),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
 def insert_title_row(
@@ -710,6 +741,7 @@ def insert_title_row(
     confidence: str | None,
     status: str,
     error: str | None,
+    commit: bool = True,
 ) -> None:
     conn.execute(
         """
@@ -749,12 +781,14 @@ def insert_title_row(
             error,
         ),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
 def strategy_cache_key(record: ArchiveRecord, strategy: str, *, issue_search_limit: int = 0) -> str:
     suffix = f":rows={issue_search_limit}" if issue_search_limit else ""
-    return f"{strategy}:{record.archive_name}{suffix}"
+    source_identity = record.sha1 or f"size-{record.size_bytes}"
+    return f"{CACHE_SCHEMA_VERSION}:{strategy}:{record.archive_name}:{source_identity}{suffix}"
 
 
 def serialize_strategy_result(result: StrategyRunResult) -> str:
@@ -794,7 +828,9 @@ def load_strategy_cache(conn: sqlite3.Connection, cache_key: str) -> StrategyRun
     return deserialize_strategy_result(str(row["payload_json"]))
 
 
-def store_strategy_cache(conn: sqlite3.Connection, cache_key: str, archive_name: str, result: StrategyRunResult) -> None:
+def store_strategy_cache(
+    conn: sqlite3.Connection, cache_key: str, archive_name: str, result: StrategyRunResult
+) -> None:
     conn.execute(
         """
         INSERT INTO strategy_cache (
@@ -999,6 +1035,16 @@ def http_get_text(url: str) -> str:
             "--retry-all-errors",
             "--retry-delay",
             "5",
+            "--connect-timeout",
+            "15",
+            "--speed-limit",
+            "1024",
+            "--speed-time",
+            "120",
+            "--proto",
+            "=https",
+            "--proto-redir",
+            "=https",
             "-A",
             HTTP_USER_AGENT,
             url,
@@ -1014,20 +1060,22 @@ def fetch_cached_text(
     cache_key: str,
     url: str,
 ) -> str:
-    cached = load_external_cache(conn, cache_key)
+    versioned_cache_key = f"{CACHE_SCHEMA_VERSION}:{cache_key}"
+    cached = load_external_cache(conn, versioned_cache_key)
     if cached is not None:
         payload, error = cached
         if error:
-            raise CommandError(str(error))
-        return str(payload or "")
+            conn.execute("DELETE FROM external_cache WHERE cache_key = ?", (versioned_cache_key,))
+            conn.commit()
+        else:
+            return str(payload or "")
 
     try:
         payload = http_get_text(url)
-    except CommandError as exc:
-        store_external_cache(conn, cache_key, cache_kind, url, None, str(exc))
+    except CommandError:
         raise
 
-    store_external_cache(conn, cache_key, cache_kind, url, payload, None)
+    store_external_cache(conn, versioned_cache_key, cache_kind, url, payload, None)
     return payload
 
 
@@ -1065,6 +1113,20 @@ def archive_download_candidates(record: ArchiveRecord) -> list[tuple[str, str]]:
     return [(record.archive_url, filename)]
 
 
+def verify_downloaded_archive(path: Path, record: ArchiveRecord) -> None:
+    if record.size_bytes <= 0:
+        raise CommandError(f"missing trusted source size for {record.archive_name}")
+    if not re.fullmatch(r"[0-9a-f]{40}", record.sha1):
+        raise CommandError(f"missing trusted source SHA-1 for {record.archive_name}")
+    actual_size, actual_sha1 = sha1_file(path)
+    if actual_size != record.size_bytes:
+        raise CommandError(
+            f"source size mismatch for {record.archive_name}: expected {record.size_bytes}, got {actual_size}"
+        )
+    if actual_sha1 != record.sha1:
+        raise CommandError(f"source SHA-1 mismatch for {record.archive_name}")
+
+
 def download_record_archive(record: ArchiveRecord, download_dir: Path) -> tuple[Path, str]:
     download_dir.mkdir(parents=True, exist_ok=True)
     errors: list[str] = []
@@ -1072,6 +1134,7 @@ def download_record_archive(record: ArchiveRecord, download_dir: Path) -> tuple[
         archive_path = download_dir / filename
         try:
             download_archive(url, archive_path)
+            verify_downloaded_archive(archive_path, record)
             return archive_path, url
         except CommandError as exc:
             errors.append(f"{url}: {exc}")
@@ -1081,7 +1144,37 @@ def download_record_archive(record: ArchiveRecord, download_dir: Path) -> tuple[
     raise CommandError(f"all archive downloads failed for {record.archive_name}: {joined}")
 
 
+def validate_archive_member_paths(paths: list[str], *, maximum_members: int = 250_000) -> None:
+    if len(paths) > maximum_members:
+        raise CommandError(f"archive contains too many members: {len(paths)}")
+    for raw_path in paths:
+        if not raw_path or "\x00" in raw_path or "\\" in raw_path or len(raw_path) > 4096:
+            raise CommandError(f"unsafe archive member path: {raw_path!r}")
+        if raw_path.startswith("/") or re.match(r"^[A-Za-z]:", raw_path):
+            raise CommandError(f"unsafe archive member path: {raw_path!r}")
+        parts = PurePosixPath(raw_path).parts
+        if not parts or any(part in {"", ".", ".."} for part in parts):
+            raise CommandError(f"unsafe archive member path: {raw_path!r}")
+
+
+def validate_extracted_tree(root: Path) -> None:
+    resolved_root = root.resolve()
+    for path in root.rglob("*"):
+        if path.is_symlink():
+            raise CommandError(f"extracted archive contains a symbolic link: {path.relative_to(root)}")
+        try:
+            path.resolve().relative_to(resolved_root)
+        except ValueError as exc:
+            raise CommandError(f"extracted archive escapes its workspace: {path}") from exc
+
+
 def list_archive_contents(archive_path: Path) -> list[str]:
+    if archive_path.suffix.casefold() == ".zip":
+        try:
+            with zipfile.ZipFile(archive_path) as archive:
+                return [info.filename for info in archive.infolist() if not info.is_dir()]
+        except zipfile.BadZipFile as exc:
+            raise CommandError(f"invalid ZIP archive: {archive_path}") from exc
     if shutil.which("lsar"):
         result = run_command(["lsar", "-jss", "-j", str(archive_path)])
         payload = json.loads(result.stdout.decode("utf-8", "replace"))
@@ -1096,6 +1189,23 @@ def list_archive_contents(archive_path: Path) -> list[str]:
 
 def extract_archive(archive_path: Path, destination: Path) -> None:
     destination.mkdir(parents=True, exist_ok=True)
+    if archive_path.suffix.casefold() == ".zip":
+        try:
+            with zipfile.ZipFile(archive_path) as archive:
+                infos = archive.infolist()
+                validate_archive_member_paths([info.filename for info in infos])
+                total_size = 0
+                for info in infos:
+                    mode = (info.external_attr >> 16) & 0o170000
+                    if mode == stat.S_IFLNK:
+                        raise CommandError(f"ZIP archive contains a symbolic link: {info.filename}")
+                    total_size += info.file_size
+                    if total_size > 20 * 1024 * 1024 * 1024:
+                        raise CommandError("ZIP archive exceeds the 20 GiB uncompressed safety limit")
+                archive.extractall(destination)
+        except zipfile.BadZipFile as exc:
+            raise CommandError(f"invalid ZIP archive: {archive_path}") from exc
+        return
     if shutil.which("unar"):
         run_command(
             [
@@ -1648,6 +1758,7 @@ def extract_7z_members(archive_path: Path, destination: Path, members: list[str]
     seven = seven_zip_binary()
     if seven is None:
         raise CommandError("7z is not available")
+    validate_archive_member_paths(members)
     destination.mkdir(parents=True, exist_ok=True)
     run_command([seven, "x", "-y", f"-o{destination}", str(archive_path), *members])
 
@@ -1893,7 +2004,9 @@ def parse_vollversion_issue_html(text: str, *, source_path: str) -> tuple[list[T
     )
     if table_match:
         structured = True
-        for title in re.findall(r'<td>\s*<a[^>]+/programm/[^"]+"[^>]*>([^<]+)</a>', table_match.group(1), re.IGNORECASE):
+        for title in re.findall(
+            r'<td>\s*<a[^>]+/programm/[^"]+"[^>]*>([^<]+)</a>', table_match.group(1), re.IGNORECASE
+        ):
             candidate = make_title_candidate(
                 source_kind="vollversion-fullversion",
                 source_path=source_path,
@@ -2095,11 +2208,7 @@ def merge_strategy_candidates(results: list[StrategyRunResult]) -> list[TitleCan
 def cheap_results_sufficient(results: list[StrategyRunResult]) -> tuple[bool, str]:
     cheap_candidates = merge_strategy_candidates(results)
     unique_titles = {candidate.normalized_title for candidate in cheap_candidates}
-    structured_sources = {
-        result.strategy
-        for result in results
-        if result.structured and result.candidates
-    }
+    structured_sources = {result.strategy for result in results if result.structured and result.candidates}
     title_to_strategies: dict[str, set[str]] = {}
     for result in results:
         for candidate in result.candidates:
@@ -2169,6 +2278,7 @@ def persist_title_candidates(
             (record.archive_name,),
         )
     }
+    inserted = False
     for candidate in candidates:
         key = (candidate.source_kind, candidate.source_path, candidate.normalized_title)
         if key in existing:
@@ -2186,7 +2296,11 @@ def persist_title_candidates(
             confidence=candidate.confidence,
             status="ok",
             error=None,
+            commit=False,
         )
+        inserted = True
+    if inserted:
+        conn.commit()
 
 
 def collect_quick_title_candidates(
@@ -2310,7 +2424,15 @@ def collect_image_title_candidates_7z(
         if not path.parts:
             continue
         top_levels.add(path.parts[0])
-        if len(path.parts) >= 2 and path.parts[0].lower() in {"demo", "demos", "vollv", "bonus", "extras", "games", "spiele"}:
+        if len(path.parts) >= 2 and path.parts[0].lower() in {
+            "demo",
+            "demos",
+            "vollv",
+            "bonus",
+            "extras",
+            "games",
+            "spiele",
+        }:
             second_levels.add("/".join(path.parts[:2]))
         if path.suffix.lower() in TITLE_METADATA_SUFFIXES:
             if quick_only and len(path.parts) <= 2:
@@ -2409,9 +2531,7 @@ def mounted_candidate(
         try:
             convert_cue_to_iso(candidate.path, generated_iso)
         except Exception as conversion_error:
-            raise CommandError(
-                f"{direct_error}; CUE conversion failed: {conversion_error}"
-            ) from conversion_error
+            raise CommandError(f"{direct_error}; CUE conversion failed: {conversion_error}") from conversion_error
         with mounted_image(generated_iso, mount_root) as attachment:
             yield attachment, "hdiutil+cue2iso"
 
@@ -2481,6 +2601,7 @@ def scan_executable_tree(
                 sha1=sha1_value,
                 status="ok",
                 error=None,
+                commit=False,
             )
         except OSError as exc:
             hash_failed = True
@@ -2495,8 +2616,11 @@ def scan_executable_tree(
                 sha1=None,
                 status="hash_failed",
                 error=str(exc),
+                commit=False,
             )
         found += 1
+    if found:
+        conn.commit()
     return found, hash_failed
 
 
@@ -2518,8 +2642,9 @@ def process_downloaded_archive(
     workspace.mkdir(parents=True, exist_ok=True)
 
     try:
-        list_archive_contents(archive_path)
+        validate_archive_member_paths(list_archive_contents(archive_path))
         extract_archive(archive_path, extracted_root)
+        validate_extracted_tree(extracted_root)
 
         if mode == "titles":
             title_scanner = scan_quick_title_tree if title_scan_mode == "quick" else scan_title_tree
@@ -2593,9 +2718,7 @@ def process_downloaded_archive(
                         if mode != "titles" and mounted_hash_failed and status == "ok":
                             status = "hash_failed"
                         if mode != "titles" and mounted_hash_failed:
-                            errors.append(
-                                f"Failed to hash one or more executables in {candidate.inner_container}"
-                            )
+                            errors.append(f"Failed to hash one or more executables in {candidate.inner_container}")
             except Exception as exc:
                 if status == "ok":
                     status = "mount_failed"
@@ -2733,7 +2856,8 @@ def issue_title_candidates(conn: sqlite3.Connection, archive_name: str) -> list[
 def candidates_look_sufficient(candidates: list[TitleCandidate]) -> bool:
     unique_titles = {candidate.normalized_title for candidate in candidates}
     structured = any(
-        candidate.source_kind in {
+        candidate.source_kind
+        in {
             "vollversion-fullversion",
             "vollversion-description",
             "archiveorg-ocr",
@@ -2760,7 +2884,10 @@ def run_external_title_strategies(
     record: ArchiveRecord,
     args: argparse.Namespace,
 ) -> list[StrategyRunResult]:
-    results = [run_vollversion_strategy(conn, record), run_archive_metadata_strategy(conn, record, issue_search_limit=args.issue_search_limit)]
+    results = [
+        run_vollversion_strategy(conn, record),
+        run_archive_metadata_strategy(conn, record, issue_search_limit=args.issue_search_limit),
+    ]
     if args.use_archive_ocr:
         results.append(run_archive_ocr_strategy(conn, record, issue_search_limit=args.issue_search_limit))
     if args.use_redump:
@@ -3027,7 +3154,8 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
                    inner_container, mount_method, source_kind, source_path, candidate_title,
                    normalized_title, confidence, status, error
             FROM titles
-            ORDER BY archive_name, COALESCE(inner_container, ''), COALESCE(source_path, ''), COALESCE(normalized_title, '')
+            ORDER BY archive_name, COALESCE(inner_container, ''),
+                     COALESCE(source_path, ''), COALESCE(normalized_title, '')
             """
         )
         for row in rows:
@@ -3050,7 +3178,9 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
         issue_sets.setdefault(normalized, set()).add(str(row["archive_name"]))
         source_kind_sets.setdefault(normalized, set()).add(str(row["source_kind"]))
         current_confidence = best_confidence.get(normalized)
-        if current_confidence is None or CONFIDENCE_RANKS.get(str(row["confidence"]), 0) > CONFIDENCE_RANKS.get(current_confidence, 0):
+        if current_confidence is None or CONFIDENCE_RANKS.get(str(row["confidence"]), 0) > CONFIDENCE_RANKS.get(
+            current_confidence, 0
+        ):
             best_confidence[normalized] = str(row["confidence"])
         current = grouped.get(normalized)
         if current is None:
@@ -3110,7 +3240,8 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
     issue_grouped: dict[tuple[str, str], dict[str, object]] = {}
     rows = conn.execute(
         """
-        SELECT archive_item, archive_name, issue_code, year, variant, normalized_title, candidate_title, source_kind, confidence, source_path
+        SELECT archive_item, archive_name, issue_code, year, variant,
+               normalized_title, candidate_title, source_kind, confidence, source_path
         FROM titles
         WHERE status = 'ok' AND normalized_title IS NOT NULL
         ORDER BY archive_name, normalized_title, source_kind, source_path
@@ -3169,7 +3300,8 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
         writer.writeheader()
         rows = conn.execute(
             """
-            SELECT archive_item, archive_name, issue_code, year, variant, title_strategy, resolution_path, reason, status
+            SELECT archive_item, archive_name, issue_code, year, variant,
+                   title_strategy, resolution_path, reason, status
             FROM issue_resolution
             WHERE unresolved = 1 OR status != 'ok'
             ORDER BY archive_name
@@ -3192,6 +3324,26 @@ def export_title_csvs(conn: sqlite3.Connection, out_dir: Path) -> None:
         )
         for row in rows:
             writer.writerow({column: row[column] if row[column] is not None else "" for column in BENCHMARK_COLUMNS})
+
+
+def export_source_archives_csv(conn: sqlite3.Connection, out_dir: Path) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "source_archives.csv"
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=SOURCE_ARCHIVE_COLUMNS, lineterminator="\n")
+        writer.writeheader()
+        rows = conn.execute(
+            """
+            SELECT archive_item, archive_name, archive_url, size_bytes, source_sha1 AS sha1,
+                   issue_code, year, variant
+            FROM archives
+            ORDER BY archive_name
+            """
+        )
+        for row in rows:
+            writer.writerow(
+                {column: row[column] if row[column] is not None else "" for column in SOURCE_ARCHIVE_COLUMNS}
+            )
 
 
 def variant_bucket(record: ArchiveRecord) -> str:
@@ -3337,7 +3489,7 @@ def run_title_benchmark(
     for record in sample:
         results: list[StrategyRunResult] = [
             run_vollversion_strategy(conn, record),
-            run_archive_metadata_strategy(conn, record, issue_search_limit=args.issue_search_limit)
+            run_archive_metadata_strategy(conn, record, issue_search_limit=args.issue_search_limit),
         ]
         if args.use_archive_ocr:
             results.append(run_archive_ocr_strategy(conn, record, issue_search_limit=args.issue_search_limit))
@@ -3415,6 +3567,7 @@ def run_title_benchmark(
 
 
 def export_csvs(conn: sqlite3.Connection, out_dir: Path, mode: str) -> None:
+    export_source_archives_csv(conn, out_dir)
     if mode == "titles":
         export_title_csvs(conn, out_dir)
         return
@@ -3429,9 +3582,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Index CBS coverdisc contents without executing them.")
     parser.add_argument("--item", required=True, help="Internet Archive item identifier, for example cbs-2000-09")
     parser.add_argument("--out-dir", default="results", help="Directory for the SQLite database and CSV exports")
-    parser.add_argument("--tmp-dir", default="/tmp/cbs-index", help="Scratch directory for downloads, extraction, and mounts")
+    parser.add_argument(
+        "--tmp-dir", default="/tmp/cbs-index", help="Scratch directory for downloads, extraction, and mounts"
+    )
     parser.add_argument("--limit", type=int, default=None, help="Process only the first N archives after sorting")
-    parser.add_argument("--resume", action="store_true", help="Skip archives that already reached a terminal status in the SQLite database")
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Skip archives that already reached a terminal status in the SQLite database",
+    )
     parser.add_argument(
         "--mode",
         choices=("titles", "exes"),
@@ -3444,11 +3603,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="auto",
         help="Title collection strategy. In titles mode, auto prefers cheap external sources before disc fallback.",
     )
-    parser.add_argument("--force-disc", action="store_true", help="Run disc inspection even if cheap title sources look sufficient")
-    parser.add_argument("--validate-disc", action="store_true", help="Run cheap title sources first, then compare against disc fallback")
+    parser.add_argument(
+        "--force-disc", action="store_true", help="Run disc inspection even if cheap title sources look sufficient"
+    )
+    parser.add_argument(
+        "--validate-disc", action="store_true", help="Run cheap title sources first, then compare against disc fallback"
+    )
     parser.add_argument("--use-redump", action="store_true", help="Enable Redump lookup as a secondary title source")
     parser.add_argument("--use-archive-ocr", action="store_true", help="Enable Archive.org OCR/text sidecar lookup")
-    parser.add_argument("--issue-search-limit", type=int, default=5, help="Maximum Archive.org search candidates per issue")
+    parser.add_argument(
+        "--issue-search-limit", type=int, default=5, help="Maximum Archive.org search candidates per issue"
+    )
     parser.add_argument("--benchmark-sample", type=int, default=6, help="Number of issues to sample in benchmark mode")
     parser.add_argument("--benchmark-seed", type=int, default=1, help="Deterministic RNG seed for benchmark sampling")
     return parser.parse_args(argv)
@@ -3487,7 +3652,11 @@ def main(argv: list[str] | None = None) -> int:
                         "SELECT unresolved, title_strategy FROM issue_resolution WHERE archive_name = ?",
                         (record.archive_name,),
                     ).fetchone()
-                    if resolution is not None and int(resolution["unresolved"]) == 1 and args.title_strategy != "external-only":
+                    if (
+                        resolution is not None
+                        and int(resolution["unresolved"]) == 1
+                        and args.title_strategy != "external-only"
+                    ):
                         pass
                     else:
                         print(f"[{index}/{total}] skip {record.archive_name} ({current_status})", file=sys.stderr)

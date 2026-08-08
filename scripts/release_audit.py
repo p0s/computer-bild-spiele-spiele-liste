@@ -13,10 +13,10 @@ from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
-
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from scripts.release_contract import check_contract
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -71,8 +71,32 @@ ALLOWED_PUBLISHED_FILES = {
     "final_unresolved_issues.csv",
     "publishable_issue_titles.csv",
     "publishable_master_games.csv",
+    "release-manifest.json",
+    "source_issue_inventory.csv",
     "unresolved_summary.md",
 }
+
+ALLOWED_RAW_FILES = {
+    "README.md",
+    "issue_titles.csv",
+    "manifest.json",
+    "master_games.csv",
+    "source_archives.csv",
+    "unresolved_issues.csv",
+}
+
+GENERATED_PUBLISHED_FILES = (
+    "audit_summary.md",
+    "dropped_candidates.csv",
+    "excluded_non_game_titles.csv",
+    "final_issue_titles.csv",
+    "final_master_games.csv",
+    "final_unresolved_issues.csv",
+    "publishable_issue_titles.csv",
+    "publishable_master_games.csv",
+    "source_issue_inventory.csv",
+    "unresolved_summary.md",
+)
 
 ALLOWED_ENRICHED_FILES = {
     "README.md",
@@ -81,6 +105,7 @@ ALLOWED_ENRICHED_FILES = {
     "enrichment_audit.md",
     "enriched_master_games.csv",
     "match_demotions.csv",
+    "pending_lookups.csv",
     "source_attribution.csv",
     "title_aliases.csv",
     "unmatched_titles.csv",
@@ -106,6 +131,7 @@ KNOWN_PUBLIC_NOISE_PATTERNS = (
     "l sungsb",
     "l sungb",
     "loesungsbuch",
+    "lsungsbuch",
     "m chten sie das spiel verlassen",
     "ip hinzuf gen",
     "browsergames",
@@ -115,6 +141,18 @@ KNOWN_PUBLIC_NOISE_PATTERNS = (
     "radeon",
     "sandra",
     "tutorial",
+    "window title",
+    "adventure editor",
+    "burn in test xp vista version",
+    "eragonfilm",
+    "free commander",
+    "indeo 5",
+    "paraworldfilm",
+    "shop client",
+    "technik video ruby whiteout",
+    "two worlds service release",
+    "videotippszu anno",
+    "yahoo messenger",
 )
 
 SAMPLE_SUSPICIOUS_SUBSTRINGS = (
@@ -136,6 +174,7 @@ SAMPLE_SUSPICIOUS_SUBSTRINGS = (
 
 SAMPLE_SUSPICIOUS_EXCEPTIONS = {
     "knights of honor",
+    "knights of the old republic 2",
 }
 
 SAMPLE_DROP_SUBSTRINGS = (
@@ -184,9 +223,9 @@ def latest_dated_dir(pattern: str, *, required_files: tuple[str, ...] = ()) -> P
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     raw_default = latest_dated_dir(
-        "vps-*",
-        required_files=("issue_titles.csv", "master_games.csv", "unresolved_issues.csv"),
-    )
+        "raw-candidates-*",
+        required_files=("issue_titles.csv", "master_games.csv", "unresolved_issues.csv", "source_archives.csv"),
+    ) or latest_dated_dir("vps-*", required_files=("issue_titles.csv", "master_games.csv", "unresolved_issues.csv"))
     published_default = latest_dated_dir("published-*")
     enriched_default = latest_dated_dir("enriched-*")
     parser = argparse.ArgumentParser(description="Audit a dated CBS published snapshot and its raw inputs.")
@@ -196,17 +235,36 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--report-path", default="FINAL-RELEASE-AUDIT.md")
     parser.add_argument("--sample-path", default="FINAL-RELEASE-SAMPLE.csv")
     parser.add_argument("--skip-git-fetch", action="store_true")
+    parser.add_argument(
+        "--require-remote-sync",
+        action="store_true",
+        help=(
+            "Fail unless local HEAD equals origin/master; normally remote state is reported but is not a dataset gate."
+        ),
+    )
     return parser.parse_args(argv)
 
 
 def build_paths(args: argparse.Namespace, root: Path = ROOT) -> AuditPaths:
-    published_dir = (root / args.published_dir).resolve() if not Path(args.published_dir).is_absolute() else Path(args.published_dir)
+    published_dir = (
+        (root / args.published_dir).resolve()
+        if not Path(args.published_dir).is_absolute()
+        else Path(args.published_dir)
+    )
     raw_dir = (root / args.raw_dir).resolve() if not Path(args.raw_dir).is_absolute() else Path(args.raw_dir)
     enriched_dir = None
     if args.enriched_dir:
-        enriched_dir = (root / args.enriched_dir).resolve() if not Path(args.enriched_dir).is_absolute() else Path(args.enriched_dir)
-    report_path = (root / args.report_path).resolve() if not Path(args.report_path).is_absolute() else Path(args.report_path)
-    sample_path = (root / args.sample_path).resolve() if not Path(args.sample_path).is_absolute() else Path(args.sample_path)
+        enriched_dir = (
+            (root / args.enriched_dir).resolve()
+            if not Path(args.enriched_dir).is_absolute()
+            else Path(args.enriched_dir)
+        )
+    report_path = (
+        (root / args.report_path).resolve() if not Path(args.report_path).is_absolute() else Path(args.report_path)
+    )
+    sample_path = (
+        (root / args.sample_path).resolve() if not Path(args.sample_path).is_absolute() else Path(args.sample_path)
+    )
     audit_date = published_dir.name.rsplit("-", 1)[-1] if "-" in published_dir.name else published_dir.name
     return AuditPaths(
         root=root.resolve(),
@@ -283,6 +341,14 @@ def current_counts(published_dir: Path) -> dict[str, int]:
     }.items():
         with path.open(encoding="utf-8", newline="") as handle:
             counts[key] = len(list(csv.DictReader(handle)))
+    inventory_path = published_dir / "source_issue_inventory.csv"
+    if inventory_path.exists():
+        inventory = read_csv(inventory_path)
+        counts["source_archives"] = len(inventory)
+        counts["published_archives"] = sum(int(row.get("publishable_game_rows", "0") or 0) > 0 for row in inventory)
+    else:
+        counts["source_archives"] = 0
+        counts["published_archives"] = 0
     return counts
 
 
@@ -337,10 +403,16 @@ def classify_sample(title: str) -> tuple[str, str]:
     return "keep", "looks like a plausible game title"
 
 
-def build_sample(master_rows: list[dict[str, str]], issue_rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], str]:
+def build_sample(
+    master_rows: list[dict[str, str]], issue_rows: list[dict[str, str]]
+) -> tuple[list[dict[str, object]], str]:
     sorted_master = sorted(
         master_rows,
-        key=lambda row: (-int(row["issue_count"]), -int(row["occurrence_count"]), row["representative_title"].casefold()),
+        key=lambda row: (
+            -int(row["issue_count"]),
+            -int(row["occurrence_count"]),
+            row["representative_title"].casefold(),
+        ),
     )
     top_master = sorted_master[:100]
     remainder = sorted_master[100:]
@@ -409,7 +481,14 @@ def build_sample(master_rows: list[dict[str, str]], issue_rows: list[dict[str, s
             bucket = f"late-year-seed-1:{row['issue_code']}"
         add_issue(bucket, row)
 
-    sample_rows.sort(key=lambda row: (row["sample_bucket"], row["row_kind"], row["issue_code"], row["representative_title"].casefold()))
+    sample_rows.sort(
+        key=lambda row: (
+            row["sample_bucket"],
+            row["row_kind"],
+            row["issue_code"],
+            row["representative_title"].casefold(),
+        )
+    )
     return sample_rows, late_issue_pick
 
 
@@ -432,7 +511,7 @@ def readme_snapshot_counts(root: Path) -> dict[str, int] | None:
     text = (root / "README.md").read_text(encoding="utf-8")
     match_master = re.search(r"(?:publishable master rows|master titles): `(\d+)`", text)
     match_issue = re.search(r"(?:publishable issue/title rows|issue/title rows): `(\d+)`", text)
-    match_unresolved = re.search(r"unresolved issues: `(\d+)`", text)
+    match_unresolved = re.search(r"unresolved (?:issues|source archives): `(\d+)`", text)
     if not (match_master and match_issue and match_unresolved):
         return None
     return {
@@ -456,31 +535,51 @@ def published_readme_snapshot_counts(published_dir: Path) -> dict[str, int] | No
     }
 
 
-def compare_generator_outputs(root: Path, raw_snapshot_dir: Path) -> dict[str, str]:
+def compare_output_files(
+    generated_dir: Path,
+    published_dir: Path,
+    names: tuple[str, ...] = GENERATED_PUBLISHED_FILES,
+) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for name in names:
+        generated = generated_dir / name
+        canonical = published_dir / name
+        if not generated.exists():
+            result[name] = "missing_generated"
+        elif not canonical.exists():
+            result[name] = "missing_canonical"
+        else:
+            result[name] = "match" if sha256_file(generated) == sha256_file(canonical) else "mismatch"
+    return result
+
+
+def prior_enriched_master(root: Path, published_dir: Path) -> Path | None:
+    published_date = snapshot_date(published_dir)
+    candidates: list[tuple[str, Path]] = []
+    for directory in (root / "results").glob("enriched-*"):
+        date = snapshot_date(directory)
+        master = directory / "enriched_master_games.csv"
+        if date and master.exists() and (published_date is None or date < published_date):
+            candidates.append((date, master))
+    return sorted(candidates)[-1][1] if candidates else None
+
+
+def compare_generator_outputs(root: Path, raw_snapshot_dir: Path, published_dir: Path) -> dict[str, str]:
     script = root / "scripts" / "prepare_publishable_results.py"
-    with tempfile.TemporaryDirectory(prefix="cbs-audit-a-") as left_dir, tempfile.TemporaryDirectory(prefix="cbs-audit-b-") as right_dir:
-        for out_dir in (left_dir, right_dir):
-            run(
-                [
-                    sys.executable,
-                    str(script),
-                    "--input-dir",
-                    str(raw_snapshot_dir),
-                    "--output-dir",
-                    out_dir,
-                ],
-                cwd=root,
-            )
-        result: dict[str, str] = {}
-        for name in [
-            "publishable_master_games.csv",
-            "publishable_issue_titles.csv",
-            "final_unresolved_issues.csv",
-        ]:
-            left = Path(left_dir) / name
-            right = Path(right_dir) / name
-            result[name] = "match" if sha256_file(left) == sha256_file(right) else "mismatch"
-        return result
+    with tempfile.TemporaryDirectory(prefix="cbs-audit-generated-") as generated_dir:
+        command = [
+            sys.executable,
+            str(script),
+            "--input-dir",
+            str(raw_snapshot_dir),
+            "--output-dir",
+            generated_dir,
+        ]
+        baseline = prior_enriched_master(root, published_dir)
+        if baseline is not None:
+            command.extend(["--baseline-enriched-master", str(baseline)])
+        run(command, cwd=root)
+        return compare_output_files(Path(generated_dir), published_dir)
 
 
 def expected_tracked(paths: AuditPaths) -> set[str]:
@@ -508,17 +607,37 @@ def expected_tracked(paths: AuditPaths) -> set[str]:
 
 def is_allowed_preserved_release_file(path: str) -> bool:
     parts = Path(path).parts
-    if len(parts) == 2 and parts[0] == "results" and parts[1].startswith("reference_review"):
+    if len(parts) == 2 and parts[0] == "results" and parts[1].startswith(("reference_review", "reference_results")):
         return True
     if len(parts) != 3 or parts[0] != "results":
         return False
     directory = parts[1]
     filename = parts[2]
+    if directory.startswith("raw-candidates-"):
+        return filename in ALLOWED_RAW_FILES
     if directory.startswith("published-"):
         return filename in ALLOWED_PUBLISHED_FILES
     if directory.startswith("enriched-"):
         return filename in ALLOWED_ENRICHED_FILES
     return False
+
+
+def is_allowed_project_file(path: str) -> bool:
+    project_prefixes = ("scripts/", "tests/", "data/", "docs/", "schemas/", "src/", ".github/")
+    project_root_files = {
+        ".editorconfig",
+        ".gitignore",
+        "CITATION.cff",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "LICENSE-DATA.md",
+        "README.md",
+        "datapackage.json",
+        "pyproject.toml",
+        "uv.lock",
+    }
+    return path in project_root_files or path.startswith(project_prefixes)
 
 
 def readme_table_consistent(readme_table_rows: list[tuple[str, str, str]], master_rows: list[dict[str, str]]) -> bool:
@@ -533,6 +652,110 @@ def readme_table_consistent(readme_table_rows: list[tuple[str, str, str]], maste
         for row in master_rows
     ]
     return readme_table_rows == expected_rows
+
+
+def source_coverage_problems(published_dir: Path) -> list[str]:
+    inventory_path = published_dir / "source_issue_inventory.csv"
+    if not inventory_path.exists():
+        return ["source_issue_inventory.csv is missing"]
+
+    inventory_rows = read_csv(inventory_path)
+    issue_rows = read_csv(published_dir / "publishable_issue_titles.csv")
+    unresolved_rows = read_csv(published_dir / "final_unresolved_issues.csv")
+    names = [row.get("archive_name", "") for row in inventory_rows]
+    inventory_names = {name for name in names if name}
+    public_names = {row.get("archive_name", "") for row in issue_rows if row.get("archive_name")}
+    unresolved_names = {row.get("archive_name", "") for row in unresolved_rows if row.get("archive_name")}
+    zero_output_names = {
+        row.get("archive_name", "") for row in inventory_rows if int(row.get("publishable_game_rows", "0") or 0) == 0
+    }
+
+    problems: list[str] = []
+    if len(names) != len(inventory_names):
+        problems.append("source archive inventory contains blank or duplicate archive names")
+    missing_inventory = sorted(public_names - inventory_names)
+    if missing_inventory:
+        problems.append(f"{len(missing_inventory)} public archives are absent from the source inventory")
+    missing_unresolved = sorted(zero_output_names - unresolved_names)
+    if missing_unresolved:
+        problems.append(
+            f"{len(missing_unresolved)} zero-output source archives are not represented in the unresolved queue"
+        )
+    false_unresolved = sorted(
+        name
+        for name in unresolved_names & inventory_names
+        if name not in zero_output_names
+        and not any(
+            row.get("archive_name") == name and row.get("publication_status") == "published_with_extraction_warning"
+            for row in inventory_rows
+        )
+    )
+    if false_unresolved:
+        problems.append(f"{len(false_unresolved)} unresolved archive rows conflict with published coverage state")
+    missing_source_hashes = [
+        row.get("archive_name", "")
+        for row in inventory_rows
+        if not row.get("source_sha1") or not row.get("source_size_bytes")
+    ]
+    if missing_source_hashes:
+        problems.append(f"{len(missing_source_hashes)} source archives lack size or SHA-1 provenance")
+    return problems
+
+
+def enrichment_quality(enriched_dir: Path | None) -> tuple[list[str], dict[str, int]]:
+    counts = {"matched": 0, "ambiguous": 0, "unmatched": 0, "pending": 0}
+    if enriched_dir is None:
+        return [], counts
+
+    master_path = enriched_dir / "enriched_master_games.csv"
+    ambiguous_path = enriched_dir / "ambiguous_matches.csv"
+    unmatched_path = enriched_dir / "unmatched_titles.csv"
+    pending_path = enriched_dir / "pending_lookups.csv"
+    missing = [path.name for path in (master_path, ambiguous_path, unmatched_path, pending_path) if not path.exists()]
+    if missing:
+        return [f"enrichment outputs are missing: {', '.join(missing)}"], counts
+
+    master_rows = read_csv(master_path)
+    ambiguous_rows = read_csv(ambiguous_path)
+    unmatched_rows = read_csv(unmatched_path)
+    pending_rows = read_csv(pending_path)
+    for row in master_rows:
+        status = row.get("match_status", "")
+        if status in counts:
+            counts[status] += 1
+
+    problems: list[str] = []
+    qid_games: dict[str, set[str]] = defaultdict(set)
+    for row in master_rows:
+        qid = row.get("wikidata_id", "").strip()
+        if qid:
+            qid_games[qid].add(row.get("game_id", ""))
+    duplicate_qids = {qid: games for qid, games in qid_games.items() if len(games) > 1}
+    if duplicate_qids:
+        problems.append(f"{len(duplicate_qids)} Wikidata IDs are assigned to multiple game IDs")
+
+    evidence_free = [
+        row for row in ambiguous_rows if not row.get("candidate_1_title") and not row.get("candidate_1_url")
+    ]
+    if evidence_free:
+        problems.append(f"{len(evidence_free)} ambiguous matches lack reviewable candidate evidence")
+
+    transient_markers = ("rate_limited", "lookup_failed", "lookup_deferred", "not_cached")
+    operational_unmatched = [
+        row for row in unmatched_rows if any(marker in row.get("failure_reason", "") for marker in transient_markers)
+    ]
+    if operational_unmatched:
+        problems.append(
+            f"{len(operational_unmatched)} operational lookup failures are misclassified as semantic no-match"
+        )
+
+    if len(ambiguous_rows) != counts["ambiguous"]:
+        problems.append("ambiguous queue count does not match enriched master status counts")
+    if len(unmatched_rows) != counts["unmatched"]:
+        problems.append("unmatched queue count does not match enriched master status counts")
+    if len(pending_rows) != counts["pending"]:
+        problems.append("pending queue count does not match enriched master status counts")
+    return problems, counts
 
 
 def write_report(
@@ -554,24 +777,40 @@ def write_report(
     sample_rows: list[dict[str, object]],
     late_issue_pick: str,
     determinism: dict[str, str],
-) -> None:
+    remote_sync_verified: bool,
+    require_remote_sync: bool,
+    coverage_problems: list[str],
+    enrichment_problems: list[str],
+    enrichment_counts: dict[str, int],
+    contract_problems: list[str],
+) -> str:
     expected = expected_tracked(paths)
     expected_missing = sorted(expected - set(tracked))
     unexpected_tracked = sorted(
         path
         for path in set(tracked) - expected - OPTIONAL_TRACKED
-        if not is_allowed_preserved_release_file(path)
+        if not is_allowed_preserved_release_file(path) and not is_allowed_project_file(path)
     )
 
-    readme_counts_consistent = readme_counts == counts if readme_counts is not None else False
-    published_readme_counts_consistent = published_readme_counts == counts if published_readme_counts is not None else False
+    readme_counts_consistent = (
+        all(readme_counts.get(key) == counts.get(key) for key in ("master_titles", "issue_rows", "unresolved"))
+        if readme_counts is not None
+        else False
+    )
+    published_readme_counts_consistent = (
+        all(
+            published_readme_counts.get(key) == counts.get(key) for key in ("master_titles", "issue_rows", "unresolved")
+        )
+        if published_readme_counts is not None
+        else False
+    )
     readme_consistent = readme_table_consistent(readme_table_rows, master_rows)
     near_variants = near_variant_groups(master_rows)
 
     blockers: list[str] = []
     caveats: list[str] = []
 
-    if local_head != remote_head:
+    if require_remote_sync and not remote_sync_verified:
         blockers.append("Repo is not at the same commit locally and on origin/master.")
     if unexpected_tracked or expected_missing:
         blockers.append("Tracked public tree does not match the intended file set.")
@@ -582,14 +821,25 @@ def write_report(
     if noise_hits:
         blockers.append("Tracked public outputs still contain known UI/resource noise markers.")
     if not all(value == "match" for value in determinism.values()):
-        blockers.append("Publishable output generation is not deterministic from the preserved snapshot.")
+        blockers.append("Fresh generation does not exactly reproduce the checked-in publishable snapshot.")
+    blockers.extend(coverage_problems)
+    blockers.extend(enrichment_problems)
+    blockers.extend(contract_problems)
     if not readme_counts_consistent:
         blockers.append("README content is inconsistent with the tracked publishable CSVs.")
     if not published_readme_counts_consistent:
-        blockers.append(f"{relpath(paths.published_dir / 'README.md', paths.root)} is inconsistent with the tracked publishable CSVs.")
+        blockers.append(
+            f"{relpath(paths.published_dir / 'README.md', paths.root)} is inconsistent "
+            "with the tracked publishable CSVs."
+        )
 
     if counts["unresolved"] > 0:
         caveats.append(f"{counts['unresolved']} unresolved issues remain and are documented as a retry queue.")
+    if enrichment_counts["pending"] > 0:
+        caveats.append(
+            f"{enrichment_counts['pending']} reference lookups remain pending and are not "
+            "classified as semantic no-match."
+        )
     uncertain_rows = [row for row in sample_rows if row["classification"] == "uncertain"]
     if uncertain_rows:
         caveats.append(f"{len(uncertain_rows)} sampled rows remain uncertain and need future human review.")
@@ -606,6 +856,9 @@ def write_report(
     sample_summary: dict[str, int] = defaultdict(int)
     for row in sample_rows:
         sample_summary[str(row["classification"])] += 1
+    readme_disclaimer_present = "No affiliation with, endorsement by, or sponsorship from" in (
+        paths.root / "README.md"
+    ).read_text(encoding="utf-8")
 
     lines = [
         "# Final Release Audit",
@@ -628,18 +881,25 @@ def write_report(
         f"- publishable master titles: `{counts['master_titles']}`",
         f"- publishable issue/title rows: `{counts['issue_rows']}`",
         f"- unresolved issues: `{counts['unresolved']}`",
+        f"- source archives inventoried: `{counts['source_archives']}`",
+        f"- source archives with public game rows: `{counts['published_archives']}`",
+        "- enrichment matched / ambiguous / unmatched / pending: "
+        f"`{enrichment_counts['matched']} / {enrichment_counts['ambiguous']} / "
+        f"{enrichment_counts['unmatched']} / {enrichment_counts['pending']}`",
         "",
         "## Repo Integrity",
         "",
         f"- tracked tree matches expected set: `{not unexpected_tracked and not expected_missing}`",
         f"- expected tracked files missing: `{len(expected_missing)}`",
         f"- unexpected tracked files: `{len(unexpected_tracked)}`",
+        f"- remote sync checked: `{remote_head != 'not checked'}`",
+        f"- remote sync verified: `{remote_sync_verified}`",
         "",
         "## Legal, Privacy, and Compliance",
         "",
         f"- personal/secret literal findings in tracked files: `{len(tracked_findings)}`",
         f"- licenses present: `{(paths.root / 'LICENSE').exists() and (paths.root / 'LICENSE-DATA.md').exists()}`",
-        f"- README disclaimer present: `{'No affiliation with, endorsement by, or sponsorship from' in (paths.root / 'README.md').read_text(encoding='utf-8')}`",
+        f"- README disclaimer present: `{readme_disclaimer_present}`",
         "",
         "## Dataset Quality",
         "",
@@ -658,6 +918,7 @@ def write_report(
         f"- README snapshot counts consistent: `{readme_counts_consistent}`",
         f"- published-results README counts consistent: `{published_readme_counts_consistent}`",
         f"- README appendix table consistent with publishable master CSV: `{readme_consistent}`",
+        f"- machine-readable release contract valid: `{not contract_problems}`",
         "",
         "## Blockers",
         "",
@@ -677,7 +938,8 @@ def write_report(
     if uncertain_rows:
         for row in uncertain_rows[:10]:
             lines.append(
-                f"- `{row['representative_title']}` (`{row['sample_bucket']}`): `{row['classification']}` — {row['reason']}"
+                f"- `{row['representative_title']}` (`{row['sample_bucket']}`): "
+                f"`{row['classification']}` — {row['reason']}"
             )
     else:
         lines.append("- no uncertain rows in the deterministic review sample")
@@ -688,6 +950,7 @@ def write_report(
             lines.append(f"- {' | '.join(group)}")
 
     paths.report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return verdict
 
 
 def run_audit(args: argparse.Namespace, *, root: Path = ROOT) -> int:
@@ -695,12 +958,14 @@ def run_audit(args: argparse.Namespace, *, root: Path = ROOT) -> int:
     tracked = git_tracked_files(paths.root)
     local_head = run(["git", "rev-parse", "--short", "HEAD"], cwd=paths.root).strip()
     if args.skip_git_fetch:
-        remote_head = local_head
-        remote_count = int(run(["git", "rev-list", "--count", "HEAD"], cwd=paths.root).strip())
+        remote_head = "not checked"
+        remote_count = -1
+        remote_sync_verified = False
     else:
         run(["git", "fetch", "origin", "master"], cwd=paths.root)
         remote_head = run(["git", "rev-parse", "--short", "origin/master"], cwd=paths.root).strip()
         remote_count = int(run(["git", "rev-list", "--count", "origin/master"], cwd=paths.root).strip())
+        remote_sync_verified = local_head == remote_head
     local_count = int(run(["git", "rev-list", "--count", "HEAD"], cwd=paths.root).strip())
 
     tracked_findings = tracked_text_findings(paths.root, tracked)
@@ -737,9 +1002,20 @@ def run_audit(args: argparse.Namespace, *, root: Path = ROOT) -> int:
     readme_counts = readme_snapshot_counts(paths.root)
     published_readme_counts = published_readme_snapshot_counts(paths.published_dir)
     readme_table_rows = parse_readme_table(paths.root)
-    determinism = compare_generator_outputs(paths.root, paths.raw_dir)
+    determinism = compare_generator_outputs(paths.root, paths.raw_dir, paths.published_dir)
+    coverage_problems = source_coverage_problems(paths.published_dir)
+    enrichment_problems, enrichment_counts = enrichment_quality(paths.enriched_dir)
+    contract_problems = (
+        check_contract(
+            raw_dir=paths.raw_dir,
+            published_dir=paths.published_dir,
+            enriched_dir=paths.enriched_dir,
+        )
+        if paths.enriched_dir is not None
+        else []
+    )
 
-    write_report(
+    verdict = write_report(
         paths=paths,
         local_head=local_head,
         remote_head=remote_head,
@@ -757,8 +1033,14 @@ def run_audit(args: argparse.Namespace, *, root: Path = ROOT) -> int:
         sample_rows=sample_rows,
         late_issue_pick=late_issue_pick,
         determinism=determinism,
+        remote_sync_verified=remote_sync_verified,
+        require_remote_sync=args.require_remote_sync,
+        coverage_problems=coverage_problems,
+        enrichment_problems=enrichment_problems,
+        enrichment_counts=enrichment_counts,
+        contract_problems=contract_problems,
     )
-    return 0
+    return 1 if verdict == "not ready" else 0
 
 
 def main(argv: list[str] | None = None) -> int:

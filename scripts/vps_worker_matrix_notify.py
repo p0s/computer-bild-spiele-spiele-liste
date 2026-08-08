@@ -8,11 +8,15 @@ import os
 import sqlite3
 import sys
 import time
-import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # pragma: no cover - exercised by the Python 3.10 CI job
+    import tomli as tomllib
 
 
 def default_config_path() -> str:
@@ -33,11 +37,10 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_cfg(path: Path) -> tuple[str, str, str]:
-    cfg = tomllib.loads(path.read_text())
+def load_cfg(path: Path, project: str) -> tuple[str, str, str]:
+    cfg = tomllib.loads(path.read_text(encoding="utf-8"))
     matrix = cfg["transports"]["matrix"]
     room_projects = matrix.get("room_projects", {})
-    project = args.project
     room_id = None
     for candidate_room_id, mapped_project in room_projects.items():
         if mapped_project == project:
@@ -131,47 +134,51 @@ def maybe_send_progress(
     state_file.write_text(json.dumps({"digest": digest}, sort_keys=True))
 
 
-args = parse_args()
+def main() -> int:
+    args = parse_args()
+    try:
+        homeserver, access_token, room_id = load_cfg(Path(args.config), args.project)
+    except Exception as exc:  # pragma: no cover - operational fallback
+        print(f"matrix notify disabled: {exc}", file=sys.stderr)
+        return 0
 
-try:
-    homeserver, access_token, room_id = load_cfg(Path(args.config))
-except Exception as exc:  # pragma: no cover - operational fallback
-    print(f"matrix notify disabled: {exc}", file=sys.stderr)
-    raise SystemExit(0)
+    db_path = Path(args.db)
+    tmp_dir = Path(args.tmp_dir)
+    state_file = Path(args.state_file)
+    state_file.parent.mkdir(parents=True, exist_ok=True)
 
-db_path = Path(args.db)
-tmp_dir = Path(args.tmp_dir)
-state_file = Path(args.state_file)
-state_file.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        if args.event == "start":
+            body = f"cbs worker started\nproject: {args.project}"
+            send_message(homeserver, access_token, room_id, body)
+            state_file.write_text(json.dumps({"digest": ""}), encoding="utf-8")
+        elif args.event == "progress":
+            body = progress_message(db_summary(db_path), tmp_dir)
+            maybe_send_progress(homeserver, access_token, room_id, state_file, body, args.force)
+        elif args.event == "finish":
+            summary = db_summary(db_path)
+            body = (
+                f"cbs worker finished\n"
+                f"ok archives: {summary['ok_count']}\n"
+                f"title rows: {summary['title_rows']}\n"
+                f"latest ok: {summary['latest_ok'] or 'none'}"
+            )
+            send_message(homeserver, access_token, room_id, body)
+        else:
+            summary = db_summary(db_path)
+            body = (
+                f"cbs worker error\n"
+                f"exit code: {args.worker_exit_code}\n"
+                f"message: {args.message}\n"
+                f"ok archives: {summary['ok_count']}\n"
+                f"title rows: {summary['title_rows']}\n"
+                f"in progress: {summary['in_progress'] or 'none'}"
+            )
+            send_message(homeserver, access_token, room_id, body)
+    except urllib.error.URLError as exc:  # pragma: no cover - operational fallback
+        print(f"matrix notify failed: {exc}", file=sys.stderr)
+    return 0
 
-try:
-    if args.event == "start":
-        body = f"cbs worker started\nproject: {args.project}"
-        send_message(homeserver, access_token, room_id, body)
-        state_file.write_text(json.dumps({"digest": ""}))
-    elif args.event == "progress":
-        body = progress_message(db_summary(db_path), tmp_dir)
-        maybe_send_progress(homeserver, access_token, room_id, state_file, body, args.force)
-    elif args.event == "finish":
-        summary = db_summary(db_path)
-        body = (
-            f"cbs worker finished\n"
-            f"ok archives: {summary['ok_count']}\n"
-            f"title rows: {summary['title_rows']}\n"
-            f"latest ok: {summary['latest_ok'] or 'none'}"
-        )
-        send_message(homeserver, access_token, room_id, body)
-    else:
-        summary = db_summary(db_path)
-        body = (
-            f"cbs worker error\n"
-            f"exit code: {args.worker_exit_code}\n"
-            f"message: {args.message}\n"
-            f"ok archives: {summary['ok_count']}\n"
-            f"title rows: {summary['title_rows']}\n"
-            f"in progress: {summary['in_progress'] or 'none'}"
-        )
-        send_message(homeserver, access_token, room_id, body)
-except urllib.error.URLError as exc:  # pragma: no cover - operational fallback
-    print(f"matrix notify failed: {exc}", file=sys.stderr)
-    raise SystemExit(0)
+
+if __name__ == "__main__":
+    raise SystemExit(main())

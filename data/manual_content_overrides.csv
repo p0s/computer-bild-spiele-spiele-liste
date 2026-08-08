@@ -1,4 +1,19 @@
 game_id,representative_title,content_class,publishable,reason
+csicrimesceneinvestigationsdarkmotiveslsungsbuch,CSI Crime Scene Investigations Dark Motives Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+fusssballmanagerdatenbankupdate,Fusssball Manager Datenbank Update,utility,false,database update is supporting software rather than a standalone game
+gajim,Gajim,utility,false,instant messaging client is not a game
+gammakorrektur,Gammakorrektur,disc_noise,false,display calibration control is disc UI noise
+nibiruderbotedergtterlsungsbuch,Nibiru Der Boteder Gtter Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+postmortemlsungsbuch,Post Mortem Lsungsbuch,guide_media,false,Lösungsbuch title is guide media rather than a game
+sacredplusinkllsungsbuch,Sacred Plusinkl Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+sherlockholmesdiespurdererwachtenlsungsbuch,Sherlock Holmes Die Spurder Erwachten Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+silenthunterwolvesofthepacificsprach,Silent Hunter Wolves Of The Pacific Sprach,disc_noise,false,language-selection resource rather than a distinct game
+syberia2lsungsbuch,Syberia 2 Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+syberiainkllsungsbuch,Syberiainkl Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
+thewitcheradventureeditor,The Witcher Adventure Editor,editor_sdk,false,game editor is tooling rather than a game
+tmainwindowwindowtitle,T Main Window Window Title,disc_noise,false,application window resource string
+tupdatewindowwindowtitle,T Update Window Window Title,disc_noise,false,application update-window resource string
+waronterrorlsungsbuch,Waron Terror Lsungsbuch,guide_media,false,OCR-damaged Lösungsbuch title is guide media rather than a game
 acronistrueimage10home,Acronis True Image 10 Home,utility,false,backup utility not a game
 aloneinthedarkkomplettlosung,Alone in the Dark Komplettlösung,guide_media,false,walkthrough media not a game
 ashampoofirewall,Ashampoo Firewall,utility,false,firewall utility not a game
@@ -18,3 +33,23 @@ teamspeak2,Team Speak 2,utility,false,voice chat client not a game
 webdesmartsurfer,WEBDE Smart Surfer,utility,false,utility/browser client not a game
 werbung,Werbung,disc_noise,false,advertising label not a game
 xfire,Xfire,utility,false,chat utility not a game
+burnintestxpvistaversion,Burn In Test XP/Vista Version,utility,false,hardware stress-test utility not a game
+eragonfilm,Eragon film,guide_media,false,film/video material rather than a playable game
+fantasticmovie,Fantastic Movie,guide_media,false,film title rather than a playable game
+farcryinstinctspredatortechnologie,Far Cry Instincts Predator technology video,guide_media,false,technology video rather than a playable game
+freecommander,FreeCommander,utility,false,file-manager utility not a game
+godzillafinalwars,Godzilla Final Wars,guide_media,false,film title rather than a playable game
+indeo5,Indeo 5,utility,false,video codec not a game
+paraworldfilm,ParaWorld film,guide_media,false,film/video material rather than a playable game
+shopclient,Shop client,utility,false,store client not a game
+slidermusic,Slider music,disc_noise,false,disc interface resource rather than a game
+tabellen,Tabellen,disc_noise,false,disc interface table label rather than a game
+teama,Team A,disc_noise,false,disc interface resource rather than a game
+teamb,Team B,disc_noise,false,disc interface resource rather than a game
+technikvideorubywhiteout,Technik video Ruby Whiteout,guide_media,false,technology video rather than a playable game
+testabellen,Testabellen,disc_noise,false,disc interface test-table label rather than a game
+titanquestsprach,Titan Quest language resource,disc_noise,false,language-selection resource rather than a distinct game
+twoworldsservicerelease1,Two Worlds service release 1,utility,false,game patch rather than a distinct game
+twoworldsservicerelease15,Two Worlds service release 1.5,utility,false,game patch rather than a distinct game
+videotippszuanno,Video tips for Anno,guide_media,false,video guide rather than a playable game
+yahoomessenger,Yahoo Messenger,utility,false,instant messaging client not a game

@@ -7,7 +7,6 @@ from pathlib import Path
 
 from scripts.merge_retry_snapshot import run_merge
 
-
 ISSUE_TITLE_FIELDS = [
     "archive_item",
     "archive_name",
@@ -44,6 +43,16 @@ UNRESOLVED_FIELDS = [
 ]
 
 PUBLISHED_UNRESOLVED_FIELDS = UNRESOLVED_FIELDS + ["root_cause", "retry_recommended", "suggestion"]
+SOURCE_ARCHIVE_FIELDS = [
+    "archive_item",
+    "archive_name",
+    "archive_url",
+    "size_bytes",
+    "sha1",
+    "issue_code",
+    "year",
+    "variant",
+]
 
 
 def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
@@ -60,6 +69,25 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 class MergeRetrySnapshotTests(unittest.TestCase):
+    def _write_sources(self, directory: Path, archive_names: list[str]) -> None:
+        rows = []
+        for archive_name in archive_names:
+            year = archive_name.split("/", 1)[0]
+            issue_code = Path(archive_name).stem
+            rows.append(
+                {
+                    "archive_item": "cbs-2000-09",
+                    "archive_name": archive_name,
+                    "archive_url": f"https://archive.org/download/cbs-2000-09/{archive_name}",
+                    "size_bytes": "42",
+                    "sha1": "a" * 40,
+                    "issue_code": issue_code,
+                    "year": year,
+                    "variant": "DVD",
+                }
+            )
+        write_csv(directory / "source_archives.csv", SOURCE_ARCHIVE_FIELDS, rows)
+
     def _write_base_snapshot(self, root: Path) -> tuple[Path, Path]:
         base_dir = root / "results" / "vps-linux-full-20260324"
         published_dir = root / "results" / "published-20260324"
@@ -133,6 +161,7 @@ class MergeRetrySnapshotTests(unittest.TestCase):
                 }
             ],
         )
+        self._write_sources(base_dir, ["2006/CBS012006DVD.7z", "2007/CBS022007DVD.7z"])
         return base_dir, published_dir
 
     def test_clean_retry_overlay_replaces_unresolved_archive(self) -> None:
@@ -176,6 +205,7 @@ class MergeRetrySnapshotTests(unittest.TestCase):
                 ],
             )
             write_csv(retry_dir / "unresolved_issues.csv", UNRESOLVED_FIELDS, [])
+            self._write_sources(retry_dir, ["2007/CBS022007DVD.7z"])
 
             rc = run_merge(
                 type(
@@ -197,9 +227,12 @@ class MergeRetrySnapshotTests(unittest.TestCase):
             merged_unresolved_rows = read_csv(output_dir / "unresolved_issues.csv")
             report_text = (output_dir / "comparison_report.md").read_text(encoding="utf-8")
 
-            self.assertEqual({row["archive_name"] for row in merged_issue_rows}, {"2006/CBS012006DVD.7z", "2007/CBS022007DVD.7z"})
+            self.assertEqual(
+                {row["archive_name"] for row in merged_issue_rows}, {"2006/CBS012006DVD.7z", "2007/CBS022007DVD.7z"}
+            )
             self.assertEqual({row["normalized_title"] for row in merged_master_rows}, {"stable game", "recovered game"})
             self.assertEqual(merged_unresolved_rows, [])
+            self.assertEqual(len(read_csv(output_dir / "source_archives.csv")), 2)
             self.assertIn("recovered: `2007/CBS022007DVD.7z`", report_text)
 
     def test_schema_mismatch_aborts(self) -> None:
@@ -226,6 +259,7 @@ class MergeRetrySnapshotTests(unittest.TestCase):
             )
             write_csv(retry_dir / "master_games.csv", MASTER_GAME_FIELDS, [])
             write_csv(retry_dir / "unresolved_issues.csv", UNRESOLVED_FIELDS, [])
+            self._write_sources(retry_dir, ["2007/CBS022007DVD.7z"])
 
             with self.assertRaises(SystemExit):
                 run_merge(
@@ -267,6 +301,7 @@ class MergeRetrySnapshotTests(unittest.TestCase):
             )
             write_csv(retry_dir / "master_games.csv", MASTER_GAME_FIELDS, [])
             write_csv(retry_dir / "unresolved_issues.csv", UNRESOLVED_FIELDS, [])
+            self._write_sources(retry_dir, ["2008/CBS082008DVD.7z"])
 
             with self.assertRaises(SystemExit):
                 run_merge(
@@ -317,6 +352,7 @@ class MergeRetrySnapshotTests(unittest.TestCase):
             write_csv(retry_dir / "issue_titles.csv", ISSUE_TITLE_FIELDS, retry_issue_rows)
             write_csv(retry_dir / "master_games.csv", MASTER_GAME_FIELDS, [])
             write_csv(retry_dir / "unresolved_issues.csv", UNRESOLVED_FIELDS, [])
+            self._write_sources(retry_dir, ["2007/CBS022007DVD.7z"])
 
             first_output = root / "results" / "merged-a"
             second_output = root / "results" / "merged-b"

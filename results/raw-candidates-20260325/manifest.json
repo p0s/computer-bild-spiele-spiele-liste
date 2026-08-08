@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-03-25",
+  "source_item": "cbs-2000-09",
+  "source_run_digest": "816a6b6fe1d63a25e46d0b1d4552dfa48e904817",
+  "extraction_commit": null,
+  "extraction_commit_note": "The historical worker status did not record a Git commit; provenance is intentionally not inferred from timestamps.",
+  "files": {
+    "issue_titles.csv": {
+      "sha256": "c6c0d95e89cbc517c8e26da7f2aabf9f97f41eff30fb5dda14fd6367a2c9eee5",
+      "data_rows": 7407
+    },
+    "master_games.csv": {
+      "sha256": "16a3a5e016df4c39df993d0400bdd1000732292993a13e7f13abddad4673fda3",
+      "data_rows": 3856
+    },
+    "unresolved_issues.csv": {
+      "sha256": "06e3ac21b2e73dc9381aa095fcf39ceb5a4ab34888d072dd9b76c2c99ccc73dc",
+      "data_rows": 0
+    },
+    "source_archives.csv": {
+      "sha256": "d49bd0ff706e65ad2b69db03cdbb5739710d4a4dbe67df0ea7bfeb6f47beae16",
+      "data_rows": 193,
+      "total_size_bytes": 948999051510,
+      "source_metadata_url": "https://archive.org/metadata/cbs-2000-09",
+      "source_metadata_retrieved_at": "2026-08-05"
+    }
+  }
+}

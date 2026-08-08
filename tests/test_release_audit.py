@@ -1,12 +1,21 @@
 from __future__ import annotations
 
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.release_audit import build_paths, classify_sample, parse_args, readme_snapshot_counts, run_audit
-
+from scripts.release_audit import (
+    build_paths,
+    classify_sample,
+    compare_output_files,
+    enrichment_quality,
+    parse_args,
+    readme_snapshot_counts,
+    run_audit,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -16,9 +25,7 @@ class ReleaseAuditCliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / "README.md").write_text(
-                "- publishable master rows: `1711`\n"
-                "- publishable issue/title rows: `2183`\n"
-                "- unresolved issues: `0`\n",
+                "- publishable master rows: `1711`\n- publishable issue/title rows: `2183`\n- unresolved issues: `0`\n",
                 encoding="utf-8",
             )
 
@@ -62,18 +69,22 @@ class ReleaseAuditCliTests(unittest.TestCase):
             published_dir.mkdir()
             enriched_dir.mkdir()
 
-            for name in ["issue_titles.csv", "master_games.csv", "unresolved_issues.csv"]:
-                shutil.copy2(REPO_ROOT / "results" / "vps-linux-full-rerun-20260325" / name, raw_dir / name)
-            for name in [
-                "publishable_master_games.csv",
-                "publishable_issue_titles.csv",
-                "excluded_non_game_titles.csv",
-                "final_unresolved_issues.csv",
-                "README.md",
-                "audit_summary.md",
-                "unresolved_summary.md",
-            ]:
-                shutil.copy2(REPO_ROOT / "results" / "published-20260326" / name, published_dir / name)
+            for name in ["issue_titles.csv", "master_games.csv", "unresolved_issues.csv", "source_archives.csv"]:
+                shutil.copy2(REPO_ROOT / "results" / "raw-candidates-20260325" / name, raw_dir / name)
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "prepare_publishable_results.py"),
+                    "--input-dir",
+                    str(raw_dir),
+                    "--output-dir",
+                    str(published_dir),
+                    "--baseline-enriched-master",
+                    str(REPO_ROOT / "results" / "enriched-20260325" / "enriched_master_games.csv"),
+                ],
+                cwd=REPO_ROOT,
+                check=True,
+            )
             for name in [
                 "README.md",
                 "ambiguous_matches.csv",
@@ -81,11 +92,12 @@ class ReleaseAuditCliTests(unittest.TestCase):
                 "enriched_master_games.csv",
                 "enrichment_audit.md",
                 "match_demotions.csv",
+                "pending_lookups.csv",
                 "source_attribution.csv",
                 "title_aliases.csv",
                 "unmatched_titles.csv",
             ]:
-                shutil.copy2(REPO_ROOT / "results" / "enriched-20260326" / name, enriched_dir / name)
+                shutil.copy2(REPO_ROOT / "results" / "enriched-20260808" / name, enriched_dir / name)
 
             report_path = root / "audit.md"
             sample_path = root / "sample.csv"
@@ -107,8 +119,48 @@ class ReleaseAuditCliTests(unittest.TestCase):
 
             rc = run_audit(args, root=REPO_ROOT)
 
-            self.assertEqual(rc, 0)
             self.assertTrue(report_path.exists())
             self.assertTrue(sample_path.exists())
             report_text = report_path.read_text(encoding="utf-8")
+            expected_rc = 1 if "Verdict: **not ready**" in report_text else 0
+            self.assertEqual(rc, expected_rc)
             self.assertIn(f"Published dir: `{published_dir.resolve()}`", report_text)
+
+    def test_compare_output_files_detects_canonical_mutation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            generated = root / "generated"
+            canonical = root / "canonical"
+            generated.mkdir()
+            canonical.mkdir()
+            (generated / "example.csv").write_text("value\n1\n", encoding="utf-8")
+            (canonical / "example.csv").write_text("value\n2\n", encoding="utf-8")
+
+            self.assertEqual(
+                compare_output_files(generated, canonical, ("example.csv",)),
+                {"example.csv": "mismatch"},
+            )
+
+    def test_enrichment_quality_rejects_unreviewable_and_shared_entities(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            enriched = Path(temp_dir)
+            (enriched / "enriched_master_games.csv").write_text(
+                "game_id,match_status,wikidata_id\na,ambiguous,Q1\nb,matched,Q1\nc,unmatched,\nd,pending,\n",
+                encoding="utf-8",
+            )
+            (enriched / "ambiguous_matches.csv").write_text(
+                "game_id,candidate_1_title,candidate_1_url\na,,\n",
+                encoding="utf-8",
+            )
+            (enriched / "unmatched_titles.csv").write_text(
+                "game_id,failure_reason\nc,reference_lookup_failed\n",
+                encoding="utf-8",
+            )
+            (enriched / "pending_lookups.csv").write_text("game_id\nd\n", encoding="utf-8")
+
+            problems, counts = enrichment_quality(enriched)
+
+            self.assertEqual(counts, {"matched": 1, "ambiguous": 1, "unmatched": 1, "pending": 1})
+            self.assertTrue(any("Wikidata IDs" in problem for problem in problems))
+            self.assertTrue(any("candidate evidence" in problem for problem in problems))
+            self.assertTrue(any("operational lookup failures" in problem for problem in problems))

@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from scripts.build_enriched_release import run_build
+from scripts.build_enriched_release import candidate_evidence_rows, lookup_and_semantic_status, run_build
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -23,6 +23,25 @@ def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> 
 
 
 class BuildEnrichedReleaseTests(unittest.TestCase):
+    def test_transient_lookup_failure_is_not_a_semantic_no_match(self) -> None:
+        self.assertEqual(
+            lookup_and_semantic_status("unmatched", "reference_lookup_rate_limited"),
+            ("pending", "unknown", "rate_limited"),
+        )
+
+    def test_pinned_review_candidates_fill_review_evidence(self) -> None:
+        rows = candidate_evidence_rows(
+            [("example", "Example")],
+            [],
+            {
+                "example": {
+                    "candidate_1_title": "Example (video game)",
+                    "candidate_1_url": "https://example.test/game",
+                }
+            },
+        )
+        self.assertEqual(rows[0]["canonical_title"], "Example (video game)")
+
     def _args(self, root: Path, **overrides: object) -> SimpleNamespace:
         values = {
             "input_master": str(root / "results" / "published-20260326" / "publishable_master_games.csv"),
@@ -39,6 +58,8 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
             "manual_alias_overrides": str(root / "data" / "manual_alias_overrides.csv"),
             "manual_entity_overrides": str(root / "data" / "manual_entity_overrides.csv"),
             "manual_url_overrides": str(root / "data" / "manual_url_overrides.csv"),
+            "reference_results_input": str(root / "results" / "reference_results-input.csv"),
+            "reference_review_input": str(root / "results" / "reference_review-input.csv"),
             "review_csv": str(root / "results" / "reference_review.csv"),
         }
         values.update(overrides)
@@ -462,9 +483,12 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
         data_dir.mkdir(parents=True, exist_ok=True)
         (data_dir / "manual_rejections.csv").write_text(
             "normalized_title,rejected_candidate,source,reason\n"
-            "age of empires 3 v 1,Age of Empires III: Definitive Edition,wikimedia,matched the 2020 remaster instead of the original game\n"
-            "age of empires 3 v 1 01a,Age of Empires III: Definitive Edition,wikimedia,matched the 2020 remaster instead of the original game\n"
-            "absolute blue,Q122386684,wikimedia,matched a raw Wikidata placeholder label with a release-year conflict\n",
+            "age of empires 3 v 1,Age of Empires III: Definitive Edition,wikimedia,"
+            "matched the 2020 remaster instead of the original game\n"
+            "age of empires 3 v 1 01a,Age of Empires III: Definitive Edition,wikimedia,"
+            "matched the 2020 remaster instead of the original game\n"
+            "absolute blue,Q122386684,wikimedia,"
+            "matched a raw Wikidata placeholder label with a release-year conflict\n",
             encoding="utf-8",
         )
         for name in ["manual_alias_overrides.csv", "manual_entity_overrides.csv", "manual_url_overrides.csv"]:
@@ -488,6 +512,8 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
             absolute = next(row for row in master_rows if row["game_id"] == "absoluteblue")
 
             self.assertEqual(age["match_status"], "unmatched")
+            self.assertEqual(age["semantic_match_status"], "no_match")
+            self.assertEqual(age["lookup_status"], "complete")
             self.assertEqual(age["match_action"], "demoted_weak_alias_match")
             self.assertIn("demoted_release_year_conflict", age["match_notes"])
             self.assertEqual(absolute["match_status"], "unmatched")
@@ -495,7 +521,28 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
             self.assertEqual(issue_rows[0]["game_id"], "absoluteblue")
             self.assertTrue(any(row["game_id"] == "ageofempires3" for row in alias_rows))
             self.assertEqual(len(demotion_rows), 2)
+            self.assertEqual(age["observation_confidence_score"], "100")
+            self.assertEqual(age["cluster_confidence_score"], "100")
             self.assertTrue((out_dir / "enrichment_audit.md").exists())
+
+    def test_manual_entity_override_is_applied(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_inputs(root)
+            (root / "data" / "manual_entity_overrides.csv").write_text(
+                "normalized_title,wikidata_id,wikipedia_url,canonical_title,entity_type,reason\n"
+                "absolute blue,Q123,https://en.wikipedia.org/wiki/Absolute_Blue,Absolute Blue,game,verified entity\n",
+                encoding="utf-8",
+            )
+
+            run_build(self._args(root))
+
+            rows = read_csv(root / "results" / "enriched-20260326" / "enriched_master_games.csv")
+            absolute = next(row for row in rows if row["game_id"] == "absoluteblue")
+            self.assertEqual(absolute["match_status"], "matched")
+            self.assertEqual(absolute["lookup_status"], "complete")
+            self.assertEqual(absolute["wikidata_id"], "Q123")
+            self.assertIn("manual_entity_override", absolute["match_notes"])
 
     def test_repeat_run_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

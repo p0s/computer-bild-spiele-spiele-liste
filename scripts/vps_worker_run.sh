@@ -17,9 +17,10 @@ LIMIT="${LIMIT:-}"
 STATUS_INTERVAL_SECONDS="${STATUS_INTERVAL_SECONDS:-300}"
 STATUS_STATE_FILE="${STATUS_STATE_FILE:-$OUT_DIR/.vps_worker_status.json}"
 MATRIX_NOTIFY_CONFIG="${MATRIX_NOTIFY_CONFIG:-takopi.toml}"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
 
 args=(
-  python3
+  "$PYTHON_BIN"
   scripts/index_cbs_exes.py
   --item "$ITEM"
   --mode "$MODE"
@@ -48,15 +49,26 @@ if [[ -n "$LIMIT" ]]; then
 fi
 
 notify() {
-  python3 scripts/vps_worker_matrix_notify.py \
-    --event "$1" \
-    --project "$PROJECT_NAME" \
-    --db "$OUT_DIR/cbs_titles.sqlite" \
-    --tmp-dir "$TMP_DIR" \
-    --state-file "$STATUS_STATE_FILE" \
-    --config "$MATRIX_NOTIFY_CONFIG" \
-    ${2:+--message "$2"} \
-    ${3:+--worker-exit-code "$3"} || true
+  local event="$1"
+  local message="${2:-}"
+  local worker_exit_code="${3:-}"
+  local notify_args=(
+    "$PYTHON_BIN"
+    scripts/vps_worker_matrix_notify.py
+    --event "$event"
+    --project "$PROJECT_NAME"
+    --db "$OUT_DIR/cbs_titles.sqlite"
+    --tmp-dir "$TMP_DIR"
+    --state-file "$STATUS_STATE_FILE"
+    --config "$MATRIX_NOTIFY_CONFIG"
+  )
+  if [[ -n "$message" ]]; then
+    notify_args+=(--message "$message")
+  fi
+  if [[ -n "$worker_exit_code" ]]; then
+    notify_args+=(--worker-exit-code "$worker_exit_code")
+  fi
+  "${notify_args[@]}" || true
 }
 
 mkdir -p "$OUT_DIR" "$TMP_DIR"
@@ -80,8 +92,11 @@ while kill -0 "$worker_pid" 2>/dev/null; do
   fi
 done
 
-wait "$worker_pid"
-worker_rc=$?
+if wait "$worker_pid"; then
+  worker_rc=0
+else
+  worker_rc=$?
+fi
 
 if [[ "$worker_rc" -eq 0 ]]; then
   notify finish

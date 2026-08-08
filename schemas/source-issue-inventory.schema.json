@@ -1,0 +1,71 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "archive_item",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "required": true
+      },
+      "name": "archive_name",
+      "type": "string"
+    },
+    {
+      "name": "archive_url",
+      "type": "string"
+    },
+    {
+      "name": "source_size_bytes",
+      "type": "integer"
+    },
+    {
+      "constraints": {
+        "pattern": "^[0-9a-f]{40}$"
+      },
+      "name": "source_sha1",
+      "type": "string"
+    },
+    {
+      "name": "issue_code",
+      "type": "string"
+    },
+    {
+      "name": "year",
+      "type": "integer"
+    },
+    {
+      "name": "variant",
+      "type": "string"
+    },
+    {
+      "name": "raw_candidate_rows",
+      "type": "integer"
+    },
+    {
+      "name": "cleaned_candidate_rows",
+      "type": "integer"
+    },
+    {
+      "name": "dropped_candidate_rows",
+      "type": "integer"
+    },
+    {
+      "name": "publishable_game_rows",
+      "type": "integer"
+    },
+    {
+      "name": "publication_status",
+      "type": "string"
+    },
+    {
+      "name": "coverage_reason",
+      "type": "string"
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": "archive_name"
+}

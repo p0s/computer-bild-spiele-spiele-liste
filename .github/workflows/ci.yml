@@ -1,0 +1,132 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.14"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install project and quality tools
+        run: |
+          python -m pip install --disable-pip-version-check build==1.3.0 ruff==0.16.1
+          python -m pip install --editable .
+
+      - name: Check style
+        if: matrix.python-version == '3.14'
+        run: |
+          ruff check .
+          ruff format --check .
+
+      - name: Build source and wheel distributions
+        if: matrix.python-version == '3.14'
+        run: python -m build
+
+      - name: Check Python 3.10 notifier compatibility
+        if: matrix.python-version == '3.10'
+        run: python scripts/vps_worker_matrix_notify.py --help
+
+      - name: Compile Python sources
+        run: python -m compileall -q scripts tests
+
+      - name: Test enrichment
+        run: >-
+          python -m unittest
+          tests.test_enrich_master_games
+          tests.test_enrich_reference_links
+
+      - name: Test extraction parsing and policy
+        run: >-
+          python -m unittest
+          tests.test_index_cbs_exes.ParseArchiveNameTests
+          tests.test_index_cbs_exes.TitleParsingTests
+          tests.test_index_cbs_exes.ToolAndCacheTests
+          tests.test_index_cbs_exes.PublishableRepairTests
+          tests.test_index_cbs_exes.DownloadTests
+
+      - name: Test extraction discovery and strategy
+        run: >-
+          python -m unittest
+          tests.test_index_cbs_exes.ExecutableDiscoveryTests
+          tests.test_index_cbs_exes.BenchmarkAndAutoModeTests
+
+      - name: Test CD extraction integration
+        run: >-
+          python -m unittest
+          tests.test_index_cbs_exes.ProcessingIntegrationTests.test_processes_cd_style_archive
+
+      - name: Test DVD extraction integration
+        run: >-
+          python -m unittest
+          tests.test_index_cbs_exes.ProcessingIntegrationTests.test_processes_dvd_gold_style_archive_and_exports_dedup
+
+      - name: Test title extraction integration
+        run: >-
+          python -m unittest
+          tests.test_index_cbs_exes.ProcessingIntegrationTests.test_processes_title_mode_and_exports_issue_and_master_lists
+
+      - name: Test publication and retry merge
+        run: >-
+          python -m unittest
+          tests.test_merge_retry_snapshot
+          tests.test_prepare_publishable_results
+
+      - name: Test release validation
+        run: >-
+          python -m unittest
+          tests.test_release_audit
+          tests.test_release_contract
+
+      - name: Test archive and worker safety
+        run: >-
+          python -m unittest
+          tests.test_validate_tar_archive
+          tests.test_vps_worker_scripts
+
+      - name: Check worker shell syntax
+        run: >-
+          bash -n
+          scripts/check_repo.sh
+          scripts/vps_worker_common.sh
+          scripts/vps_worker_fetch_results.sh
+          scripts/vps_worker_run.sh
+          scripts/vps_worker_start.sh
+          scripts/vps_worker_status.sh
+          scripts/vps_worker_stop.sh
+          scripts/vps_worker_sync.sh
+          scripts/vps_worker_tail.sh
+
+      - name: Validate release contract
+        run: python scripts/release_contract.py check
+
+      - name: Verify deterministic release
+        run: >-
+          python scripts/release_audit.py
+          --skip-git-fetch
+          --report-path /tmp/cbs-release-audit.md
+          --sample-path /tmp/cbs-release-sample.csv

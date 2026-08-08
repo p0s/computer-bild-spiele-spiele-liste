@@ -63,34 +63,71 @@ class CacheTests(unittest.TestCase):
             finally:
                 conn.close()
 
+    def test_fetch_json_cached_refreshes_explicitly(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            conn = connect_cache(Path(temp_dir) / "cache.sqlite")
+            try:
+                with mock.patch(
+                    "scripts.enrich_reference_links.http_get_json",
+                    side_effect=[{"version": 1}, {"version": 2}],
+                ) as get_json:
+                    first = fetch_json_cached(conn, "k1", "https://example.invalid/1")
+                    second = fetch_json_cached(conn, "k1", "https://example.invalid/1", refresh=True)
+                self.assertEqual(first, {"version": 1})
+                self.assertEqual(second, {"version": 2})
+                self.assertEqual(get_json.call_count, 2)
+            finally:
+                conn.close()
+
     def test_public_failure_reason_hides_transient_request_details(self) -> None:
         reason = public_failure_reason(
-            "request failed for https://www.wikidata.org/w/api.php?action=wbsearchentities: HTTP Error 429: Too Many Requests"
+            "request failed for https://www.wikidata.org/w/api.php?action=wbsearchentities: "
+            "HTTP Error 429: Too Many Requests"
         )
         self.assertEqual(reason, "reference_lookup_rate_limited")
 
 
 class ResolutionTests(unittest.TestCase):
-    def test_resolve_title_reference_exact_english_hit(self) -> None:
+    def test_transient_failure_is_not_persisted_as_unmatched(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_cache(Path(temp_dir) / "cache.sqlite")
             try:
                 with mock.patch(
                     "scripts.enrich_reference_links.wikidata_search",
-                    return_value=[{"id": "Q1"}],
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikidata_entities",
-                    return_value={
-                        "Q1": {
-                            "id": "Q1",
-                            "labels": {"en": {"value": "Mystery Island"}},
-                            "aliases": {"en": [{"value": "Mystery Island"}]},
-                            "sitelinks": {"enwiki": {"title": "Mystery Island"}},
-                        }
-                    },
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikipedia_search",
-                    return_value=[],
+                    side_effect=RuntimeError("HTTP Error 429: Too Many Requests"),
+                ):
+                    result = resolve_title_reference(conn, "example", "Example")
+                count = conn.execute("SELECT COUNT(*) FROM resolved_titles").fetchone()[0]
+                self.assertEqual(result.failure_reason, "reference_lookup_rate_limited")
+                self.assertEqual(result.reference_status, "pending")
+                self.assertEqual(count, 0)
+            finally:
+                conn.close()
+
+    def test_resolve_title_reference_exact_english_hit(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            conn = connect_cache(Path(temp_dir) / "cache.sqlite")
+            try:
+                with (
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_search",
+                        return_value=[{"id": "Q1"}],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_entities",
+                        return_value={
+                            "Q1": {
+                                "id": "Q1",
+                                "labels": {"en": {"value": "Mystery Island"}},
+                                "aliases": {"en": [{"value": "Mystery Island"}]},
+                                "sitelinks": {"enwiki": {"title": "Mystery Island"}},
+                            }
+                        },
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikipedia_search",
+                        return_value=[],
+                    ),
                 ):
                     result = resolve_title_reference(conn, "mystery island", "Mystery Island")
                 self.assertEqual(result.reference_status, "matched")
@@ -103,22 +140,26 @@ class ResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_cache(Path(temp_dir) / "cache.sqlite")
             try:
-                with mock.patch(
-                    "scripts.enrich_reference_links.wikidata_search",
-                    return_value=[{"id": "Q2"}],
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikidata_entities",
-                    return_value={
-                        "Q2": {
-                            "id": "Q2",
-                            "labels": {"de": {"value": "Die Siedler"}},
-                            "aliases": {"de": [{"value": "Die Siedler"}]},
-                            "sitelinks": {"dewiki": {"title": "Die Siedler"}},
-                        }
-                    },
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikipedia_search",
-                    return_value=[],
+                with (
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_search",
+                        return_value=[{"id": "Q2"}],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_entities",
+                        return_value={
+                            "Q2": {
+                                "id": "Q2",
+                                "labels": {"de": {"value": "Die Siedler"}},
+                                "aliases": {"de": [{"value": "Die Siedler"}]},
+                                "sitelinks": {"dewiki": {"title": "Die Siedler"}},
+                            }
+                        },
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikipedia_search",
+                        return_value=[],
+                    ),
                 ):
                     result = resolve_title_reference(conn, "die siedler", "Die Siedler")
                 self.assertEqual(result.reference_status, "matched")
@@ -131,22 +172,26 @@ class ResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_cache(Path(temp_dir) / "cache.sqlite")
             try:
-                with mock.patch(
-                    "scripts.enrich_reference_links.wikidata_search",
-                    return_value=[{"id": "Q3"}],
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikidata_entities",
-                    return_value={
-                        "Q3": {
-                            "id": "Q3",
-                            "labels": {"en": {"value": "Absolute Blue"}},
-                            "aliases": {"en": [{"value": "Absolute Blue"}]},
-                            "sitelinks": {},
-                        }
-                    },
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikipedia_search",
-                    return_value=[],
+                with (
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_search",
+                        return_value=[{"id": "Q3"}],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_entities",
+                        return_value={
+                            "Q3": {
+                                "id": "Q3",
+                                "labels": {"en": {"value": "Absolute Blue"}},
+                                "aliases": {"en": [{"value": "Absolute Blue"}]},
+                                "sitelinks": {},
+                            }
+                        },
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikipedia_search",
+                        return_value=[],
+                    ),
                 ):
                     result = resolve_title_reference(conn, "absolute blue", "Absolute Blue")
                 self.assertEqual(result.reference_status, "matched")
@@ -158,28 +203,32 @@ class ResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_cache(Path(temp_dir) / "cache.sqlite")
             try:
-                with mock.patch(
-                    "scripts.enrich_reference_links.wikidata_search",
-                    return_value=[{"id": "Q4"}, {"id": "Q5"}],
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikidata_entities",
-                    return_value={
-                        "Q4": {
-                            "id": "Q4",
-                            "labels": {"en": {"value": "4 Story"}},
-                            "aliases": {"en": [{"value": "Four Story"}]},
-                            "sitelinks": {"enwiki": {"title": "4Story"}},
+                with (
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_search",
+                        return_value=[{"id": "Q4"}, {"id": "Q5"}],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_entities",
+                        return_value={
+                            "Q4": {
+                                "id": "Q4",
+                                "labels": {"en": {"value": "4 Story"}},
+                                "aliases": {"en": [{"value": "Four Story"}]},
+                                "sitelinks": {"enwiki": {"title": "4Story"}},
+                            },
+                            "Q5": {
+                                "id": "Q5",
+                                "labels": {"en": {"value": "Story 4"}},
+                                "aliases": {"en": [{"value": "4 Story"}]},
+                                "sitelinks": {"enwiki": {"title": "Story_4"}},
+                            },
                         },
-                        "Q5": {
-                            "id": "Q5",
-                            "labels": {"en": {"value": "Story 4"}},
-                            "aliases": {"en": [{"value": "4 Story"}]},
-                            "sitelinks": {"enwiki": {"title": "Story_4"}},
-                        },
-                    },
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikipedia_search",
-                    return_value=[],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikipedia_search",
+                        return_value=[],
+                    ),
                 ):
                     result = resolve_title_reference(conn, "4 story", "4 Story")
                 self.assertEqual(result.reference_status, "ambiguous")
@@ -191,31 +240,35 @@ class ResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_cache(Path(temp_dir) / "cache.sqlite")
             try:
-                with mock.patch(
-                    "scripts.enrich_reference_links.wikidata_search",
-                    return_value=[
-                        {"id": "Q10", "description": "2008 video game"},
-                        {"id": "Q11", "description": "2008 film"},
-                    ],
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikidata_entities",
-                    return_value={
-                        "Q10": {
-                            "id": "Q10",
-                            "labels": {"en": {"value": "007: Quantum of Solace"}},
-                            "aliases": {"en": [{"value": "007 Ein Quantum Trost"}]},
-                            "sitelinks": {"enwiki": {"title": "007: Quantum of Solace (video game)"}},
+                with (
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_search",
+                        return_value=[
+                            {"id": "Q10", "description": "2008 video game"},
+                            {"id": "Q11", "description": "2008 film"},
+                        ],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikidata_entities",
+                        return_value={
+                            "Q10": {
+                                "id": "Q10",
+                                "labels": {"en": {"value": "007: Quantum of Solace"}},
+                                "aliases": {"en": [{"value": "007 Ein Quantum Trost"}]},
+                                "sitelinks": {"enwiki": {"title": "007: Quantum of Solace (video game)"}},
+                            },
+                            "Q11": {
+                                "id": "Q11",
+                                "labels": {"en": {"value": "Quantum of Solace"}},
+                                "aliases": {"en": [{"value": "007 Ein Quantum Trost"}]},
+                                "sitelinks": {"enwiki": {"title": "Quantum of Solace"}},
+                            },
                         },
-                        "Q11": {
-                            "id": "Q11",
-                            "labels": {"en": {"value": "Quantum of Solace"}},
-                            "aliases": {"en": [{"value": "007 Ein Quantum Trost"}]},
-                            "sitelinks": {"enwiki": {"title": "Quantum of Solace"}},
-                        },
-                    },
-                ), mock.patch(
-                    "scripts.enrich_reference_links.wikipedia_search",
-                    return_value=[],
+                    ),
+                    mock.patch(
+                        "scripts.enrich_reference_links.wikipedia_search",
+                        return_value=[],
+                    ),
                 ):
                     result = resolve_title_reference(conn, "007 ein quantum trost", "007 Ein Quantum Trost")
                 self.assertEqual(result.reference_status, "matched")

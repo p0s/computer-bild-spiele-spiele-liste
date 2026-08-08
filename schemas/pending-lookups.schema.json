@@ -1,0 +1,49 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "constraints": {
+        "pattern": "^[a-z0-9]+$",
+        "required": true
+      },
+      "name": "game_id",
+      "type": "string"
+    },
+    {
+      "name": "normalized_title",
+      "type": "string"
+    },
+    {
+      "name": "representative_title",
+      "type": "string"
+    },
+    {
+      "name": "match_status",
+      "type": "string"
+    },
+    {
+      "name": "semantic_match_status",
+      "type": "string"
+    },
+    {
+      "name": "lookup_status",
+      "type": "string"
+    },
+    {
+      "name": "match_confidence",
+      "type": "string"
+    },
+    {
+      "name": "failure_reason",
+      "type": "string"
+    },
+    {
+      "name": "search_variants",
+      "type": "string"
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": "game_id"
+}

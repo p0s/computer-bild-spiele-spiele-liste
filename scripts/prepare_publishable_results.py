@@ -21,14 +21,14 @@ from scripts.improved_release_common import (
     clean_title,
     compute_data_quality_score,
     normalize_public_title,
+    normalize_rating,
     safe_text,
-    semicolon_join,
     sanitized_semicolon_join,
+    semicolon_join,
     slugify,
     to_int,
 )
 from scripts.index_cbs_exes import normalize_title
-
 
 BAD_EXACT = {
     "000 000",
@@ -174,7 +174,9 @@ MANIFEST_BAD_SUBSTRINGS = (
 
 
 REPRESENTATIVE_TITLE_REPAIRS = {
-    "2 ritter auf der suche nach der hinrei enden herzelinde": "2 Ritter - Auf der Suche nach der hinrei\u00dfenden Herzelinde",
+    "2 ritter auf der suche nach der hinrei enden herzelinde": (
+        "2 Ritter - Auf der Suche nach der hinrei\u00dfenden Herzelinde"
+    ),
     "adash stadt der magie kapitel11": "Adash - Stadt der Magie - Kapitel 11",
     "apassionata die galanacht der pferde": "Apassionata - Die Galanacht der Pferde",
     "alone in the dark komplettl sung": "Alone in the Dark Komplettl\u00f6sung",
@@ -247,7 +249,9 @@ REPRESENTATIVE_TITLE_REPAIRS = {
     "sacred 2 fallen angel": "Sacred 2 - Fallen Angel",
     "sacred 2 fallen angel v 2 34 0": "Sacred 2 - Fallen Angel v 2 34 0",
     "sherlock holmes jagt ars ne lupin": "Sherlock Holmes jagt Ars\u00e8ne Lupin",
-    "sherlock holmes die spur der erwachten remastered": "Sherlock Holmes - Die Spur der Erwachten - Remastered Edition",
+    "sherlock holmes die spur der erwachten remastered": (
+        "Sherlock Holmes - Die Spur der Erwachten - Remastered Edition"
+    ),
     "sid meier s civilization 4 fall from heaven 2 0": "Sid Meier's Civilization 4 - Fall from Heaven 2 0",
     "siedler das erbe der k nige": "Siedler Das Erbe der K\u00f6nige",
     "stalkerv10003v10004v10005": "STALKER",
@@ -277,7 +281,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input-dir", default=str(latest_raw_snapshot_dir() or Path("results/raw-latest")))
     parser.add_argument("--output-dir", default=None)
     parser.add_argument("--baseline-enriched-master", default=None)
+    parser.add_argument(
+        "--source-archives",
+        default=None,
+        help="Source archive inventory CSV; defaults to <input-dir>/source_archives.csv when present.",
+    )
     parser.add_argument("--manual-content-overrides", default="data/manual_content_overrides.csv")
+    parser.add_argument("--manual-candidate-overrides", default="data/manual_candidate_overrides.csv")
+    parser.add_argument("--manual-cluster-overrides", default="data/manual_cluster_overrides.csv")
     parser.add_argument("--manual-rejections", default="data/manual_rejections.csv")
     return parser.parse_args()
 
@@ -395,7 +406,9 @@ def probable_game_title(row: dict[str, str]) -> tuple[bool, str]:
     if normalized[:1].isdigit() and tokens and max((len(token) for token in tokens), default=0) < 4:
         return False, "numeric-leading-weak"
 
-    if any(token in {"normal", "bonus", "sonder", "gold"} for token in normalized.split()) and any(ch.isdigit() for ch in normalized):
+    if any(token in {"normal", "bonus", "sonder", "gold"} for token in normalized.split()) and any(
+        ch.isdigit() for ch in normalized
+    ):
         return False, "edition-or-mode-label"
 
     if tokens and len(long_tokens) == 0:
@@ -426,11 +439,26 @@ def probable_game_title(row: dict[str, str]) -> tuple[bool, str]:
     return False, "weak-singleword"
 
 
-def clean_issue_rows(issue_rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+def clean_issue_rows(
+    issue_rows: list[dict[str, str]],
+    manual_candidate_overrides: dict[tuple[str, str], dict[str, str]] | None = None,
+) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    manual_candidate_overrides = manual_candidate_overrides or {}
     cleaned: list[dict[str, str]] = []
     dropped: list[dict[str, str]] = []
     for original_row in issue_rows:
         row = repair_issue_row(original_row)
+        override = manual_candidate_overrides.get(
+            (safe_text(row.get("archive_name")), safe_text(row.get("normalized_title")))
+        )
+        if override and safe_text(override.get("action")).casefold() == "include":
+            replacement = safe_text(override.get("representative_title"))
+            if replacement:
+                row["representative_title"] = replacement
+                row["normalized_title"] = normalize_title(replacement) or row["normalized_title"]
+            row["clean_reason"] = "manual-include"
+            cleaned.append(row)
+            continue
         keep, reason = probable_game_title(row)
         if keep:
             row = dict(row)
@@ -575,6 +603,10 @@ def publishable_issue_rows(cleaned_issue_rows: list[dict[str, str]]) -> list[dic
         title = row["representative_title"].strip()
         source_kinds = set(filter(None, row["source_kinds"].split(",")))
 
+        if row.get("clean_reason") == "manual-include":
+            publishable.append(dict(row))
+            continue
+
         if "vollversion-fullversion" in source_kinds:
             publishable.append(dict(row))
             continue
@@ -612,6 +644,26 @@ def read_manual_content_overrides(path: Path) -> dict[str, dict[str, str]]:
     return {row["game_id"]: row for row in read_csv(path) if row.get("game_id")}
 
 
+def read_manual_candidate_overrides(path: Path) -> dict[tuple[str, str], dict[str, str]]:
+    if not path.exists():
+        return {}
+    return {
+        (safe_text(row.get("archive_name")), safe_text(row.get("normalized_title"))): row
+        for row in read_csv(path)
+        if safe_text(row.get("archive_name")) and safe_text(row.get("normalized_title"))
+    }
+
+
+def read_manual_cluster_overrides(path: Path) -> dict[str, dict[str, str]]:
+    if not path.exists():
+        return {}
+    return {
+        safe_text(row.get("source_game_id")): row
+        for row in read_csv(path)
+        if safe_text(row.get("source_game_id")) and safe_text(row.get("target_game_id"))
+    }
+
+
 def read_rejections(path: Path) -> dict[str, list[dict[str, str]]]:
     if not path.exists():
         return {}
@@ -645,7 +697,9 @@ def build_improved_publishable_outputs(
     baseline_match_map: dict[str, dict[str, str]],
     manual_content_overrides: dict[str, dict[str, str]],
     rejection_map: dict[str, list[dict[str, str]]],
+    manual_cluster_overrides: dict[str, dict[str, str]] | None = None,
 ) -> tuple[list[dict[str, object]], list[dict[str, object]], list[dict[str, object]]]:
+    manual_cluster_overrides = manual_cluster_overrides or {}
     vocab = build_vocab(
         [row["representative_title"] for row in source_rows]
         + [
@@ -671,6 +725,18 @@ def build_improved_publishable_outputs(
         prepared["title_cleanup_flags"] = "; ".join(clean.flags)
         prepared["content_class"] = clean.content_class
         prepared["content_form"] = clean.content_form
+
+        cluster_override = manual_cluster_overrides.get(clean.cluster_key)
+        if cluster_override:
+            prepared["game_id"] = safe_text(cluster_override.get("target_game_id"))
+            override_title = safe_text(cluster_override.get("representative_title"))
+            if override_title:
+                prepared["representative_title"] = override_title
+                prepared["normalized_title"] = normalize_public_title(override_title)
+                prepared["cleaned_title"] = override_title
+            prepared["title_cleanup_flags"] = semicolon_join(
+                [prepared.get("title_cleanup_flags"), "manual_cluster_override"]
+            )
 
         match_row = baseline_match_map.get(safe_text(row["normalized_title"]), {})
         for field in MATCH_FIELDS:
@@ -745,8 +811,12 @@ def build_improved_publishable_outputs(
     improved_master_rows: list[dict[str, object]] = []
     for game_id, rows in sorted(per_game_rows.items()):
         representative_title, merged_flags, merge_confidence = choose_best_display_title(rows)
-        first_row = min(rows, key=lambda row: (safe_text(row["year"]), safe_text(row["issue_code"]), safe_text(row["archive_name"])))
-        last_row = max(rows, key=lambda row: (safe_text(row["year"]), safe_text(row["issue_code"]), safe_text(row["archive_name"])))
+        first_row = min(
+            rows, key=lambda row: (safe_text(row["year"]), safe_text(row["issue_code"]), safe_text(row["archive_name"]))
+        )
+        last_row = max(
+            rows, key=lambda row: (safe_text(row["year"]), safe_text(row["issue_code"]), safe_text(row["archive_name"]))
+        )
         first_year = to_int(first_row.get("year"))
 
         alias_match_rows: list[dict[str, object]] = []
@@ -768,6 +838,10 @@ def build_improved_publishable_outputs(
         notes_parts = [best_match.get("notes"), best_match.get("_match_notes")]
         if match_action != "retained_best_alias_match":
             notes_parts.append(match_action)
+        rating_value, rating_scale = normalize_rating(
+            best_match.get("rating_value"),
+            best_match.get("rating_scale"),
+        )
 
         master_row: dict[str, object] = {
             "normalized_title": normalize_public_title(representative_title),
@@ -781,12 +855,7 @@ def build_improved_publishable_outputs(
             )["confidence"],
             "source_kinds": semicolon_join(
                 sorted(
-                    {
-                        kind.strip()
-                        for row in rows
-                        for kind in safe_text(row["source_kinds"]).split(";")
-                        if kind.strip()
-                    }
+                    {kind.strip() for row in rows for kind in safe_text(row["source_kinds"]).split(";") if kind.strip()}
                 )
             ),
             "game_id": game_id,
@@ -811,7 +880,11 @@ def build_improved_publishable_outputs(
             "match_confidence": safe_text(best_match.get("match_confidence")),
             "canonical_title": safe_text(best_match.get("canonical_title")),
             "canonical_slug": safe_text(best_match.get("canonical_slug"))
-            or (slugify(safe_text(best_match.get("canonical_title"))) if safe_text(best_match.get("canonical_title")) else ""),
+            or (
+                slugify(safe_text(best_match.get("canonical_title")))
+                if safe_text(best_match.get("canonical_title"))
+                else ""
+            ),
             "entity_type": safe_text(best_match.get("entity_type")),
             "release_year": safe_text(best_match.get("release_year")),
             "wikipedia_url": safe_text(best_match.get("wikipedia_url")),
@@ -820,8 +893,8 @@ def build_improved_publishable_outputs(
             "categories": safe_text(best_match.get("categories")),
             "genres": safe_text(best_match.get("genres")),
             "themes": safe_text(best_match.get("themes")),
-            "rating_value": safe_text(best_match.get("rating_value")),
-            "rating_scale": safe_text(best_match.get("rating_scale")),
+            "rating_value": rating_value,
+            "rating_scale": rating_scale,
             "rating_count": safe_text(best_match.get("rating_count")),
             "rating_source": safe_text(best_match.get("rating_source")),
             "rating_url": safe_text(best_match.get("rating_url")),
@@ -838,7 +911,9 @@ def build_improved_publishable_outputs(
         ):
             master_row["representative_title"] = master_row["canonical_title"]
             master_row["normalized_title"] = normalize_public_title(master_row["representative_title"])
-            master_row["cleanup_flags"] = semicolon_join([master_row["cleanup_flags"], "display_title_backfilled_from_canonical"])
+            master_row["cleanup_flags"] = semicolon_join(
+                [master_row["cleanup_flags"], "display_title_backfilled_from_canonical"]
+            )
         master_row["data_quality_score"] = compute_data_quality_score(master_row)
         improved_master_rows.append(master_row)
 
@@ -947,7 +1022,12 @@ def analyze_unresolved(unresolved_rows: list[dict[str, str]]) -> list[dict[str, 
     for row in unresolved_rows:
         reason = row["reason"]
         lower = reason.lower()
-        if "could not resolve host" in lower or "503" in lower or "connection timed out" in lower or "broken pipe" in lower:
+        if (
+            "could not resolve host" in lower
+            or "503" in lower
+            or "connection timed out" in lower
+            or "broken pipe" in lower
+        ):
             root_cause = "network/download"
             retry = "yes"
             suggestion = "retry on a stable network or with a rerun focused on unresolved issues"
@@ -966,6 +1046,120 @@ def analyze_unresolved(unresolved_rows: list[dict[str, str]]) -> list[dict[str, 
     return analyzed
 
 
+def build_source_issue_inventory(
+    source_archive_rows: list[dict[str, str]],
+    raw_issue_rows: list[dict[str, str]],
+    cleaned_issue_rows: list[dict[str, str]],
+    publishable_issue_rows: list[dict[str, object]],
+    dropped_rows: list[dict[str, str]],
+    raw_unresolved_rows: list[dict[str, str]],
+) -> list[dict[str, object]]:
+    """Describe publication coverage at the source-archive boundary.
+
+    Extraction completion and public game coverage are deliberately separate:
+    an archive with extracted candidates but no public game rows still requires
+    review and must not disappear behind an extraction-level `ok` status.
+    """
+
+    metadata_by_archive: dict[str, dict[str, str]] = {}
+    for row in [*source_archive_rows, *raw_issue_rows, *raw_unresolved_rows]:
+        archive_name = safe_text(row.get("archive_name"))
+        if archive_name and archive_name not in metadata_by_archive:
+            metadata_by_archive[archive_name] = dict(row)
+
+    def counts_by_archive(rows: list[dict[str, object]]) -> Counter[str]:
+        return Counter(safe_text(row.get("archive_name")) for row in rows if safe_text(row.get("archive_name")))
+
+    raw_counts = counts_by_archive(raw_issue_rows)
+    cleaned_counts = counts_by_archive(cleaned_issue_rows)
+    publishable_counts = counts_by_archive(publishable_issue_rows)
+    dropped_counts = counts_by_archive(dropped_rows)
+    raw_unresolved_archives = {
+        safe_text(row.get("archive_name")) for row in raw_unresolved_rows if safe_text(row.get("archive_name"))
+    }
+
+    inventory: list[dict[str, object]] = []
+    for archive_name, metadata in sorted(metadata_by_archive.items()):
+        published_count = publishable_counts[archive_name]
+        raw_unresolved = archive_name in raw_unresolved_archives
+        if published_count and raw_unresolved:
+            publication_status = "published_with_extraction_warning"
+            coverage_reason = "public game rows exist, but the raw extractor also reported an unresolved condition"
+        elif published_count:
+            publication_status = "published"
+            coverage_reason = "one or more public game rows were recovered"
+        elif raw_unresolved:
+            publication_status = "unresolved_extraction"
+            coverage_reason = "the raw extractor reported an unresolved condition"
+        elif raw_counts[archive_name]:
+            publication_status = "unresolved_no_publishable_game"
+            coverage_reason = "raw candidates exist, but none survived publication; review is required"
+        else:
+            publication_status = "unresolved_no_candidates"
+            coverage_reason = "the source archive has no raw title candidates; review is required"
+
+        inventory.append(
+            {
+                "archive_item": safe_text(metadata.get("archive_item")),
+                "archive_name": archive_name,
+                "archive_url": safe_text(metadata.get("archive_url")),
+                "source_size_bytes": safe_text(metadata.get("size_bytes")),
+                "source_sha1": safe_text(metadata.get("sha1")),
+                "issue_code": safe_text(metadata.get("issue_code")),
+                "year": safe_text(metadata.get("year")),
+                "variant": safe_text(metadata.get("variant")),
+                "raw_candidate_rows": raw_counts[archive_name],
+                "cleaned_candidate_rows": cleaned_counts[archive_name],
+                "dropped_candidate_rows": dropped_counts[archive_name],
+                "publishable_game_rows": published_count,
+                "publication_status": publication_status,
+                "coverage_reason": coverage_reason,
+            }
+        )
+    return inventory
+
+
+def add_publication_coverage_unresolved(
+    analyzed_unresolved: list[dict[str, str]],
+    inventory_rows: list[dict[str, object]],
+) -> list[dict[str, str]]:
+    """Add explicit unresolved rows for source archives with no public games."""
+
+    result = [dict(row) for row in analyzed_unresolved]
+    existing = {safe_text(row.get("archive_name")) for row in result}
+    for row in inventory_rows:
+        status = safe_text(row.get("publication_status"))
+        archive_name = safe_text(row.get("archive_name"))
+        if archive_name in existing or status not in {"unresolved_no_publishable_game", "unresolved_no_candidates"}:
+            continue
+        no_candidates = status == "unresolved_no_candidates"
+        result.append(
+            {
+                "archive_item": safe_text(row.get("archive_item")),
+                "archive_name": archive_name,
+                "issue_code": safe_text(row.get("issue_code")),
+                "year": safe_text(row.get("year")),
+                "variant": safe_text(row.get("variant")),
+                "title_strategy": "publication-coverage",
+                "resolution_path": "publication-coverage",
+                "reason": "no raw title candidates" if no_candidates else "no publishable game rows after cleanup",
+                "status": "unresolved",
+                "root_cause": "no-title-candidates" if no_candidates else "no-publishable-game",
+                "retry_recommended": "review",
+                "suggestion": (
+                    "inspect the source archive and extraction strategy"
+                    if no_candidates
+                    else (
+                        "review raw candidates and publication rules; "
+                        "record an explicit no-game decision if appropriate"
+                    )
+                ),
+            }
+        )
+        existing.add(archive_name)
+    return sorted(result, key=lambda item: (safe_text(item.get("archive_name")), safe_text(item.get("reason"))))
+
+
 def write_report(
     path: Path,
     *,
@@ -978,6 +1172,8 @@ def write_report(
     publishable_master_count: int,
     publishable_issue_count: int,
     excluded_count: int,
+    source_archive_count: int,
+    published_archive_count: int,
 ) -> None:
     text = f"""# Published Result Set Audit
 
@@ -990,6 +1186,8 @@ def write_report(
 - excluded non-game/media clusters: {excluded_count}
 - dropped noisy rows: {dropped_count}
 - unresolved issues: {unresolved_count}
+- source archives inventoried: {source_archive_count}
+- source archives with public game rows: {published_archive_count}
 
 Cleaning rules used:
 - drop obvious issue-code/track rows like `CBS0100 (Track 01)`
@@ -1020,8 +1218,18 @@ def write_unresolved_summary(path: Path, unresolved_rows: list[dict[str, str]]) 
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def write_published_readme(path: Path, *, input_dir: Path, master_count: int, issue_count: int, unresolved_count: int, excluded_count: int) -> None:
-    text = f"""# Published Results ({path.parent.name.rsplit('-', 1)[-1]})
+def write_published_readme(
+    path: Path,
+    *,
+    input_dir: Path,
+    master_count: int,
+    issue_count: int,
+    unresolved_count: int,
+    excluded_count: int,
+    source_archive_count: int,
+    published_archive_count: int,
+) -> None:
+    text = f"""# Published Results ({path.parent.name.rsplit("-", 1)[-1]})
 
 This directory is the public-facing clustered result set for the Computer Bild Spiele title reconstruction project.
 
@@ -1049,10 +1257,14 @@ For issue-level detail, use:
   - preserves observed-title provenance and carried cluster match fields
 
 - `excluded_non_game_titles.csv`
-  - auditable list of utilities, editors, guide media, and disc-noise clusters removed from the canonical public game tables
+  - auditable list of utilities, editors, guide media, and disc-noise clusters
+    removed from the canonical public game tables
 
 - `final_unresolved_issues.csv`
-  - unresolved tail from the raw extraction run
+  - extraction failures plus source archives that produced no public game rows
+
+- `source_issue_inventory.csv`
+  - one row for every source archive, including zero-output and unresolved coverage states
 
 - `audit_summary.md`
   - summary of the publishable cleanup and clustering pass
@@ -1066,10 +1278,13 @@ For issue-level detail, use:
 - `publishable_issue_titles.csv`: {issue_count} rows
 - `excluded_non_game_titles.csv`: {excluded_count} rows
 - `final_unresolved_issues.csv`: {unresolved_count} rows
+- `source_issue_inventory.csv`: {source_archive_count} rows
+- source archives with public game rows: {published_archive_count}
 
 ## Important caveat
 
-This is a best-effort public game catalog. Observed CBS titles remain distinct from external canonical entity fields, and blank metadata is preferred over weak guesses.
+This is a best-effort public game catalog. Observed CBS titles remain distinct from
+external canonical entity fields, and blank metadata is preferred over weak guesses.
 """
     path.write_text(text, encoding="utf-8")
 
@@ -1077,14 +1292,18 @@ This is a best-effort public game catalog. Observed CBS titles remain distinct f
 def main() -> int:
     args = parse_args()
     input_dir = Path(args.input_dir)
-    output_dir = Path(args.output_dir) if args.output_dir else Path(
-        f"results/published-{snapshot_date(input_dir) or datetime.now(timezone.utc).strftime('%Y%m%d')}"
+    output_dir = (
+        Path(args.output_dir)
+        if args.output_dir
+        else Path(f"results/published-{snapshot_date(input_dir) or datetime.now(timezone.utc).strftime('%Y%m%d')}")
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
     issue_rows = read_csv(input_dir / "issue_titles.csv")
     unresolved_rows = read_csv(input_dir / "unresolved_issues.csv")
     master_rows = read_csv(input_dir / "master_games.csv")
+    source_archives_path = Path(args.source_archives) if args.source_archives else input_dir / "source_archives.csv"
+    source_archive_rows = read_csv(source_archives_path) if source_archives_path.exists() else []
     baseline_master = (
         Path(args.baseline_enriched_master)
         if args.baseline_enriched_master
@@ -1092,9 +1311,11 @@ def main() -> int:
     )
     baseline_match_map = read_baseline_match_map(baseline_master) if baseline_master is not None else {}
     manual_content_overrides = read_manual_content_overrides(Path(args.manual_content_overrides))
+    manual_candidate_overrides = read_manual_candidate_overrides(Path(args.manual_candidate_overrides))
+    manual_cluster_overrides = read_manual_cluster_overrides(Path(args.manual_cluster_overrides))
     rejection_map = read_rejections(Path(args.manual_rejections))
 
-    cleaned_issue_rows, dropped_rows = clean_issue_rows(issue_rows)
+    cleaned_issue_rows, dropped_rows = clean_issue_rows(issue_rows, manual_candidate_overrides)
     cleaned_issue_rows = [repair_issue_row(row) for row in cleaned_issue_rows]
     cleaned_master_rows = rebuild_master(cleaned_issue_rows)
     publishable_source_rows = publishable_issue_rows(cleaned_issue_rows)
@@ -1104,8 +1325,17 @@ def main() -> int:
         baseline_match_map=baseline_match_map,
         manual_content_overrides=manual_content_overrides,
         rejection_map=rejection_map,
+        manual_cluster_overrides=manual_cluster_overrides,
     )
-    analyzed_unresolved = analyze_unresolved(unresolved_rows)
+    inventory_rows = build_source_issue_inventory(
+        source_archive_rows,
+        issue_rows,
+        cleaned_issue_rows,
+        publishable_rows,
+        dropped_rows,
+        unresolved_rows,
+    )
+    analyzed_unresolved = add_publication_coverage_unresolved(analyze_unresolved(unresolved_rows), inventory_rows)
 
     write_csv(
         output_dir / "final_issue_titles.csv",
@@ -1254,6 +1484,26 @@ def main() -> int:
         ],
     )
     write_csv(
+        output_dir / "source_issue_inventory.csv",
+        inventory_rows,
+        [
+            "archive_item",
+            "archive_name",
+            "archive_url",
+            "source_size_bytes",
+            "source_sha1",
+            "issue_code",
+            "year",
+            "variant",
+            "raw_candidate_rows",
+            "cleaned_candidate_rows",
+            "dropped_candidate_rows",
+            "publishable_game_rows",
+            "publication_status",
+            "coverage_reason",
+        ],
+    )
+    write_csv(
         output_dir / "final_unresolved_issues.csv",
         analyzed_unresolved,
         [
@@ -1282,6 +1532,8 @@ def main() -> int:
         publishable_master_count=len(publishable_master_rows),
         publishable_issue_count=len(publishable_rows),
         excluded_count=len(excluded_non_game_rows),
+        source_archive_count=len(inventory_rows),
+        published_archive_count=sum(int(row["publishable_game_rows"]) > 0 for row in inventory_rows),
     )
     write_unresolved_summary(output_dir / "unresolved_summary.md", analyzed_unresolved)
     write_published_readme(
@@ -1291,6 +1543,8 @@ def main() -> int:
         issue_count=len(publishable_rows),
         unresolved_count=len(analyzed_unresolved),
         excluded_count=len(excluded_non_game_rows),
+        source_archive_count=len(inventory_rows),
+        published_archive_count=sum(int(row["publishable_game_rows"]) > 0 for row in inventory_rows),
     )
     return 0
 

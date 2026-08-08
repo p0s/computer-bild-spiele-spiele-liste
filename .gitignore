@@ -1,5 +1,14 @@
 /results/*
+!/results/raw-candidates-*/
+/results/raw-candidates-*/*
+!/results/raw-candidates-*/README.md
+!/results/raw-candidates-*/issue_titles.csv
+!/results/raw-candidates-*/master_games.csv
+!/results/raw-candidates-*/unresolved_issues.csv
+!/results/raw-candidates-*/source_archives.csv
+!/results/raw-candidates-*/manifest.json
 !/results/reference_review-20260325.csv
+!/results/reference_results-*.csv
 !/results/published-*/
 /results/published-*/*
 !/results/published-*/README.md
@@ -11,6 +20,8 @@
 !/results/published-*/final_unresolved_issues.csv
 !/results/published-*/publishable_issue_titles.csv
 !/results/published-*/publishable_master_games.csv
+!/results/published-*/release-manifest.json
+!/results/published-*/source_issue_inventory.csv
 !/results/published-*/unresolved_summary.md
 /results/published-20260324/dropped_candidates.csv
 /results/published-20260324/final_issue_titles.csv
@@ -23,6 +34,7 @@
 !/results/enriched-*/enriched_master_games.csv
 !/results/enriched-*/enrichment_audit.md
 !/results/enriched-*/match_demotions.csv
+!/results/enriched-*/pending_lookups.csv
 !/results/enriched-*/source_attribution.csv
 !/results/enriched-*/title_aliases.csv
 !/results/enriched-*/unmatched_titles.csv
@@ -38,3 +50,7 @@
 /update/
 .DS_Store
 **/__pycache__/
+/.venv/
+/build/
+/dist/
+/*.egg-info/

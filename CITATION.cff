@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it and preserve the Internet Archive source attribution."
+title: "Computer Bild Spiele Cover-disc Game List"
+type: dataset
+version: "2026.8.8"
+date-released: 2026-08-08
+authors:
+  - name: p0s
+repository-code: "https://github.com/p0s/computer-bild-spiele-spiele-liste"
+license: CC-BY-4.0
+keywords:
+  - computer games
+  - cover discs
+  - preservation
+  - Computer Bild Spiele

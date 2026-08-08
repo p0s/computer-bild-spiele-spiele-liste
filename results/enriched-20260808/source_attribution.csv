@@ -1,0 +1,4 @@
+source_name,source_type,homepage,fields_used,attribution_note,terms_note
+Clustered Published Release,derived-csv,,"observed titles, clustering, content-class audit columns",Cluster-level public title reconstruction,Derived from tracked CBS release artifacts
+Wikimedia Baseline Release,derived-csv,https://www.wikidata.org/,"canonical entity, release year, categories, genres, ratings when present",Carried forward from the prior alias-level enriched release,Use minimal factual metadata with source attribution
+Pinned Reference Review,derived-csv,https://www.wikidata.org/,ambiguous candidate labels and URLs,"Candidate evidence from a preserved, rate-limited lookup run",Operational failures are kept separate from semantic no-match results

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import shutil
 import tempfile
 import unittest
@@ -21,23 +22,31 @@ from scripts.index_cbs_exes import (
     download_record_archive,
     ensure_required_tools,
     export_csvs,
+    extract_archive,
     fetch_cached_text,
     find_mount_candidates,
     insert_title_row,
     iter_executable_paths,
+    mark_archive_started,
     normalize_title,
     parse_archive_name,
     parse_archiveorg_metadata_payload,
-    parse_vollversion_issue_html,
     parse_text_candidates,
+    parse_vollversion_issue_html,
     process_downloaded_archive,
     process_title_issue,
     run_archive_metadata_strategy,
     run_vollversion_strategy,
+    strategy_cache_key,
     title_candidates_from_exe_path,
     title_candidates_from_metadata_file,
+    validate_archive_member_paths,
 )
-from scripts.prepare_publishable_results import build_improved_publishable_outputs, publishable_issue_rows, repair_issue_row
+from scripts.prepare_publishable_results import (
+    build_improved_publishable_outputs,
+    publishable_issue_rows,
+    repair_issue_row,
+)
 
 
 def candidate(source_kind: str, source_path: str, title: str, normalized: str, confidence: str = "high") -> tuple:
@@ -114,13 +123,7 @@ class TitleParsingTests(unittest.TestCase):
             "issue-item",
             {
                 "metadata": {
-                    "description": (
-                        "Vollversion:\n"
-                        "- Anno 1602\n"
-                        "Demos:\n"
-                        "- Prince of Persia 3D\n"
-                        "- RollerCoaster Tycoon"
-                    )
+                    "description": ("Vollversion:\n- Anno 1602\nDemos:\n- Prince of Persia 3D\n- RollerCoaster Tycoon")
                 }
             },
         )
@@ -186,6 +189,49 @@ class ToolAndCacheTests(unittest.TestCase):
             finally:
                 conn.close()
 
+    def test_fetch_cached_text_does_not_poison_cache_with_transient_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            conn = connect_database(Path(temp_dir) / "cache.sqlite")
+            try:
+                with mock.patch(
+                    "scripts.index_cbs_exes.http_get_text",
+                    side_effect=[CommandError("temporary failure"), "recovered"],
+                ) as get_text:
+                    with self.assertRaises(CommandError):
+                        fetch_cached_text(
+                            conn,
+                            cache_kind="search",
+                            cache_key="search:retry",
+                            url="https://example.invalid/search",
+                        )
+                    self.assertEqual(
+                        fetch_cached_text(
+                            conn,
+                            cache_kind="search",
+                            cache_key="search:retry",
+                            url="https://example.invalid/search",
+                        ),
+                        "recovered",
+                    )
+                self.assertEqual(get_text.call_count, 2)
+            finally:
+                conn.close()
+
+    def test_strategy_cache_key_tracks_source_identity_and_parameters(self) -> None:
+        first = ArchiveRecord(
+            "item", "2000/CBS092000.7z", "https://example.invalid/a", 10, 2000, "CBS092000", "CD", "a" * 40
+        )
+        changed = ArchiveRecord(
+            "item", "2000/CBS092000.7z", "https://example.invalid/a", 10, 2000, "CBS092000", "CD", "b" * 40
+        )
+        self.assertNotEqual(
+            strategy_cache_key(first, "archive-metadata"), strategy_cache_key(changed, "archive-metadata")
+        )
+        self.assertNotEqual(
+            strategy_cache_key(first, "archive-metadata", issue_search_limit=5),
+            strategy_cache_key(first, "archive-metadata", issue_search_limit=10),
+        )
+
     def test_strategy_cache_reuses_archive_metadata_results(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             conn = connect_database(Path(temp_dir) / "cache.sqlite")
@@ -199,13 +245,16 @@ class ToolAndCacheTests(unittest.TestCase):
                 variant="CD",
             )
             try:
-                with mock.patch(
-                    "scripts.index_cbs_exes.archiveorg_search_candidates",
-                    return_value=[{"identifier": "issue-item"}],
-                ) as search_candidates, mock.patch(
-                    "scripts.index_cbs_exes.archiveorg_metadata_json",
-                    return_value={"metadata": {"subject": ["Anno 1602"]}},
-                ) as metadata_json:
+                with (
+                    mock.patch(
+                        "scripts.index_cbs_exes.archiveorg_search_candidates",
+                        return_value=[{"identifier": "issue-item"}],
+                    ) as search_candidates,
+                    mock.patch(
+                        "scripts.index_cbs_exes.archiveorg_metadata_json",
+                        return_value={"metadata": {"subject": ["Anno 1602"]}},
+                    ) as metadata_json,
+                ):
                     first = run_archive_metadata_strategy(conn, record, issue_search_limit=5)
                     second = run_archive_metadata_strategy(conn, record, issue_search_limit=5)
                 self.assertEqual({candidate.normalized_title for candidate in first.candidates}, {"anno1602"})
@@ -425,6 +474,46 @@ class PublishableRepairTests(unittest.TestCase):
         self.assertEqual(issue_rows[0]["occurrence_count_in_issue"], 2)
         self.assertEqual(excluded_rows[0]["content_class"], "utility")
 
+    def test_cluster_builder_applies_audited_manual_cluster_redirect(self) -> None:
+        rows = []
+        for issue, title in (
+            ("CBS102006DVD", "Baphotmets Fluch Der Engeldes Todes"),
+            ("CBS022007DVD", "Baphomets Fluch Der Engeldes Todes"),
+        ):
+            rows.append(
+                {
+                    "archive_item": "cbs-2000-09",
+                    "archive_name": f"2007/{issue}.7z",
+                    "issue_code": issue,
+                    "year": "2007",
+                    "variant": "DVD",
+                    "normalized_title": normalize_title(title) or "",
+                    "representative_title": title,
+                    "source_kinds": "disc-metadata-value",
+                    "confidence": "high",
+                    "content_kind": "unknown",
+                    "clean_reason": "multiword",
+                }
+            )
+
+        master_rows, issue_rows, _ = build_improved_publishable_outputs(
+            rows,
+            baseline_match_map={},
+            manual_content_overrides={},
+            rejection_map={},
+            manual_cluster_overrides={
+                "baphotmetsfluchderengeldestodes": {
+                    "target_game_id": "baphometsfluchderengeldestodes",
+                    "representative_title": "Baphomets Fluch Der Engeldes Todes",
+                }
+            },
+        )
+
+        self.assertEqual(len(master_rows), 1)
+        self.assertEqual(len(issue_rows), 2)
+        self.assertEqual(master_rows[0]["game_id"], "baphometsfluchderengeldestodes")
+        self.assertIn("manual_cluster_override", master_rows[0]["cleanup_flags"])
+
     def test_cluster_builder_excludes_utility_and_ui_noise_titles(self) -> None:
         rows = []
         for index, title in enumerate(
@@ -551,10 +640,11 @@ class DownloadTests(unittest.TestCase):
             archive_item="cbs-2000-09",
             archive_name="2007/CBS022007DVD.7z",
             archive_url="https://archive.org/download/cbs-2000-09/2007/CBS022007DVD.7z",
-            size_bytes=1,
+            size_bytes=2,
             year=2007,
             issue_code="CBS022007DVD",
             variant="DVD",
+            sha1=hashlib.sha1(b"ok").hexdigest(),
         )
         calls: list[tuple[str, str]] = []
 
@@ -568,6 +658,68 @@ class DownloadTests(unittest.TestCase):
         self.assertEqual(downloaded_url, record.archive_url)
         self.assertEqual(archive_path.name, "CBS022007DVD.7z")
         self.assertEqual(calls, [(record.archive_url, "CBS022007DVD.7z")])
+
+    def test_download_record_archive_rejects_integrity_mismatch(self) -> None:
+        record = ArchiveRecord(
+            archive_item="cbs-2000-09",
+            archive_name="2007/CBS022007DVD.7z",
+            archive_url="https://archive.org/download/cbs-2000-09/2007/CBS022007DVD.7z",
+            size_bytes=2,
+            year=2007,
+            issue_code="CBS022007DVD",
+            variant="DVD",
+            sha1="0" * 40,
+        )
+
+        def fake_download(_url: str, destination: Path) -> None:
+            destination.write_bytes(b"ok")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            with mock.patch("scripts.index_cbs_exes.download_archive", side_effect=fake_download):
+                with self.assertRaisesRegex(CommandError, "all archive downloads failed"):
+                    download_record_archive(record, root)
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_archive_member_validation_rejects_traversal(self) -> None:
+        validate_archive_member_paths(["disc/GAME.EXE", "disc/autorun.inf"])
+        for unsafe in ("../escape", "/absolute/path", "C:/windows/file", "disc\\escape"):
+            with self.subTest(unsafe=unsafe):
+                with self.assertRaises(CommandError):
+                    validate_archive_member_paths([unsafe])
+
+    def test_native_zip_extraction_rejects_traversal(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            archive_path = root / "unsafe.zip"
+            with zipfile.ZipFile(archive_path, "w") as archive:
+                archive.writestr("../escape", b"unsafe")
+            with self.assertRaises(CommandError):
+                extract_archive(archive_path, root / "output")
+            self.assertFalse((root / "escape").exists())
+
+    def test_source_archive_provenance_is_exported_from_the_worker_database(self) -> None:
+        record = ArchiveRecord(
+            archive_item="cbs-2000-09",
+            archive_name="2007/CBS022007DVD.7z",
+            archive_url="https://archive.org/download/cbs-2000-09/2007/CBS022007DVD.7z",
+            size_bytes=42,
+            year=2007,
+            issue_code="CBS022007DVD",
+            variant="DVD",
+            sha1="a" * 40,
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            conn = connect_database(root / "worker.sqlite")
+            try:
+                mark_archive_started(conn, record, "titles")
+                export_csvs(conn, root / "out", "titles")
+            finally:
+                conn.close()
+            exported = (root / "out" / "source_archives.csv").read_text(encoding="utf-8")
+        self.assertIn(record.archive_name, exported)
+        self.assertIn(record.sha1, exported)
 
 
 class ExecutableDiscoveryTests(unittest.TestCase):
@@ -586,8 +738,7 @@ class ExecutableDiscoveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / "disc.cue").write_text(
-                'FILE "disc.bin" BINARY\n'
-                'FILE "disc (Track 02).bin" BINARY\n',
+                'FILE "disc.bin" BINARY\nFILE "disc (Track 02).bin" BINARY\n',
                 encoding="utf-8",
             )
             (root / "disc.bin").write_bytes(b"bin")
@@ -603,9 +754,7 @@ class ExecutableDiscoveryTests(unittest.TestCase):
             cue_path = root / "disc.cue"
             bin_path = root / "disc.bin"
             cue_path.write_text(
-                'FILE "disc.bin" BINARY\n'
-                "  TRACK 01 MODE1/2352\n"
-                "    INDEX 01 00:00:00\n",
+                'FILE "disc.bin" BINARY\n  TRACK 01 MODE1/2352\n    INDEX 01 00:00:00\n',
                 encoding="utf-8",
             )
             sector_a = b"\x00" * 16 + b"A" * 2048 + b"\x00" * (2352 - 16 - 2048)
@@ -625,9 +774,7 @@ class ExecutableDiscoveryTests(unittest.TestCase):
             root = Path(temp_dir)
             metadata = root / "autorun.inf"
             metadata.write_text(
-                "[autorun]\n"
-                "label=Prince of Persia 3D Demo\n"
-                "open=CBS/Demo/progs/PrinceoP/PRINCEOFPERSIA3DDEMO.EXE\n",
+                "[autorun]\nlabel=Prince of Persia 3D Demo\nopen=CBS/Demo/progs/PrinceoP/PRINCEOFPERSIA3DDEMO.EXE\n",
                 encoding="utf-8",
             )
             candidates = title_candidates_from_metadata_file(metadata, root)
@@ -714,18 +861,25 @@ class BenchmarkAndAutoModeTests(unittest.TestCase):
         vollversion = StrategyRunResult(
             strategy="vollversion",
             candidates=(
-                candidate("vollversion-fullversion", "https://www.vollversion.de/ausgabe/computer-bild-spiele-04-2000.html", "Mystery Island", "mystery island"),
+                candidate(
+                    "vollversion-fullversion",
+                    "https://www.vollversion.de/ausgabe/computer-bild-spiele-04-2000.html",
+                    "Mystery Island",
+                    "mystery island",
+                ),
             ),
             structured=True,
             elapsed_ms=5,
         )
         metadata = StrategyRunResult(strategy="archive-metadata", candidates=tuple(), structured=False, elapsed_ms=3)
-        with mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion), mock.patch(
-            "scripts.index_cbs_exes.run_archive_metadata_strategy",
-            return_value=metadata,
-        ), mock.patch(
-            "scripts.index_cbs_exes.run_disc_title_strategy"
-        ) as run_disc:
+        with (
+            mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion),
+            mock.patch(
+                "scripts.index_cbs_exes.run_archive_metadata_strategy",
+                return_value=metadata,
+            ),
+            mock.patch("scripts.index_cbs_exes.run_disc_title_strategy") as run_disc,
+        ):
             process_title_issue(self.conn, self.record, self.tmp_dir, self._args())
         run_disc.assert_not_called()
         resolution = self.conn.execute(
@@ -749,21 +903,28 @@ class BenchmarkAndAutoModeTests(unittest.TestCase):
             elapsed_ms=5,
         )
 
-        def disc_side_effect(conn, record, tmp_root, *, title_scan_mode: str, archive_path: Path | None = None) -> tuple[str, str | None]:
+        def disc_side_effect(
+            conn, record, tmp_root, *, title_scan_mode: str, archive_path: Path | None = None
+        ) -> tuple[str, str | None]:
             self._insert_disc_title("Prince of Persia 3D", "disc-metadata-value", "autorun.inf")
             self._insert_disc_title("RollerCoaster Tycoon", "disc-manifest-path", "Demos/RollerCoasterTycoon")
             return ("ok", None)
 
-        with mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion), mock.patch(
-            "scripts.index_cbs_exes.run_archive_metadata_strategy",
-            return_value=result,
-        ), mock.patch(
-            "scripts.index_cbs_exes.download_record_archive",
-            return_value=(self.tmp_dir / "disc-download.zip", "https://example.invalid/disc-download.zip"),
-        ), mock.patch(
-            "scripts.index_cbs_exes.run_disc_title_strategy",
-            side_effect=disc_side_effect,
-        ) as run_disc:
+        with (
+            mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion),
+            mock.patch(
+                "scripts.index_cbs_exes.run_archive_metadata_strategy",
+                return_value=result,
+            ),
+            mock.patch(
+                "scripts.index_cbs_exes.download_record_archive",
+                return_value=(self.tmp_dir / "disc-download.zip", "https://example.invalid/disc-download.zip"),
+            ),
+            mock.patch(
+                "scripts.index_cbs_exes.run_disc_title_strategy",
+                side_effect=disc_side_effect,
+            ) as run_disc,
+        ):
             process_title_issue(self.conn, self.record, self.tmp_dir, self._args())
         self.assertGreaterEqual(run_disc.call_count, 1)
         archived = self.conn.execute(
@@ -787,7 +948,9 @@ class BenchmarkAndAutoModeTests(unittest.TestCase):
         )
         seen_modes: list[str] = []
 
-        def disc_side_effect(conn, record, tmp_root, *, title_scan_mode: str, archive_path: Path | None = None) -> tuple[str, str | None]:
+        def disc_side_effect(
+            conn, record, tmp_root, *, title_scan_mode: str, archive_path: Path | None = None
+        ) -> tuple[str, str | None]:
             seen_modes.append(title_scan_mode)
             if title_scan_mode == "quick":
                 self._insert_disc_title("Anno 1602", "disc-manifest-path", "Games/Anno1602")
@@ -796,15 +959,20 @@ class BenchmarkAndAutoModeTests(unittest.TestCase):
                 self._insert_disc_title("RollerCoaster Tycoon", "disc-exe-parent", "RCT/SETUP.EXE")
             return ("ok", None)
 
-        with mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion), mock.patch(
-            "scripts.index_cbs_exes.run_archive_metadata_strategy",
-            return_value=result,
-        ), mock.patch(
-            "scripts.index_cbs_exes.download_record_archive",
-            return_value=(self.tmp_dir / "disc-download.zip", "https://example.invalid/disc-download.zip"),
-        ), mock.patch(
-            "scripts.index_cbs_exes.run_disc_title_strategy",
-            side_effect=disc_side_effect,
+        with (
+            mock.patch("scripts.index_cbs_exes.run_vollversion_strategy", return_value=vollversion),
+            mock.patch(
+                "scripts.index_cbs_exes.run_archive_metadata_strategy",
+                return_value=result,
+            ),
+            mock.patch(
+                "scripts.index_cbs_exes.download_record_archive",
+                return_value=(self.tmp_dir / "disc-download.zip", "https://example.invalid/disc-download.zip"),
+            ),
+            mock.patch(
+                "scripts.index_cbs_exes.run_disc_title_strategy",
+                side_effect=disc_side_effect,
+            ),
         ):
             process_title_issue(self.conn, self.record, self.tmp_dir, self._args())
         self.assertEqual(seen_modes, ["quick", "full"])
@@ -910,7 +1078,16 @@ class ProcessingIntegrationTests(unittest.TestCase):
             issue_code=issue_code,
             variant=variant,
         )
-        with mock.patch("scripts.index_cbs_exes.mounted_image", side_effect=self._fake_mounted_title_image):
+        with (
+            mock.patch(
+                "scripts.index_cbs_exes.mounted_image",
+                side_effect=self._fake_mounted_title_image,
+            ),
+            mock.patch(
+                "scripts.index_cbs_exes.seven_zip_binary",
+                return_value=None,
+            ),
+        ):
             status, error = process_downloaded_archive(record, outer_path, self.conn, self.tmp_dir, "titles")
         self.assertEqual(status, "ok")
         self.assertIsNone(error)

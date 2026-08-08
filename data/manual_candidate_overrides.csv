@@ -1,0 +1,14 @@
+archive_name,normalized_title,representative_title,action,reason
+2000/CBS052000.7z,kings quest7,King's Quest 7,include,game title is present as a disc manifest path
+2006/CBS072006DVDGOLD.7z,jaggedalliance2,Jagged Alliance 2,include,high-confidence disc metadata value names a known game
+2009/CBS062009DVD.7z,crashday,Crashday,include,manifest ISO and high-confidence disc metadata agree on the game title
+2009/CBS062009DVDGold.7z,panzers,Panzers,include,high-confidence disc metadata value identifies a game title
+2009/CBS062009DVDGold.7z,rush,Rush,include,high-confidence disc metadata plus a Rush for Berlin guide path identifies a game title
+2009/CBS092009DVDGold.7z,iceage,Ice Age,include,high-confidence disc metadata value identifies a game title
+2009/CBS092009DVDGold.7z,overlord,Overlord,include,high-confidence disc metadata value identifies a game title
+2009/CBS092009DVDGold.7z,riseofnations,Rise of Nations,include,high-confidence disc metadata value identifies a game title
+2010/CBS012010DVD.7z,ankh,Ankh,include,disc manifest contains both ANKH.iso and the German installer
+2010/CBS032010DVDGold.7z,ankh heart of osiris ger esd,Ankh: Heart of Osiris,include,disc manifest contains the named installer and ANKH2 media
+2010/CBS122010DVD.7z,race07,RACE 07,include,disc manifest contains the game and multilingual manuals
+2010/CBS122010DVD.7z,westerner ii,Westerner II,include,disc manifest contains the game title
+2010/CBS122010DVDGold.7z,gothic3,Gothic 3 Gold,include,disc manifest contains GOTHIC3GOLD.iso

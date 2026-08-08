@@ -1,0 +1,180 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "normalized_title",
+      "type": "string"
+    },
+    {
+      "name": "representative_title",
+      "type": "string"
+    },
+    {
+      "name": "first_seen_issue",
+      "type": "string"
+    },
+    {
+      "name": "issue_count",
+      "type": "integer"
+    },
+    {
+      "name": "occurrence_count",
+      "type": "integer"
+    },
+    {
+      "name": "best_confidence",
+      "type": "string"
+    },
+    {
+      "name": "source_kinds",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "pattern": "^[a-z0-9]+$",
+        "required": true
+      },
+      "name": "game_id",
+      "type": "string"
+    },
+    {
+      "name": "first_seen_year",
+      "type": "integer"
+    },
+    {
+      "name": "last_seen_issue",
+      "type": "string"
+    },
+    {
+      "name": "last_seen_year",
+      "type": "integer"
+    },
+    {
+      "name": "alias_count",
+      "type": "integer"
+    },
+    {
+      "name": "alias_titles",
+      "type": "string"
+    },
+    {
+      "name": "legacy_normalized_titles",
+      "type": "string"
+    },
+    {
+      "name": "observed_content_kinds",
+      "type": "string"
+    },
+    {
+      "name": "observed_content_forms",
+      "type": "string"
+    },
+    {
+      "name": "content_class",
+      "type": "string"
+    },
+    {
+      "name": "cleanup_flags",
+      "type": "string"
+    },
+    {
+      "name": "merge_confidence",
+      "type": "string"
+    },
+    {
+      "name": "match_status",
+      "type": "string"
+    },
+    {
+      "name": "match_confidence",
+      "type": "string"
+    },
+    {
+      "name": "canonical_title",
+      "type": "string"
+    },
+    {
+      "name": "canonical_slug",
+      "type": "string"
+    },
+    {
+      "name": "entity_type",
+      "type": "string"
+    },
+    {
+      "name": "release_year",
+      "type": "integer"
+    },
+    {
+      "name": "wikipedia_url",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "pattern": "^Q[1-9][0-9]*$"
+      },
+      "name": "wikidata_id",
+      "type": "string"
+    },
+    {
+      "name": "wikidata_url",
+      "type": "string"
+    },
+    {
+      "name": "categories",
+      "type": "string"
+    },
+    {
+      "name": "genres",
+      "type": "string"
+    },
+    {
+      "name": "themes",
+      "type": "string"
+    },
+    {
+      "name": "rating_value",
+      "type": "number"
+    },
+    {
+      "name": "rating_scale",
+      "type": "number"
+    },
+    {
+      "name": "rating_count",
+      "type": "integer"
+    },
+    {
+      "name": "rating_source",
+      "type": "string"
+    },
+    {
+      "name": "rating_url",
+      "type": "string"
+    },
+    {
+      "name": "metadata_sources",
+      "type": "string"
+    },
+    {
+      "name": "match_action",
+      "type": "string"
+    },
+    {
+      "name": "match_notes",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "data_quality_score",
+      "type": "integer"
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": "game_id"
+}

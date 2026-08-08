@@ -1,0 +1,316 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "normalized_title",
+      "type": "string"
+    },
+    {
+      "name": "representative_title",
+      "type": "string"
+    },
+    {
+      "name": "first_seen_issue",
+      "type": "string"
+    },
+    {
+      "name": "issue_count",
+      "type": "integer"
+    },
+    {
+      "name": "occurrence_count",
+      "type": "integer"
+    },
+    {
+      "name": "best_confidence",
+      "type": "string"
+    },
+    {
+      "name": "source_kinds",
+      "type": "string"
+    },
+    {
+      "name": "canonical_title",
+      "type": "string"
+    },
+    {
+      "name": "canonical_slug",
+      "type": "string"
+    },
+    {
+      "name": "match_status",
+      "type": "string"
+    },
+    {
+      "name": "semantic_match_status",
+      "type": "string"
+    },
+    {
+      "name": "lookup_status",
+      "type": "string"
+    },
+    {
+      "name": "match_confidence",
+      "type": "string"
+    },
+    {
+      "name": "match_method",
+      "type": "string"
+    },
+    {
+      "name": "match_source",
+      "type": "string"
+    },
+    {
+      "name": "match_source_url",
+      "type": "string"
+    },
+    {
+      "name": "match_fetched_at",
+      "type": "string"
+    },
+    {
+      "name": "entity_type",
+      "type": "string"
+    },
+    {
+      "name": "release_year",
+      "type": "integer"
+    },
+    {
+      "name": "developer",
+      "type": "string"
+    },
+    {
+      "name": "publisher",
+      "type": "string"
+    },
+    {
+      "name": "franchise",
+      "type": "string"
+    },
+    {
+      "name": "series",
+      "type": "string"
+    },
+    {
+      "name": "original_language",
+      "type": "string"
+    },
+    {
+      "name": "engine",
+      "type": "string"
+    },
+    {
+      "name": "wikipedia_url",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "pattern": "^Q[1-9][0-9]*$"
+      },
+      "name": "wikidata_id",
+      "type": "string"
+    },
+    {
+      "name": "wikidata_url",
+      "type": "string"
+    },
+    {
+      "name": "official_website",
+      "type": "string"
+    },
+    {
+      "name": "steam_app_id",
+      "type": "string"
+    },
+    {
+      "name": "steam_url",
+      "type": "string"
+    },
+    {
+      "name": "mobygames_url",
+      "type": "string"
+    },
+    {
+      "name": "igdb_id",
+      "type": "string"
+    },
+    {
+      "name": "igdb_url",
+      "type": "string"
+    },
+    {
+      "name": "categories",
+      "type": "string"
+    },
+    {
+      "name": "genres",
+      "type": "string"
+    },
+    {
+      "name": "themes",
+      "type": "string"
+    },
+    {
+      "name": "category_source",
+      "type": "string"
+    },
+    {
+      "name": "category_source_url",
+      "type": "string"
+    },
+    {
+      "name": "category_fetched_at",
+      "type": "string"
+    },
+    {
+      "name": "category_confidence",
+      "type": "string"
+    },
+    {
+      "name": "rating_value",
+      "type": "number"
+    },
+    {
+      "name": "rating_scale",
+      "type": "number"
+    },
+    {
+      "name": "rating_count",
+      "type": "integer"
+    },
+    {
+      "name": "rating_source",
+      "type": "string"
+    },
+    {
+      "name": "rating_url",
+      "type": "string"
+    },
+    {
+      "name": "rating_fetched_at",
+      "type": "string"
+    },
+    {
+      "name": "rating_confidence",
+      "type": "string"
+    },
+    {
+      "name": "usk_rating",
+      "type": "string"
+    },
+    {
+      "name": "pegi_rating",
+      "type": "string"
+    },
+    {
+      "name": "metadata_sources",
+      "type": "string"
+    },
+    {
+      "name": "match_notes",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "pattern": "^[a-z0-9]+$",
+        "required": true
+      },
+      "name": "game_id",
+      "type": "string"
+    },
+    {
+      "name": "first_seen_year",
+      "type": "integer"
+    },
+    {
+      "name": "last_seen_issue",
+      "type": "string"
+    },
+    {
+      "name": "last_seen_year",
+      "type": "integer"
+    },
+    {
+      "name": "alias_count",
+      "type": "integer"
+    },
+    {
+      "name": "alias_titles",
+      "type": "string"
+    },
+    {
+      "name": "legacy_normalized_titles",
+      "type": "string"
+    },
+    {
+      "name": "observed_content_kinds",
+      "type": "string"
+    },
+    {
+      "name": "observed_content_forms",
+      "type": "string"
+    },
+    {
+      "name": "content_class",
+      "type": "string"
+    },
+    {
+      "name": "cleanup_flags",
+      "type": "string"
+    },
+    {
+      "name": "merge_confidence",
+      "type": "string"
+    },
+    {
+      "name": "match_action",
+      "type": "string"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "observation_confidence_score",
+      "type": "integer"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "cluster_confidence_score",
+      "type": "integer"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "entity_match_score",
+      "type": "integer"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "metadata_completeness_score",
+      "type": "integer"
+    },
+    {
+      "constraints": {
+        "maximum": 100,
+        "minimum": 0
+      },
+      "name": "data_quality_score",
+      "type": "integer"
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": "game_id"
+}
