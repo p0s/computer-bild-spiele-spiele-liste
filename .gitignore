@@ -38,6 +38,16 @@
 !/results/enriched-*/source_attribution.csv
 !/results/enriched-*/title_aliases.csv
 !/results/enriched-*/unmatched_titles.csv
+!/results/media-*/
+/results/media-*/*
+!/results/media-*/README.md
+!/results/media-*/asset_evidence.csv
+!/results/media-*/audit_summary.md
+!/results/media-*/commons_candidates.csv
+!/results/media-*/ia_files.csv
+!/results/media-*/media_audit.csv
+!/results/media-*/media_manifest.csv
+!/results/media-*/release-manifest.json
 /FINAL-RELEASE-AUDIT.md
 /FINAL-RELEASE-AUDIT-*.md
 /FINAL-RELEASE-SAMPLE.csv

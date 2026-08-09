@@ -4,7 +4,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.release_contract import ROOT, check_contract, release_metadata, validate_redirects, validate_table
+from scripts.release_contract import (
+    ROOT,
+    artifact_paths,
+    check_contract,
+    release_metadata,
+    validate_redirects,
+    validate_table,
+)
 
 
 class ReleaseContractTests(unittest.TestCase):
@@ -23,6 +30,15 @@ class ReleaseContractTests(unittest.TestCase):
             ),
             [],
         )
+
+    def test_primary_release_excludes_media_specific_inputs(self) -> None:
+        artifacts = artifact_paths(
+            raw_dir=ROOT / "results" / "raw-candidates-20260325",
+            published_dir=ROOT / "results" / "published-20260808",
+            enriched_dir=ROOT / "results" / "enriched-20260808",
+        )
+
+        self.assertNotIn(ROOT / "data" / "manual_media_overrides.csv", artifacts)
 
     def test_table_validator_rejects_duplicate_and_malformed_ids(self) -> None:
         schema = {

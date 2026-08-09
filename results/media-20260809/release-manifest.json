@@ -1,0 +1,66 @@
+{
+  "release_id": "20260809",
+  "schema_version": "1.0.0",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 358,
+      "sha256": "6f2c70b5a1adeea498c23822fd9c461f1317f3c1357874139a311552cc227052",
+      "rows": 0
+    },
+    {
+      "path": "asset_evidence.csv",
+      "bytes": 27556,
+      "sha256": "540939d48d1fe2dee44c6f267e840ed8d21365917f9ea1b0afda8b2d69007792",
+      "rows": 168
+    },
+    {
+      "path": "audit_summary.md",
+      "bytes": 153,
+      "sha256": "833120dd9cf4102cba8721d720ca309bf9407110c45cfa5e9e7accbe998c88fe",
+      "rows": 0
+    },
+    {
+      "path": "commons_candidates.csv",
+      "bytes": 9782,
+      "sha256": "5ce60c5d8b88235d3c63d68e6d925fa507f296eec6ea10a4a9840f55613385c2",
+      "rows": 17
+    },
+    {
+      "path": "data/manual_media_overrides.csv",
+      "bytes": 973,
+      "sha256": "2c1b3227cc286b56a9dc9aa5cf9b0c18e63f599eef843ef1075a4a1b0a0ba8b3",
+      "rows": 12
+    },
+    {
+      "path": "ia_files.csv",
+      "bytes": 31928,
+      "sha256": "8ed16353e6fdc8149d95b8bb2923944cb27961284b526abcbdeed760165acb03",
+      "rows": 167
+    },
+    {
+      "path": "media_audit.csv",
+      "bytes": 19621,
+      "sha256": "fd4f04455c79253a2453515a95b71c3d3953c53784ec856e1d4d193b998231fa",
+      "rows": 289
+    },
+    {
+      "path": "media_manifest.csv",
+      "bytes": 123404,
+      "sha256": "2546a15281187d4f7f77ee6b4c7ed55823d1bd5d8ad2fbd38a2a839edb0d44e3",
+      "rows": 168
+    },
+    {
+      "path": "results/enriched-20260808/enriched_master_games.csv",
+      "bytes": 629848,
+      "sha256": "3d860df959bed84295af29268c2c323b4a932ae4034af23c4dbd6d75fc88f41c",
+      "rows": 1601
+    },
+    {
+      "path": "results/published-20260808/publishable_issue_titles.csv",
+      "bytes": 845089,
+      "sha256": "a7a5f78152793f211c54a225934768192dfd3f353e678a1079371edfe5e23cb6",
+      "rows": 2100
+    }
+  ]
+}

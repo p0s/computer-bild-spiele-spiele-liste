@@ -1,0 +1,13 @@
+subject_type,subject_id,action,source_file,media_role,featured_rank,reason
+issue,CBS102001,approve,2001/Scans/CBS102001_Scans.7z,disc_face,,source_year_matches_issue
+issue,CBS072007DVD,approve,2007/Scans/CBS07_2007_2_Scans.7z,disc_face,,source_variant_mapping
+issue,CBS092004DVD,approve,2004/Scans/CBS092004DVD Scans.7z,disc_face,,source_filename_spacing
+issue,CBS012008DVDSonder,reject,,disc_face,,no_corresponding_scan
+issue,CBS012003,approve,,disc_face,1,homepage_feature
+issue,CBS032005DVD,approve,,disc_face,2,homepage_feature
+issue,CBS052008DVD,approve,,disc_face,3,homepage_feature
+issue,CBS122010DVDGold,approve,,disc_face,4,homepage_feature
+game,fallout3,approve,Fallout 3 cover (cropped).png,cover_art,,exact_cover_art
+game,cossackseuropeanwars,reject,3 cossacks european wars.JPG,cover_art,,gameplay_screenshot
+game,andyetitmoves,reject,And Yet It Moves title.png,cover_art,,title_art
+game,armagetronadvanced,reject,Armagetron.jpg,cover_art,,gameplay_screenshot

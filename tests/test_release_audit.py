@@ -12,6 +12,7 @@ from scripts.release_audit import (
     classify_sample,
     compare_output_files,
     enrichment_quality,
+    is_allowed_preserved_release_file,
     parse_args,
     readme_snapshot_counts,
     run_audit,
@@ -21,6 +22,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class ReleaseAuditCliTests(unittest.TestCase):
+    def test_preserved_media_release_allows_only_contract_files(self) -> None:
+        self.assertTrue(is_allowed_preserved_release_file("results/media-20260809/media_manifest.csv"))
+        self.assertFalse(is_allowed_preserved_release_file("results/media-20260809/source-image.tiff"))
+
     def test_readme_snapshot_counts_accepts_current_labels(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

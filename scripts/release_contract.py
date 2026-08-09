@@ -203,7 +203,7 @@ def artifact_paths(
         *raw_dir.glob("*"),
         *published_dir.glob("*"),
         *enriched_dir.glob("*"),
-        *(ROOT / "data").glob("*.csv"),
+        *(path for path in (ROOT / "data").glob("*.csv") if path.name != "manual_media_overrides.csv"),
         *(ROOT / "schemas").glob("*.json"),
         ROOT / "datapackage.json",
         reference_results,

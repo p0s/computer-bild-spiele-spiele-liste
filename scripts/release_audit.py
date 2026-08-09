@@ -111,6 +111,17 @@ ALLOWED_ENRICHED_FILES = {
     "unmatched_titles.csv",
 }
 
+ALLOWED_MEDIA_FILES = {
+    "README.md",
+    "asset_evidence.csv",
+    "audit_summary.md",
+    "commons_candidates.csv",
+    "ia_files.csv",
+    "media_audit.csv",
+    "media_manifest.csv",
+    "release-manifest.json",
+}
+
 PERSONAL_LITERAL_PATTERNS = (
     "/Users/",
     "/home/",
@@ -619,6 +630,8 @@ def is_allowed_preserved_release_file(path: str) -> bool:
         return filename in ALLOWED_PUBLISHED_FILES
     if directory.startswith("enriched-"):
         return filename in ALLOWED_ENRICHED_FILES
+    if directory.startswith("media-"):
+        return filename in ALLOWED_MEDIA_FILES
     return False
 
 
