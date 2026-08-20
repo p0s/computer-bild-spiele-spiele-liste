@@ -400,8 +400,18 @@ def validate_manifest(
 ) -> list[str]:
     manifest = json.loads(path.read_text(encoding="utf-8"))
     problems: list[str] = []
-    if manifest.get("schema_version") != SCHEMA_VERSION:
-        problems.append("release manifest schema version is unsupported")
+    expected_manifest = release_manifest(
+        raw_dir=raw_dir,
+        published_dir=published_dir,
+        enriched_dir=enriched_dir,
+        reference_results=reference_results,
+    )
+    expected_metadata_fields = set(expected_manifest) - {"files"}
+    if set(manifest) - {"files"} != expected_metadata_fields:
+        problems.append("release manifest metadata fields are incomplete or unexpected")
+    for field in sorted(expected_metadata_fields):
+        if manifest.get(field) != expected_manifest[field]:
+            problems.append(f"release manifest metadata differs: {field}")
     records = manifest.get("files", [])
     recorded_paths = [record.get("path", "") for record in records]
     expected_paths = [

@@ -1,14 +1,17 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from scripts.release_contract import (
+    DEFAULT_REFERENCE_RESULTS,
     ROOT,
     artifact_paths,
     check_contract,
     release_metadata,
+    validate_manifest,
     validate_redirects,
     validate_table,
 )
@@ -39,6 +42,28 @@ class ReleaseContractTests(unittest.TestCase):
         )
 
         self.assertNotIn(ROOT / "data" / "manual_media_overrides.csv", artifacts)
+
+    def test_manifest_validator_rejects_forged_release_metadata(self) -> None:
+        published_dir = ROOT / "results" / "published-20260808"
+        manifest = json.loads((published_dir / "release-manifest.json").read_text(encoding="utf-8"))
+        manifest["release_id"] = "forged-release"
+        manifest["release_date"] = "1900-01-01"
+        manifest["provenance"]["source_archives"] = -1
+        manifest["enrichment"] = {"matched": -1}
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            forged_path = Path(temp_dir) / "release-manifest.json"
+            forged_path.write_text(json.dumps(manifest), encoding="utf-8")
+            problems = validate_manifest(
+                forged_path,
+                raw_dir=ROOT / "results" / "raw-candidates-20260325",
+                published_dir=published_dir,
+                enriched_dir=ROOT / "results" / "enriched-20260808",
+                reference_results=DEFAULT_REFERENCE_RESULTS,
+            )
+
+        for field in ("enrichment", "provenance", "release_date", "release_id"):
+            self.assertIn(f"release manifest metadata differs: {field}", problems)
 
     def test_table_validator_rejects_duplicate_and_malformed_ids(self) -> None:
         schema = {

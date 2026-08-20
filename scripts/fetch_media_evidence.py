@@ -364,7 +364,11 @@ def commons_metadata(candidates: list[dict[str, str]], by_id: dict[str, dict[str
 
 
 def acquire_issue_assets(
-    selected: dict[str, dict[str, Any]], cache_dir: Path, export_dir: Path
+    selected: dict[str, dict[str, Any]],
+    cache_dir: Path,
+    export_dir: Path,
+    *,
+    source_revision: str,
 ) -> list[dict[str, Any]]:
     evidence: list[dict[str, Any]] = []
     for number, (issue_code, source) in enumerate(sorted(selected.items()), start=1):
@@ -389,6 +393,10 @@ def acquire_issue_assets(
             {
                 "subject_type": "issue",
                 "subject_id": issue_code,
+                "source_record_id": IA_RECORD_ID,
+                "source_file": source_file,
+                "source_sha1": expected_sha1,
+                "source_revision": source_revision,
                 "source_archive_member": member_name,
                 "source_member_sha256": sha256_digest(extracted),
                 "source_mime": "image/tiff",
@@ -431,6 +439,10 @@ def acquire_game_assets(
             {
                 "subject_type": "game",
                 "subject_id": subject_id,
+                "source_record_id": row["wikidata_id"],
+                "source_file": row["source_file"],
+                "source_sha1": row["source_sha1"],
+                "source_revision": row["source_revision"],
                 "source_archive_member": "",
                 "source_member_sha256": sha256_digest(source_path),
                 "source_mime": row["source_mime"],
@@ -470,7 +482,12 @@ def main() -> None:
     commons_rows = commons_metadata(candidates, by_id)
     write_csv(args.evidence_dir / "commons_candidates.csv", COMMONS_EVIDENCE_FIELDS, commons_rows)
 
-    issue_evidence = acquire_issue_assets(selected, args.cache_dir, args.export_dir)
+    issue_evidence = acquire_issue_assets(
+        selected,
+        args.cache_dir,
+        args.export_dir,
+        source_revision=str(metadata.get("item_last_updated", "")),
+    )
     game_evidence = acquire_game_assets(commons_rows, overrides, args.cache_dir, args.export_dir)
     write_csv(
         args.evidence_dir / "asset_evidence.csv",

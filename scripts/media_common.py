@@ -45,9 +45,17 @@ MEDIA_MANIFEST_FIELDS = (
     "export_relpath",
 )
 
+ASSET_SOURCE_IDENTITY_FIELDS = (
+    "source_record_id",
+    "source_file",
+    "source_sha1",
+    "source_revision",
+)
+
 ASSET_EVIDENCE_FIELDS = (
     "subject_type",
     "subject_id",
+    *ASSET_SOURCE_IDENTITY_FIELDS,
     "source_archive_member",
     "source_member_sha256",
     "source_mime",
@@ -55,6 +63,11 @@ ASSET_EVIDENCE_FIELDS = (
     "source_height",
     "export_relpath",
 )
+
+
+def asset_source_identity(row: dict[str, Any]) -> tuple[str, ...]:
+    return tuple(str(row.get(field, "")).strip() for field in ASSET_SOURCE_IDENTITY_FIELDS)
+
 
 COMMONS_EVIDENCE_FIELDS = (
     "subject_id",

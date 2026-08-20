@@ -1,35 +1,22 @@
 game_id,normalized_title,representative_title,match_status,semantic_match_status,lookup_status,match_confidence,failure_reason,search_variants
 1944winterschlachtindenardennen,1944 winterschlacht in den ardennen,1944 Winterschlacht in den Ardennen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,1944 Winterschlacht in den Ardennen
-2ritteraufdersuchenachderhinreissendenherzelinde,2 ritter auf der suche nach der hinreissenden herzelinde,2 Ritter - Auf der Suche nach der hinreißenden Herzelinde,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,2 Ritter - Auf der Suche nach der hinreißenden Herzelinde
 4story,4 story,4 Story,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,4 Story
 442fussballmanager,442 fussball manager,442 Fussball Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,442 Fussball Manager
 64bitvier,64 bit vier,64 Bit)vier,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,64 Bit)vier
-agamewithakitty,a gamewitha kitty,A Gamewitha Kitty,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,AGamewitha Kitty
 abdurchdiehecke,abdurchdie hecke,Abdurchdie Hecke,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Abdurchdie Hecke
 abenteueraufdemreiterhofdasabenteuerrundumspferd,abenteuer auf dem reiterhof das abenteuer rund ums pferd,Abenteuer auf dem Reiterhof Das Abenteuer rund ums Pferd,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Abenteuer auf dem Reiterhof Das Abenteuer rund ums Pferd; Abenteueraufdem Reiterhof Das Abenteuerrundums Pferd
 absoluteblue,absolute blue,Absolute Blue,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Absolute Blue
 achtungroboter,achtung roboter,Achtung Roboter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Achtung Roboter
 actuasoccerfeaturingoliverbierhoff,actua soccer featuring oliver bierhoff,Actua Soccer Featuring Oliver Bierhoff,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Actua Soccer Featuring Oliver Bierhoff
-adashstadtdermagiekapitel11,adash stadt der magie kapitel 11,Adash - Stadt der Magie - Kapitel 11,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Adash - Stadt der Magie - Kapitel 11
 afrikacorpsvs,afrika corps vs,Afrika Corps vs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Afrika Corps vs
 agathachristiedasbseunterdersonne,agatha christie das bseunterder sonne,Agatha Christie Das Bseunterder Sonne,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Agatha Christie Das Bseunterder Sonne
 agathachristiemordimorientexpress,agatha christie mordim orient express,Agatha Christie Mordim Orient Express,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Agatha Christie Mordim Orient Express
-agathachristieunddanngabskeinesmehr,agatha christie unddanngabskeinesmehr,Agatha Christie Unddanngabskeinesmehr,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Agatha Christie Unddanngabskeinesmehrv
-ageofempires3,age of empires 3,Age Of Empires 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Age of Empires 3 v 1 01a; Age of Empires 3 v 1; Age Of Empires 3 v 1 1
-ageofconanhyborianadventures,age of conan hyborian adventures,Age of Conan Hyborian Adventures,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ageof Conan Hyborian Adventures
-ageofempires,age of empires,Age of Empires,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ageof Empiresv
-ageofempires3theasiandynasties,age of empires 3 the asian dynasties,Age of Empires 3 The Asian Dynasties,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ageof Empires3 The Asian Dynastiesv101a
-ageofempiresageofdiscovery,age of empires age of discovery,Age of Empires Age of Discovery,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ageof Empires Ageof Discoveryv
 ageofempiresgoldedition,age of empires gold edition,Age of Empires Gold Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Age of Empires Gold Edition
-ageofempires3thewarchiefs,age of empires iii the warchiefs,Age of Empires III: The WarChiefs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ageof Empires The War Chiefs; Ageof Empires The Warchiefsv; Ageof Empires3 The Warchiefsv104a
 agesofempires3,ages of empires 3,Ages of Empires 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ages of Empires 3
 airconflictsaddon,air conflicts addon,Air Conflicts Addon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Air Conflicts Addon
-airstrike3d2,air strike 3 d 2,Air Strike 3 D 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Air Strike 3 D 2
 airtaxi,air taxi,Air Taxi,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Air Taxi
-airbusa380excellentedition,airbus a380 excellent edition,Airbus A380 Excellent Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Airbus A380 Excellent Edition
 airlinestycoondeluxe,airlines tycoon deluxe,Airlines Tycoon Deluxe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Airlines Tycoon Deluxe
 alemmoandthelostdutchmansmine,al emmoandthe lost dutchmans mine,Al Emmoandthe Lost Dutchmans Mine,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Al Emmoandthe Lost Dutchmans Mine
-alarmfrcobra11crashtime,alarmfr cobra 11 crash time,Alarmfr Cobra 11 Crash Time,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alarmfr Cobra11 Crash Timev111
 alarmfrcobranitro,alarmfr cobra nitro,Alarmfr Cobra Nitro,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alarmfr Cobra Nitro
 alarmfuercobracrashtime,alarmfuer cobra crash time,Alarmfuer Cobra Crash Time,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alarmfuer Cobra Crash Time
 alexanderdiestundederhelden,alexander die stunde der helden,Alexander Die Stunde der Helden,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alexander Die Stunde der Helden; Alexander Die Stundeder Helden
@@ -37,22 +24,15 @@ alextheallegator,alexthe allegator,Alexthe Allegator,unmatched,no_match,complete
 alienchess,alien chess,Alien Chess,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alien Chess
 alienhorde,alien horde,Alien Horde,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alien Horde
 allstarstrippoker,all star strip poker,All Star Strip Poker,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,All Star Strip Poker
-aloneinthedark,alonein the dark 0,Alonein The Dark 0,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Aloneinthe Dark; Alonein The Dark0; Alonein The Dark
 alternateflip,alternate flip,Alternate Flip,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alternate Flip
 alundo,alundo,Alundo,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Alundo
 ancientwarsspartafateofhellas,ancient wars sparta fateof hellas,Ancient Wars Sparta Fateof Hellas,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ancient Wars Sparta Fateof Hellasv14
 andersensmaedchen,andersens maedchen,Andersens Maedchen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Andersens Maedchen
 angelknigspinnfischenindeutschland,angel knig spinnfischenin deutschland,Angel Knig Spinnfischenin Deutschland,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Angel Knig Spinnfischenin Deutschland
 angriffaufdiewestfront,angriff auf die westfront,Angriff auf die Westfront,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Angriff auf die Westfront
-ankh,ankh,Ankh,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ankh
 ankhkampfdergtter,ankh kampfder gtter,Ankh Kampfder Gtter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ankh Kampfder Gtter
-ankhheartofosiris,ankh heart of osiris,Ankh: Heart of Osiris,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ankh: Heart of Osiris
 anno,anno,Anno,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Annov
-anno1602,anno 1602,Anno 1602,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anno 1602
 anno1701derfluchdesdrachen,anno 1701 der fluch des drachen,Anno 1701 Der Fluch des Drachen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anno 1701 Der Fluch des Drachen (Add On Demo)
-anno1701derfluchdesdrachenaddon,anno 1701 der fluchdes drachen add on,Anno 1701 Der Fluchdes Drachen Add On,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anno1701 Der Fluchdes Drachen Add On
-anotherworldthanniversaryedition,another worldth anniversary edition,Another Worldth Anniversary Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Another Worldth Anniversary Edition
-ansto,ansto,Ansto,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anstov
 anstoedition,ansto edition,Ansto Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ansto Edition
 anstovzwei,anstov zwei,Anstov Zwei,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anstov Zwei
 antitwin,anti twin,Anti Twin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Anti Twin
@@ -67,7 +47,6 @@ atlantisdasheiligevermchtnis,atlantis dasheilige vermchtnis,Atlantis Dasheilige 
 atoll,atoll,Atoll,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Atoll
 atomundmolekl,atomund molekl,Atomund Molekl,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Atomund Molekl
 auergefahr,auer gefahr,Auer Gefahr,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Auer Gefahr
-auradieheiligenringe,aura die heiligen ringe,Aura Die heiligen Ringe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Aura Dieheiligen Ringe
 auratorzurewigkeit,aura tor zur ewigkeit,Aura Tor zur Ewigkeit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Aura Tor zur Ewigkeit v 1; Aura Tor zur Ewigkeit
 aurorawatching,aurora watching,Aurora Watching,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Aurora Watching
 autocrossracing,auto cross racing,Auto Cross Racing,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Auto Cross Racing
@@ -77,12 +56,9 @@ autobahnraserdasspiel,autobahn raser das spiel,Autobahn Raser Das Spiel,unmatche
 autobahnraserspielzumfilm,autobahn raser spiel zum film,Autobahn Raser Spiel zum Film,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Autobahn Raser Spiel zum Film
 autobahnraserw,autobahn raser w,Autobahn Raser W,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Autobahn Raser W
 autobahnraser3,autobahnraser 3,Autobahnraser 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Autobahnraser 3
-avencastriseofamage,avencast rise of a mage,Avencast Rise of a Mage,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Avencast Riseofa Mage
 awnuts,aw nuts,Aw Nuts,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Aw Nuts
 axesnakepeel,axe snake peel,Axe Snake Peel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Axe Snake Peel
 azteca,azteca,Azteca,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Azteca
-bdflmanager,bdfl manager,BDFL Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,BDFLManager
-bmwm3challenge,bmwm 3 challenge,BMWM 3 Challenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,BMWM3 Challenge; BMW M3 Challenge
 backgammonxxl,backgammon xxl,Backgammon XXL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Backgammon XXL
 bacuda,bacuda,Bacuda,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bacuda
 baggersimulator,bagger simulator,Bagger Simulator,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bagger Simulator
@@ -90,7 +66,6 @@ baldursgatecompilation,baldur s gate compilation,Baldur's Gate - Compilation,unm
 baldursgate2schattenvonamn,baldur s gate 2 schatten von amn,Baldur's Gate 2 - Schatten von Amn,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Baldur's Gate 2 - Schatten von Amn
 baldursgate2throndesbhaal,baldur s gate 2 thron des bhaal,Baldur's Gate 2 - Thron des Bhaal,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Baldur's Gate 2 - Thron des Bhaal
 baldursgate,baldurs gate,Baldurs Gate,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Baldurs Gate; Baldur's Gate
-baldursgatelegendenderschwertkuste,baldurs gate legenden der schwertkuste,Baldurs Gate Legenden der Schwertküste,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Baldurs Gate Legendender Schwertkste; Baldur's Gate Legenden der Schwertküste
 ballerburg,ballerburg,Ballerburg,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ballerburg
 ballermannheybaby,ballermann hey baby,Ballermann Hey Baby,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ballermann Hey Baby
 bananasjourney,bananas journey,Bananas Journey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bananas Journey
@@ -112,24 +87,19 @@ beachkingstuntraser,beach king stunt raser,Beach King Stunt Raser,unmatched,no_m
 beemovie,bee movie,Bee Movie,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bee Movie
 beliefbetrayaldasmedaillondesjudas,belief betrayal das medaillondes judas,Belief Betrayal Das Medaillondes Judas,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Belief Betrayal Das Medaillondes Judas
 beyondgoodevil,beyond good evil,Beyond Good Evil,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Beyond Good Evil
-biathlon2006,biathlon 2006,Biathlon 2006,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Biathlon 2006
 bigmuthatruckerstruckmeharder,big mutha truckers truck me harder,Big Mutha Truckers Truck Me Harder,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Big Mutha Truckers Truck Me Harder
-bigpizzaskichallenge09deutschlandedition,big pizza ski challenge 09 deutschland edition,Big Pizza Ski Challenge 09 Deutschland Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Big Pizza Ski Challenge 09 Deutschland Edition
 bikeflyter,bike flyter,Bike Flyter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bike Flyter
 billardgl,billard gl,Billard GL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Billard GL
 bioncleheroes,bioncle heroes,Bioncle Heroes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bioncle Heroes
 birthofamerica,birth of america,Birth of America,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Birth of America; Birthof America
-bitdefenderfree10,bit defender free 10,Bit Defender Free 10,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bit Defender Free10
 blackmirrorderdunklespiegelderseele,black mirror derdunkle spiegelder seele,Black Mirror Derdunkle Spiegelder Seele,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Black Mirror Derdunkle Spiegelder Seele
 blackpenguin,black penguin,Black Penguin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Black Penguin
 blackwhite,black white,Black White,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Black White
 blackandwhite2,black and white 2,Black and White 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Black and White 2
 blacksitearea,blacksite area,Blacksite Area,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blacksite Area
 blazingangelssecretmissionsofworldwarii,blazing angels secret missionsof world war ii,Blazing Angels Secret Missionsof World War II,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blazing Angels Secret Missionsof World War II
-blazingangelssquadronsofwwv,blazing angels squadrons of w wv,Blazing Angels Squadrons Of W Wv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blazing Angels Squadrons Of WWv; Blazing Angels Squadronsof WWv
 blazingangelssquadronsofww,blazing angels squadronsof ww,Blazing Angels Squadronsof WW,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blazing Angels Squadronsof WW
 blazingtrails,blazing trails,Blazing Trails,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blazing Trails
-blitzkrieg,blitzkrieg,Blitzkrieg,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blitzkriegv
 blitzkrieg2,blitzkrieg 2,Blitzkrieg 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blitzkrieg 2 v 1; Blitzkrieg 2 v; Blitzkrieg 2
 blitzkriegrollingthunder,blitzkrieg rolling thunder,Blitzkrieg Rolling Thunder,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blitzkrieg Rolling Thunder
 blobs,blobs,Blobs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Blobs
@@ -149,7 +119,6 @@ breed,breed,Breed,unmatched,no_match,complete,low,unmatched_source_alias; demote
 breedpreloaded,breed pre loaded,Breed Pre Loaded,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Breed Pre Loaded
 bricksfromabove,bricks from above,Bricks from above,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bricks from above
 bridgebuilder,bridge builder,Bridge Builder,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bridge Builder
-brothersinarmsearnedinblood,brothersin arms earnedin blood,Brothersin Arms Earnedin Blood,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Brothersin Arms Earnedin Bloodv
 brothersinarmshellshighway,brothersin arms hells highway,Brothersin Arms Hells Highway,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Brothersin Arms Hells Highway
 brunodasspiel,bruno das spiel,Bruno Das Spiel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bruno Das Spiel
 bubbleball,bubble ball,Bubble Ball,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Bubble Ball
@@ -159,15 +128,10 @@ bufostorch,bufo storch,Bufo Storch,unmatched,no_match,complete,low,unmatched_sou
 burgermania,burger mania,Burger Mania,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Burger Mania
 burnoutparadisetheultimatebox,burnout paradise the ultimate box,Burnout Paradise The Ultimate Box,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Burnout Paradise The Ultimate Box
 burnoutrevenge,burnout revenge,Burnout Revenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Burnout Revenge
-cbsspezial,cbs spezial,CBS Spezial,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CBSSpezial
 chatroom,chat room,CHAT ROOM,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CHAT ROOM
-cpucool,cpu cool,CPU Cool,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CPUCool
-csicrimesceneinvestigationmordindimensionen,csi crime scene investigation mordin dimensionen,CSI Crime Scene Investigation Mordin Dimensionen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CSICrime Scene Investigation Mordin Dimensionen
 csieindeutigebeweise,csi eindeutige beweise,CSI Eindeutige Beweise,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CSI Eindeutige Beweise; CSIEindeutige Beweise
-cyceknadnewgame,cycek nad new game,CYCEK NAD NEW GAME,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,CYCEK NAD NEW GAME
 caesar,caesar,Caesar,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Caesar
 callofduty4modernwarfare,call of duty 4 modern warfare,Call of Duty 4 - Modern Warfare,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Callof Duty4 Modern Warfarev16; Call of Duty 4 - Modern Warfare
-callofduty,callof duty,Callof Duty,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Callof Dutyv
 campus,campus,Campus,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Campus
 cannonhill,cannon hill,Cannon Hill,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Cannon Hill
 captaindeltaunddiequellevonargos,captain delta und die quelle von argos,Captain Delta und die Quelle von Argos,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Captain Delta und die Quelle von Argos; Captain Deltaunddie Quellevon Argos
@@ -192,53 +156,32 @@ chromehounds,chromehounds,Chromehounds,unmatched,no_match,complete,low,unmatched
 chromiumbsu,chromium bsu,Chromium BSU,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Chromium BSU
 chroniclesofspellborn,chronicles of spellborn,Chronicles of Spellborn,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Chronicles of Spellborn
 citylife,city life,City Life,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,City Life
-citylifeandupdateaufcitylife2008,city life and update auf city life 2008,City Life & Update auf City Life 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,City Life & Update auf City Life 2008; City Life Updateauf City Life2008
 citylifeedition,city life edition,City Life Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,City Life Edition
 citymining,city mining,City Mining,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,City Mining
 cityofvillains,city of villains,City of Villains,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,City of Villains
-civilization,civilization,Civilization,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Civilizationv
 civilization4,civilization 4,Civilization 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Civilization 4; Civilization 4 v
 clever,clever,Clever,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Clever
 clickclackxl,click clack xl,Click Clack XL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Click Clack XL
 clickomania,clickomania,Clickomania,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Clickomania
-clivebarkersjericho,clive barkers jericho,Clive Barkers Jericho,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Clive Barkers Jericho
-clubfootball2005,club football 2005,Club Football 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Club Football 2005
 codenamepanzers2,codename panzers 2,Codename Panzers 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Codename Panzers 2 v 1
 coldzerothelaststand,cold zero the last stand,Cold Zero The Last Stand,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Cold Zero The Last Stand
-colinmcraedirt,colin mc rae dirt,Colin Mc Rae Dirt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Colin Mc Rae Dirt; Colin Mc Rae Dirtv11
-colinmcraerally2005,colin mc rae rally 2005,Colin Mc Rae Rally 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Colin Mc Rae Rally 2005
 combatwingsbattleofbritain,combat wings battleof britain,Combat Wings Battleof Britain,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Combat Wings Battleof Britain
-commandandconquer3tiberiumwarskane,command and conquer 3 tiberium wars kane,Command & Conquer 3 Tiberium Wars Kane,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command Conquer3 Tiberium Wars Kanev105; Command & Conquer 3 Tiberium Wars (Kane) v 1
 commandandconquer3tiberiumwarskaneedition,command and conquer 3 tiberium wars kane edition,Command & Conquer 3 Tiberium Wars Kane Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command & Conquer 3 Tiberium Wars Kane Edition
-commandandconquer3tiberiumwarssdkv20,command and conquer 3 tiberium wars sd kv 20,Command & Conquer 3 Tiberium Wars SD Kv 20,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command Conquer3 Tiberium Wars SDKv20
-commandandconquer3tiberiumwarsstandard,command and conquer 3 tiberium wars standard,Command & Conquer 3 Tiberium Wars Standard,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command Conquer3 Tiberium Wars Standardv105; Command & Conquer 3 Tiberium Wars (Standard) v 1
 commandandconquer3tiberiumwarsstandardedition,command and conquer 3 tiberium wars standard edition,Command & Conquer 3 Tiberium Wars Standard Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command & Conquer 3 Tiberium Wars Standard Edition
-commandandconquer3tiberiumwars,command and conquer 3 tiberium wars,Command & Conquer 3: Tiberium Wars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command Conquer Tiberium Wars; Command Conquer Tiberium Warsv; Command & Conquer 3 Tiberium Wars v 1 0
-commandandconqueralarmstuferot3,command and conquer alarmstufe rot 3,Command & Conquer Alarmstufe Rot 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command & Conquer - Alarmstufe Rot 3 v 1; Command & Conquer Alarmstufe Rot 3
-commandandconquerdieerstenjahre,command and conquer dieersten jahre,Command & Conquer Dieersten Jahre,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Command Conquer Dieersten Jahrev
 companyofheroes,companyof heroes,Companyof Heroes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Companyof Heroesv; Companyof Heroes; Companyof Heroesv170
 coogles,coogles,Coogles,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Coogles
 cossacksbattleforeurope,cossacks battlefor europe,Cossacks Battlefor Europe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Cossacks Battlefor Europe; Cossacks Battlefor Europev
 crazykickersxs,crazy kickers xs,Crazy Kickers XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Crazy Kickers XS
-crazymachines2cm,crazy machines2 cm,Crazy Machines2 cm,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Crazy Machines2cm
 crazysymbolsudoku,crazy symbol sudoku,Crazy Symbol Sudoku,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Crazy Symbol Sudoku
 crillion,crillion,Crillion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Crillion
 crystalracer,crystal racer,Crystal Racer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Crystal Racer
-dslmanager,dsl manager,DSL Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,DSLManager
-dvdhllenzumausdrucken,dvd hllenzum ausdrucken,DVD Hllenzum Ausdrucken,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,DVDHllenzum Ausdrucken
-dvdhuellezumdrucken,dvd huellezum drucken,DVD Huellezum Drucken,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,DVDHuellezum Drucken
-dxball,dx ball,DX Ball,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,DXBall
 damexxl,dame xxl,Dame XXL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dame XXL
-darkmessiahofmightmagic,dark messiahof might magic,Dark Messiahof Might Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dark Messiahof Might Magicv
-darkmessiahofmightandmagic,dark messiahof mightand magic,Dark Messiahof Mightand Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dark Messiahof Mightand Magicv
 darkquiz,dark quiz,Dark Quiz,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dark Quiz
 darkstaronev,darkstar onev,Darkstar Onev,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Darkstar Onev
 dasausbildungscamp,das ausbildungscamp,Das Ausbildungscamp,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Ausbildungscamp
 dasbergwerk,das bergwerk,Das Bergwerk,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Bergwerk
 dasgeheimlabor,das geheimlabor,Das Geheimlabor,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Geheimlabor
-dasgeheimnisdervergessenenhohle,das geheimnis der vergessenen hohle,Das Geheimnis der vergessenen Höhle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Geheimnis der vergessenen Höhle
 dashafenviertel,das hafenviertel,Das Hafenviertel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Hafenviertel
-dasvermachtnistestamentofsin,das vermachtnis testament of sin,Das Vermächtnis - Testament of Sin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das Vermächtnis - Testament of Sin
 daschinesischeviertel,das chinesische viertel,Das chinesische Viertel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Das chinesische Viertel
 dashlicheentlein,dashliche entlein,Dashliche Entlein,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dashliche Entlein
 dawnofmagic,dawnof magic,Dawnof Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dawnof Magic
@@ -246,7 +189,6 @@ deadlyweaponz,deadly weaponz,Deadly Weaponz,unmatched,no_match,complete,low,unma
 deadoralive,deador alive,Deador Alive,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Deador Alive
 derfluchderzwerge1,der fluch der zwerge 1,Der Fluch der Zwerge 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Fluch der Zwerge 1
 derfluchdesgoldesxs,der fluch des goldes xs,Der Fluch des Goldes XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Fluch des Goldes XS
-derherrderringedsumaufstiegdeshexenknigs,der herrder ringe d su m aufstiegdes hexenknigs,Der Herrder Ringe D Su M Aufstiegdes Hexenknigs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Herrder Ringe DSu MAufstiegdes Hexenknigs
 derherrderringedieschlachtummittelerde,der herrder ringe die schlachtum mittelerde,Der Herrder Ringe Die Schlachtum Mittelerde,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Herrder Ringe Die Schlachtum Mittelerde; Der Herrder Ringe Die Schlachtum Mittelerdev
 derherrderringeonline,der herrder ringe online,Der Herrder Ringe Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Herrder Ringe Online
 derherrderringeonlinedieschattenvonangmar,der herrder ringe online die schattenvon angmar,Der Herrder Ringe Online Die Schattenvon Angmar,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Herrder Ringe Online Die Schattenvon Angmar
@@ -254,7 +196,6 @@ derhobbit,der hobbit,Der Hobbit,unmatched,no_match,complete,low,unmatched_source
 derindustriegigant,der industriegigant,Der Industriegigant,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Industriegigant
 derpate,der pate,Der Pate,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Pate
 dertrakt,der trakt,Der Trakt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Trakt
-derverkehrsgigantgold,der verkehrsgigant gold,Der Verkehrsgigant Gold,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Verkehrsgigant Gold
 derwohnwagen,der wohnwagen,Der Wohnwagen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Der Wohnwagen
 desperados2coopersrevenge,desperados 2 cooper s revenge,Desperados 2 - Cooper's Revenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Desperados 2 - Cooper's Revenge; Desperados Coopers Revenge; Desperados Coopers Revengev
 destroyallhumans,destroy all humans,Destroy All Humans,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Destroy All Humans
@@ -262,8 +203,6 @@ deutschlandsingtonline,deutschland singt online,Deutschland Singt Online,unmatch
 devilkings,devil kings,Devil Kings,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Devil Kings
 devilmaycry,devil may cry,Devil May Cry,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Devil May Cry
 devilmaycry3,devil may cry 3,Devil May Cry 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Devil May Cry 3
-devilmaycry4,devil may cry 4,Devil May Cry 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Devil May Cry4
-diablo3spezial,diablo 3 spezial,Diablo 3 Spezial,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Diablo3 Spezial
 diablospezial,diablo spezial,Diablo Spezial,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Diablo Spezial
 diamantenfee,diamantenfee,Diamantenfee,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Diamantenfee
 diamantenfee2,diamantenfee 2,Diamantenfee 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Diamantenfee 2
@@ -276,7 +215,6 @@ diegildeseeruberderhanse,die gilde seeruberder hanse,Die Gilde Seeruberder Hanse
 diehazienda,die hazienda,Die Hazienda,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Hazienda
 diekieselsteiner,die kieselsteiner,Die Kieselsteiner,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Kieselsteiner
 diekunstdesmordensgeheimaktefbi,die kunst des mordens geheimakte fbi,Die Kunst des Mordens Geheimakte FBI,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Kunst des Mordens Geheimakte FBI; Die Kunstdes Mordens Geheimakte FBI
-dielegendenundmarchenvonashkale1,die legenden und marchen von ash kale 1,Die Legenden und Märchen von Ash'kale 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Legenden und Märchen von Ash'kale 1
 dielemuren,die lemuren,Die Lemuren,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Lemuren
 diemetrostation,die metrostation,Die Metrostation,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Metrostation
 dierachedersith,die rache der sith,Die Rache der Sith,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Rache der Sith
@@ -285,14 +223,10 @@ dieschalendeszorns,die schalendes zorns,Die Schalendes Zorns,unmatched,no_match,
 dieschlachtummittelerde,die schlacht um mittelerde,Die Schlacht um Mittelerde,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Schlacht um Mittelerde
 dieschlachtummittelerde2,die schlacht um mittelerde 2,Die Schlacht um Mittelerde 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Schlacht um Mittelerde 2
 diesiedler,die siedler,Die Siedler,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler; Die Siedlerv
-diesiedler2dienachstegeneration,die siedler 2 die nachste generation,Die Siedler 2 Die nächste Generation,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler 2 Die nächste Generation
-diesiedler2dienchstegeneration,die siedler 2 dienchste generation,Die Siedler 2 Dienchste Generation,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler2 Dienchste Generation
 diesiedler4,die siedler 4,Die Siedler 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler 4
 diesiedler6aufstiegeinesknigreichs,die siedler 6 aufstieg eines konigreichs,Die Siedler 6: Aufstieg eines Königreichs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler6 Aufstiegeines Knigreichsv15; Die Siedler Aufstiegeines Knigreichs; Die Siedler Aufstiegeines Knigreichsv11
 diesiedleraufbruchderkulturen,die siedler aufbruch der kulturen,Die Siedler Aufbruch der Kulturen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler Aufbruch der Kulturen
-diesiedlerdaserbederkonige,die siedler das erbe der konige,Die Siedler Das Erbe der Könige,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler Das Erbe der Könige
 diesiedlerdienchstegeneration,die siedler dienchste generation,Die Siedler Dienchste Generation,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler Dienchste Generationv; Die Siedler Dienchste Generation
-diesiedlerhiebefurdiebe,die siedler hiebe fur diebe,Die Siedler Hiebe für Diebe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler Hiebe für Diebe
 diesiedlerhonigfrdenknig,die siedler honigfrden knig,Die Siedler Honigfrden Knig,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Siedler Honigfrden Knig
 diesims2,die sims 2,Die Sims 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims 2 v 1 0 0; Die Sims 2 v; Die Sims 2 v 1 000
 diesims2gutereise,die sims 2 gute reise,Die Sims 2 Gute Reise,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims 2 Gute Reise v 1 10 0; Die Sims2 Gute Reisev1100122
@@ -302,23 +236,17 @@ diesims2wildecampusj,die sims 2 wilde campus j,Die Sims 2 Wilde Campus J,unmatch
 diesimsersteschritte,die sims erste schritte,Die Sims Erste Schritte,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Erste Schritte
 diesimshaustiere,die sims haustiere,Die Sims Haustiere,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Haustierev; Die Sims Haustiere
 diesimslebensgeschichten,die sims lebensgeschichten,Die Sims Lebensgeschichten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Lebensgeschichten
-diesimsnightlife,die sims nightlife,Die Sims Nightlife,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Nightlifev
-diesimsopenforbusiness,die sims openfor business,Die Sims Openfor Business,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Openfor Businessv
 diesimsvierjahreszeiten,die sims vier jahreszeiten,Die Sims Vier Jahreszeiten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Sims Vier Jahreszeiten
 diespedition,die spedition,Die Spedition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Spedition
 dieteppichklinik,die teppichklinik,Die Teppichklinik,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Teppichklinik
 dieunglaublichen,die unglaublichen,Die Unglaublichen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Unglaublichen
-dievolker,die volker,Die Völker,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die Völker
 diedreimusketiere,die drei musketiere,Die drei Musketiere,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Die drei Musketiere
-dikowskrussland,dikowsk russland,"Dikowsk, Rußland",unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,"Dikowsk, Rußland"
 dinoisland,dino island,Dino Island,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dino Island
 dirtysplit,dirty split,Dirty Split,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dirty Split
-diverdeepwateradventures,diver deep water adventures,Diver Deep Water Adventures,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Diver Deep Water Adventuresv
 divinedivinity,divine divinity,Divine Divinity,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Divine Divinity
 doggleberry,doggleberry,Doggleberry,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Doggleberry
 dontangry2,dont angry 2,Dont Angry 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dont Angry 2
 doogleberry,doogle berry,Doogle Berry,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Doogle Berry
-doom3zhunter1,doom 3 z hunter 1,Doom 3 Z Hunter 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Doom 3 Z Hunter 1
 doublecrossfire,double crossfire,Double Crossfire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Double Crossfire
 dove,dove,Dove,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dove
 doxan,doxan,Doxan,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Doxan
@@ -327,7 +255,6 @@ draculaorigin,dracula origin,Dracula Origin,unmatched,no_match,complete,low,unma
 draculatwins,dracula twins,Dracula Twins,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dracula Twins
 dragonshard,dragonshard,Dragonshard,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dragonshard; Dragonshardv; Dragonshard v 1 1
 drakensang,drakensang,Drakensang,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Drakensang
-dreampinballdtwoworlds,dream pinball d two worlds,Dream Pinball D Two Worlds,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dream Pinball DTwo Worlds
 dreamcube,dreamcube,Dreamcube,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dreamcube
 dreamfallthelongestjourney,dreamfall the longest journey,Dreamfall The Longest Journey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dreamfall The Longest Journey
 dreamlords,dreamlords,Dreamlords,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dreamlords
@@ -337,14 +264,7 @@ dungeonlords,dungeon lords,Dungeon Lords,unmatched,no_match,complete,low,unmatch
 dungeonsiege,dungeon siege,Dungeon Siege,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dungeon Siege
 dungeonsiege2,dungeon siege 2,Dungeon Siege 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dungeon Siege 2; Dungeon Siege 2 v 2
 dungeonsdragonsonline,dungeons dragons online,Dungeons Dragons Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dungeons Dragons Online
-dynaeromcr01ultraleicht,dyn aero mcr 01 ultraleicht,Dyn Aero MCR 01 Ultraleicht,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Dyn Aero MCR01 Ultraleicht
-egonadventure,e gon adventure,E Gon Adventure,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,EGon Adventure
 erfahrungdisplay,erfahrung display,ERFAHRUNG display,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,ERFAHRUNG display
-eveonlinethesecondgenesis,eve online the second genesis,EVE Online The Second Genesis,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,EVEOnline The Second Genesis
-earth2150blueplanet,earth 2150 blue planet,Earth 2150 Blue Planet,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Earth 2150 Blue Planet
-earth2150lostsouls,earth 2150 lost souls,Earth 2150 Lost Souls,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Earth 2150 Lost Souls
-earth2150moonproject,earth 2150 moon project,Earth 2150 Moon Project,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Earth 2150 Moon Project
-earth2160,earth 2160,Earth 2160,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Earth 2160
 earthdefenseforce,earth defense force,Earth Defense Force,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Earth Defense Force
 ednabrichtaus,edna bricht aus,Edna bricht aus,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Edna bricht aus; Ednabrichtaus
 eisenbahnexeprofessional,eisenbahnexe professional,Eisenbahnexe Professional,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Eisenbahnexe Professional
@@ -358,34 +278,22 @@ empireearth3,empire earth 3,Empire Earth 3,unmatched,no_match,complete,low,unmat
 empiresdieneuzeit,empires die neuzeit,Empires Die Neuzeit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Empires Die Neuzeit
 enchantedarms,enchanted arms,Enchanted Arms,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Enchanted Arms
 endwar,endwar,Endwar,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Endwar
-erbederkonige,erbe der konige,Erbe der Könige,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Erbe der Könige Demo
 escapefromparadisecity,escapefrom paradise city,Escapefrom Paradise City,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Escapefrom Paradise City
 escullilallenguadel,esculli la llengua del,Esculli la llengua del,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Esculli la llengua del
-everestultimateedition,everest ultimate edition,Everest Ultimate Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Everest Ultimate Edition
 everlightelfenandiemacht,everlight elfen an die macht,Everlight Elfen an die Macht,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Everlight Elfen an die Macht; Everlight Elfenandie Macht
 everquest2b,everquest 2 b,Everquest 2 B,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Everquest 2 B
-everquestkingdomofsky,everquest kingdom of sky,Everquest Kingdom of Sky,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Everquest Kingdomof Sky
-faesuperhornet,fae super hornet,FAE Super Hornet,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,FAESuper Hornet
-fearv,fea rv,FEA Rv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,FEARv
-fifafootball2005,fifa football 2005,FIFA Football 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,FIFA Football 2005
-fifafuballweltmeisterschaft,fifa fuball weltmeisterschaft,FIFA Fuball Weltmeisterschaft,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,FIFAFuball Weltmeisterschaft
 facesofwarv,facesof warv,Facesof Warv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Facesof Warv
-fahrsimulator2009,fahr simulator 2009,Fahr Simulator 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fahr Simulator 2009; Fahr Simulator 2009 v 1
 falcon40alliedforce,falcon 4 0 allied force,Falcon 4 0 Allied Force,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Falcon 4 0 Allied Force v 1 0
 fallobstarcade,fallobst arcade,Fallobst Arcade,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fallobst Arcade
 farcryv,far cryv,Far Cryv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Far Cryv
 fastlanecarnage,fast lane carnage,Fast Lane Carnage,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fast Lane Carnage
-fear,fear,Fear,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fear v 1 02
 fessierumtauf,fessierumtauf,Fessierumtauf,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fessierumtauf
 fettesauxs,fette sau xs,Fette Sau XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fette Sau XS
 feyrunaderfeenwald,feyruna der feenwald,Feyruna Der Feenwald,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Feyruna Der Feenwald
 fiatpandafunracer,fiat panda fun racer,Fiat Panda Fun Racer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fiat Panda Fun Racer
 fliegenkiller,fliegenkiller,Fliegenkiller,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fliegenkiller
-flightgear,flight gear,Flight Gear,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Flight Gear
 flottesbienchen,flottes bienchen,Flottes Bienchen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Flottes Bienchen
 flugratten,flugratten,Flugratten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Flugratten
-footballmanager2005,football manager 2005,Football Manager 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Football Manager 2005
-footballmanager2006gold,football manager 2006 gold,Football Manager 2006 Gold,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Football Manager 2006 Gold
 fragoria,fragoria,Fragoria,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fragoria
 freeridetrash,freeride trash,Freeride Trash,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Freeride Trash
 fritz7se,fritz 7 se,Fritz 7 SE,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fritz 7 SE
@@ -396,30 +304,16 @@ frontlinefieldsofthunder,frontline fieldsof thunder,Frontline Fieldsof Thunder,u
 frontlinesfuelofwar,frontlines fuel of war,Frontlines: Fuel of War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Frontlines Fuelof War; Frontlines Fuelof Warv102; Frontlines Fuelof Warv110
 fuballmanager,fuball manager,Fuball Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fuball Manager; Fuball Managerv
 funkflitzer,funk flitzer,Funk Flitzer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Funk Flitzer
-fussballchallenge08,fussball challenge 08,Fussball Challenge 08,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fussball Challenge08
-fussballmanager,fussball manager,Fussball Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fussball Managerv
-fussballmanager2006,fussball manager 2006,Fussball Manager 2006,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fussball Manager 2006 v
 fussballmanager08,fussball manager 08,Fußball Manager 08,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fußball Manager 08
 fussballmanager09,fussball manager 09,Fußball Manager 09,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fußball Manager 09
 fussballmanager2008,fussball manager 2008,Fußball Manager 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Fußball Manager 2008; Fußball Manager 2008 v 8 0
-glxgravityneoluxor,glx gravity neo luxor,GLX Gravity Neo Luxor,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GLXGravity Neo Luxor
-gsrgermanstreetracing,gsr german street racing,GSR German Street Racing,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GSRGerman Street Racing
 gtlegends,gt legends,GT Legends,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GT Legends
 gtasanandreas,gta san andreas,GTA San Andreas,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GTA San Andreas v 1; GTA San Andreas
-gtiracing,gti racing,GTI Racing,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GTIRacing
-gtrfiagtracinggame,gtr fia gt racing game,GTR FIA GT Racing Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GTR FIA GT Racing Game; GTRFIAGTRacing Game
-gtrfiagtracinggame1,gtr fia gt racing game 1,GTR Fia GT Racing Game 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,GTR Fia GT Racing Game 1
-gabelstaplersimulator2009,gabelstapler simulator 2009,Gabelstapler Simulator 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gabelstapler Simulator 2009
 galacticassaultprisonerofpower,galactic assault prisonerof power,Galactic Assault Prisonerof Power,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Galactic Assault Prisonerof Power
-galacticcivilzationsdreadlords,galactic civilzations dread lords,Galactic Civilzations Dread Lords,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Galactic Civilzations Dread Lordsv
-galacticdreamrageofwar,galactic dream rage of war,Galactic Dream Rage of War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Galactic Dream Rageof War
-gametycoon1,game tycoon 1,Game Tycoon 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Game Tycoon 1
-garrydieschmeissfliege,garry die schmeissfliege,Garry die Schmeißfliege,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Garry die Schmeißfliege
 garrydieschmeifliege,garrydie schmeifliege,Garrydie Schmeifliege,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Garrydie Schmeifliege
 geniusmove,genius move,Genius Move,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Genius Move
 geniustaskforcebiologie,genius task force biologie,Genius Task Force Biologie,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Genius Task Force Biologie
 ghostreconadvancedtacticalcenter,ghost recon advanced tactical center,Ghost Recon Advanced Tactical Center,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ghost Recon Advanced Tactical Center
-gigabyteeasytune5pro,gigabyte easy tune 5 pro,Gigabyte Easy Tune 5 Pro,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gigabyte Easy Tune5 Pro
 gniffel,gniffel,Gniffel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gniffel
 goaroundshowdown,go around showdown,Go Around Showdown,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Go Around Showdown
 godslandsofinfinity,gods landsof infinity,Gods Landsof Infinity,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gods Landsof Infinity
@@ -436,19 +330,15 @@ grandtheftauto,grand theft auto,Grand Theft Auto,unmatched,no_match,complete,low
 grandtheftauto4,grand theft auto 4,Grand Theft Auto 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Grand Theft Auto 4 v 1
 gratisaktion,gratisaktion,Gratisaktion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gratisaktion
 gravitygemsse,gravity gems se,Gravity Gems SE,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gravity Gems SE
-greengame,green game,Green Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Green Game
 groschengrab2,groschengrab 2,Groschengrab 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Groschengrab 2
-groschengrab25,groschengrab 25,Groschengrab 25,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Groschengrab25
 groundcontrol,ground control,Ground Control,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ground Control
 gtertrennungxs,gtertrennung xs,Gtertrennung XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gtertrennung XS
 guildwars,guild wars,Guild Wars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Guild Wars
 guildwarsfactions,guild wars factions,Guild Wars Factions,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Guild Wars Factions
 guildwarsnightfall,guild wars nightfall,Guild Wars Nightfall,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Guild Wars Nightfall
-guinnessworldrecords2005,guinness world records 2005,Guinness World Records 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Guinness World Records 2005
 gunbound,gunbound,Gunbound,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gunbound
 gunshipapocalypse,gunship apocalypse,Gunship Apocalypse,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Gunship Apocalypse
 hcraftchampionship,h craft championship,H Craft Championship,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,H Craft Championship; HCraft Championship
-hdcleaner,hd cleaner,HD Cleaner,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,HDCleaner
 hacker,hacker,Hacker,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hacker
 haegemonialegionsofiron,haegemonia legions of iron,Haegemonia Legions of Iron,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Haegemonia Legions of Iron; Haegemonia Legionsof Iron
 halflife2,half life 2,Half Life 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Half Life 2
@@ -467,11 +357,9 @@ happyfeet,happy feet,Happy Feet,unmatched,no_match,complete,low,unmatched_source
 happypingu,happy pingu,Happy Pingu,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Happy Pingu
 harrypotterbonusmaterial,harry potter bonusmaterial,Harry Potter Bonusmaterial,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Harry Potter Bonusmaterial
 harrypotteru,harry potter u,Harry Potter u,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Harry Potter u
-harrypotterundderordendesphnix,harry potter und der orden des phnix,Harry Potter und der Orden des Phnix,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Harry Potterundder Ordendes Phnix
 hazeubidays,haze ubidays,Haze Ubidays,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Haze Ubidays
 heimspiel,heimspiel,Heimspiel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heimspiel
 heimspieleishockeymanager,heimspiel eishockeymanager,Heimspiel Eishockeymanager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heimspiel Eishockeymanager
-heimspielhandballmanager2008,heimspiel handball manager 2008,Heimspiel Handball Manager 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heimspiel Handball Manager2008
 hellcopter,hell copter,Hell Copter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hell Copter
 hellcarrier,hellcarrier,Hellcarrier,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hellcarrier
 helldorado,helldorado,Helldorado,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Helldorado
@@ -479,39 +367,26 @@ hellokittyrollerrescue,hello kitty roller rescue,Hello Kitty Roller Rescue,unmat
 heroesofannihilatedempires,heroes of annihilated empires,Heroes of Annihilated Empires,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroes of Annihilated Empires; Heroesof Annihilated Empires
 heroesofmightandmagic5,heroes of might and magic 5,Heroes of Might and Magic 5,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroes of Might and Magic 5
 heroesofthepacific,heroes of the pacific,Heroes of the Pacific,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroes of the Pacific
-heroesofmightmagic,heroesof might magic,Heroesof Might Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroesof Might Magicv
 heroesofmightmagichammersoffate,heroesof might magic hammersof fate,Heroesof Might Magic Hammersof Fate,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroesof Might Magic Hammersof Fate
-heroesofmightmagictribesoftheeast,heroesof might magic tribes of the east,Heroesof Might Magic Tribes of the East,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroesof Might Magic Tribesofthe East
 heroesofmightandmagic,heroesof mightand magic,Heroesof Mightand Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Heroesof Mightand Magic
 herrderpilze,herr der pilze,Herr der Pilze,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Herr der Pilze
-hiddenanddangerous2,hidden and dangerous 2,Hidden & Dangerous 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hidden & Dangerous 2
 hitblock,hitblock,Hitblock,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hitblock
-hitmanbloodmoney,hitman blood money,Hitman Blood Money,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hitman Blood Moneyv
 hllenjobxs,hllenjob xs,Hllenjob XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hllenjob XS
 hotelgigant2,hotel gigant 2,Hotel Gigant 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hotel Gigant 2
 huibuhdasschlossgespenstunddiegeisterjger,hui buh das schlossgespenstunddie geisterjger,Hui Buh Das Schlossgespenstunddie Geisterjger,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hui Buh Das Schlossgespenstunddie Geisterjger
 hypersnap,hyper snap,Hyper Snap,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Hyper Snap
-ikkdirektmountainbikechallenge08,ikk direkt mountainbike challenge 08,IKK Direkt Mountainbike Challenge 08,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,IKK Direkt Mountainbike Challenge 08
-ilsturmovik,il sturmovik,IL Sturmovik,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,ILSturmovik
-ilsturmovikforgottenbattles,il sturmovik forgotten battles,IL Sturmovik Forgotten Battles,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,ILSturmovik Forgotten Battles
-iqmarathon,iq marathon,IQ Marathon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,IQMarathon
-iceage,ice age,Ice Age,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ice Age
 iceagejetzttauts,ice age jetzttauts,Ice Age Jetzttauts,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ice Age Jetzttauts
 immortalcitieskinderdesnils,immortal cities kinder des nils,Immortal Cities Kinder des Nils,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Immortal Cities Kinder des Nils v 1 3 0; Immortal Cities Kinderdes Nilsv11
 imperiumromanumkopierschutz,imperium romanum kopierschutz,Imperium Romanum Kopierschutz,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Imperium Romanum Kopierschutz
 in80tagenumdiewelt,in 80 tagen um die welt,In 80 Tagen um die Welt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,In 80 Tagen um die Welt
 incadia,incadia,Incadia,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Incadia
 incrediblechallenge,incredible challenge,Incredible Challenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Incredible Challenge
-indianajonesunddasknigreichdeskristallschdels,indiana jones und das knigreich des kristallschdels,Indiana Jones und das Knigreich des Kristallschdels,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Indiana Jonesunddas Knigreichdes Kristallschdels
 industriegigant2,industrie gigant 2,Industrie Gigant 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Industrie Gigant 2
 invasionrepelandrebuild,invasion repel and rebuild,Invasion Repel and Rebuild,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Invasion Repel and Rebuild; Invasion Repeland Rebuild
-ironmanv11,iron manv 11,Iron Manv 11,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Iron Manv11
 isabelwerthreitsport,isabel werth reitsport,Isabel Werth Reitsport,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Isabel Werth Reitsport; Isabel Werth Reitsport v 1; Isabel Werth Reitsportv12
 izberitejezikzapripravo,izberite jezik za pripravo,Izberite jezik za pripravo,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Izberite jezik za pripravo
-jackkeaneandthedokktorsisland,jack keane and the dokktors island,Jack Keane and the Dokktors Island,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jack Keaneandthe Dokktors Island
 jacomosbrickmountain,jacomo s brick mountain,Jacomo's Brick Mountain,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jacomo's Brick Mountain; Jacomos Brick Mountain
 jacomoscastle,jacomo s castle,Jacomo's Castle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jacomo's Castle; Jacomos Castle
-jaggedalliance2,jagged alliance 2,Jagged Alliance 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jagged Alliance 2
 jardinains,jardinains,Jardinains,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jardinains
 jeithonas,jeithonas,Jeithonas,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jeithonas
 jumpingjokers,jumping jokers,Jumping Jokers,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Jumping Jokers
@@ -519,25 +394,20 @@ kakuroxxl,kakuro xxl,Kakuro XXL,unmatched,no_match,complete,low,unmatched_source
 karomatix,karomatix,Karomatix,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Karomatix
 kartingrace,karting race,Karting Race,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Karting Race
 kaufzeit,kaufzeit,Kaufzeit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kaufzeit
-kikithenanobot,kiki the nanobot,Kiki the Nanobot,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kiki the Nanobot; Kikithe Nanobot
 kinderdesnils,kinder des nils,Kinder des Nils,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kinder des Nils v 1
 knigederwellen,knigeder wellen,Knigeder Wellen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Knigeder Wellen
 knightriderthegame,knight rider the game,Knight Rider The Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Knight Rider The Game
-knightsofthetemple,knights of the temple,Knights of the Temple,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Knightsofthe Temple
 kochmeisterpfanne2xs,kochmeister pfanne 2 xs,Kochmeister Pfanne 2 XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kochmeister Pfanne 2 XS
 kochmeisterpfannexs,kochmeister pfanne xs,Kochmeister Pfanne XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kochmeister Pfanne XS
 krackthewaves,krackthe waves,Krackthe Waves,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Krackthe Waves
-kransimulator2009,kran simulator 2009,Kran Simulator 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kransimulator 2009; Kran Simulator 2009 v 1 0 3
 kultheretickingdoms,kult heretic kingdoms,Kult Heretic Kingdoms,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kult Heretic Kingdoms v 1; Kult Heretic Kingdoms
 kumoon,kumoon,Kumoon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kumoon
 kungfupanda,kung fu panda,Kung Fu Panda,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Kung Fu Panda
 konigederwellen,konige der wellen,Könige der Wellen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Könige der Wellen
-lanoire,la noire,LA Noire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,LANoire
 lcdpanel1,lcd panel 1,LCD panel 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,LCD panel 1
 lcdramkalewa,lcd ramka lewa,LCD ramka lewa,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,LCD ramka lewa
 lcdramkaprawa,lcd ramka prawa,LCD ramka prawa,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,LCD ramka prawa
 leftarrow,left arrow,LEFT ARROW,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,LEFT ARROW
-landwirtschaftssimulator2008,landwirtschafts simulator 2008,Landwirtschafts Simulator 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Landwirtschafts Simulator2008
 laracrofttombraideranniversary,lara croft tomb raider anniversary,Lara Croft Tomb Raider Anniversary,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lara Croft Tomb Raider Anniversary
 largowinch,largo winch,Largo Winch,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Largo Winch
 larrycannibalattack,larry cannibal attack,Larry Cannibal Attack,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Larry Cannibal Attack
@@ -549,11 +419,8 @@ lastchaos,last chaos,Last Chaos,unmatched,no_match,complete,low,unmatched_source
 legacyofkaindefiance,legacy of kain defiance,Legacy of Kain Defiance,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Legacy of Kain Defiance
 legacyofkainsoulreaver,legacy of kain soul reaver,Legacy of Kain Soul Reaver,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Legacy of Kain Soul Reaver
 legendhandofgod,legend handof god,Legend Handof God,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Legend Handof God
-legendhandofgodv101,legend handof godv 101,Legend Handof Godv 101,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Legend Handof Godv101
-legendhandofgodv102,legend handof godv 102,Legend Handof Godv 102,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Legend Handof Godv102
 legobatman,lego batman,Lego Batman,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lego Batman
 legoindianajones,lego indiana jones,Lego Indiana Jones,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lego Indiana Jones
-legoindianajonesdielegendarenabenteuer,lego indiana jones die legendaren abenteuer,Lego Indiana Jones Die legendären Abenteuer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lego Indiana Jones Die legendären Abenteuer
 legostarwars,lego star wars,Lego Star Wars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lego Star Wars
 legostarwarsdieklassischetrilogie,lego star wars dieklassische trilogie,Lego Star Wars Dieklassische Trilogie,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lego Star Wars Dieklassische Trilogie
 leisuresuitlarry,leisure suit larry,Leisure Suit Larry,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Leisure Suit Larry
@@ -567,7 +434,6 @@ liveforspeed,live for speed,Live for Speed,unmatched,no_match,complete,low,unmat
 lockonaircombatsimulation,lock on air combat simulation,Lock On Air Combat Simulation,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lock On Air Combat Simulation
 locomania,loco mania,Loco Mania,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Loco Mania
 logistikmaster,logistik master,Logistik Master,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Logistik Master
-loki,loki,Loki,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Loki v 1 0 8; Lokiv1082
 lokiimbannkreisdergtter,loki im bannkreisder gtter,Loki Im Bannkreisder Gtter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Loki Im Bannkreisder Gtter; Loki Im Bannkreisder Gtterv1040; Loki Im Bannkreisder Gtterv1050
 londonracer,london racer,London Racer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,London Racer
 looman,looman,Looman,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Looman
@@ -578,7 +444,6 @@ lostplanetextremecondition,lost planet extreme condition,Lost Planet Extreme Con
 luckylukegowest,lucky luke go west,Lucky Luke Go West,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lucky Luke Go West
 lumines,lumines,Lumines,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Lumines
 mdk,mdk,MDK,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,MDK
-mswtk2004,mswtk 2004,MSWTK 2004,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,MSWTK 2004
 mtxmototrax,mtx mototrax,MTX Mototrax,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,MTX Mototrax
 macaosolitaire,macao solitaire,Macao Solitaire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Macao Solitaire
 madtracks,mad tracks,Mad Tracks,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mad Tracks
@@ -595,12 +460,10 @@ marineparkempire,marine park empire,Marine Park Empire,unmatched,no_match,comple
 mariopowertennis,mario power tennis,Mario Power Tennis,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mario Power Tennis
 marvelultimatealliance,marvel ultimate alliance,Marvel Ultimate Alliance,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Marvel Ultimate Alliance
 mashed,mashed,Mashed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mashed
-maximaleanzahldernpcs,maximale anzahl der np cs,Maximale Anzahl der NP Cs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Maximale Anzahl der NPCs
 medalofhonorairborne,medalof honor airborne,Medalof Honor Airborne,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medalof Honor Airbornev13
 medicalat,medicalat,Medicalat,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medicalat
 medieval2totalwar,medieval 2 total war,Medieval 2 Total War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval 2 Total War v 1
 medieval2totalwarkingdoms,medieval 2 total war kingdoms,Medieval 2 Total War Kingdoms,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval 2 Total War Kingdoms v 1; Medieval2 Total War Kingdomsv105
-medieval2totalwarv13,medieval 2 total warv 13,Medieval 2 Total Warv 13,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval2 Total Warv13
 medievallords,medieval lords,Medieval Lords,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval Lords
 medievaltotalwar,medieval total war,Medieval Total War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval Total War
 medievaltotalwarv,medieval total warv,Medieval Total Warv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Medieval Total Warv
@@ -614,13 +477,10 @@ metalgearsolidgunsofthepatriots,metal gear solid guns of the patriots,Metal Gear
 metin,metin,Metin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Metin
 metroidprime2echoes,metroid prime 2 echoes,Metroid Prime 2 Echoes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Metroid Prime 2 Echoes
 michaelschumacherworldtourkart,michael schumacher world tour kart,Michael Schumacher World Tour Kart,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Michael Schumacher World Tour Kart
-micromachines,micro machines,Micro Machines,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Micro Machines V
 microsoftcombatflightsimulator,microsoft combat flight simulator,Microsoft Combat Flight Simulator,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Microsoft Combat Flight Simulator
-microsoftflightsimulator98,microsoft flight simulator 98,Microsoft Flight Simulator 98,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Microsoft Flight Simulator 98
 microsoftflightsimulatorx,microsoft flight simulator x,Microsoft Flight Simulator X,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Microsoft Flight Simulator X
 microsoftflightsimulatorxdeutsch,microsoft flight simulator x deutsch,Microsoft Flight Simulator X Deutsch,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Microsoft Flight Simulator X Deutsch; Microsoft Flight Simulator XDeutsch
 midnightclub3,midnight club 3,Midnight Club 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Midnight Club 3
-midnightclub3dubedition,midnight club 3 dub edition,Midnight Club 3 Dub Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Midnight Club 3 Dub Edition
 midnightnowhere,midnight nowhere,Midnight Nowhere,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Midnight Nowhere
 mightyjackhammer,mighty jack hammer,Mighty Jack Hammer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mighty Jack Hammer
 minigolfshot,mini golf shot,Mini Golf Shot,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mini Golf Shot
@@ -628,7 +488,6 @@ minigolfoneshot,minigolf one shot,Minigolf One Shot,unmatched,no_match,complete,
 mirandavista,miranda vista,Miranda Vista,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Miranda Vista
 mirandaxp,miranda xp,Miranda XP,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Miranda XP
 mirrorsedge,mirrors edge,Mirrors Edge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mirrors Edge v 1
-mllabfuhrsimulator2008,mllabfuhr simulator 2008,Mllabfuhr Simulator 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mllabfuhr Simulator2008
 mobility1,mobility 1,Mobility 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mobility 1
 monstersvs,monsters vs,Monsters vs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Monsters vs
 monsterz,monsterz,Monsterz,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Monsterz
@@ -640,14 +499,10 @@ moorhuhnkart,moorhuhn kart,Moorhuhn Kart,unmatched,no_match,complete,low,unmatch
 moorhuhnpiraten,moorhuhn piraten,Moorhuhn Piraten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Piraten
 moorhuhnschatzjaeger,moorhuhn schatzjaeger,Moorhuhn Schatzjaeger,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Schatzjaeger
 moorhuhnschatzjger,moorhuhn schatzjger,Moorhuhn Schatzjger,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Schatzjger
-moorhuhnschatzjger3,moorhuhn schatzjger 3,Moorhuhn Schatzjger 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Schatzjger3
-moorhuhnschatzjager3,moorhuhn schatzjager 3,Moorhuhn Schatzjäger 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Schatzjäger 3
 moorhuhnsoccer,moorhuhn soccer,Moorhuhn Soccer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Soccer
 moorhuhnwanted,moorhuhn wanted,Moorhuhn Wanted,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Wanted
 moorhuhnwantedxs,moorhuhn wanted xs,Moorhuhn Wanted XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Wanted XS
-moorhuhnwintereditionxxl,moorhuhn winter edition xxl,Moorhuhn Winter Edition XXL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moorhuhn Winter Edition XXL
 motogp,moto gp,Moto GP,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moto GP
-motogp08,moto gp 08,Moto GP 08,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moto GP 08
 motogpurt3,moto gp urt 3,Moto GP URT 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Moto GP URT 3
 multiblocks,multiblocks,Multiblocks,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Multiblocks
 multiwinia,multiwinia,Multiwinia,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Multiwinia
@@ -658,13 +513,9 @@ myst5endofages,myst 5 end of ages,Myst 5 End of Ages,unmatched,no_match,complete
 mystexile,myst exile,Myst Exile,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Myst Exile
 mysteryisland,mystery island,Mystery Island,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mystery Island
 mythos,mythos,Mythos,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Mythos
-mullabfuhrsimulator2008,mullabfuhr simulator 2008,Müllabfuhr Simulator 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Müllabfuhr Simulator 2008
-nbastreethomecourt,nba street homecourt,NBA Street Homecourt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NBAStreet Homecourt
 neuesspiel,neues spiel,NEUES SPIEL,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NEUES SPIEL
 nfsunderground2,nfs underground 2,NFS Underground 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NFS Underground 2; NFS Underground 2 v 1
-nhl08vista,nhl 08 vista,NHL 08 Vista,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NHL08 Vista
 niveaformenfootballmania,nivea for men football mania,NIVEA FOR MEN Football Mania,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NIVEA FOR MEN Football Mania
-nsrnitrostuntracing,nsr nitro stunt racing,NSR Nitro Stunt Racing,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,NSRNitro Stunt Racing
 napkinrace,napkin race,Napkin Race,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Napkin Race
 napoleon,napoleon,Napoleon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Napoleon
 navyfield,navy field,Navy Field,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Navy Field
@@ -672,19 +523,15 @@ needforspeedunderground,need for speed underground,Need for Speed - Underground,
 needforspeedcarbon,need for speed carbon,Need for Speed Carbon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Needfor Speed Carbon; Needfor Speed Carbonv14; Need for Speed Carbon v 1
 needforspeedmostwanted,need for speed most wanted,Need for Speed Most Wanted,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Need for Speed Most Wanted; Need for Speed Most Wanted v
 needforspeedprostreet,need for speed pro street,Need for Speed Pro Street,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Need for Speed Pro Street; Needfor Speed Pro Street
-neocron2evolution,neocron 2 evolution,Neocron 2 Evolution,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neocron 2 Evolution v
 neocronarcade,neocron arcade,Neocron Arcade,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neocron Arcade
 neosteam,neosteam,Neosteam,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neosteam
 nero6reloaded,nero 6 reloaded,Nero 6 Reloaded,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nero 6 Reloaded (Demo)
 netmhle,net mhle,Net Mhle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Net Mhle
 netquartett,net quartett,Net Quartett,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Net Quartett
-neueabenteueraufderschatzinsel,neue abenteuer auf der schatzinsel,Neue Abenteuer auf der Schatzinsel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neue Abenteueraufder Schatzinsel
 neurohunter,neuro hunter,Neuro Hunter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neuro Hunter
 neverwinternights,neverwinter nights,Neverwinter Nights,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Neverwinter Nights v 1; Neverwinter Nightsv
 nexusthejupiterincident,nexus the jupiter incident,Nexus The Jupiter Incident,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nexus The Jupiter Incident
-nibiruderbotedergotter,nibiru der bote der gotter,Nibiru Der Bote der Götter,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nibiru Der Bote der Götter
 nice2,nice 2,Nice 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nice 2
-nikopoldieruckkehrderunsterblichen,nikopol die ruckkehr der unsterblichen,Nikopol Die Rückkehr der Unsterblichen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nikopol Die Rückkehr der Unsterblichen
 niveamaennersachecomputerspiel,nivea maennersache computerspiel,Nivea Maennersache Computerspiel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nivea Maennersache Computerspiel
 niveamaennersachespot,nivea maennersache spot,Nivea Maennersache Spot,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nivea Maennersache Spot
 nonsensetrilogy,nonsense trilogy,Nonsense Trilogy,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Nonsense Trilogy
@@ -703,13 +550,9 @@ opaquecomposition,opaque composition,Opaque Composition,unmatched,no_match,compl
 ottifantenostfriesenlemmingeinnot,ottifanten ostfriesen lemminge in not,Ottifanten Ostfriesen Lemminge in Not,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ottifanten Ostfriesen Lemminge in Not
 ottifantenostfriesenpinball,ottifanten ostfriesen pinball,Ottifanten Ostfriesen Pinball,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ottifanten Ostfriesen Pinball
 outlawgolf2,outlaw golf 2,Outlaw Golf 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Outlaw Golf 2
-overgfighters,over g fighters,Over G Fighters,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Over GFighters
 overclockedeinegeschichtebergewalt,overclocked eine geschichteber gewalt,Overclocked Eine Geschichteber Gewalt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Overclocked Eine Geschichteber Gewalt
 overlord,overlord,Overlord,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Overlord; Overlord v 1; Overlordv12
-pdcworldchampionshipdarts2008,pdc world championship darts 2008,PDC World Championship Darts 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,PDC World Championship Darts 2008; PDCWorld Championship Darts2008
-pebuilder,pe builder,PE Builder,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,PEBuilder
 punktedisplay,punkte display,PUNKTE display,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,PUNKTE display
-pwgen,pw gen,PW Gen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,PWGen
 pacificfighters,pacific fighters,Pacific Fighters,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pacific Fighters
 pacificfightersstrategiebuch,pacific fighters strategiebuch,Pacific Fighters Strategiebuch,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pacific Fighters Strategiebuch
 pacificstorm,pacific storm,Pacific Storm,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pacific Storm v 1; Pacific Stormv14; Pacific Storm
@@ -718,7 +561,6 @@ pacmanex,pacman ex,Pacman EX,unmatched,no_match,complete,low,unmatched_source_al
 pangya,pangya,Pangya,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pangya
 panzereliteaction,panzer elite action,Panzer Elite Action,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Panzer Elite Action
 panzereliteactiondunesofwar,panzer elite action dunesof war,Panzer Elite Action Dunesof War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Panzer Elite Action Dunesof War
-panzers,panzers,Panzers,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Panzers
 papierkrieg,papierkrieg,Papierkrieg,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Papierkrieg
 paraworldboosterpack,para world booster pack,Para World Booster Pack,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Para World Booster Pack
 paradise,paradise,Paradise,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Paradise
@@ -731,9 +573,7 @@ parentsrodkowegoshopa,parent srodkowego shopa,Parent srodkowego shopa,unmatched,
 parenttestowy,parent testowy,Parent testowy,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Parent testowy
 pariah,pariah,Pariah,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pariah; Pariah v 1
 parischase,paris chase,Paris Chase,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Paris Chase
-passagesonderedition,passage sonder edition,Passage Sonder Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Passage Sonder Edition
 pathologic,pathologic,Pathologic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pathologic
-patrizier2gold,patrizier 2 gold,Patrizier 2 Gold,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Patrizier 2 Gold
 pekkakana,pekka kana,Pekka Kana,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pekka Kana
 pentalego,pentalego,Pentalego,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pentalego
 penumbrablackplague,penumbra black plague,Penumbra Black Plague,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Penumbra Black Plague; Penumbra Black Plague v 1 0; Penumbra Black Plaguev101
@@ -758,7 +598,6 @@ pingspizza,pings pizza,Pings Pizza,unmatched,no_match,complete,low,unmatched_sou
 pipemania,pipemania,Pipemania,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pipemania
 pirategalaxy,pirate galaxy,Pirate Galaxy,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pirate Galaxy
 piratenherrscherderkaribik,piraten herrscher der karibik,Piraten Herrscher der Karibik,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Piraten Herrscher der Karibik v 1 1 0
-piratesofthecarribeanamendederwelt,pirates of the carribean am ende der welt,Pirates of the Carribean Am Ende der Welt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Piratesofthe Carribean Am Endeder Welt
 pixelzentrierung,pixelzentrierung,Pixelzentrierung,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pixelzentrierung
 pizzacommander,pizza commander,Pizza Commander,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pizza Commander
 pizzaconnection2,pizza connection 2,Pizza Connection 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pizza Connection 2
@@ -771,19 +610,14 @@ pokitodasrtselderschlssel,pokito das rtselder schlssel,Pokito Das Rtselder Schls
 policestory,police story,Police Story,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Police Story
 ponyranch,pony ranch,Pony Ranch,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pony Ranch
 portroyale2,port royale 2,Port Royale 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Port Royale 2
-portsofcalldeluxe2008,ports of call deluxe 2008,Ports of Call Deluxe 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ports of Call Deluxe 2008; Portsof Call Deluxe2008
 powermanga,power manga,Power Manga,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Power Manga
 powerscout,power scout,Power Scout,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Power Scout
 premiumskatdeluxe,premium skatde luxe,Premium Skatde Luxe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Premium Skatde Luxe
-prey,prey,Prey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Preyv
 primetimederfernsehmanager,prime time der fernsehmanager,Prime Time Der Fernsehmanager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Prime Time Der Fernsehmanager
 princeofpersia,prince of persia,Prince of Persia,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Prince of Persia
 princeofpersia3,prince of persia 3,Prince of Persia 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Prince of Persia 3
-princeofpersiathesandsoftime,prince of persia the sands of time,Prince of Persia The Sands of Time,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Princeof Persia The Sandsof Time
 princeofpersiawarriorwithin,prince of persia warrior within,Prince of Persia Warrior Within,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Prince of Persia Warrior Within
 proevolutionsoccer,pro evolution soccer,Pro Evolution Soccer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Evolution Soccer
-proevolutionsoccer2008,pro evolution soccer 2008,Pro Evolution Soccer 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Evolution Soccer2008
-proevolutionsoccer2009,pro evolution soccer 2009,Pro Evolution Soccer 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Evolution Soccer 2009 v 1; Pro Evolution Soccer2009
 proevolutionsoccer4,pro evolution soccer 4,Pro Evolution Soccer 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Evolution Soccer 4; Pro Evolution Soccer 4 v 1
 proevolutionsoccer5,pro evolution soccer 5,Pro Evolution Soccer 5,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Evolution Soccer 5
 projger,pro jger,Pro Jger,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pro Jger
@@ -803,33 +637,21 @@ purepinball,pure pinball,Pure Pinball,unmatched,no_match,complete,low,unmatched_
 purpsi,purpsi,Purpsi,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Purpsi
 puzzle,puzzle,Puzzle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Puzzle
 pyrotycoon,pyro tycoon,Pyro Tycoon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Pyro Tycoon
-quake,quake,Quake,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Quakev
 quake4,quake 4,Quake 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Quake 4 v 1 04; Quake 4; Quake 4 v 1
 quarry,quarry,Quarry,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Quarry
-race07,race 07,RACE 07,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RACE 07
 rccars,rc cars,RC Cars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RC Cars
 rfonline,rf online,RF Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RF Online
 rightarrow,right arrow,RIGHT ARROW,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RIGHT ARROW
 rip3thelasthero,rip 3 the last hero,RIP 3 The Last Hero,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RIP 3 The Last Hero; RIP3 The Last Hero
 rpmtuning,rpm tuning,RPM Tuning,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RPM Tuning
-rtlbiathlon2008,rtl biathlon 2008,RTL Biathlon 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RTLBiathlon2008
 rtlracingteammanager,rtl racing team manager,RTL Racing Team Manager,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RTLRacing Team Manager; RTL Racing Team Manager v 1; RTLRacing Team Managerv104
-rtlskispringen,rtl skispringen,RTL Skispringen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RTLSkispringen
-rtlwintersports2008theultimatechallenge,rtl winter sports 2008 the ultimate challenge,RTL Winter Sports 2008 The Ultimate Challenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,RTL Winter Sports 2008 The Ultimate Challenge; RTLWinter Sports2008 The Ultimate Challenge
-race07officialwtccgame,race 07 official wtcc game,Race 07 Official WTCC Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Race 07 Official WTCC Game; Race07 Official WTCCGame
-raceofficialwttcgame,race official wttc game,Race Official WTTC Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Race Official WTTCGame
-racetheofficialwtccgame,race the official wtcc game,Race The Official WTCC Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Race The Official WTCCGame
 racingsimulation2,racing simulation 2,Racing Simulation 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Racing Simulation 2
-radsportmanager20032004,radsport manager 2003 2004,Radsport Manager 2003 2004,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager 2003 2004
 radsportmanagerpro,radsport manager pro,Radsport Manager Pro,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager Pro; Radsport Manager Pro v 1 0 2
 radsportmanagerpro2007,radsport manager pro 2007,Radsport Manager Pro 2007,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager Pro 2007; Radsport Manager Pro 2007 v 1 0 1
 radsportmanagerproletourdefrance,radsport manager pro le tourde france,Radsport Manager Pro Le Tourde France,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager Pro Le Tourde France; Radsport Manager Pro Le Tourde Francev
-radsportmanagerprosaison0506,radsport manager pro saison 05 06,Radsport Manager Pro Saison 05 06,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager Pro Saison 05 06
-radsportmanagerprov1020,radsport manager prov 1020,Radsport Manager Prov 1020,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Radsport Manager Prov1020
 ragdollkungfu,ragdoll kung fu,Ragdoll Kung Fu,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ragdoll Kung Fu
 ragnarok,ragnarok,Ragnarok,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ragnarok
 railsimulator,rail simulator,Rail Simulator,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rail Simulator
-railsimulatorupgrademk1,rail simulator upgrade mk 1,Rail Simulator Upgrade Mk 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rail Simulator Upgrade Mk1
 railroadpioneer,railroad pioneer,Railroad Pioneer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Railroad Pioneer
 railroadtycoon2,railroad tycoon 2,Railroad Tycoon 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Railroad Tycoon 2
 rainbowsix4lockdown,rainbow six 4 lockdown,Rainbow Six 4 Lockdown,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rainbow Six 4 Lockdown
@@ -846,20 +668,16 @@ reisezumzentrumd,reise zum zentrum d,Reise zum Zentrum d,unmatched,no_match,comp
 rennyclaus,renny claus,Renny Claus,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Renny Claus
 rennyclaussnowbombbattle,renny claus snow bomb battle,Renny Claus Snow Bomb Battle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Renny Claus Snow Bomb Battle
 rennyclausweihnachtsflipper,renny claus weihnachts flipper,Renny Claus Weihnachts Flipper,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Renny Claus Weihnachts Flipper
-rennyclausxmashockey,renny claus x mas hockey,Renny Claus X Mas Hockey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Renny Claus XMas Hockey
 reprobatesinselderverdammten,reprobates insel der verdammten,Reprobates Insel der Verdammten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Reprobates Insel der Verdammten v 2; Reprobates Inselder Verdammtenv214; Reprobates Insel der Verdammten; Reprobates Inselder Verdammten; Reprobates Insel der Verdammten v 1 3; Reprobates Inselder Verdammtenv133
 republiccommando,republic commando,Republic Commando,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Republic Commando
-residentevil,resident evil,Resident Evil,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Resident Evilv
 restrictedarea,restricted area,Restricted Area,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Restricted Area v 1; Restricted Area
 restrictedarea1,restricted area 1,Restricted Area 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Restricted Area 1
 retroping,retro ping,Retro Ping,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Retro Ping
-rettunghelicopter112,rettunghelicopter 112,Rettunghelicopter 112,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rettunghelicopter 112
 richardburnsrally,richard burns rally,Richard Burns Rally,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Richard Burns Rally v 1
 ridgeracer6,ridge racer 6,Ridge Racer 6,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ridge Racer 6
 risefall,rise fall,Rise Fall,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rise Fall
 risefallcivilizationsatwar,rise fall civilizationsat war,Rise Fall Civilizationsat War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rise Fall Civilizationsat War
 risefallcivilizationsatwarv,rise fall civilizationsat warv,Rise Fall Civilizationsat Warv,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rise Fall Civilizationsat Warv
-riseofnations,rise of nations,Rise of Nations,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rise of Nations
 riseofnationsriseoflegends,riseof nations riseof legends,Riseof Nations Riseof Legends,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Riseof Nations Riseof Legends
 risingkingdoms,rising kingdoms,Rising Kingdoms,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rising Kingdoms v 1; Rising Kingdoms
 rivalchess,rival chess,Rival Chess,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rival Chess
@@ -870,25 +688,19 @@ rollerball,roller ball,Roller Ball,unmatched,no_match,complete,low,unmatched_sou
 rollercoastertycoon,rollercoaster tycoon,Rollercoaster Tycoon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rollercoaster Tycoon
 rollercoastertycoon3,rollercoaster tycoon 3,Rollercoaster Tycoon 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rollercoaster Tycoon 3; Rollercoaster Tycoon 3 v 1
 rollercoastertycoon3wild,rollercoaster tycoon 3 wild,Rollercoaster Tycoon 3 Wild,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rollercoaster Tycoon 3 Wild
-romanceofthethreekingdoms11,romance of the three kingdoms 11,Romance of the Three Kingdoms 11,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Romance of the Three Kingdoms 11
 romanceofthethreekingdoms,romanceofthe three kingdoms,Romanceofthe Three Kingdoms,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Romanceofthe Three Kingdoms
 romebarbarianinvasion,rome barbarian invasion,Rome Barbarian Invasion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rome Barbarian Invasion
 rometotalwar,rome total war,Rome Total War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rome Total War v 1
 rometotalwaralexander,rome total war alexander,Rome Total War Alexander,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rome Total War Alexander
-rometotalwarbarbarianinvasion,rome total war barbarian invasion,Rome Total War Barbarian Invasion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rome Total War Barbarian Invasion v
 rossorabbitintrouble,rosso rabbitin trouble,Rosso Rabbitin Trouble,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rosso Rabbitin Trouble
 roterbaronherrscherderlfte,roter baron herrscherder lfte,Roter Baron Herrscherder Lfte,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Roter Baron Herrscherder Lfte
-rotlichttycoon,rotlicht tycoon,Rotlicht Tycoon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rotlicht Tycoonv
 rubiksclock,rubiks clock,Rubiks Clock,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rubiks Clock
 runaway2,runaway 2,Runaway 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Runaway 2
 runawaythedreamoftheturtle,runaway the dream of the turtle,Runaway The Dream Of The Turtle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Runaway The Dreamofthe Turtle; Runaway The Dream Of The Turtle
 rundenlimit,rundenlimit,Rundenlimit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rundenlimit
 rundenzeit,rundenzeit,Rundenzeit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rundenzeit
 runesofmagic,runesof magic,Runesof Magic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Runesof Magic
-rush,rush,Rush,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rush
 rushforberlin,rush for berlin,Rush for Berlin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rushfor Berlinv; Rushfor Berlin; Rush for Berlin
-rushforthebombrushforberlinexpansionpack,rush for the bomb rush for berlin expansion pack,Rush for the Bomb Rush for Berlin Expansion Pack,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rushforthe Bomb Rushfor Berlin Expansion Pack
-ruckkehrzurinsel,ruckkehr zur insel,Rückkehr zur Insel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Rückkehr zur Insel
 spielbeenden,spiel beenden,SPIEL BEENDEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,SPIEL BEENDEN
 spielfortsetzen,spiel fortsetzen,SPIEL FORTSETZEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,SPIEL FORTSETZEN
 spielverlassen,spiel verlassen,SPIEL VERLASSEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,SPIEL VERLASSEN
@@ -901,27 +713,20 @@ sacredfallenangel,sacred fallen angel,Sacred Fallen Angel,unmatched,no_match,com
 sacredunderworld,sacred underworld,Sacred Underworld,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sacred Underworld
 saintsrow,saint s row,Saint's Row,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Saint's Row
 santaclausintrouble,santa claus in trouble,Santa Claus in Trouble,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Santa Claus in Trouble
-santaclausintroublegold,santa clausin trouble gold,Santa Clausin Trouble Gold,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Santa Clausin Trouble Gold
 sataan,sataan,Sataan,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sataan
 sataandasspiel,sataan das spiel,Sataan Das Spiel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sataan Das Spiel v 1
-savageatorturedsoul,savage a tortured soul,Savage A Tortured Soul,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Savage ATortured Soul
-savekolcheza21222220021022,save kolchez a 21 22 22 2002 10 22,Save Kolchez'a 21:22:22 2002 10 22,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Save Kolchez'a 21:22:22 2002 10 22
 schatten,schatten,Schatten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schatten
 schiffsimulator,schiff simulator,Schiff Simulator,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schiff Simulator
-schiffsimulator2008,schiff simulator 2008,Schiff Simulator 2008,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schiff Simulator2008
 schiffbruch,schiffbruch,Schiffbruch,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schiffbruch
 schiffeversenken,schiffe versenken,Schiffe versenken,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schiffe versenken
 schlachtummittelerde1,schlacht um mittelerde 1,Schlacht um Mittelerde 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schlacht um Mittelerde 1
-schlachtummittelerdedaufstiegdhexenknigs,schlachtum mittelerde d aufstiegd hexenknigs,Schlachtum Mittelerde D Aufstiegd Hexenknigs,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schlachtum Mittelerde DAufstiegd Hexenknigsv
 schnappidaskl,schnappi das kl,Schnappi Das kl,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schnappi Das kl
 schnappidaskleinekrokodilxs,schnappi das kleine krokodil xs,Schnappi Das kleine Krokodil XS,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schnappi Das kleine Krokodil XS
 schneehuhn,schneehuhn,Schneehuhn,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Schneehuhn
-scorched3d,scorched 3 d,Scorched 3 D,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Scorched 3 D
 scorchedd,scorched d,Scorched D,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Scorched D
 scrapland,scrapland,Scrapland,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Scrapland
 scratches,scratches,Scratches,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Scratches
 seawolves,sea wolves,Sea Wolves,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sea Wolves
-seamulator2009,seamulator 2009,Seamulator 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Seamulator 2009
 secondsight,second sight,Second Sight,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Second Sight
 segarally,sega rally,Sega Rally,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sega Rally
 segelflugsimulatorsailorsofthesky,segelflug simulator sailorsofthe sky,Segelflug Simulator Sailorsofthe Sky,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Segelflug Simulator Sailorsofthe Sky
@@ -936,37 +741,24 @@ shadowopsredmercury,shadow ops red mercury,Shadow Ops Red Mercury,unmatched,no_m
 shadowgrounds,shadowgrounds,Shadowgrounds,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Shadowgrounds
 sheep,sheep,Sheep,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sheep
 sherlockholmes,sherlock holmes,Sherlock Holmes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sherlock Holmes
-sherlockholmesdiespurdererwachtenremasterededition,sherlock holmes die spur der erwachten remastered edition,Sherlock Holmes - Die Spur der Erwachten - Remastered Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sherlock Holmes - Die Spur der Erwachten - Remastered Edition
 sherlockholmesdasgeheimnisdessilbernenohrrings,sherlock holmes das geheimnisdessilbernen ohrrings,Sherlock Holmes Das Geheimnisdessilbernen Ohrrings,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sherlock Holmes Das Geheimnisdessilbernen Ohrrings
 sherlockholmesdiespurdererwachten,sherlock holmes die spurder erwachten,Sherlock Holmes Die Spurder Erwachten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sherlock Holmes Die Spurder Erwachten; Sherlock Holmes Die Spurder Erwachtenv
-sherlockholmesjagtarsenelupin,sherlock holmes jagt arsene lupin,Sherlock Holmes jagt Arsène Lupin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sherlock Holmes jagt Arsène Lupin; Sherlock Holmesjagt Arsne Lupin
 shoottheroach,shoot the roach,Shoot the Roach,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Shoot the Roach
 shotonline,shot online,Shot Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Shot Online
 showathletics,show athletics,Show Athletics,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show Athletics
-showgewehrexpneeded,show gewehr exp needed,Show GEWEHR Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show GEWEHRExp Needed
 showgewehre,show gewehre,Show GEWEHRE,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show GEWEHRE
 showkampf,show kampf,Show KAMPF,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show KAMPF
-showkampfexpneeded,show kampf exp needed,Show KAMPF Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show KAMPFExp Needed
-showkraftexpneeded,show kraft exp needed,Show KRAFT Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show KRAFTExp Needed
-showmachinenpistolenxpneeded,show machinenpistole nxp needed,Show MACHINENPISTOLE Nxp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show MACHINENPISTOLENxp Needed
 showmachinenpistolen,show machinenpistolen,Show MACHINENPISTOLEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show MACHINENPISTOLEN
 shownahkampf,show nahkampf,Show NAHKAMPF,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show NAHKAMPF
-shownahkampfexpneeded,show nahkampf exp needed,Show NAHKAMPF Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show NAHKAMPFExp Needed
 showpistolen,show pistolen,Show PISTOLEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show PISTOLEN
-showpistolenexpneeded,show pistolen exp needed,Show PISTOLEN Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show PISTOLENExp Needed
-showschottflintenxpneeded,show schottflinte nxp needed,Show SCHOTTFLINTE Nxp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show SCHOTTFLINTENxp Needed
 showschottflinten,show schottflinten,Show SCHOTTFLINTEN,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show SCHOTTFLINTEN
 showtarnung,show tarnung,Show TARNUNG,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show TARNUNG
-showtarnungexpneeded,show tarnung exp needed,Show TARNUNG Exp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show TARNUNGExp Needed
-showtechnikxpneeded,show techni kxp needed,Show TECHNI Kxp Needed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show TECHNIKxp Needed
 showtechnik,show technik,Show TECHNIK,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Show TECHNIK
 shrekderdritte,shrekder dritte,Shrekder Dritte,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Shrekder Dritte
 sidmeierscivilization4fallfromheaven20,sid meier s civilization 4 fall from heaven 2 0,Sid Meier's Civilization 4 - Fall from Heaven 2 0,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sid Meier's Civilization 4 - Fall from Heaven 2 0
 sidmeierscivilization4beyondthesword,sid meier s civilization iv beyond the sword,Sid Meier's Civilization IV: Beyond the Sword,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Civilization 4 Beyond the Sword v 3; Civilization4 Beyondthe Swordv317; Sid Meiers Civilization Beyond The Sword; Sid Meiers Civilization4 Beyondthe Swordv303
 sidmeierspirates,sid meier s pirates,Sid Meier's Pirates!,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sid Meier's Pirates; Sid Meier's Pirates!
-sidmeierscivilization4,sid meiers civilization 4,Sid Meiers Civilization 4,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sid Meiers Civilization4; Sid Meier's Civilization 4
 sidmeiersrailroads,sid meiers railroads,Sid Meiers Railroads,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sid Meiers Railroads; Sid Meiers Railroadsv
-siedlerdaserbederkonige,siedler das erbe der konige,Siedler Das Erbe der Könige,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Siedler Das Erbe der Könige
 siegeofavalon,siege of avalon,Siege of Avalon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Siege of Avalon
 silenthunter3,silent hunter 3,Silent Hunter 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Silent Hunter 3; Silent Hunter 3 v 1
 silenthunter4wolvesofthepacific,silent hunter 4 wolves of the pacific,Silent Hunter 4: Wolves of the Pacific,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Silent Hunter Wolves Of The Pacific; Silent Hunter Wolves Of The Pacificv; Silent Hunter Wolvesofthe Pacificv; Silent Hunter4 Wolvesofthe Pacificv12
@@ -974,21 +766,16 @@ silverwings,silver wings,Silver Wings,unmatched,no_match,complete,low,unmatched_
 silverfall,silverfall,Silverfall,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Silverfall; Silverfallv
 silverfallwchterderelemente,silverfall wchterder elemente,Silverfall Wchterder Elemente,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Silverfall Wchterder Elemente
 simcitysocieties,sim city societies,Sim City Societies,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sim City Societies v 1 02; Sim City Societiesv102119; Sim City Societies v 1 03; Sim City Societiesv103140; Sim City Societies
-simonthesorcererchaosistdashalbeleben,simon the sorcerer chaos ist das halbe leben,Simon the Sorcerer Chaos ist das halbe Leben,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Simonthe Sorcerer Chaosistdashalbe Leben; Simonthe Sorcerer Chaosistdashalbe Lebenv
-singles,singles,Singles,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Singlesv
 singles2wildezeiten,singles 2 wilde zeiten,Singles 2 Wilde Zeiten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Singles 2 Wilde Zeiten
 singlesflirtupyourlife,singles flirt up your life,Singles Flirt up your Life,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Singles Flirt up your Life
 sinistarunleashed,sini star unleashed,Sini Star Unleashed,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sini Star Unleashed
 sinkingislandmordimparadies,sinking island mord im paradies,Sinking Island Mord im Paradies,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sinking Island Mord im Paradies; Sinking Island Mordim Paradies
 sinsofasolarempire,sinsofa solar empire,Sinsofa Solar Empire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sinsofa Solar Empire
 skate,skate,Skate,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Skate
-skialpin2006mitbodemiller,ski alpin 2006 mit bode miller,Ski Alpin 2006 mit Bode Miller,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ski Alpin 2006 mit Bode Miller
 skialpinracingbodemillervshermannmaier,ski alpin racing bode millervs hermann maier,Ski Alpin Racing Bode Millervs Hermann Maier,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ski Alpin Racing Bode Millervs Hermann Maier
 skichallenge,ski challenge,Ski Challenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ski Challenge
 skixtreme,ski xtreme,Ski Xtreme,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ski Xtreme
-skisprungwintercup2005,skisprung wintercup 2005,Skisprung Wintercup 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Skisprung Wintercup 2005
 slapshotunderground,slapshot underground,Slapshot Underground,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Slapshot Underground
-sldnermarinecorps,sldner marine corps,Sldner Marine Corps,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sldner Marine Corpsv
 slowdown,slowdown,Slowdown,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Slowdown
 smashonline,smash online,Smash Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Smashonline; Smash Online
 snowbombbattle,snow bomb battle,Snow Bomb Battle,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Snow Bomb Battle
@@ -999,8 +786,6 @@ sonicheroes,sonic heroes,Sonic Heroes,unmatched,no_match,complete,low,unmatched_
 sonicriders,sonic riders,Sonic Riders,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sonic Riders
 sonyplaystationhome,sony playstation home,Sony Playstation Home,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sony Playstation Home
 spacecorpsarmageddon,space corps armageddon,Space Corps Armageddon,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Space Corps Armageddon
-spaceforcecaptains,space force captains,Space Force Captains,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spaceforce Captains
-spaceforcerogueuniverse,space force rogue universe,Space Force Rogue Universe,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spaceforce Rogue Universe
 spacehockey,space hockey,Space Hockey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Space Hockey
 spacepong,space pong,Space Pong,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Space Pong
 spaceraider,space raider,Space Raider,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Space Raider
@@ -1030,12 +815,10 @@ spiderman,spider man,Spider Man,unmatched,no_match,complete,low,unmatched_source
 spidermanfreundoderfeind,spider man freundoder feind,Spider Man Freundoder Feind,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spider Man Freundoder Feind
 spielfigur,spielfigur,Spielfigur,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spielfigur
 splintercellchaostheory,splinter cell chaos theory,Splinter Cell Chaos Theory,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Splinter Cell Chaos Theory
-splintercelldvd,splinter cell dvd,Splinter Cell DVD,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Splinter Cell DVD
 splintercellschaostheory,splinter cell s chaos theory,Splinter Cell's Chaos Theory,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Splinter Cell's Chaos Theory
 spore,spore,Spore,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spore
 sporelaborkreaturendesigner,spore labor kreaturen designer,Spore Labor Kreaturen Designer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spore Labor Kreaturen Designer
 sportschiessen,sportschiessen,Sportschiessen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sportschiessen
-spybotsearchanddestroy,spy bot search and destroy,Spy Bot Search & Destroy,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Spy Bot Search & Destroy
 squirm,squirm,Squirm,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Squirm
 starassault,star assault,Star Assault,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Star Assault
 starcraft,star craft,Star Craft,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Star Craft
@@ -1049,27 +832,19 @@ starskyandhutch,starsky and hutch,Starsky & Hutch,unmatched,no_match,complete,lo
 startgeld,startgeld,Startgeld,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Startgeld
 startzeit,startzeit,Startzeit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Startzeit
 steelsaviour,steel saviour,Steel Saviour,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Steel Saviour
-stilllife2,still life 2,Still Life 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Still Life2
 stilllifespecialedition,still life special edition,Still Life Special Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Still Life Special Edition
 stonechecker,stonechecker,Stonechecker,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Stonechecker
 stonechecker3,stonechecker 3,Stonechecker 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Stonechecker 3
 strombergbroistkrieg,stromberg broist krieg,Stromberg Broist Krieg,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Stromberg Broist Krieg
-strongholdlegends,stronghold legends,Stronghold Legends,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Stronghold Legendsv
 suddenstrike3armsforvictory,sudden strike 3 arms for victory,Sudden Strike 3 Arms for Victory,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sudden Strike 3 Arms for Victory v 1; Sudden Strike3 Armsfor Victoryv131
-suddenstrike3armsforvictoryardennenoffensive,sudden strike 3 armsfor victory ardennen offensive,Sudden Strike 3 Armsfor Victory Ardennen Offensive,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sudden Strike3 Armsfor Victory Ardennen Offensive
 sudokomeister,sudoko meister,Sudoko Meister,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sudoko Meister
 sunrisethegame,sunrise the game,Sunrise The Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sunrise The Game
 supernautica,super nautica,Super Nautica,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Super Nautica
-supertuxkart,super tux kart,Super Tux Kart,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Super Tux Kart
 supremecommanderforgedalliance,supreme commander forged alliance,Supreme Commander Forged Alliance,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Supreme Commander Forged Alliance
-supremeruler2020,supreme ruler 2020,Supreme Ruler 2020,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Supreme Ruler2020
 surfattack,surf attack,Surf Attack,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Surf Attack
 svenkommt,sven kommt,Sven kommt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Sven kommt
 switchfire,switchfire,Switchfire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Switchfire
-swordofthestars,sword of the stars,Sword of the Stars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Swordofthe Stars
-tmntteenagemutantninjaturtles,tmnt teenage mutant ninja turtles,TMNT Teenage Mutant Ninja Turtles,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,TMNTTeenage Mutant Ninja Turtles
 takatis,takatis,Takatis,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Takatis
-takecommandsecondmanassas,take command second manassas,Take Command Second Manassas,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Take Command Second Manassasv
 taleofahero,taleofa hero,Taleofa Hero,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Taleofa Hero
 taxi3extremerush,taxi 3 extreme rush,Taxi 3 Extreme Rush,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Taxi 3 Extreme Rush
 taxiraser,taxi raser,Taxi Raser,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Taxi Raser
@@ -1079,20 +854,15 @@ teamauswahl,teamauswahl,Teamauswahl,unmatched,no_match,complete,low,unmatched_so
 telldasspielzumfilm,tell das spielzum film,Tell Das Spielzum Film,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tell Das Spielzum Film
 theavastar,the avastar,The Avastar,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Avastar
 theavastarzeitungfrsecondlife,the avastar zeitungfr second life,The Avastar Zeitungfr Second Life,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Avastar Zeitungfr Second Life
-thechroniclesofspellborn,the chronicles of spellborn,The Chronicles of Spellborn,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Chroniclesof Spellborn
 thecleaner,the cleaner,The Cleaner,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Cleaner v5
-theelderscrolls3morrowindgameoftheyearedition,the elder scrolls 3 morrowind game of the year edition,The Elder Scrolls 3 Morrowind Game of the Year Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Elder Scrolls3 Morrowind Gameofthe Year Edition
-thelongestjourneyspecialedition,the longest journey special edition,The Longest Journey Special Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Longest Journey Special Edition
 thesagaofryzom,the sagaof ryzom,The Sagaof Ryzom,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Sagaof Ryzom
 thesecretofadisland,the secretof ad island,The Secretof Ad Island,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Secretof Ad Island
 thesecretsofdavinci,the secretsof da vinci,The Secretsof Da Vinci,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Secretsof Da Vinci
-thesettlersriseofanempire,the settlers rise of an empire,The Settlers Rise of an Empire,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Settlers Riseofan Empire
 theshow,the show,The Show,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,The Show
 theatreofwar,theatreof war,Theatreof War,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Theatreof War
 theseusreturnofthehero,theseus returnofthe hero,Theseus Returnofthe Hero,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Theseus Returnofthe Hero
 thirstypunk,thirsty punk,Thirsty Punk,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Thirsty Punk
 thrillvilleverrckteachterbahn,thrillville verrckte achterbahn,Thrillville Verrckte Achterbahn,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Thrillville Verrckte Achterbahn
-tigerwoodspgatour08,tiger woods pga tour 08,Tiger Woods PGA Tour 08,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tiger Woods PGA Tour 08; Tiger Woods PGATour08
 tigerwoodspgatour2005,tiger woods pga tour 2005,Tiger Woods PGA Tour 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tiger Woods PGA Tour 2005
 timanfayaverschollenindenfeuerbergen,timanfaya verschollen in den feuerbergen,Timanfaya Verschollen in den Feuerbergen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Timanfaya Verschollen in den Feuerbergen; Timanfaya Verscholleninden Feuerbergen
 tipseinblenden,tips einblenden,Tips einblenden,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tips einblenden
@@ -1118,7 +888,6 @@ tonyhawksproject,tony hawks project,Tony Hawks Project,unmatched,no_match,comple
 tonyhawksprovingground,tony hawks proving ground,Tony Hawks Proving Ground,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tony Hawks Proving Ground
 topspin,top spin,Top Spin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Top Spin
 torchance,torchance,Torchance,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Torchance
-torchance2009,torchance 2009,Torchance 2009,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Torchance 2009
 tortugatwotreasures,tortuga two treasures,Tortuga Two Treasures,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tortuga Two Treasures
 torustrooper,torus trooper,Torus Trooper,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Torus Trooper
 totaloverdose,total overdose,Total Overdose,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Total Overdose
@@ -1132,11 +901,7 @@ trackmaniasunrise,trackmania sunrise,Trackmania Sunrise,unmatched,no_match,compl
 trackmaniasunriseexupgr,trackmania sunrise ex upgr,Trackmania Sunrise Ex Upgr,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Trackmania Sunrise Ex Upgr
 trackmaniaunited,trackmania united,Trackmania United,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Trackmania United
 trainzrailroadsim,trainz railroad sim,Trainz Railroad Sim,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Trainz Railroad Sim
-transformersthegame,transformers the game,Transformers The Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Transformers The Game
-transformersthegamegameplay,transformers the game gameplay,Transformers The Game Gameplay,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Transformers The Game Gameplay
-transformersthegameintro,transformers the game intro,Transformers The Game Intro,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Transformers The Game Intro
 treasureisland,treasure island,Treasure Island,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Treasure Island; Treasure Island v 1; Treasure Islandv1002
-trials2secondedition,trials 2 second edition,Trials 2 Second Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Trials 2 Second Edition; Trials2 Second Edition
 tribaltrouble,tribal trouble,Tribal Trouble,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tribal Trouble
 tribesvengeance,tribes vengeance,Tribes Vengeance,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tribes Vengeance
 tribunal,tribunal,Tribunal,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tribunal
@@ -1144,27 +909,21 @@ trommy,trommy,Trommy,unmatched,no_match,complete,low,unmatched_source_alias; dem
 tubetwist,tube twist,Tube Twist,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tube Twist
 tunnelsoftheunderworld,tunnelsofthe underworld,Tunnelsofthe Underworld,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tunnelsofthe Underworld
 turbolister6,turbo lister 6,Turbo Lister 6,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Turbo Lister 6
-turbostrauss,turbo strauss,Turbo Strauß,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Turbo Strauß
 turok2,turok 2,Turok 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Turok 2
 tuxracer,tux racer,Tux Racer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tux Racer
 tversity1,tversity 1,Tversity 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tversity 1
 twoworlds,two worlds,Two Worlds,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Two Worldsv; Two Worlds v 1; Two Worlds
 tycooncitynewyork,tycoon city new york,Tycoon City New York,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Tycoon City New York; Tycoon City New Yorkv
 uefachampionsleague,uefa championsleague,UEFA Championsleague,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,UEFA Championsleague
-uefaeuro,uefa euro,UEFA Euro,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,UEFAEuro
 ufoaftershock,ufo aftershock,UFO Aftershock,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,UFO Aftershock
 usaracer,usa racer,USA Racer,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,USA Racer
 ubisoftgamesforeveryone,ubisoft gamesfor everyone,Ubisoft Gamesfor Everyone,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ubisoft Gamesfor Everyone
 ufoafterlight,ufo afterlight,Ufo Afterlight,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ufo Afterlight
-ulistein3dmahjongg,uli stein 3 d mahjongg,Uli Stein 3 D Mahjongg,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Uli Stein 3 D Mahjongg
 ulisteinsteinschlag,uli stein steinschlag,Uli Stein Steinschlag,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Uli Stein Steinschlag
-ultimatemahjongg15,ultimate mahjongg 15,Ultimate Mahjongg 15,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Ultimate Mahjongg15
 undercoveroperationwintersonne,undercover operation wintersonne,Undercover Operation Wintersonne,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Undercover Operation Wintersonne
 undercoveroperationwstensonne,undercover operation wstensonne,Undercover Operation Wstensonne,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Undercover Operation Wstensonne
 universeatwarangriffszielerde,universeat war angriffsziel erde,Universeat War Angriffsziel Erde,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Universeat War Angriffsziel Erde
-unrealtourn2004,unreal tourn 2004,Unreal Tourn 2004,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Unreal Tourn 2004 v
 unrealtournament,unreal tournament,Unreal Tournament,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Unreal Tournament
-unrealtournament2004,unreal tournament 2004,Unreal Tournament 2004,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Unreal Tournament 2004
 unrealtournament3,unreal tournament 3,Unreal Tournament 3,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Unreal Tournament 3; Unreal Tournament 3 v 1
 upyours,up yours,Up Yours,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Up Yours
 uprising2,uprising 2,Uprising 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Uprising 2
@@ -1183,33 +942,24 @@ vivisector,vivisector,Vivisector,unmatched,no_match,complete,low,unmatched_sourc
 vogelpiraten,vogelpiraten,Vogelpiraten,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Vogelpiraten
 vybertejazyk,vyberte jazyk,Vyberte jazyk,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Vyberte jazyk
 vyrox,vyrox,Vyrox,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Vyrox
-waldmeistersauseedelweiss,waldmeister sause edelweiss,Waldmeister Sause Edelweiß,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Waldmeister Sause Edelweiß
-waldmeistersausexxlwinteredition,waldmeister sause xxl winter edition,Waldmeister Sause XXL Winter Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Waldmeister Sause XXLWinter Edition
-wallederletzterumtdieerdeauf,wall e der letzterumtdie erdeauf,Wall E Der Letzterumtdie Erdeauf,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wall EDer Letzterumtdie Erdeauf
 wallacegromit,wallace gromit,Wallace Gromit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wallace Gromit
 warfront,war front,War Front,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,War Front
 warfrontturningpoint,war front turning point,War Front Turning Point,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,War Front Turning Point
 warleadersclashofnations,war leaders clashof nations,War Leaders Clashof Nations,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,War Leaders Clashof Nationsv101
 warworldtacticalcombat,war world tactical combat,War World Tactical Combat,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,War World Tactical Combat
-warcraft3reignofchaos,warcraft 3 reignof chaos,Warcraft 3 Reignof Chaos,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warcraft3 Reignof Chaosv121b
 warcraftthefrozenthrone,warcraft the frozen throne,Warcraft The Frozen Throne,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warcraft The Frozen Throne v 1; Warcraft The Frozen Thronev121b
 warhammer40000,warhammer 40000,Warhammer 40000,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer 40000
 warhammerdawnofwardarkcrusade,warhammer dawnof war dark crusade,Warhammer Dawnof War Dark Crusade,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer Dawnof War Dark Crusade
 warhammerdawnofwarsoulstorm,warhammer dawnof war soulstorm,Warhammer Dawnof War Soulstorm,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer Dawnof War Soulstorm
 warhammermarkofchaos,warhammer markof chaos,Warhammer Markof Chaos,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer Markof Chaos; Warhammer Markof Chaosv; Warhammer Markof Chaosv172
-warhammeronlineageofreckoning,warhammer online age of reckoning,Warhammer Online Age of Reckoning,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer Online Ageof Reckoning
 warhammerwinterassault,warhammer winter assault,Warhammer Winter Assault,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer Winter Assault
-warhammer40000dawnofwar2,warhammer40000 dawnof war 2,Warhammer40000 Dawnof War 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhammer40000 Dawnof War2
 warhound,warhound,Warhound,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Warhound
 wazzal,wazzal,Wazzal,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wazzal
 wchterdernacht,wchterder nacht,Wchterder Nacht,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wchterder Nacht
 weissebescheiddashorstschlmmerquiz,weisse bescheid das horst schlmmer quiz,Weisse Bescheid Das Horst Schlmmer Quiz,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Weisse Bescheid Das Horst Schlmmer Quiz
 wernerflitzkackealarm,werner flitzkacke alarm,Werner Flitzkacke Alarm,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Werner Flitzkacke Alarm
 wespenjagd2,wespenjagd 2,Wespenjagd 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wespenjagd 2
-westernerii,westerner ii,Westerner II,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Westerner II
-wettendassdasdvdspiel,wettendass das dvd spiel,Wettendass Das DVD Spiel,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wettendass Das DVDSpiel
 wettmelken,wettmelken,Wettmelken,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wettmelken
-wickieylviistentfuhrt,wickie ylvi ist entfuhrt,Wickie Ylvi ist entführt,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wickie Ylvi ist entführt
 wikingerhelden,wikingerhelden,Wikingerhelden,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wikingerhelden
 wildlifepark2,wild life park 2,Wild Life Park 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wild Life Park 2
 wildlifepark,wildlife park,Wildlife Park,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wildlife Park
@@ -1217,11 +967,8 @@ wildlifepark2crazyzoo,wildlife park 2 crazy zoo,Wildlife Park 2 Crazy Zoo,unmatc
 wildlifeparkcrazyzoo,wildlife park crazy zoo,Wildlife Park Crazy Zoo,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wildlife Park Crazy Zoo
 wilkanoid,wilkanoid,Wilkanoid,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wilkanoid
 winexpert,win expert,Win Expert,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Win Expert
-winoncdtrial,win on cd trial,Win On CD Trial,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Win On CDTrial
 windchaser,windchaser,Windchaser,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Windchaser
 wingsofwars,wings of wars,Wings of Wars,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Wings of Wars
-winpatrol2007,winpatrol 2007,Winpatrol 2007,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Winpatrol2007
-winterschlachtindenardennen,winter schlacht in den ardennen,Winter Schlacht in den Ardennen,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Winterschlachtinden Ardennen
 worldchallenge,world challenge,World Challenge,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World Challenge
 worldchampionbillardfeaturinggustavozito,world champion billard featuring gustavo zito,World Champion Billard Featuring Gustavo Zito,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World Champion Billard Featuring Gustavo Zito
 worldconflict,world conflict,World Conflict,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World Conflict
@@ -1232,12 +979,10 @@ worldshift,world shift,World Shift,unmatched,no_match,complete,low,unmatched_sou
 worldwar2pacificheroes,world war 2 pacific heroes,World War 2 Pacific Heroes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World War 2 Pacific Heroes
 worldwarpacificheroes,world war pacific heroes,World War Pacific Heroes,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World War Pacific Heroes
 worldinconflict,world in conflict,World in Conflict,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldin Conflict; Worldin Conflictv1002; Worldin Conflictv1006; Worldin Conflictv1009; World in Conflict
-worldinconflictcollectorsedition,world in conflict collectors edition,World in Conflict Collectors Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldin Conflict Collectors Editionv1002
 worldofgoo,world of goo,World of Goo,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World of Goo
 worldofwarcraft,world of warcraft,World of Warcraft,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,World of Warcraft; Worldof Warcraftv
 worldofchaos,worldof chaos,Worldof Chaos,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldof Chaos
 worldofqin,worldof qin,Worldof Qin,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldof Qin
-worldofqincollectorsedition,worldof qin collectors edition,Worldof Qin Collectors Edition,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldof Qin Collectors Edition
 worldofsocceronline,worldof soccer online,Worldof Soccer Online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldof Soccer Online
 worldofwarcrafttheburningcrusade,worldof warcraft the burning crusade,Worldof Warcraft The Burning Crusade,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worldof Warcraft The Burning Crusade
 worms4mayhem,worms 4 mayhem,Worms 4 Mayhem,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Worms 4 Mayhem
@@ -1250,16 +995,13 @@ xbeyondthefrontier,x beyond the frontier,X Beyond the frontier,unmatched,no_matc
 xblades,x blades,X Blades,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X Blades
 xmashockey,x mas hockey,X Mas Hockey,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X Mas Hockey
 xmenlegends2,x men legends 2,X Men Legends 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X Men Legends 2
-xmentheofficialgame,x men the official game,X Men The Official Game,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,XMen The Official Game
 xmoto,x moto,X Moto,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X Moto; XMoto
-xskialpin2005,x ski alpin 2005,X Ski Alpin 2005,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,XSki Alpin2005
 x2diebedrohung,x2 die bedrohung,X2 Die Bedrohung,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X2 Die Bedrohung
 x2dierueckkehr,x2 die rueckkehr,X2 Die Rueckkehr,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X2 Die Rueckkehr
 x3reunion,x3 reunion,X3 Reunion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,X3 Reunion v 1 2 01; X3 Reunion
 xpandrally,xpand rally,Xpand Rally,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Xpand Rally
 xpandrallyextreme,xpand rally extreme,Xpand Rally Extreme,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Xpand Rally Extreme
 xpandrallyxtreme,xpand rally xtreme,Xpand Rally Xtreme,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Xpand Rally Xtreme
-xreunion,x3 reunion,X³: Reunion,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,XReunion Rolling; XReunionv; XReunion
 yapalaguatemala,yapala guatemala,"Yapala, Guatemala",unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,"Yapala, Guatemala"
 yetisports,yeti sports,Yeti Sports,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Yeti Sports
 yetisportsclassic,yeti sports classic,Yeti Sports Classic,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,Yeti Sports Classic
@@ -1277,7 +1019,6 @@ zworx,zworx,Zworx,unmatched,no_match,complete,low,unmatched_source_alias; demote
 armordigit,armor digit,armor digit,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,armor digit
 cameralockax,camera lock ax,camera lock ax,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,camera lock ax
 citiesonline,cities online,cities online,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,cities online
-demospreng,demo spreng,demo spreng,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,demo spreng
 dungeonquest,dungeon quest,dungeon quest,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,dungeon quest
 dzial1,dzial 1,dzial 1,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,dzial 1
 dzial2,dzial 2,dzial 2,unmatched,no_match,complete,low,unmatched_source_alias; demoted_weak_alias_match,dzial 2

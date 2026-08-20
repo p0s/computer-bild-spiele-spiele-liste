@@ -12,6 +12,7 @@ from types import SimpleNamespace
 from unittest import mock
 
 from scripts.index_cbs_exes import (
+    MAX_ARCHIVE_UNCOMPRESSED_BYTES,
     ArchiveRecord,
     AttachedImage,
     CommandError,
@@ -261,6 +262,32 @@ class ToolAndCacheTests(unittest.TestCase):
                 self.assertEqual({candidate.normalized_title for candidate in second.candidates}, {"anno1602"})
                 self.assertEqual(search_candidates.call_count, 1)
                 self.assertEqual(metadata_json.call_count, 1)
+            finally:
+                conn.close()
+
+    def test_strategy_cache_does_not_persist_transient_errors(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            conn = connect_database(Path(temp_dir) / "cache.sqlite")
+            record = ArchiveRecord(
+                archive_item="cbs-2000-09",
+                archive_name="2000/CBS092000.7z",
+                archive_url="https://example.invalid/CBS092000.7z",
+                size_bytes=1,
+                year=2000,
+                issue_code="CBS092000",
+                variant="CD",
+                sha1="a" * 40,
+            )
+            try:
+                with mock.patch(
+                    "scripts.index_cbs_exes.archiveorg_search_candidates",
+                    side_effect=[CommandError("temporary upstream failure"), []],
+                ) as search_candidates:
+                    first = run_archive_metadata_strategy(conn, record, issue_search_limit=5)
+                    second = run_archive_metadata_strategy(conn, record, issue_search_limit=5)
+                self.assertEqual(first.error, "temporary upstream failure")
+                self.assertIsNone(second.error)
+                self.assertEqual(search_candidates.call_count, 2)
             finally:
                 conn.close()
 
@@ -698,6 +725,38 @@ class DownloadTests(unittest.TestCase):
                 extract_archive(archive_path, root / "output")
             self.assertFalse((root / "escape").exists())
 
+    def test_non_zip_extraction_rejects_excessive_uncompressed_size(self) -> None:
+        def fake_which(tool: str) -> str | None:
+            return "/usr/bin/unar" if tool == "unar" else None
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            archive_path = root / "fixture.7z"
+            with (
+                mock.patch("scripts.index_cbs_exes.shutil.which", side_effect=fake_which),
+                mock.patch(
+                    "scripts.index_cbs_exes.list_7z_entries",
+                    return_value=[
+                        {"Path": "disc.bin", "Size": str(MAX_ARCHIVE_UNCOMPRESSED_BYTES + 1)},
+                    ],
+                ),
+                mock.patch("scripts.index_cbs_exes.run_command") as run,
+            ):
+                with self.assertRaisesRegex(CommandError, "uncompressed safety limit"):
+                    extract_archive(archive_path, root / "oversized")
+                run.assert_not_called()
+
+            with (
+                mock.patch("scripts.index_cbs_exes.shutil.which", side_effect=fake_which),
+                mock.patch(
+                    "scripts.index_cbs_exes.list_7z_entries",
+                    return_value=[{"Path": "disc.bin", "Size": "2048"}],
+                ),
+                mock.patch("scripts.index_cbs_exes.run_command") as run,
+            ):
+                extract_archive(archive_path, root / "ordinary")
+                run.assert_called_once()
+
     def test_source_archive_provenance_is_exported_from_the_worker_database(self) -> None:
         record = ArchiveRecord(
             archive_item="cbs-2000-09",
@@ -763,6 +822,28 @@ class ExecutableDiscoveryTests(unittest.TestCase):
 
             iso_path = convert_cue_to_iso(cue_path, root / "disc.iso")
             self.assertEqual(iso_path.read_bytes(), b"A" * 2048 + b"B" * 2048)
+
+    def test_rejects_cue_references_outside_the_extraction_root(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            extracted_root = root / "extracted"
+            extracted_root.mkdir()
+            outside = root / "outside.bin"
+            outside.write_bytes(b"outside".ljust(2048, b"!"))
+            cue_path = extracted_root / "disc.cue"
+
+            for reference in (str(outside), "../outside.bin"):
+                with self.subTest(reference=reference):
+                    cue_path.write_text(
+                        f'FILE "{reference}" BINARY\n  TRACK 01 MODE1/2048\n    INDEX 01 00:00:00\n',
+                        encoding="utf-8",
+                    )
+                    with self.assertRaisesRegex(ValueError, "CUE file reference"):
+                        convert_cue_to_iso(
+                            cue_path,
+                            root / "generated.iso",
+                            allowed_root=extracted_root,
+                        )
 
     def test_extracts_title_candidates_from_exe_path(self) -> None:
         candidates = title_candidates_from_exe_path(Path("CBS/Demo/progs/Anno1602/DEMO/ANNO1602DEMO.exe"))

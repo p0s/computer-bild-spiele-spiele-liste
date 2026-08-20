@@ -39,8 +39,8 @@ Current `20260808` counts:
 - source archives with public game rows: `168`
 - enriched matched rows: `121`
 - enriched ambiguous rows: `27`
-- enriched unmatched rows: `1363`
-- enriched pending lookups: `90`
+- enriched unmatched rows: `1104`
+- enriched pending lookups: `349`
 - explicit match demotions: `0`
 - approved issue disc images: `167`
 - approved game cover images: `1`

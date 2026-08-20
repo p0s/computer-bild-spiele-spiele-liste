@@ -683,12 +683,17 @@ def run_build(args: argparse.Namespace) -> int:
 
         alias_pairs = flatten_alias_pairs(cluster_issue_rows)
         alias_match_rows: list[dict[str, object]] = []
+        lookup_evidence_found = False
         for normalized_title, representative_title in alias_pairs:
             baseline = baseline_match_map.get(normalized_title, {})
+            reference_result = reference_results_map.get(normalized_title, {})
+            lookup_evidence_found = lookup_evidence_found or bool(
+                baseline or reference_result or reference_review_map.get(normalized_title)
+            )
             alias = apply_manual_match_overrides(
                 merge_reference_result(
                     {field: safe_text(baseline.get(field, "")) for field in MATCH_FIELDS},
-                    reference_results_map.get(normalized_title, {}),
+                    reference_result,
                 ),
                 normalized_title,
                 alias_overrides,
@@ -703,6 +708,7 @@ def run_build(args: argparse.Namespace) -> int:
         cluster_normalized_title = safe_text(published_master.get("normalized_title"))
         cluster_review = reference_review_map.get(cluster_normalized_title, {})
         if cluster_review:
+            lookup_evidence_found = True
             review_alias = merge_reference_result({field: "" for field in MATCH_FIELDS}, cluster_review)
             review_alias["normalized_title"] = cluster_normalized_title
             review_alias["source_title"] = safe_text(published_master.get("representative_title"))
@@ -738,6 +744,8 @@ def run_build(args: argparse.Namespace) -> int:
         if match_action != "retained_best_alias_match":
             notes_parts.append(match_action)
         match_notes = sanitized_semicolon_join(notes_parts)
+        if not lookup_evidence_found and safe_text(best_match.get("match_status")) == "unmatched":
+            match_notes = sanitized_semicolon_join([match_notes, "reference_lookup_not_cached"])
         match_status, semantic_match_status, lookup_status = lookup_and_semantic_status(
             safe_text(best_match.get("match_status")),
             match_notes,

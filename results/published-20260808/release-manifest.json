@@ -4,8 +4,8 @@
   "enrichment": {
     "ambiguous": 27,
     "matched": 121,
-    "pending": 90,
-    "unmatched": 1363
+    "pending": 349,
+    "unmatched": 1104
   },
   "files": [
     {
@@ -56,9 +56,9 @@
       "sha256": "5b07bc3932c305f7cca910199c55a0649d3078b772dab9c426c6b233effb83a1"
     },
     {
-      "bytes": 919,
+      "bytes": 920,
       "path": "results/enriched-20260808/README.md",
-      "sha256": "210f1528c8b714a5a6f8b51957f009ef44e6530098db3467c8788723aed2700e"
+      "sha256": "6b70a1ec6c9a310f4a6981355f4196e9cbc03451bc13cf41e5e7f9e386b65358"
     },
     {
       "bytes": 8306,
@@ -67,21 +67,21 @@
       "sha256": "b05c89a988e61c61ffcdca1a0fadea9eb46e06e90166ee88e964c04c9a40cf04"
     },
     {
-      "bytes": 989165,
+      "bytes": 998775,
       "path": "results/enriched-20260808/enriched_issue_titles.csv",
       "rows": 2100,
-      "sha256": "2d1ac6095de7afbe01b9ff42f412a0f973f63f4211634e7ae950b2635d857caa"
+      "sha256": "68a8e071977f3ad9d6bcb14d5d6f6a47e6cae82a173c131e581f20fc6e4d5458"
     },
     {
-      "bytes": 629848,
+      "bytes": 637877,
       "path": "results/enriched-20260808/enriched_master_games.csv",
       "rows": 1601,
-      "sha256": "3d860df959bed84295af29268c2c323b4a932ae4034af23c4dbd6d75fc88f41c"
+      "sha256": "f5094eb577942d116abe9f9da6b8b1f5927ded1dd276adada1fa9a19ea33b561"
     },
     {
-      "bytes": 220,
+      "bytes": 221,
       "path": "results/enriched-20260808/enrichment_audit.md",
-      "sha256": "b5607852fc9fa1f689959d06eea1de3cbcb3596fb9b88fa7f727e09cacd7c561"
+      "sha256": "c4bd78a162070641e54da7e098973819477ac829b154039907d540ef39ea7013"
     },
     {
       "bytes": 90,
@@ -90,10 +90,10 @@
       "sha256": "32464062906de332ee3dbf7f08751d7958566835a5d52816d5d05125a55cf377"
     },
     {
-      "bytes": 16715,
+      "bytes": 70373,
       "path": "results/enriched-20260808/pending_lookups.csv",
-      "rows": 90,
-      "sha256": "64dadd60d022b86c5055d3640c3f6a2f80370cf498deb0b80e2b5ecfc7f5414c"
+      "rows": 349,
+      "sha256": "22bbe8359745f8d0d8e9a5a331d574ad9da0af568c21a69f831d0af142fc9116"
     },
     {
       "bytes": 742,
@@ -102,16 +102,16 @@
       "sha256": "783af7d87c8235f2318117fa25758f78b48a819ca72a2dceb78ba1302ceb38fc"
     },
     {
-      "bytes": 242052,
+      "bytes": 242636,
       "path": "results/enriched-20260808/title_aliases.csv",
       "rows": 1862,
-      "sha256": "dc25770aa49d554e1b6316e4bb4e05576751925294be34a76e1decc49be28b23"
+      "sha256": "8f4ce56e82110343dcb3c5006ecb5613ba062ec2976575da2bca349d3e941cf3"
     },
     {
-      "bytes": 218730,
+      "bytes": 172324,
       "path": "results/enriched-20260808/unmatched_titles.csv",
-      "rows": 1363,
-      "sha256": "70f1fee104a6fc5b5e06de407f47d1eccb21a602477ee8484af97280ef0f6f66"
+      "rows": 1104,
+      "sha256": "c6d394ee30176ca89d6c0ac816cf23e3bc0d488a56ab86d0591faaef00fe155b"
     },
     {
       "bytes": 1742,
