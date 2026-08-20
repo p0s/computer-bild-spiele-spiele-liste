@@ -12,6 +12,7 @@ from scripts.media_common import (
     MEDIA_MANIFEST_FIELDS,
     archive_download_url,
     asset_id,
+    asset_source_identity,
     load_media_overrides,
     read_csv,
     select_issue_sources,
@@ -33,6 +34,29 @@ def truthy(value: str) -> str:
     return "true" if value.casefold() in {"1", "true", "yes"} else "false"
 
 
+def index_asset_evidence(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
+    indexed: dict[tuple[str, str], dict[str, str]] = {}
+    for row in rows:
+        key = (row["subject_type"], row["subject_id"])
+        if key in indexed:
+            raise ValueError(f"duplicate asset evidence: {key}")
+        indexed[key] = row
+    return indexed
+
+
+def require_source_bound_evidence(
+    evidence: dict[str, str],
+    *,
+    source_record_id: str,
+    source_file: str,
+    source_sha1: str,
+    source_revision: str,
+) -> None:
+    expected = (source_record_id, source_file, source_sha1, source_revision)
+    if asset_source_identity(evidence) != expected:
+        raise ValueError(f"asset evidence source mismatch for {evidence['subject_type']}:{evidence['subject_id']}")
+
+
 def build_release(
     published_dir: Path,
     enriched_dir: Path,
@@ -43,9 +67,7 @@ def build_release(
     issue_codes = {row["issue_code"] for row in read_csv(published_dir / "publishable_issue_titles.csv")}
     ia_rows = read_csv(evidence_dir / "ia_files.csv")
     selected_issues, rejected_issues = select_issue_sources(issue_codes, ia_rows, overrides)
-    asset_evidence = {
-        (row["subject_type"], row["subject_id"]): row for row in read_csv(evidence_dir / "asset_evidence.csv")
-    }
+    asset_evidence = index_asset_evidence(read_csv(evidence_dir / "asset_evidence.csv"))
     commons_rows = read_csv(evidence_dir / "commons_candidates.csv")
     commons_by_game: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in commons_rows:
@@ -72,6 +94,13 @@ def build_release(
         if not evidence:
             raise ValueError(f"asset evidence missing for issue: {issue_code}")
         source_file = source["source_file"]
+        require_source_bound_evidence(
+            evidence,
+            source_record_id=source["source_record_id"],
+            source_file=source_file,
+            source_sha1=source["source_sha1"],
+            source_revision=source["source_revision"],
+        )
         manifest.append(
             {
                 "asset_id": asset_id("issue", issue_code),
@@ -149,6 +178,13 @@ def build_release(
         evidence = asset_evidence.get(("game", game_id))
         if not evidence:
             raise ValueError(f"asset evidence missing for game: {game_id}")
+        require_source_bound_evidence(
+            evidence,
+            source_record_id=game["wikidata_id"],
+            source_file=source["source_file"],
+            source_sha1=source["source_sha1"],
+            source_revision=source["source_revision"],
+        )
         title = game.get("canonical_title") or game["representative_title"]
         manifest.append(
             {

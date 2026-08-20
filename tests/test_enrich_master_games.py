@@ -29,6 +29,29 @@ class BuildEnrichedReleaseTests(unittest.TestCase):
             ("pending", "unknown", "rate_limited"),
         )
 
+    def test_absent_lookup_evidence_remains_pending(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_inputs(root)
+            baseline_path = root / "results" / "enriched-20260325" / "enriched_master_games.csv"
+            baseline_rows = [row for row in read_csv(baseline_path) if row["normalized_title"] != "absolute blue"]
+            write_csv(baseline_path, list(baseline_rows[0]), baseline_rows)
+
+            self.assertEqual(run_build(self._args(root)), 0)
+
+            output_dir = root / "results" / "enriched-20260326"
+            master_rows = read_csv(output_dir / "enriched_master_games.csv")
+            absolute = next(row for row in master_rows if row["game_id"] == "absoluteblue")
+            self.assertEqual(
+                (absolute["match_status"], absolute["semantic_match_status"], absolute["lookup_status"]),
+                ("pending", "unknown", "not_attempted"),
+            )
+            self.assertIn("reference_lookup_not_cached", absolute["match_notes"])
+            self.assertNotIn(
+                "absoluteblue",
+                {row["game_id"] for row in read_csv(output_dir / "unmatched_titles.csv")},
+            )
+
     def test_pinned_review_candidates_fill_review_evidence(self) -> None:
         rows = candidate_evidence_rows(
             [("example", "Example")],

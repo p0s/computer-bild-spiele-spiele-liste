@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import shutil
 import struct
 import tempfile
 import unittest
@@ -7,13 +9,22 @@ from hashlib import sha1
 from pathlib import Path
 from unittest.mock import patch
 
+from scripts.build_media_release import build_release
 from scripts.fetch_media_evidence import discover_commons_candidates, download_file
 from scripts.media_common import (
+    ASSET_EVIDENCE_FIELDS,
+    COMMONS_EVIDENCE_FIELDS,
+    IA_FILE_EVIDENCE_FIELDS,
     normalize_scan_key,
+    read_csv,
     safe_archive_member,
     select_issue_sources,
     tiff_dimensions,
+    write_csv,
 )
+from scripts.media_release_contract import ROOT as REPO_ROOT
+from scripts.media_release_contract import sha256 as file_sha256
+from scripts.media_release_contract import validate_release
 
 
 class MediaCommonTests(unittest.TestCase):
@@ -127,6 +138,112 @@ class MediaCommonTests(unittest.TestCase):
         self.assertEqual(selected["CBS072007DVD"]["name"], files[0]["name"])
         self.assertEqual(selected["CBS012008DVD"]["name"], files[1]["name"])
         self.assertEqual(rejected["CBS012008DVDSonder"], "no_corresponding_scan")
+
+    def test_media_build_requires_evidence_from_the_selected_source(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            published = root / "published"
+            enriched = root / "enriched"
+            evidence_dir = root / "evidence"
+            overrides = root / "overrides.csv"
+
+            write_csv(
+                published / "publishable_issue_titles.csv",
+                ("issue_code",),
+                [{"issue_code": "CBS012003"}],
+            )
+            write_csv(
+                enriched / "enriched_master_games.csv",
+                ("game_id", "match_status", "wikidata_id"),
+                [],
+            )
+            write_csv(
+                evidence_dir / "ia_files.csv",
+                IA_FILE_EVIDENCE_FIELDS,
+                [
+                    {
+                        "source_record_id": "record-b",
+                        "source_file": "Scans/selected-B.7z",
+                        "source_download_url": "https://example.invalid/selected-B.7z",
+                        "source_sha1": "b" * 40,
+                        "source_revision": "revision-b",
+                    }
+                ],
+            )
+            write_csv(evidence_dir / "commons_candidates.csv", COMMONS_EVIDENCE_FIELDS, [])
+            asset = {
+                "subject_type": "issue",
+                "subject_id": "CBS012003",
+                "source_record_id": "record-a",
+                "source_file": "Scans/source-A.7z",
+                "source_sha1": "a" * 40,
+                "source_revision": "revision-a",
+                "source_archive_member": "member-from-A.tif",
+                "source_member_sha256": "a" * 64,
+                "source_mime": "image/tiff",
+                "source_width": "100",
+                "source_height": "100",
+                "export_relpath": "originals/from-A.tif",
+            }
+            write_csv(evidence_dir / "asset_evidence.csv", ASSET_EVIDENCE_FIELDS, [asset])
+            write_csv(
+                overrides,
+                ("subject_type", "subject_id", "action", "source_file", "media_role", "featured_rank", "reason"),
+                [
+                    {
+                        "subject_type": "issue",
+                        "subject_id": "CBS012003",
+                        "action": "approve",
+                        "source_file": "Scans/selected-B.7z",
+                        "media_role": "disc_face",
+                        "reason": "fixture",
+                    }
+                ],
+            )
+
+            with self.assertRaisesRegex(ValueError, "asset evidence source mismatch"):
+                build_release(published, enriched, overrides, evidence_dir)
+
+            asset.update(
+                {
+                    "source_record_id": "record-b",
+                    "source_file": "Scans/selected-B.7z",
+                    "source_sha1": "b" * 40,
+                    "source_revision": "revision-b",
+                    "source_archive_member": "member-from-B.tif",
+                    "source_member_sha256": "b" * 64,
+                    "export_relpath": "originals/from-B.tif",
+                }
+            )
+            write_csv(evidence_dir / "asset_evidence.csv", ASSET_EVIDENCE_FIELDS, [asset])
+            manifest, _ = build_release(published, enriched, overrides, evidence_dir)
+            self.assertEqual(manifest[0]["source_file"], "Scans/selected-B.7z")
+            self.assertEqual(manifest[0]["source_archive_member"], "member-from-B.tif")
+
+    def test_media_contract_rejects_rebound_asset_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            release_dir = Path(temp_dir) / "media-20260809"
+            shutil.copytree(REPO_ROOT / "results" / "media-20260809", release_dir)
+
+            evidence_path = release_dir / "asset_evidence.csv"
+            evidence = read_csv(evidence_path)
+            evidence[0]["source_file"] = "forged-source.png"
+            write_csv(evidence_path, ASSET_EVIDENCE_FIELDS, evidence)
+
+            frozen_path = release_dir / "release-manifest.json"
+            frozen = json.loads(frozen_path.read_text(encoding="utf-8"))
+            evidence_record = next(row for row in frozen["artifacts"] if row["path"] == "asset_evidence.csv")
+            evidence_record["bytes"] = evidence_path.stat().st_size
+            evidence_record["sha256"] = file_sha256(evidence_path)
+            frozen_path.write_text(json.dumps(frozen, indent=2) + "\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "asset evidence source mismatch"):
+                validate_release(
+                    release_dir,
+                    REPO_ROOT / "results" / "published-20260808",
+                    REPO_ROOT / "results" / "enriched-20260808",
+                    REPO_ROOT / "data" / "manual_media_overrides.csv",
+                )
 
 
 if __name__ == "__main__":

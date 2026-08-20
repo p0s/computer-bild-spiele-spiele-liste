@@ -21,7 +21,7 @@ import urllib.parse
 import urllib.request
 import uuid
 import zipfile
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Iterable, Iterator
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -31,6 +31,7 @@ HTTP_USER_AGENT = (
     "cbs-title-collector/2.0 (https://github.com/p0s/computer-bild-spiele-spiele-liste; preservation research)"
 )
 CACHE_SCHEMA_VERSION = "v2"
+MAX_ARCHIVE_UNCOMPRESSED_BYTES = 20 * 1024 * 1024 * 1024
 
 
 RAW_COLUMNS = [
@@ -311,6 +312,7 @@ class ArchiveRecord:
 class MountCandidate:
     path: Path
     inner_container: str
+    extraction_root: Path
 
 
 @dataclass(frozen=True)
@@ -871,7 +873,8 @@ def cached_strategy_result(
     if cached is not None:
         return cached
     result = compute()
-    store_strategy_cache(conn, cache_key, archive_name, result)
+    if not result.error:
+        store_strategy_cache(conn, cache_key, archive_name, result)
     return result
 
 
@@ -1157,6 +1160,27 @@ def validate_archive_member_paths(paths: list[str], *, maximum_members: int = 25
             raise CommandError(f"unsafe archive member path: {raw_path!r}")
 
 
+def validate_archive_member_sizes(
+    sizes: Iterable[object],
+    *,
+    maximum_uncompressed_bytes: int = MAX_ARCHIVE_UNCOMPRESSED_BYTES,
+) -> None:
+    total_size = 0
+    for raw_size in sizes:
+        try:
+            size = int(raw_size or 0)
+        except (TypeError, ValueError) as exc:
+            raise CommandError(f"archive member has an invalid declared size: {raw_size!r}") from exc
+        if size < 0:
+            raise CommandError(f"archive member has a negative declared size: {size}")
+        total_size += size
+        if total_size > maximum_uncompressed_bytes:
+            raise CommandError(
+                f"archive exceeds the {maximum_uncompressed_bytes // (1024 * 1024 * 1024)} GiB "
+                "uncompressed safety limit"
+            )
+
+
 def validate_extracted_tree(root: Path) -> None:
     resolved_root = root.resolve()
     for path in root.rglob("*"):
@@ -1172,19 +1196,26 @@ def list_archive_contents(archive_path: Path) -> list[str]:
     if archive_path.suffix.casefold() == ".zip":
         try:
             with zipfile.ZipFile(archive_path) as archive:
-                return [info.filename for info in archive.infolist() if not info.is_dir()]
+                infos = [info for info in archive.infolist() if not info.is_dir()]
+                validate_archive_member_sizes(info.file_size for info in infos)
+                return [info.filename for info in infos]
         except zipfile.BadZipFile as exc:
             raise CommandError(f"invalid ZIP archive: {archive_path}") from exc
     if shutil.which("lsar"):
         result = run_command(["lsar", "-jss", "-j", str(archive_path)])
         payload = json.loads(result.stdout.decode("utf-8", "replace"))
         entries: list[str] = []
+        sizes: list[object] = []
         for item in payload.get("lsarContents", []):
             path = item.get("XADFileName")
             if path:
                 entries.append(str(path))
+                sizes.append(item.get("XADFileSize", 0))
+        validate_archive_member_sizes(sizes)
         return entries
-    return [entry["Path"] for entry in list_7z_entries(archive_path)]
+    entries = list_7z_entries(archive_path)
+    validate_archive_member_sizes(entry.get("Size", 0) for entry in entries)
+    return [entry["Path"] for entry in entries]
 
 
 def extract_archive(archive_path: Path, destination: Path) -> None:
@@ -1200,12 +1231,12 @@ def extract_archive(archive_path: Path, destination: Path) -> None:
                     if mode == stat.S_IFLNK:
                         raise CommandError(f"ZIP archive contains a symbolic link: {info.filename}")
                     total_size += info.file_size
-                    if total_size > 20 * 1024 * 1024 * 1024:
-                        raise CommandError("ZIP archive exceeds the 20 GiB uncompressed safety limit")
+                validate_archive_member_sizes([total_size])
                 archive.extractall(destination)
         except zipfile.BadZipFile as exc:
             raise CommandError(f"invalid ZIP archive: {archive_path}") from exc
         return
+    validate_archive_member_paths(list_archive_contents(archive_path))
     if shutil.which("unar"):
         run_command(
             [
@@ -1229,13 +1260,14 @@ def extract_archive(archive_path: Path, destination: Path) -> None:
 
 
 def find_mount_candidates(root: Path) -> list[MountCandidate]:
+    root = root.resolve()
     files = sorted(path for path in root.rglob("*") if path.is_file())
     selected: list[MountCandidate] = []
     consumed: set[Path] = set()
 
     def add_candidate(path: Path, extra_suffixes: tuple[str, ...] = ()) -> None:
         relative = path.relative_to(root).as_posix()
-        selected.append(MountCandidate(path=path, inner_container=relative))
+        selected.append(MountCandidate(path=path, inner_container=relative, extraction_root=root))
         consumed.add(path)
         for suffix in extra_suffixes:
             sibling = path.with_suffix(suffix)
@@ -1246,7 +1278,7 @@ def find_mount_candidates(root: Path) -> list[MountCandidate]:
         suffix = path.suffix.lower()
         if suffix == ".cue" and path not in consumed:
             add_candidate(path)
-            for referenced_path in cue_referenced_files(path):
+            for referenced_path in cue_referenced_files(path, allowed_root=root):
                 if referenced_path.exists():
                     consumed.add(referenced_path)
         elif suffix == ".mds" and path not in consumed:
@@ -1264,7 +1296,22 @@ def find_mount_candidates(root: Path) -> list[MountCandidate]:
     return selected
 
 
-def parse_cue_data_track(cue_path: Path) -> CueDataTrack:
+def resolve_cue_reference(cue_path: Path, file_name: str, *, allowed_root: Path) -> Path:
+    if not file_name or "\x00" in file_name or re.match(r"^[A-Za-z]:[\\/]", file_name):
+        raise ValueError(f"Unsafe CUE file reference in {cue_path}: {file_name!r}")
+    reference = Path(file_name)
+    if reference.is_absolute():
+        raise ValueError(f"Unsafe CUE file reference in {cue_path}: {file_name!r}")
+    resolved_root = allowed_root.resolve()
+    resolved_reference = (cue_path.parent / reference).resolve()
+    try:
+        resolved_reference.relative_to(resolved_root)
+    except ValueError as exc:
+        raise ValueError(f"CUE file reference escapes its extraction root: {file_name!r}") from exc
+    return resolved_reference
+
+
+def parse_cue_data_track(cue_path: Path, *, allowed_root: Path | None = None) -> CueDataTrack:
     current_file: str | None = None
     tracks: list[dict[str, object]] = []
     cue_text = cue_path.read_text(encoding="utf-8", errors="replace")
@@ -1324,14 +1371,18 @@ def parse_cue_data_track(cue_path: Path) -> CueDataTrack:
             end_sector = int(next_track["index1"])
 
     return CueDataTrack(
-        bin_path=cue_path.parent / str(track["file_name"]),
+        bin_path=resolve_cue_reference(
+            cue_path,
+            str(track["file_name"]),
+            allowed_root=allowed_root or cue_path.parent,
+        ),
         mode=str(track["mode"]),
         start_sector=int(track["index1"]),
         end_sector=end_sector,
     )
 
 
-def cue_referenced_files(cue_path: Path) -> set[Path]:
+def cue_referenced_files(cue_path: Path, *, allowed_root: Path | None = None) -> set[Path]:
     referenced: set[Path] = set()
     cue_text = cue_path.read_text(encoding="utf-8", errors="replace")
     for raw_line in cue_text.splitlines():
@@ -1340,12 +1391,18 @@ def cue_referenced_files(cue_path: Path) -> set[Path]:
             continue
         file_match = re.match(r'^FILE\s+"(.+)"\s+(\S+)$', line, flags=re.IGNORECASE)
         if file_match:
-            referenced.add(cue_path.parent / file_match.group(1))
+            referenced.add(
+                resolve_cue_reference(
+                    cue_path,
+                    file_match.group(1),
+                    allowed_root=allowed_root or cue_path.parent,
+                )
+            )
     return referenced
 
 
-def convert_cue_to_iso(cue_path: Path, destination: Path) -> Path:
-    track = parse_cue_data_track(cue_path)
+def convert_cue_to_iso(cue_path: Path, destination: Path, *, allowed_root: Path | None = None) -> Path:
+    track = parse_cue_data_track(cue_path, allowed_root=allowed_root)
     mode = track.mode.upper()
     if mode == "MODE1/2352":
         sector_size = 2352
@@ -2392,7 +2449,10 @@ def image_path_for_7z(candidate: MountCandidate, generated_root: Path) -> tuple[
     suffix = candidate.path.suffix.lower()
     if suffix == ".cue":
         generated_iso = generated_root / f"{candidate.path.stem}.iso"
-        return convert_cue_to_iso(candidate.path, generated_iso), "7z+cue2iso"
+        return (
+            convert_cue_to_iso(candidate.path, generated_iso, allowed_root=candidate.extraction_root),
+            "7z+cue2iso",
+        )
     if suffix == ".mds":
         sibling = candidate.path.with_suffix(".mdf")
         if sibling.exists():
@@ -2529,7 +2589,7 @@ def mounted_candidate(
             raise
         generated_iso = generated_root / f"{candidate.path.stem}.iso"
         try:
-            convert_cue_to_iso(candidate.path, generated_iso)
+            convert_cue_to_iso(candidate.path, generated_iso, allowed_root=candidate.extraction_root)
         except Exception as conversion_error:
             raise CommandError(f"{direct_error}; CUE conversion failed: {conversion_error}") from conversion_error
         with mounted_image(generated_iso, mount_root) as attachment:
@@ -2642,7 +2702,6 @@ def process_downloaded_archive(
     workspace.mkdir(parents=True, exist_ok=True)
 
     try:
-        validate_archive_member_paths(list_archive_contents(archive_path))
         extract_archive(archive_path, extracted_root)
         validate_extracted_tree(extracted_root)
 

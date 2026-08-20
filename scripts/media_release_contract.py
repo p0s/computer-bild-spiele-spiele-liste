@@ -8,7 +8,13 @@ import json
 import re
 from pathlib import Path
 
-from scripts.media_common import MEDIA_MANIFEST_FIELDS, load_media_overrides, read_csv
+from scripts.media_common import (
+    ASSET_EVIDENCE_FIELDS,
+    MEDIA_MANIFEST_FIELDS,
+    asset_source_identity,
+    load_media_overrides,
+    read_csv,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_FIELDS = (
@@ -56,6 +62,8 @@ def validate_release(
 
     if csv_columns(release_dir / "media_manifest.csv") != MEDIA_MANIFEST_FIELDS:
         raise ValueError("media manifest columns do not match the versioned contract")
+    if csv_columns(release_dir / "asset_evidence.csv") != ASSET_EVIDENCE_FIELDS:
+        raise ValueError("asset evidence columns do not match the versioned contract")
     if csv_columns(release_dir / "media_audit.csv") != AUDIT_FIELDS:
         raise ValueError("media audit columns do not match the versioned contract")
 
@@ -96,8 +104,12 @@ def validate_release(
     manifest_keys = {(row["subject_type"], row["subject_id"]) for row in manifest}
     if len(manifest_keys) != len(manifest) or len({row["asset_id"] for row in manifest}) != len(manifest):
         raise ValueError("duplicate media manifest subject or asset id")
-    if {(row["subject_type"], row["subject_id"]) for row in assets} != manifest_keys:
+    asset_keys = [(row["subject_type"], row["subject_id"]) for row in assets]
+    if len(asset_keys) != len(set(asset_keys)):
+        raise ValueError("duplicate asset evidence subject")
+    if set(asset_keys) != manifest_keys:
         raise ValueError("asset evidence does not exactly cover the media manifest")
+    assets_by_key = dict(zip(asset_keys, assets, strict=True))
 
     featured_ranks = [row["featured_rank"] for row in manifest if row["featured_rank"]]
     if sorted(featured_ranks, key=int) != ["1", "2", "3", "4"]:
@@ -106,6 +118,9 @@ def validate_release(
     ia_sources = {row["source_file"] for row in ia_files}
     commons_sources = {(row["subject_id"], row["source_file"]): row for row in commons}
     for row in manifest:
+        evidence = assets_by_key[(row["subject_type"], row["subject_id"])]
+        if asset_source_identity(evidence) != asset_source_identity(row):
+            raise ValueError(f"asset evidence source mismatch: {row['asset_id']}")
         if row["review_status"] != "approved" or not row["credit_line"]:
             raise ValueError(f"unapproved or unattributed media: {row['asset_id']}")
         if not re.fullmatch(r"[a-f0-9]{40}", row["source_sha1"]):

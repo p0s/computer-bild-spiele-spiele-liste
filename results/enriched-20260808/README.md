@@ -7,8 +7,8 @@ Current enriched snapshot:
 - canonical master rows: `1601`
 - enriched issue/title rows: `2100`
 - ambiguous titles: `27`
-- unmatched titles: `1363`
-- pending lookups: `90`
+- unmatched titles: `1104`
+- pending lookups: `349`
 - match demotions: `0`
 
 Files:
