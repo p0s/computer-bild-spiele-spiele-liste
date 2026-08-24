@@ -65,6 +65,27 @@ class ReleaseContractTests(unittest.TestCase):
         for field in ("enrichment", "provenance", "release_date", "release_id"):
             self.assertIn(f"release manifest metadata differs: {field}", problems)
 
+    def test_manifest_validator_does_not_follow_forged_artifact_paths(self) -> None:
+        published_dir = ROOT / "results" / "published-20260808"
+        manifest = json.loads((published_dir / "release-manifest.json").read_text(encoding="utf-8"))
+        manifest["files"][0]["path"] = "/dev/zero"
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            forged_path = Path(temp_dir) / "release-manifest.json"
+            forged_path.write_text(json.dumps(manifest), encoding="utf-8")
+            problems = validate_manifest(
+                forged_path,
+                raw_dir=ROOT / "results" / "raw-candidates-20260325",
+                published_dir=published_dir,
+                enriched_dir=ROOT / "results" / "enriched-20260808",
+                reference_results=DEFAULT_REFERENCE_RESULTS,
+            )
+
+        self.assertIn(
+            "release manifest artifact inventory is incomplete or contains unexpected paths",
+            problems,
+        )
+
     def test_table_validator_rejects_duplicate_and_malformed_ids(self) -> None:
         schema = {
             "fields": [
@@ -87,6 +108,27 @@ class ReleaseContractTests(unittest.TestCase):
         self.assertTrue(any("maximum" in problem for problem in problems))
         self.assertTrue(any("duplicate" in problem for problem in problems))
         self.assertTrue(any("not integer" in problem for problem in problems))
+
+    def test_table_validator_rejects_formula_cells_and_unsafe_urls(self) -> None:
+        schema = {
+            "fields": [
+                {"name": "game_id", "type": "string", "constraints": {"required": True}},
+                {"name": "title", "type": "string"},
+                {"name": "official_website", "type": "string"},
+            ],
+            "primaryKey": "game_id",
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "games.csv"
+            path.write_text(
+                "game_id,title,official_website\nsafe,=2+3,http://example.com\n",
+                encoding="utf-8",
+            )
+
+            _, problems = validate_table(path, schema)
+
+        self.assertTrue(any("spreadsheet formula" in problem for problem in problems))
+        self.assertTrue(any("not a safe HTTPS URL" in problem for problem in problems))
 
     def test_redirect_validator_rejects_missing_targets_and_cycles(self) -> None:
         problems = validate_redirects(

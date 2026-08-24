@@ -41,6 +41,7 @@ from scripts.index_cbs_exes import (
     strategy_cache_key,
     title_candidates_from_exe_path,
     title_candidates_from_metadata_file,
+    validate_7z_entry_types,
     validate_archive_member_paths,
 )
 from scripts.prepare_publishable_results import (
@@ -675,7 +676,8 @@ class DownloadTests(unittest.TestCase):
         )
         calls: list[tuple[str, str]] = []
 
-        def fake_download(url: str, destination: Path) -> None:
+        def fake_download(url: str, destination: Path, *, maximum_bytes: int) -> None:
+            self.assertEqual(maximum_bytes, 2)
             calls.append((url, destination.name))
             destination.write_bytes(b"ok")
 
@@ -698,7 +700,8 @@ class DownloadTests(unittest.TestCase):
             sha1="0" * 40,
         )
 
-        def fake_download(_url: str, destination: Path) -> None:
+        def fake_download(_url: str, destination: Path, *, maximum_bytes: int) -> None:
+            self.assertEqual(maximum_bytes, 2)
             destination.write_bytes(b"ok")
 
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -714,6 +717,17 @@ class DownloadTests(unittest.TestCase):
             with self.subTest(unsafe=unsafe):
                 with self.assertRaises(CommandError):
                     validate_archive_member_paths([unsafe])
+
+    def test_7z_member_validation_rejects_links_and_special_files(self) -> None:
+        unsafe_entries = (
+            {"Path": "disc/link", "Symbolic Link": "../outside"},
+            {"Path": "disc/hard", "Hard Link": "disc/target"},
+            {"Path": "disc/socket", "Attributes": "A srwxr-xr-x"},
+        )
+        for entry in unsafe_entries:
+            with self.subTest(entry=entry):
+                with self.assertRaises(CommandError):
+                    validate_7z_entry_types([entry])
 
     def test_native_zip_extraction_rejects_traversal(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

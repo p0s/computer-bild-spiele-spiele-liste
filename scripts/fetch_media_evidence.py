@@ -5,8 +5,11 @@ import argparse
 import fcntl
 import html
 import json
+import re
 import shutil
+import stat
 import subprocess
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -16,6 +19,10 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.http_safety import UnsafeUrlError, open_https, read_limited
 from scripts.media_common import (
     ASSET_EVIDENCE_FIELDS,
     COMMONS_EVIDENCE_FIELDS,
@@ -41,6 +48,22 @@ WIKIDATA_API = "https://www.wikidata.org/w/api.php"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 MAX_ARCHIVE_MEMBERS = 20
 MAX_MEMBER_BYTES = 128 * 1024 * 1024
+MAX_HTTP_JSON_BYTES = 8 * 1024 * 1024
+MAX_MEDIA_SOURCE_BYTES = 512 * 1024 * 1024
+ARCHIVE_HTTP_HOSTS = ("archive.org", ".archive.org")
+WIKIMEDIA_HTTP_HOSTS = ("commons.wikimedia.org", "upload.wikimedia.org")
+WIKIDATA_HTTP_HOSTS = ("www.wikidata.org",)
+
+
+def allowed_hosts_for_url(url: str) -> tuple[str, ...]:
+    hostname = (urllib.parse.urlsplit(url).hostname or "").casefold().rstrip(".")
+    if hostname == "archive.org" or hostname.endswith(".archive.org"):
+        return ARCHIVE_HTTP_HOSTS
+    if hostname in WIKIMEDIA_HTTP_HOSTS:
+        return WIKIMEDIA_HTTP_HOSTS
+    if hostname in WIKIDATA_HTTP_HOSTS:
+        return WIKIDATA_HTTP_HOSTS
+    raise UnsafeUrlError(f"URL host is not approved: {url!r}")
 
 
 class HtmlMetadataParser(HTMLParser):
@@ -69,15 +92,20 @@ def parse_html_metadata(value: str) -> tuple[str, str]:
 
 def request_json(url: str, params: dict[str, str], attempts: int = 4) -> dict[str, Any]:
     query_url = f"{url}?{urllib.parse.urlencode(params)}"
+    allowed_hosts = allowed_hosts_for_url(query_url)
     for attempt in range(attempts):
         request = urllib.request.Request(query_url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
         try:
-            with urllib.request.urlopen(request, timeout=60) as response:
-                return json.load(response)
+            with open_https(request, allowed_hosts=allowed_hosts, timeout=60) as response:
+                payload = read_limited(response, maximum_bytes=MAX_HTTP_JSON_BYTES)
+                return json.loads(payload.decode("utf-8"))
         except urllib.error.HTTPError as error:
             if error.code not in {429, 500, 502, 503, 504} or attempt + 1 == attempts:
                 raise
-            retry_after = int(error.headers.get("Retry-After", "0") or "0")
+            try:
+                retry_after = int(error.headers.get("Retry-After", "0") or "0")
+            except ValueError:
+                retry_after = 0
             time.sleep(max(retry_after, 2**attempt))
         except (TimeoutError, urllib.error.URLError):
             if attempt + 1 == attempts:
@@ -95,17 +123,28 @@ def download_file(
     mediawiki_sha1: bool = False,
     attempts: int = 4,
 ) -> None:
+    normalized_sha1 = str(expected_sha1).casefold().strip()
+    if not re.fullmatch(r"[0-9a-f]{40}", normalized_sha1):
+        raise ValueError("expected SHA-1 must be 40 hexadecimal characters")
+    if expected_size is not None and (expected_size <= 0 or expected_size > MAX_MEDIA_SOURCE_BYTES):
+        raise ValueError(f"unsafe expected media size: {expected_size}")
+    maximum_bytes = expected_size if expected_size is not None else MAX_MEDIA_SOURCE_BYTES
+    allowed_hosts = allowed_hosts_for_url(url)
     destination.parent.mkdir(parents=True, exist_ok=True)
     lock_path = destination.with_suffix(destination.suffix + ".lock")
+    if destination.is_symlink() or lock_path.is_symlink():
+        raise ValueError("media cache paths must not be symbolic links")
     with lock_path.open("a+b") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
 
         def is_valid(path: Path) -> bool:
+            if path.is_symlink() or not path.is_file():
+                return False
             size_ok = expected_size is None or path.stat().st_size == expected_size
             hash_ok = not expected_sha1 or (
-                matches_mediawiki_sha1(path, expected_sha1)
+                matches_mediawiki_sha1(path, normalized_sha1)
                 if mediawiki_sha1
-                else sha1_digest(path) == expected_sha1.casefold()
+                else sha1_digest(path) == normalized_sha1
             )
             return size_ok and hash_ok
 
@@ -115,24 +154,43 @@ def download_file(
             destination.unlink()
 
         partial = destination.with_suffix(destination.suffix + ".part")
+        if partial.is_symlink():
+            raise ValueError("media partial path must not be a symbolic link")
         for attempt in range(attempts):
             offset = partial.stat().st_size if partial.exists() else 0
+            if offset > maximum_bytes:
+                partial.unlink()
+                offset = 0
             headers = {"User-Agent": USER_AGENT}
             if offset:
                 headers["Range"] = f"bytes={offset}-"
             request = urllib.request.Request(url, headers=headers)
             try:
-                with urllib.request.urlopen(request, timeout=120) as response:
+                with open_https(request, allowed_hosts=allowed_hosts, timeout=120) as response:
                     append = offset > 0 and getattr(response, "status", 200) == 206
                     mode = "ab" if append else "wb"
+                    if not append:
+                        offset = 0
+                    remaining = maximum_bytes - offset
+                    content_length = response.headers.get("Content-Length")
+                    if content_length:
+                        declared = int(content_length)
+                        if declared < 0 or declared > remaining:
+                            raise ValueError(f"download exceeds {maximum_bytes} bytes")
+                    written = offset
                     with partial.open(mode) as handle:
-                        shutil.copyfileobj(response, handle, length=1024 * 1024)
+                        while chunk := response.read(1024 * 1024):
+                            written += len(chunk)
+                            if written > maximum_bytes:
+                                raise ValueError(f"download exceeds {maximum_bytes} bytes")
+                            handle.write(chunk)
                 if not is_valid(partial):
                     raise ValueError(f"download verification failed for {url}")
                 partial.replace(destination)
                 return
             except (TimeoutError, urllib.error.URLError, ValueError):
                 if attempt + 1 == attempts:
+                    partial.unlink(missing_ok=True)
                     raise
                 time.sleep(2**attempt)
 
@@ -187,6 +245,8 @@ def archive_members(archive_path: Path) -> list[dict[str, Any]]:
             raise ValueError(f"unsafe archive member in {archive_path}: {name}")
         if size <= 0 or size > MAX_MEMBER_BYTES:
             raise ValueError(f"unsafe archive member size in {archive_path}: {name}: {size}")
+        if member.get("XADLinkDestination") or member.get("XADIsLink"):
+            raise ValueError(f"archive link member is not allowed in {archive_path}: {name}")
     return members
 
 
@@ -199,13 +259,24 @@ def extract_disc_face(archive_path: Path, extract_dir: Path) -> tuple[Path, str]
         raise ValueError(f"no TIFF scan in {archive_path}")
     candidate = max(candidates, key=lambda member: int(member.get("XADFileSize", 0) or 0))
     member_name = str(candidate["XADFileName"])
+    if extract_dir.is_symlink():
+        raise ValueError(f"media extraction directory is a symbolic link: {extract_dir}")
     extract_dir.mkdir(parents=True, exist_ok=True)
     target = extract_dir / member_name
+    if target.is_symlink() or (target.exists() and not target.is_file()):
+        raise ValueError(f"extracted media target is not a regular file: {target}")
     if not target.exists() or target.stat().st_size != int(candidate["XADFileSize"]):
         subprocess.run(
             ["unar", "-q", "-f", "-D", "-o", str(extract_dir), str(archive_path), member_name],
             check=True,
         )
+    target_info = target.lstat()
+    if stat.S_ISLNK(target_info.st_mode) or not stat.S_ISREG(target_info.st_mode):
+        raise ValueError(f"extracted media is not a regular file: {target}")
+    try:
+        target.resolve().relative_to(extract_dir.resolve())
+    except ValueError as exc:
+        raise ValueError(f"extracted media escapes its cache directory: {target}") from exc
     width, height = tiff_dimensions(target)
     aspect = width / height
     if min(width, height) < 1000 or not 0.8 <= aspect <= 1.25:
@@ -375,6 +446,8 @@ def acquire_issue_assets(
         source_file = source.get("name") or source.get("source_file", "")
         expected_sha1 = source.get("sha1") or source.get("source_sha1", "")
         expected_size = int(source.get("size") or source.get("source_size_bytes") or 0)
+        if not re.fullmatch(r"[0-9a-f]{40}", str(expected_sha1).casefold()):
+            raise ValueError(f"invalid source SHA-1 for {source_file}")
         archive_path = cache_dir / "ia" / f"{expected_sha1}.7z"
         download_file(
             archive_download_url(IA_RECORD_ID, source_file),
@@ -423,6 +496,8 @@ def acquire_game_assets(
         row = by_key.get((subject_id, file_key(override.get("source_file", ""))))
         if not row:
             raise ValueError(f"approved Commons asset is missing from evidence: {subject_id}")
+        if not re.fullmatch(r"[0-9a-f]{40}", str(row["source_sha1"]).casefold()):
+            raise ValueError(f"invalid Commons SHA-1 for {subject_id}")
         extension = Path(urllib.parse.urlparse(row["source_download_url"]).path).suffix.casefold() or ".img"
         source_path = cache_dir / "commons" / f"{row['source_sha1']}{extension}"
         download_file(

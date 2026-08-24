@@ -48,7 +48,26 @@ def load_cfg(path: Path, project: str) -> tuple[str, str, str]:
             break
     if room_id is None:
         raise KeyError(f"No Matrix room mapped for project {project}")
-    return str(matrix["homeserver"]).rstrip("/"), str(matrix["access_token"]), str(room_id)
+    homeserver = validate_homeserver(str(matrix["homeserver"]))
+    access_token = str(matrix["access_token"])
+    if not access_token:
+        raise ValueError("Matrix access token is empty")
+    return homeserver, access_token, str(room_id)
+
+
+def validate_homeserver(value: str) -> str:
+    try:
+        parsed = urllib.parse.urlsplit(value)
+        port = parsed.port
+    except ValueError as exc:
+        raise ValueError("Matrix homeserver URL is invalid") from exc
+    if parsed.scheme.casefold() != "https" or not parsed.hostname:
+        raise ValueError("Matrix homeserver must be an HTTPS origin")
+    if parsed.username is not None or parsed.password is not None or port not in {None, 443}:
+        raise ValueError("Matrix homeserver credentials or nonstandard ports are not allowed")
+    if parsed.path not in {"", "/"} or parsed.query or parsed.fragment:
+        raise ValueError("Matrix homeserver must not include a path, query, or fragment")
+    return urllib.parse.urlunsplit(("https", parsed.netloc, "", "", ""))
 
 
 def send_message(homeserver: str, access_token: str, room_id: str, body: str) -> None:

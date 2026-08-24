@@ -7,9 +7,15 @@ import hashlib
 import json
 import re
 import sys
+import urllib.parse
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.csv_safety import is_unsafe_spreadsheet_cell
 
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_VERSION = "1.0.0"
@@ -36,6 +42,7 @@ INTEGER_FIELDS = {
     "rating_count",
 }
 NUMBER_FIELDS = {"rating_value", "rating_scale"}
+URL_FIELDS = {"official_website"}
 SCORE_FIELDS = {
     "data_quality_score",
     "observation_confidence_score",
@@ -43,6 +50,7 @@ SCORE_FIELDS = {
     "entity_match_score",
     "metadata_completeness_score",
 }
+MAX_RELEASE_ARTIFACT_BYTES = 256 * 1024 * 1024
 
 
 @dataclass(frozen=True)
@@ -131,6 +139,23 @@ def field_descriptor(name: str, *, required: bool) -> dict[str, object]:
     if constraints:
         descriptor["constraints"] = constraints
     return descriptor
+
+
+def is_safe_public_url(value: str) -> bool:
+    try:
+        parsed = urllib.parse.urlsplit(value)
+        port = parsed.port
+    except ValueError:
+        return False
+    return (
+        parsed.scheme.casefold() == "https"
+        and bool(parsed.hostname)
+        and parsed.username is None
+        and parsed.password is None
+        and port in {None, 443}
+        and "\r" not in value
+        and "\n" not in value
+    )
 
 
 def resource_path(spec: ResourceSpec, *, published_dir: Path, enriched_dir: Path) -> Path:
@@ -298,6 +323,10 @@ def validate_table(path: Path, schema: dict[str, object]) -> tuple[list[dict[str
             value = row.get(name, "")
             if value == "":
                 continue
+            if is_unsafe_spreadsheet_cell(value):
+                problems.append(f"{path}:{number}: {name} begins with a spreadsheet formula marker")
+            if (name.endswith("_url") or name in URL_FIELDS) and not is_safe_public_url(value):
+                problems.append(f"{path}:{number}: {name} is not a safe HTTPS URL")
             kind = field.get("type")
             try:
                 parsed: int | float | str = (
@@ -413,29 +442,57 @@ def validate_manifest(
         if manifest.get(field) != expected_manifest[field]:
             problems.append(f"release manifest metadata differs: {field}")
     records = manifest.get("files", [])
-    recorded_paths = [record.get("path", "") for record in records]
-    expected_paths = [
-        artifact.relative_to(ROOT).as_posix()
+    if not isinstance(records, list):
+        return [*problems, "release manifest files must be an array"]
+    recorded_paths: list[str] = []
+    for record in records:
+        if not isinstance(record, dict) or not isinstance(record.get("path"), str):
+            problems.append("release manifest contains a malformed artifact record")
+            continue
+        recorded_paths.append(record["path"])
+    expected_artifacts = {
+        artifact.relative_to(ROOT).as_posix(): artifact
         for artifact in artifact_paths(
             raw_dir=raw_dir,
             published_dir=published_dir,
             enriched_dir=enriched_dir,
             reference_results=reference_results,
         )
-    ]
+    }
+    expected_paths = list(expected_artifacts)
     if len(recorded_paths) != len(set(recorded_paths)):
         problems.append("release manifest contains duplicate artifact records")
     if set(recorded_paths) != set(expected_paths):
         problems.append("release manifest artifact inventory is incomplete or contains unexpected paths")
+    seen_paths: set[str] = set()
+    resolved_root = ROOT.resolve()
     for record in records:
-        artifact = ROOT / record["path"]
-        if not artifact.exists():
-            problems.append(f"manifest artifact is missing: {record['path']}")
+        if not isinstance(record, dict) or not isinstance(record.get("path"), str):
             continue
-        if artifact.stat().st_size != record["bytes"] or sha256_file(artifact) != record["sha256"]:
-            problems.append(f"manifest artifact digest differs: {record['path']}")
+        record_path = record["path"]
+        if record_path in seen_paths or record_path not in expected_artifacts:
+            continue
+        seen_paths.add(record_path)
+        artifact = expected_artifacts[record_path]
+        if artifact.is_symlink() or not artifact.is_file():
+            problems.append(f"manifest artifact is missing or not a regular file: {record_path}")
+            continue
+        try:
+            artifact.resolve().relative_to(resolved_root)
+        except ValueError:
+            problems.append(f"manifest artifact escapes the repository: {record_path}")
+            continue
+        size = artifact.stat().st_size
+        if size > MAX_RELEASE_ARTIFACT_BYTES:
+            problems.append(f"manifest artifact exceeds the safety limit: {record_path}")
+            continue
+        if not isinstance(record.get("bytes"), int) or not re.fullmatch(r"[0-9a-f]{64}", str(record.get("sha256", ""))):
+            problems.append(f"manifest artifact metadata is malformed: {record_path}")
+            continue
+        if size != record["bytes"] or sha256_file(artifact) != record["sha256"]:
+            problems.append(f"manifest artifact digest differs: {record_path}")
         if artifact.suffix == ".csv" and len(read_csv(artifact)) != record.get("rows"):
-            problems.append(f"manifest artifact row count differs: {record['path']}")
+            problems.append(f"manifest artifact row count differs: {record_path}")
     return problems
 
 

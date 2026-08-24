@@ -6,6 +6,7 @@ import csv
 import hashlib
 import random
 import re
+import stat
 import subprocess
 import sys
 import tempfile
@@ -32,9 +33,11 @@ BASE_EXPECTED_TRACKED = {
     "data/manual_url_overrides.csv",
     "scripts/__init__.py",
     "scripts/build_enriched_release.py",
+    "scripts/csv_safety.py",
     "scripts/enrich_reference_links.py",
     "scripts/improved_release_common.py",
     "scripts/index_cbs_exes.py",
+    "scripts/http_safety.py",
     "scripts/merge_retry_snapshot.py",
     "scripts/prepare_publishable_results.py",
     "scripts/release_audit.py",
@@ -130,6 +133,7 @@ PERSONAL_LITERAL_PATTERNS = (
     "BEGIN OPENSSH PRIVATE KEY",
     "ssh-ed25519 AAAA",
 )
+MAX_TRACKED_TEXT_BYTES = 16 * 1024 * 1024
 
 KNOWN_PUBLIC_NOISE_PATTERNS = (
     "zurueck",
@@ -329,12 +333,25 @@ def relpath(path: Path, root: Path) -> str:
 
 def tracked_text_findings(root: Path, paths: list[str]) -> list[tuple[str, str]]:
     findings: list[tuple[str, str]] = []
+    resolved_root = root.resolve()
     for rel in paths:
         if rel == "scripts/release_audit.py":
             continue
         path = root / rel
         try:
+            path_info = path.lstat()
+            resolved = path.resolve(strict=True)
+            resolved.relative_to(resolved_root)
+            if stat.S_ISLNK(path_info.st_mode) or not stat.S_ISREG(path_info.st_mode):
+                findings.append((rel, "unsafe tracked file type"))
+                continue
+            if path_info.st_size > MAX_TRACKED_TEXT_BYTES:
+                findings.append((rel, "tracked text exceeds safety limit"))
+                continue
             text = path.read_text(encoding="utf-8")
+        except ValueError:
+            findings.append((rel, "tracked path escapes repository"))
+            continue
         except (UnicodeDecodeError, OSError):
             continue
         for pattern in PERSONAL_LITERAL_PATTERNS:
@@ -828,7 +845,7 @@ def write_report(
     if unexpected_tracked or expected_missing:
         blockers.append("Tracked public tree does not match the intended file set.")
     if tracked_findings:
-        blockers.append("Tracked files still contain personal identifiers or secret-like literals.")
+        blockers.append("Tracked files contain unsafe paths, personal identifiers, or secret-like literals.")
     if any(value != 0 for value in mojibake.values()):
         blockers.append("Tracked public outputs still contain mojibake.")
     if noise_hits:
@@ -910,7 +927,7 @@ def write_report(
         "",
         "## Legal, Privacy, and Compliance",
         "",
-        f"- personal/secret literal findings in tracked files: `{len(tracked_findings)}`",
+        f"- unsafe path or personal/secret findings in tracked files: `{len(tracked_findings)}`",
         f"- licenses present: `{(paths.root / 'LICENSE').exists() and (paths.root / 'LICENSE-DATA.md').exists()}`",
         f"- README disclaimer present: `{readme_disclaimer_present}`",
         "",

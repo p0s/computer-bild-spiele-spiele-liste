@@ -6,8 +6,13 @@ import csv
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.csv_safety import is_unsafe_spreadsheet_cell
 from scripts.media_common import (
     ASSET_EVIDENCE_FIELDS,
     MEDIA_MANIFEST_FIELDS,
@@ -100,6 +105,18 @@ def validate_release(
     ia_files = read_csv(release_dir / "ia_files.csv")
     commons = read_csv(release_dir / "commons_candidates.csv")
     overrides = load_media_overrides(overrides_path)
+
+    for label, rows in (
+        ("media_manifest.csv", manifest),
+        ("media_audit.csv", audit),
+        ("asset_evidence.csv", assets),
+        ("ia_files.csv", ia_files),
+        ("commons_candidates.csv", commons),
+    ):
+        for number, row in enumerate(rows, 2):
+            for field, value in row.items():
+                if is_unsafe_spreadsheet_cell(value):
+                    raise ValueError(f"{label}:{number}: {field} begins with a spreadsheet formula marker")
 
     manifest_keys = {(row["subject_type"], row["subject_id"]) for row in manifest}
     if len(manifest_keys) != len(manifest) or len({row["asset_id"] for row in manifest}) != len(manifest):
