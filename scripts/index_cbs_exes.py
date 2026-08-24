@@ -27,11 +27,27 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.http_safety import UnsafeUrlError, open_https, read_limited
+
 HTTP_USER_AGENT = (
     "cbs-title-collector/2.0 (https://github.com/p0s/computer-bild-spiele-spiele-liste; preservation research)"
 )
 CACHE_SCHEMA_VERSION = "v2"
+MAX_ARCHIVE_COMPRESSED_BYTES = 20 * 1024 * 1024 * 1024
 MAX_ARCHIVE_UNCOMPRESSED_BYTES = 20 * 1024 * 1024 * 1024
+MAX_HTTP_TEXT_BYTES = 16 * 1024 * 1024
+ARCHIVE_HTTP_HOSTS = ("archive.org", ".archive.org")
+REFERENCE_HTTP_HOSTS = (
+    "archive.org",
+    ".archive.org",
+    "redump.org",
+    "www.redump.org",
+    "vollversion.de",
+    "www.vollversion.de",
+)
 
 
 RAW_COLUMNS = [
@@ -1025,35 +1041,26 @@ def seven_zip_binary() -> str | None:
 
 
 def http_get_text(url: str) -> str:
-    result = run_command(
-        [
-            "curl",
-            "--http1.1",
-            "-L",
-            "--fail",
-            "--silent",
-            "--show-error",
-            "--retry",
-            "5",
-            "--retry-all-errors",
-            "--retry-delay",
-            "5",
-            "--connect-timeout",
-            "15",
-            "--speed-limit",
-            "1024",
-            "--speed-time",
-            "120",
-            "--proto",
-            "=https",
-            "--proto-redir",
-            "=https",
-            "-A",
-            HTTP_USER_AGENT,
-            url,
-        ]
-    )
-    return result.stdout.decode("utf-8", "replace")
+    request = urllib.request.Request(url, headers={"User-Agent": HTTP_USER_AGENT})
+    for attempt in range(5):
+        try:
+            with open_https(request, allowed_hosts=REFERENCE_HTTP_HOSTS, timeout=120) as response:
+                return read_limited(response, maximum_bytes=MAX_HTTP_TEXT_BYTES).decode("utf-8", "replace")
+        except UnsafeUrlError as exc:
+            raise CommandError(str(exc)) from exc
+        except urllib.error.HTTPError as exc:
+            if exc.code not in {429, 500, 502, 503, 504} or attempt == 4:
+                raise CommandError(f"HTTP request failed for {url}: {exc}") from exc
+            try:
+                retry_after = int(exc.headers.get("Retry-After", "0") or "0")
+            except ValueError:
+                retry_after = 0
+            time.sleep(max(retry_after, 2**attempt))
+        except (TimeoutError, OSError, urllib.error.URLError) as exc:
+            if attempt == 4:
+                raise CommandError(f"HTTP request failed for {url}: {exc}") from exc
+            time.sleep(2**attempt)
+    raise CommandError(f"HTTP request failed for {url}")
 
 
 def fetch_cached_text(
@@ -1082,32 +1089,63 @@ def fetch_cached_text(
     return payload
 
 
-def download_archive(url: str, destination: Path) -> None:
+def download_archive(url: str, destination: Path, *, maximum_bytes: int) -> None:
+    if maximum_bytes <= 0 or maximum_bytes > MAX_ARCHIVE_COMPRESSED_BYTES:
+        raise CommandError(f"unsafe compressed archive size: {maximum_bytes}")
     destination.parent.mkdir(parents=True, exist_ok=True)
     temp_path = destination.with_suffix(destination.suffix + ".part")
-    run_command(
-        [
-            "curl",
-            "--http1.1",
-            "-L",
-            "--fail",
-            "--silent",
-            "--show-error",
-            "--retry",
-            "5",
-            "--retry-all-errors",
-            "--retry-delay",
-            "5",
-            "-A",
-            HTTP_USER_AGENT,
-            "-C",
-            "-",
-            "--output",
-            str(temp_path),
-            url,
-        ]
-    )
-    temp_path.replace(destination)
+    for attempt in range(5):
+        offset = temp_path.stat().st_size if temp_path.exists() else 0
+        if offset > maximum_bytes:
+            temp_path.unlink()
+            offset = 0
+        if offset == maximum_bytes:
+            temp_path.replace(destination)
+            return
+        headers = {"User-Agent": HTTP_USER_AGENT}
+        if offset:
+            headers["Range"] = f"bytes={offset}-"
+        request = urllib.request.Request(url, headers=headers)
+        try:
+            with open_https(request, allowed_hosts=ARCHIVE_HTTP_HOSTS, timeout=120) as response:
+                status = int(getattr(response, "status", 200) or 200)
+                append = offset > 0 and status == 206
+                if append:
+                    content_range = str(response.headers.get("Content-Range", ""))
+                    if not content_range.startswith(f"bytes {offset}-"):
+                        raise CommandError(f"invalid resumed response for {url}")
+                else:
+                    offset = 0
+                remaining = maximum_bytes - offset
+                content_length = response.headers.get("Content-Length")
+                if content_length:
+                    try:
+                        declared = int(content_length)
+                    except ValueError as exc:
+                        raise CommandError(f"invalid Content-Length for {url}") from exc
+                    if declared < 0 or declared > remaining:
+                        raise CommandError(f"archive response exceeds expected size for {url}")
+                written = offset
+                with temp_path.open("ab" if append else "wb") as handle:
+                    while chunk := response.read(1024 * 1024):
+                        written += len(chunk)
+                        if written > maximum_bytes:
+                            raise CommandError(f"archive response exceeds expected size for {url}")
+                        handle.write(chunk)
+            temp_path.replace(destination)
+            return
+        except UnsafeUrlError as exc:
+            raise CommandError(str(exc)) from exc
+        except urllib.error.HTTPError as exc:
+            if exc.code not in {429, 500, 502, 503, 504} or attempt == 4:
+                raise CommandError(f"archive download failed for {url}: {exc}") from exc
+        except (TimeoutError, OSError, urllib.error.URLError, CommandError) as exc:
+            if attempt == 4:
+                if isinstance(exc, CommandError):
+                    raise
+                raise CommandError(f"archive download failed for {url}: {exc}") from exc
+        time.sleep(2**attempt)
+    raise CommandError(f"archive download failed for {url}")
 
 
 def archive_download_candidates(record: ArchiveRecord) -> list[tuple[str, str]]:
@@ -1119,6 +1157,8 @@ def archive_download_candidates(record: ArchiveRecord) -> list[tuple[str, str]]:
 def verify_downloaded_archive(path: Path, record: ArchiveRecord) -> None:
     if record.size_bytes <= 0:
         raise CommandError(f"missing trusted source size for {record.archive_name}")
+    if record.size_bytes > MAX_ARCHIVE_COMPRESSED_BYTES:
+        raise CommandError(f"source archive exceeds the compressed safety limit: {record.archive_name}")
     if not re.fullmatch(r"[0-9a-f]{40}", record.sha1):
         raise CommandError(f"missing trusted source SHA-1 for {record.archive_name}")
     actual_size, actual_sha1 = sha1_file(path)
@@ -1132,11 +1172,15 @@ def verify_downloaded_archive(path: Path, record: ArchiveRecord) -> None:
 
 def download_record_archive(record: ArchiveRecord, download_dir: Path) -> tuple[Path, str]:
     download_dir.mkdir(parents=True, exist_ok=True)
+    if record.size_bytes <= 0 or record.size_bytes > MAX_ARCHIVE_COMPRESSED_BYTES:
+        raise CommandError(f"unsafe trusted source size for {record.archive_name}: {record.size_bytes}")
+    if not re.fullmatch(r"[0-9a-f]{40}", record.sha1):
+        raise CommandError(f"missing trusted source SHA-1 for {record.archive_name}")
     errors: list[str] = []
     for url, filename in archive_download_candidates(record):
         archive_path = download_dir / filename
         try:
-            download_archive(url, archive_path)
+            download_archive(url, archive_path, maximum_bytes=record.size_bytes)
             verify_downloaded_archive(archive_path, record)
             return archive_path, url
         except CommandError as exc:
@@ -1186,6 +1230,8 @@ def validate_extracted_tree(root: Path) -> None:
     for path in root.rglob("*"):
         if path.is_symlink():
             raise CommandError(f"extracted archive contains a symbolic link: {path.relative_to(root)}")
+        if not path.is_file() and not path.is_dir():
+            raise CommandError(f"extracted archive contains a special file: {path.relative_to(root)}")
         try:
             path.resolve().relative_to(resolved_root)
         except ValueError as exc:
@@ -1209,11 +1255,14 @@ def list_archive_contents(archive_path: Path) -> list[str]:
         for item in payload.get("lsarContents", []):
             path = item.get("XADFileName")
             if path:
+                if item.get("XADLinkDestination") or item.get("XADIsLink"):
+                    raise CommandError(f"archive contains a link member: {path}")
                 entries.append(str(path))
                 sizes.append(item.get("XADFileSize", 0))
         validate_archive_member_sizes(sizes)
         return entries
     entries = list_7z_entries(archive_path)
+    validate_7z_entry_types(entries)
     validate_archive_member_sizes(entry.get("Size", 0) for entry in entries)
     return [entry["Path"] for entry in entries]
 
@@ -1809,6 +1858,17 @@ def list_7z_entries(archive_path: Path) -> list[dict[str, str]]:
     return entries
 
 
+def validate_7z_entry_types(entries: Iterable[dict[str, str]]) -> None:
+    for entry in entries:
+        path = entry.get("Path", "")
+        if entry.get("Symbolic Link") or entry.get("Hard Link"):
+            raise CommandError(f"archive contains a link member: {path}")
+        attributes = entry.get("Attributes", "").split()
+        unix_mode = attributes[-1] if attributes else ""
+        if len(unix_mode) >= 10 and unix_mode[0] in {"l", "c", "b", "p", "s"}:
+            raise CommandError(f"archive contains a link or special member: {path}")
+
+
 def extract_7z_members(archive_path: Path, destination: Path, members: list[str]) -> None:
     if not members:
         return
@@ -1816,8 +1876,14 @@ def extract_7z_members(archive_path: Path, destination: Path, members: list[str]
     if seven is None:
         raise CommandError("7z is not available")
     validate_archive_member_paths(members)
+    selected = {entry["Path"]: entry for entry in list_7z_entries(archive_path) if entry.get("Path") in members}
+    if set(selected) != set(members):
+        raise CommandError("archive member listing changed before extraction")
+    validate_7z_entry_types(selected.values())
+    validate_archive_member_sizes(entry.get("Size", 0) for entry in selected.values())
     destination.mkdir(parents=True, exist_ok=True)
     run_command([seven, "x", "-y", f"-o{destination}", str(archive_path), *members])
+    validate_extracted_tree(destination)
 
 
 def issue_month(record: ArchiveRecord) -> int:

@@ -2,15 +2,34 @@ from __future__ import annotations
 
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = sorted((ROOT / "scripts").glob("vps_worker_*.sh"))
+PYTHON_ENTRYPOINTS = (
+    "build_media_release.py",
+    "fetch_media_evidence.py",
+    "index_cbs_exes.py",
+    "media_release_contract.py",
+    "release_contract.py",
+)
 
 
 class VpsWorkerScriptTests(unittest.TestCase):
+    def test_python_entrypoints_import_when_run_as_scripts(self) -> None:
+        for filename in PYTHON_ENTRYPOINTS:
+            with self.subTest(filename=filename):
+                result = subprocess.run(
+                    [sys.executable, str(ROOT / "scripts" / filename), "--help"],
+                    cwd=ROOT,
+                    text=True,
+                    capture_output=True,
+                )
+                self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_all_worker_scripts_have_valid_bash_syntax(self) -> None:
         subprocess.run(["bash", "-n", *(str(path) for path in SCRIPTS)], check=True)
 

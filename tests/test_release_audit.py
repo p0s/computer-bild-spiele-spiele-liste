@@ -16,12 +16,38 @@ from scripts.release_audit import (
     parse_args,
     readme_snapshot_counts,
     run_audit,
+    tracked_text_findings,
 )
+from scripts.vps_worker_matrix_notify import validate_homeserver
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class ReleaseAuditCliTests(unittest.TestCase):
+    def test_tracked_text_scan_rejects_symlinks_without_following_them(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            target = root / "target.txt"
+            target.write_text("private material", encoding="utf-8")
+            (root / "tracked.txt").symlink_to(target)
+
+            self.assertEqual(
+                tracked_text_findings(root, ["tracked.txt"]),
+                [("tracked.txt", "unsafe tracked file type")],
+            )
+
+    def test_matrix_homeserver_requires_a_clean_https_origin(self) -> None:
+        self.assertEqual(validate_homeserver("https://matrix.example/"), "https://matrix.example")
+        for unsafe in (
+            "http://matrix.example",
+            "https://user:pass@matrix.example",
+            "https://matrix.example:8448",
+            "https://matrix.example/path",
+        ):
+            with self.subTest(unsafe=unsafe):
+                with self.assertRaises(ValueError):
+                    validate_homeserver(unsafe)
+
     def test_preserved_media_release_allows_only_contract_files(self) -> None:
         self.assertTrue(is_allowed_preserved_release_file("results/media-20260809/media_manifest.csv"))
         self.assertFalse(is_allowed_preserved_release_file("results/media-20260809/source-image.tiff"))

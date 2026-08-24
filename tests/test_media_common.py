@@ -6,6 +6,7 @@ import struct
 import tempfile
 import unittest
 from hashlib import sha1
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
@@ -31,27 +32,72 @@ class MediaCommonTests(unittest.TestCase):
     def test_download_verifies_and_reuses_cached_file(self) -> None:
         payload = b"verified media payload"
         expected_sha1 = sha1(payload, usedforsecurity=False).hexdigest()
+
+        class FakeResponse(BytesIO):
+            status = 200
+
+            def __init__(self, body: bytes) -> None:
+                super().__init__(body)
+                self.headers = {"Content-Length": str(len(body))}
+
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            source = root / "source.bin"
             destination = root / "cache" / "asset.bin"
-            source.write_bytes(payload)
 
-            download_file(
-                source.as_uri(),
-                destination,
-                expected_size=len(payload),
-                expected_sha1=expected_sha1,
-            )
-            source.write_bytes(b"different upstream bytes")
-            download_file(
-                source.as_uri(),
-                destination,
-                expected_size=len(payload),
-                expected_sha1=expected_sha1,
-            )
+            with patch(
+                "scripts.fetch_media_evidence.open_https",
+                return_value=FakeResponse(payload),
+            ) as open_https:
+                download_file(
+                    "https://upload.wikimedia.org/test.bin",
+                    destination,
+                    expected_size=len(payload),
+                    expected_sha1=expected_sha1,
+                )
+                download_file(
+                    "https://upload.wikimedia.org/test.bin",
+                    destination,
+                    expected_size=len(payload),
+                    expected_sha1=expected_sha1,
+                )
 
             self.assertEqual(destination.read_bytes(), payload)
+            self.assertEqual(open_https.call_count, 1)
+
+    def test_download_rejects_non_https_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            destination = Path(temp_dir) / "asset.bin"
+            with self.assertRaises(ValueError):
+                download_file(
+                    "file:///tmp/source.bin",
+                    destination,
+                    expected_size=1,
+                    expected_sha1="0" * 40,
+                )
+
+    def test_download_rejects_oversized_response_and_removes_partial(self) -> None:
+        class FakeResponse(BytesIO):
+            status = 200
+
+            def __init__(self) -> None:
+                super().__init__(b"too large")
+                self.headers = {"Content-Length": "9"}
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            destination = Path(temp_dir) / "asset.bin"
+            with (
+                patch("scripts.fetch_media_evidence.open_https", return_value=FakeResponse()),
+                self.assertRaisesRegex(ValueError, "exceeds"),
+            ):
+                download_file(
+                    "https://upload.wikimedia.org/test.bin",
+                    destination,
+                    expected_size=2,
+                    expected_sha1="0" * 40,
+                    attempts=1,
+                )
+            self.assertFalse(destination.exists())
+            self.assertFalse(destination.with_suffix(".bin.part").exists())
 
     @patch("scripts.fetch_media_evidence.request_json")
     def test_candidate_discovery_can_skip_depicts_queries(self, request_json) -> None:
